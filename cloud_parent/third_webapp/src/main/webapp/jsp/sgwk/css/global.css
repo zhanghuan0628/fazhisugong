@@ -1,0 +1,193 @@
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,pre,code,form,fieldset,legend,input,button,textarea,p,blockquote,th,td,section,article,aside,header,footer,nav,dialog,figure,figcaption,hgroup { margin:0; padding:0; }
+table { border-collapse:collapse; border-spacing:0; }
+h1,h2,h3,h4,h5,h6 { font-weight:normal; font-size:100%; }
+ul,ol,li { list-style:none; }
+em,i,b { font-style:normal;font-weight: normal; }
+img { border:0; }
+input,button,img { vertical-align:middle; }
+input:focus { outline:0; }
+a {text-decoration:none;}
+* { -webkit-tap-highlight-color:rgba(0,0,0,0); margin: 0;padding: 0;}
+input,textarea,button {font-family: "微软雅黑";font-size: 1.4rem;}
+select {background: none;}
+.clearfix:after { content: "." ; display: block ;height: 0 ;clear: both ;visibility: hidden ;}
+#layer {position: fixed;top: 0;left: 0;right:0;bottom:0;z-index:30;background-color:#000000;-moz-opacity: 0.5;opacity:.50;filter: alpha(opacity=50);display: none;}
+
+html {font-size: 56%;}
+@media only screen and (min-width: 321px){
+    html {
+        font-size: 62.5%!important;
+    }
+}
+@media only screen and (min-width: 401px){
+    html {
+        font-size: 72%!important;
+    }
+}
+@media only screen and (min-width: 481px){
+    html {
+        font-size: 94%!important;
+    }
+}
+@media only screen and (min-width: 561px){
+    html {
+        font-size: 109%!important;
+    }
+}
+@media only screen and (min-width: 641px){
+    html {
+        font-size: 125%!important;
+    }
+}
+
+body {font-family: "微软雅黑";font-size: 1.4rem;}
+
+.toast {position: fixed;background-color: rgba(0,0,0,0.5);color: #FFFFFF;left: 50%;top: 50%;transform: translate(-50%,-50%);border-radius: 5px;padding: 1rem;z-index: 120;text-align: center;}
+
+.voteToast {padding: 3rem 0;width: 25rem; background-color: #FFFFFF;border-radius: 5px;position: fixed;left: 50%;top: 50%;transform: translate(-50%,-50%);z-index: 100;text-align: center;}
+.voteToast h1 {font-size: 1.8rem;margin-bottom: 1.2rem;font-weight: bold}
+.voteToast p {font-size: 1.5rem;}
+.voteToast p span {font-size: 2.1rem;color: #28905d;}
+
+.voteAnimate {position: fixed;top: 0;left: 0;right:0;bottom:0;z-index:30;background-color:rgba(0,0,0,0.5);}
+.voteAnimate .voteAnimate1 {position: absolute;height: 4.4rem;left: 50%;top: 50%;transform: translate(-50%,-50%);z-index: 70;animation: voteAnimate1 2s linear forwards;-webkit-animation: voteAnimate1 2s linear forwards;-webkit-transform-origin: center bottom;transform-origin: center bottom; }
+.voteAnimate .voteAnimate2 {position: absolute;width: 10.9rem;left: 50%;top: 50%;transform: translate(-50%,-50%);z-index: 60;animation: voteAnimate2 2s linear forwards;-webkit-animation: voteAnimate2 2s linear forwards;}
+@keyframes voteAnimate1
+{
+    0% {transform: translate(-50%,-50%) rotateZ(-30deg);}
+    20% {transform: translate(-50%,-50%) rotateZ(30deg);}
+    40% {transform: translate(-50%,-50%) rotateZ(-15deg);}
+    60% {transform: translate(-50%,-50%) rotateZ(15deg);}
+    80% {transform: translate(-50%,-50%) rotateZ(0deg);}
+}
+
+@-webkit-keyframes voteAnimate1
+{
+    0% {transform: translate(-50%,-50%) rotateZ(-30deg);}
+    20% {transform: translate(-50%,-50%) rotateZ(30deg);}
+    40% {transform: translate(-50%,-50%) rotateZ(-15deg);}
+    60% {transform: translate(-50%,-50%) rotateZ(15deg);}
+    80% {transform: translate(-50%,-50%) rotateZ(0deg);}
+}
+
+@keyframes voteAnimate2
+{
+    from {transform: translate(-50%,-50%) scale(0)}
+    to {transform: translate(-50%,-50%) scale(1)}
+}
+
+@-webkit-keyframes voteAnimate2
+{
+    from {transform: translate(-50%,-50%) scale(0)}
+    to {transform: translate(-50%,-50%) scale(1)}
+}
+
+
+.microClassBg {position: absolute;top: 0;bottom: 0;left: 0;right: 0; background: url(../images/microClassBg.jpg) no-repeat;background-position: center center;background-size: cover;overflow: auto;overflow-y: scroll;-webkit-overflow-scrolling: touch;}
+.participants {position: absolute;left: 1.5rem;top: .8rem;height: 2.7rem;font-size: 1.2rem;color: #28905d;line-height: 2.7rem;padding-left: 5.8rem;}
+.participants p {position: absolute;left: 0;widows: 5.8rem;}
+.participants ul {}
+.participants ul li {width: 2rem;height: 100%;border-radius: 5px;text-align: center;margin-right: .5rem;float: left;background-color: #28905d;color: #FFFFFF;font-size: 1.5rem;font-weight: bold;}
+.ruleBtn {font-size: 1.2rem;color: #28905d;position: absolute;right: 1.5rem;top: .8rem;line-height: 2.7rem;}
+
+.homeTitle {width: 100%;margin-bottom: 3.1rem;}
+.countDown {width: 18.7rem;height: 6.9rem;background: url(../images/microClassCountDown.png?v=1);background-size: 100% 100%;position: relative;margin: 0 auto;}
+.countDown .countDownNum {position: absolute;left: 0.15rem;top: 2.2rem; height: 2.5rem;line-height: 2.5rem;color: #FFFFFF;font-size: 1.7rem;}
+.countDown .countDownNum span {display: block;float: left;margin-left: 0.95rem;}
+.countDown .countDownNum span i {display: block;float: left;margin-left: 0.05rem;width: 1.65rem;text-align: center;}
+
+.searchFrame {padding: 0 1.5rem 3rem 1.5rem;left: 0;top: 0;width: 100%;box-sizing: border-box;z-index: 20;}
+.searchFrame h1 {font-size: 1.2rem;font-weight: bold;text-align: center;color: #FFFFFF;letter-spacing: 8px;line-height: 3.2rem;}
+.searchFrame .searchBar {height: 3.3rem;border-radius: 50px;background-color: rgba(255,255,255,0.3);position: relative;overflow: hidden;box-sizing: border-box;}
+.searchFrame .searchBar input {width: 100%;height: 100%;line-height: 3.3rem;border: none;color: #FFFFFF;background-color: transparent;padding-left: 3.3rem;}
+.searchFrame .searchBar input::-webkit-input-placeholder {color: rgba(255,255,255,0.5);}
+.searchFrame .searchBar input:-moz-placeholder {color: rgba(255,255,255,0.5);}
+.searchFrame .searchBar input::-moz-placeholder {color: rgba(255,255,255,0.5);}
+.searchFrame .searchBar input:-ms-input-placeholder {color: rgba(255,255,255,0.5);}
+.searchFrame .searchBar em {position: absolute;display: block;top: 50%;transform: translateY(-50%);left: 0;width: 3.3rem;height: 3.3rem;background: url(../images/microClassSearch.png) no-repeat;background-size: 1.7rem 1.7rem;background-position: center center;}
+#searchForm {height: 100%;}
+#searchForm input::-webkit-search-cancel-button {display: none;}
+
+.rankingList {padding: 0 1.5rem;}
+.rankingList ul li {height: 17.5rem;display: flex;display: -webkit-flex;justify-content: space-between;margin-top: 3.6rem;position: relative;}
+.rankingList ul li:first-child {margin: 0;}
+.rankingList ul li .rankingNum {position: absolute;left: 0;top: -1rem;width: 3.5rem;text-align: center;font-size: 4.5rem;color: #FFFFFF;z-index: 10;line-height: 4.5rem;}
+.rankingList ul li .rankingNum img {width: 2.4rem;height: 1.4rem;position: absolute;top: -0.5rem;right: 0;}
+.rankingList ul li .speakerHead {width: 48%;background-color: #cccccc;border-radius: 5px;position: relative;overflow: hidden;}
+/* border-top-left-radius: 50%; */
+.rankingList ul li .speakerHead .headImg {position: absolute;left: 0;right: 0;top: 0;bottom: 0;border-radius: 10px;background-size: cover;background-position: center center;}
+/* border-top-left-radius: 50%; */
+.rankingList ul li .speakerHead .headImg em {display: block;position: absolute;width: 3.1rem;height: 3.1rem;background: url(../images/play.png);background-size: 100% 100%;right: 1.3rem;bottom: 1.3rem;}
+.rankingList ul li .speakerInfo {width: 48%;position: relative;}
+.rankingList ul li .speakerInfo p {font-size: 1.4rem;line-height: 1.6rem; color: #FFFFFF;margin-top: 1.1rem;width: 100%;overflow:hidden;text-overflow: ellipsis;white-space: nowrap;}
+.rankingList ul li .speakerInfo p:first-child {margin: 0;}
+
+.rankingList ul li .ballot {font-size: 1.7rem;color: #28905d;padding-left: 2.8rem;line-height: 3.8rem;}
+
+.rankingList ul li .vote {position: absolute;bottom: 0;right: 6.7rem;width: 8rem;height: 3.4rem;line-height: 3.4rem; background-color: #28905d;border: 0.15rem solid #28905d;color: #FFFFFF;text-align: center;border-radius: 5px;font-size: 1.6rem;}
+.rankingList ul li .vote img {position: absolute;left: -0.9rem;top: -0.8rem;width: 3.2rem;height: 2.1rem;}
+.hasVote img {display: none;}
+.vote .voting,.vd-vote .voting {animation: voting 2s linear forwards;-webkit-animation: voting 2s linear forwards;}
+
+@keyframes voting
+{
+    form {transform: scale(1);opacity: 1;}
+    to {transform: scale(1.6);opacity: 0;}
+}
+
+@-webkit-keyframes voting
+{
+    form {transform: scale(1);opacity: 1;}
+    to {transform: scale(1.6);opacity: 0;}
+}
+
+.rankingList ul li .share {position: absolute;bottom: 0;right: 0;width: 5.4rem;height: 3.4rem;line-height: 3.4rem; background-color: transparent;border: 0.15rem solid #28905d;color: #FFFFFF;text-align: center;border-radius: 5px;font-size: 1.6rem;}
+
+
+.videoCover {position: absolute;left: 0;top: 0;width: 100%;height: 100%; z-index: 9;}
+
+.BottomTxt {font-size: 1.3rem;color: #888888;padding: 4.3rem 0 1.5rem 0;text-align: center;}
+
+.returnTop {display: block;width: 3.1rem;height: 3.1rem;background: url(../images/microClassTop.png);background-size: 100% 100%;position: fixed;right: 1.5rem;bottom: 1.7rem;}
+
+
+
+.microClassScroll {position: relative;padding-bottom: 2rem;box-sizing: border-box;min-height: 100%;}
+
+
+.vd-info {padding-top: 1.1rem;text-align: center;}
+.vd-info .speakerCode {width: 5rem;height: 5rem;border-radius: 50%;background-color: rgba(255, 255, 255, 0.3);color: #FFFFFF;font-size: 1.6rem;line-height: 5rem;text-align: center;margin: 0 auto;}
+.vd-info .speakerDepartment {color: #bbbbbb;line-height: 4rem;}
+.vd-info .speakerName {font-size: 1.6rem;color: #fefefe;line-height: 1.6rem;}
+
+.microClassVideo {padding: 0 1.5rem;}
+#microClassVideo {width: auto!important;height: 19rem;border-radius: 5px;overflow: hidden;margin: 1.7rem 0;}
+.vjs-poster {background-size: cover;}
+.vjs-big-play-button {top: 50%!important;left: 50%!important;transform: translate(-50%,-50%);width: 4rem!important; height: 4rem!important;border-radius: 50%!important;box-sizing: content-box!important;background-color: rgba(0,0,0,0.3)!important;}
+.video-js .vjs-big-play-button {line-height: 4rem!important;}
+
+.microClassVideo .microClassTitle {font-size: 1.6rem;color: #FFFFFF;line-height: 1.6rem;margin-bottom: 1rem;}
+.microClassVideo .microClassSummary {font-size: 1.3rem;color: #bbbbbb;line-height: 2rem;word-break: break-all;position: relative;margin-bottom: 2rem;}
+.microClassVideo .summary-off p {overflow:hidden;display:-webkit-box;text-overflow:ellipsis; -webkit-box-orient:vertical;-webkit-line-clamp:2;}
+.microClassVideo .microClassSummary a {position: absolute;right: 0;bottom: -2.5rem;color: #28905d;}
+
+.rankInfo {margin: 0 1.5rem 0 1.5rem;position: relative;height: 6.3rem;}
+.rankInfo .vd-vote {position: absolute;bottom: 0;left: 50%;transform: translateX(-50%); width: 9.7rem;height: 4.3rem;line-height: 4.3rem; background-color: #28905d;color: #FFFFFF;text-align: center;border-radius: 5px;font-size: 1.9rem;}
+.rankInfo .vd-vote img {position: absolute;left: -1rem;top: -0.8rem;width: 3.7rem;height: 2.4rem;}
+
+.rankInfo .vd-ballot {position: absolute;left: 0;bottom: 0;color: #FFFFFF;width: 6.8rem;text-align: center;}
+.rankInfo .vd-rank {position: absolute;right: 0;bottom: 0;color: #FFFFFF;width: 6.8rem;text-align: center;}
+.rankInfo .vd-ballot h2,.rankInfo .vd-rank h2 {font-size: 1.3rem;color: #bbbbbb;margin-bottom: .4rem}
+.rankInfo .vd-ballot p,.rankInfo .vd-rank p {font-size: 1.7rem;color: #e6dc3c;}
+
+.goHome {margin-top: 1.9rem;text-align: center;}
+.goHome a {color: #28905d;text-decoration: underline;}
+
+.adjacent {position: absolute;top: 1.1rem;left: 0;width: 100%;height: 5rem;}
+.adjacent a {position: absolute;width: 2.3rem;height: 2.5rem;top: 50%;transform: translateY(-50%);line-height: 2.5rem;}
+.adjacent .adjacentL {text-align: right;left: 2.5rem;font-size: 0.65rem;color: #FFFFFF;background: url(../images/prev.png);background-size: 100% 100%;padding-right: .1rem;box-sizing: border-box;}
+.adjacent .adjacentR {text-align: left;right: 2.5rem;font-size: 0.65rem;color: #FFFFFF;background: url(../images/next.png);background-size: 100% 100%;padding-left: .1rem;box-sizing: border-box;}
+.adjacent .noneL {text-align: center;left: 2.5rem;font-size: 0.65rem;color: #FFFFFF;background: url(../images/none.png);background-size: 100% 100%;}
+.adjacent .noneR {text-align: center;right: 2.5rem;font-size: 0.65rem;color: #FFFFFF;background: url(../images/none.png);background-size: 100% 100%;}
+
+.ruleImg img {width: 100%;}

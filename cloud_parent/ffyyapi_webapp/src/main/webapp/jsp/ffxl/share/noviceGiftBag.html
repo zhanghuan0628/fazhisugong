@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>新手礼包</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" type="text/css" href="css/global.css?v=1"/>
+		<link rel="stylesheet" type="text/css" href="css/index.css?v=2"/>
+	</head>
+	<body>
+		<div id="layer"></div>
+
+		<div class="giftLogin">
+			<a class="closeLogin"></a>
+			<h1>您需要登陆后查看</h1>
+			<div>
+				<p class="loginPhone"><input type="text" name="cellphone" placeholder="请输入手机号"></p>
+				<p class="loginCode">
+					<input type="text" name="code" placeholder="请输入验证码">
+					<button>发送验证码</button>
+				</p>
+			</div>
+			<p class="loginHint">未注册用户的手机号码将自动注册万心社账号</p>
+			<a class="loginBtn">登陆</a>
+		</div>
+
+
+		<div class="getFeedback">
+			<p></p>
+			<div>
+				<a class="feedbackCancel">取消</a>
+				<a class="feedbackRead">立即查看</a>
+			</div>
+		</div>
+
+
+		<div class="giftBag">
+			<div class="giftBagBg">
+				<img class="giftBagBgImg" src="images/giftBagBg.jpg" alt="">
+				<img class="giftBagMoney" src="images/giftBag50.png" alt="">
+
+				<a class="getGift"></a>
+				<em class="getGiftSpread"></em>
+			</div>
+			
+			<div class="giftBagRule">
+				<h1><span>活动规则</span></h1>
+
+				<p>1.新手礼包仅限万心社新注册用户领取；</p>
+				<p>2.新用户优惠仅限万心社APP下单选择在线支付的订单享受；</p>
+				<p>3.如有其他疑问请咨询客服<a href="tel:400-080-9291">400-080-9291</a>。</p>
+			</div>
+		</div>
+		
+		
+		<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/fastclick.js" type="text/javascript" charset="utf-8"></script>
+		<script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+		<script src="js/index.js?v=20180115" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+
+			function pushCode(cellphone,_this){
+				$.ajax({
+			        url: apiUrl+"/api_user_v2p1/push_code",
+			        type: "post",
+			        data: {cellphone:cellphone},
+			        dataType: "json",
+			        // async:false,
+			        success: function(data) {
+			        	if(data.success){
+			                if(data.code == "2000"){
+			                	var data = data.data;
+								var seconds = 60;
+								_this.html("重新发送（"+seconds+"）").css("background-color","#cccccc");
+								var timer = setInterval(function(){
+									seconds--;
+									_this.html("重新发送（"+seconds+"）");
+									if (seconds<0) {
+										clearInterval(timer);
+										_this.html("重新发送").css("background-color","#da4547");
+										_this.removeAttr("disabled");
+									}
+								},1000);
+
+			                }else{
+			                	
+			                }
+			            }
+			        }
+			    });
+			}
+
+
+			function register(cellphone,code){
+				$.ajax({
+			        url: apiUrl+"/api_user_v2p1/rong_code_register",
+			        type: "post",
+			        data: {cellphone:cellphone,code:code,type:"H5"},
+			        dataType: "json",
+			        // async:false,
+			        success: function(data) {
+			        	if(data.success){
+			                if(data.code == "2000"){
+			                	var data = data.data;
+								$(".giftLogin").hide();
+								if (!data.extRegister) {
+									$(".getFeedback p").text("新手礼包领取成功")
+									$(".getFeedback").show();
+								} else {
+									$(".getFeedback p").text("领取失败，该手机号码已注册")
+									$(".getFeedback").show();
+								}
+			                }else{
+			                	
+			                }
+			            }
+			        }
+			    });
+			}
+
+			var locationUrl = "";
+			var wxtitle = "";
+			var wximgUrl = "";
+			var wxdesc = "";
+			
+			$(function(){
+				$(".getGift").click(function(){
+					var sT = $(window).scrollTop();
+					var wH = $(window).height()/2;
+					var popH = $(".giftLogin").height()/2;
+
+					var offT = sT+wH-popH;
+
+					$(".giftLogin").css({"top":offT+"px"});
+
+					$(".giftLogin,#layer").show();
+				})
+
+				$(".loginCode button").click(function(e){
+					e.preventDefault();
+					var _this = $(this);
+					_this.attr("disabled","disabled");
+					var cellphone = $("input[name='cellphone']").val();
+					var regPhone= /^1[3|4|5|7|8][0-9]{9}$/;
+					if (cellphone=="") {
+						alert("手机号码不正确");
+						_this.removeAttr("disabled");
+						return false;
+					} else if (!regPhone.test(cellphone)) {
+						alert("手机号格式不正确");
+						_this.removeAttr("disabled");
+						return false;
+					} 
+
+					pushCode(cellphone,_this);
+					
+				})
+
+
+				$(".giftLogin .closeLogin").click(function(){
+					$(".giftLogin,#layer").hide();
+				})
+
+
+				$(".loginBtn").click(function(){
+					var regPhone= /^1[3|4|5|7|8][0-9]{9}$/;
+					var cellphone = $("input[name='cellphone']").val();
+					var code = $("input[name='code']").val();
+					if (cellphone=="") {
+						alert("手机号码不正确");
+						return false;
+					} else if (!regPhone.test(cellphone)) {
+						alert("手机号格式不正确");
+						return false;
+					} else if (code == "") {
+						alert("验证码不能为空");
+						return false;
+					}
+					register(cellphone,code);
+				})
+
+				$(".feedbackCancel").click(function(){
+					$(".getFeedback,#layer").hide();
+				})
+
+
+				$("body").on("click",".feedbackRead",function(){
+					more();
+				})
+
+
+
+				locationUrl = apiUrl+"/jsp/ffxl/share/noviceGiftBag.html";
+				wxtitle = "新用户见面礼已经入帐";
+				wximgUrl= apiUrl+"/jsp/ffxl/share/images/wxShare.png";
+				wxdesc = "更多惊喜等你来发现";
+				wxShare(locationUrl,wxtitle,wximgUrl,wxdesc);
+			})
+		</script>
+	</body>
+</html>

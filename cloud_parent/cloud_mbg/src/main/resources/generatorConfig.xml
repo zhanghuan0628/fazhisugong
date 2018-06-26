@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration 
+  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" 
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+    <properties resource="generatorConfig.properties" />  
+    
+    <context id="mysqlMap" targetRuntime="MyBatis3">
+
+    	<!-- 抑制警告 -->
+		<property name="suppressTypeWarnings" value="true" />
+		<!-- generate entity时，生成hashcode和equals方法 -->
+		<plugin type="org.mybatis.generator.plugins.EqualsHashCodePlugin" />
+		<!-- generate entity时，生成serialVersionUID -->
+		<plugin type="org.mybatis.generator.plugins.SerializablePlugin" />
+		<!-- 扩展xml -->
+		<plugin type="com.ffxl.plugin.ModelAndExampleBaseClassPlugin">
+           <property name="baseCLassNamePrefix" value="${baseCLassNamePrefix}"/>
+           <property name="basePackage" value="${basePackage}"/>
+           <property name="extXmlPackage" value="${extXmlPackage}"/>
+  		</plugin>
+  		
+  		
+  		<plugin type="com.ffxl.plugin.ModelAndExamplePlugin"/>
+  		
+  		<!-- 扩展mysql分页-->
+        <plugin type="com.ffxl.plugin.MysqlPagePlugin"/>
+        <!-- 处理is_xxxx字段-->
+        <plugin type="com.ffxl.plugin.BooleanColumnPlugin"/>
+        <!-- 生成xxxMaper.java文件-->
+         <plugin type="com.ffxl.plugin.MapperPlugin">
+           <property name="daoTargetDir" value="${daoTargetDir}"/>
+           <property name="daoTargetPackage" value="${daoTargetPackage}"/>
+           <property name="daoSuperClass" value="${daoSuperClass}"/>
+        </plugin>
+        
+        <!-- 生成xxxService.java文件和xxxServiceImpl.java文件-->
+         <plugin type="com.ffxl.plugin.ServiceAndImplPlugin">
+           <property name="businessTargetDir" value="${businessTargetDir}"/>
+           <property name="businessTargetPackage" value="${businessTargetPackage}"/>
+           <property name="businessSuperClass" value="${businessSuperClass}"/>
+           <property name="businessImplTargetPackage" value="${businessImplTargetPackage}"/>
+           <property name="businessImplSuperClass" value="${businessImplSuperClass}"/>
+           <property name="genericMapper" value="${genericMapper}"/>
+           <property name="springFrameworkStereotypeService" value="${springFrameworkStereotypeService}"/>
+           <property name="slf4jLogger" value="${slf4jLogger}"/>
+           <property name="slf4jLoggerFactory" value="${slf4jLoggerFactory}"/>
+           <property name="springFrameworkAutowired" value="${springFrameworkAutowired}"/>
+           <property name="daoTargetPackage" value="${daoTargetPackage}"/>
+        </plugin>
+		 
+        <!-- 抑制生成代码的注释 -->
+        <commentGenerator>
+            <property name="suppressAllComments" value="true" />
+        </commentGenerator>
+        
+        <!-- jdbcConnection是指定的jdbc的连接信息 -->
+		<jdbcConnection driverClass="${jdbc.driverClassName}"
+			connectionURL="${jdbc.url}"
+			userId="${jdbc.username}" password="${jdbc.password}">
+		</jdbcConnection>
+ 		
+ 		<!--  javaTypeResolver是类型转换的信息 -->
+		<javaTypeResolver>
+			<property name="forceBigDecimals" value="false" />
+		</javaTypeResolver>
+		
+		<!-- javaModelGenerator是模型的生成信息，这里将指定这些Java model类的生成路径 -->
+ 		<javaModelGenerator targetPackage="${modelTargetPackage}"			targetProject="${modelTargetDir}">
+			<property name="enableSubPackages" value="true" />
+			<property name="trimStrings" value="true" />
+		</javaModelGenerator> 
+		
+		<!--sqlMapGenerator是mybatis 的sqlMapper XML文件的生成信息，包括生成路径等 -->
+		<sqlMapGenerator targetPackage="${xmlTargetPackage}"		targetProject="${xmlTargetDir}">		
+			<property 	name="enableSubPackages" value="true" />
+		</sqlMapGenerator> 
+		
+		<table tableName="sys_user" domainObjectName="SysUser"></table>
+		
+	</context>
+</generatorConfiguration> 

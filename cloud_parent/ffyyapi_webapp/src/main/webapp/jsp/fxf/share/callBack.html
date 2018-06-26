@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<script type="text/javascript" src="http://qzonestyle.gtimg.cn/qzone/openapi/qc_loader.js" charset="utf-8" <!--data-callback="true"--> ></script>
+		<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/index.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			var page = getQueryString("page");
+			
+			if (QC.Login.check()) {
+//				var paras = {};  
+//				QC.api("get_user_info", paras)  
+//				    .success(function(s){//成功回调  
+//				        alert("获取用户信息成功！当前用户昵称为："+s.data.nickname);  
+//				    })  
+//				    .error(function(f){//失败回调  
+//				        alert("获取用户信息失败！");  
+//				    })  
+//				    .complete(function(c){//完成请求回调  
+//				        alert("获取用户信息完成！");  
+//				    });  
+				
+				QC.Login.getMe(function(openId, accessToken){
+					$.ajax({
+				        url: apiUrl+"/auth/getUserIdByQqOpenid",
+				        type: "post",
+				        data: {openid:openId,accessToken:accessToken},
+				        dataType: "json",
+				        async:false,
+				        success: function(data) {
+				        	if(data.success){
+				                if(data.code == "2000"){
+				                	var data = data.data;
+				                	localStorage.setItem("fxfQQuserId",data.id);
+				                	localStorage.setItem("fxfQQnickName",data.username);
+				                	localStorage.setItem("fxfQQheadImg",data.headImg);
+				                	if (data.role!=null && data.role!="") {
+				                		localStorage.setItem("fxfQQrole",data.role);
+				                	}
+				                	switch (page){
+				                		case "answer":
+											var id = getQueryString("id");
+											location.href=apiUrl+"/jsp/fxf/share/answer.jsp?id="+id
+											break;
+										case "friendHomepage":
+											var userId = getQueryString("userId");
+											location.href=apiUrl+"/jsp/fxf/share/friendHomepage.jsp?userId="+userId
+											break;
+										case "interlocutionDetail":
+											var questionId = getQueryString("questionId");
+											location.href=apiUrl+"/jsp/fxf/share/interlocutionDetail.jsp?questionId="+questionId
+											break;
+										case "testDetail":
+											var sclId = getQueryString("sclId");
+											location.href=apiUrl+"/jsp/fxf/share/testDetail.jsp?sclId="+sclId
+											break;
+										case "videoDetail":
+											var id = getQueryString("id");
+											location.href=apiUrl+"/jsp/fxf/share/videoDetail.jsp?id="+id
+											break;
+										default:
+											break;
+									}
+				                }else{
+				                	
+				                }
+				            }
+				        }
+				    });
+				});
+				
+			}
+			
+			
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

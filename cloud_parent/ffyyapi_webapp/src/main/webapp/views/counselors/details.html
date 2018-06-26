@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<title>咨询师介绍</title>
+	<link rel="stylesheet" href="../../assets/css/style.css"/>
+</head>
+<body>
+	<div id="counselors-news" v-cloak>
+		<div class="counselors-news-header">
+			<div class="counselors-news-name">{{ list.name }}</div>
+			<div class="counselors-news-right">
+				<div class="counselors-news-jy">{{ profieList.shareWord }}</div>
+				<div class="counselors-news-e"><img src="../../assets/images/news-cou-icon6.png"/></div>
+			</div>
+		</div>
+		<div class="counselors-news-box">
+			<div class="counselors-news-content" :style="'background-image: url('+liveUrl+')'">
+			
+				<div class="counselors-news-job">
+					<div>飞凡心理签约咨询师</div>
+					<div class="counselors-news-jobname">{{ list.jobName }}</div>
+				</div>
+				<div class="counselors-news-user">
+					<div class="counselors-news-user-list"><img src="../../assets/images/news-cou-icon2.png"/>{{ list.regionName }}</div>
+					<div class="counselors-news-user-list"><img src="../../assets/images/news-cou-icon3.png"/>{{ list.fansCount }}粉丝</div>
+					<div class="counselors-news-user-list"><img src="../../assets/images/news-cou-icon4.png"/>{{ list.consultCount }}人咨询过</div>
+					<div class="counselors-news-user-list"><img src="../../assets/images/news-cou-icon5.png"/>{{ list.praiseCount }}%好评</div>
+				</div>
+				<div class="counselors-news-style">
+					<div class="counselors-news-style-title"><span>咨询风格</span></div>
+					<div class="counselors-news-style-text" v-html="profieList.style"></div>
+				</div>
+				<div class="counselors-news-skill">
+					<div class="counselors-news-skill-title">擅长领域</div>
+					<ul class="counselors-news-skill-list" v-for="(skill, key) in list.skillNameList">
+						<li v-show="key<=2"><span>{{ skill }}</span></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="counselors-news-footer">
+			<a class="counselors-news-footer-btn" href="http://a.app.qq.com/o/simple.jsp?pkgname=com.feifanxinli#opened">下载飞凡心理APP，约TA咨询</a>
+		</div>
+		<div class="download-app" v-show="download">
+			<div class="download-app-close" @click="close"><img src="../../assets/images/news-cou-icon1.png"/></div>
+			<img class="download-app-logo" src="../../assets/images/news-cou-logo.png"/>
+			<div class="download-app-tit">飞凡心理</div>
+			<div class="download-app-txt">让我们抛开心事，好好睡觉</div>
+			<a href="http://a.app.qq.com/o/simple.jsp?pkgname=com.feifanxinli#opened" class="download-app-btn">下载APP</a>
+		</div>
+	</div>
+	<script src="../../assets/js/jquery/jquery.min.js"></script>
+	<script src="../../assets/js/vue/vue.min.js"></script>
+	<script src="../../assets/js/base.js"></script>
+	<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+	<script>
+	(function(){
+    	var name=""
+    	var jobName=""
+    	var photo=""
+    	var sc=""
+    	var id="";
+    	var counselorDetails = new Vue({
+		    el: '#counselors-news',
+			data:{
+				list:'',
+				message:'',
+				profieList:'',
+				liveUrl:'',
+				download:true
+			},
+			created:function(){
+	            var _this=this;
+	            var myId=getQueryString("id");//取url地址后面id的参数
+	            id = myId;
+	            $.ajax({
+		            type:'POST',
+		            url:apiCounselorDetail,
+		            data:{
+		            	counselorId:myId,
+		            },
+		            success:function(result){
+		            	//取到数据并赋予list
+		            	_this.list=result.data;
+		            	_this.profieList=result.data.profieListModel
+		            	_this.liveUrl=result.data.profieListModel.shareUrl
+		            	
+		            	//分享文案控制
+		            	name=_this.list.name
+		            	jobName=_this.list.jobName
+		            	photo=_this.list.headUrl
+						var l=_this.list.skillNameList.length
+						var a="，"
+						if(l<3){}
+						else{
+							l=3
+						}
+		            	for(var i=0; i<l; i++){
+		            		if(i==l-1){
+		            			var a="。"
+		            		}
+		            		sc+=_this.list.skillNameList[i]+a
+		            	}
+		            	share()
+		            }
+		        })
+	        },
+	        methods:{
+	       		close:function(){
+	       			this.download=false
+	       		}
+	        }
+		})
+    	
+      function share(){
+    		 $.ajax({
+    	           type: "POST",
+    	           url : "http://ffxlsleep.feifanxinli.com/ffyy/jssdk/get_config_param",
+    	           data: {
+    	               requesUrl : location.href.split('#')[0]
+    	               },
+    	           dataType:'json',
+    	           async:false,
+    	           success: function(data){
+    	               console.log(data.data);
+    	        	   if(data.code == '2000'){    
+    	                   console.log(data.data.appId);
+    	                   var appId = data.data.appId;
+    	                   var timestamp = data.data.timestamp;
+    	                   var nonceStr = data.data.nonceStr;
+    	                   var signature = data.data.signature;
+    	       
+    	                   wx.config({
+    	                       debug: false,  
+    	                       appId: appId,  
+    	                       timestamp: timestamp,  
+    	                       nonceStr: nonceStr,  
+    	                       signature: signature,  
+    	                       jsApiList: ['onMenuShareTimeline',
+    	                                   'onMenuShareAppMessage',
+    	                                   'onMenuShareQQ',
+    	                                   'onMenuShareWeibo',
+    	                                   'onMenuShareQZone']  
+    	                       });  
+    	                   
+    	                   wx.ready(function () {
+    	                       wx.checkJsApi({
+    	                           jsApiList: ['onMenuShareTimeline',
+    	                                       'onMenuShareAppMessage',
+    	                                       'onMenuShareQQ',
+    	                                       'onMenuShareWeibo',
+    	                                       'onMenuShareQZone']  , 
+    	                           success: function(res) {
+    	                               console.log(JSON.stringify(res));
+    	                           }
+    	                       });
+    	   
+    	                       //分享到朋友圈
+    	                       wx.onMenuShareTimeline({
+    	                           title: name+" "+jobName, // 分享标题
+    	                           link: "http://ffxlsleep.feifanxinli.com:8080/ffyy_api/views/counselors/details.html?id="+id,
+    	                           imgUrl: photo, // 分享图标
+    	                           desc: '擅长领域：'+sc, // 分享描述
+    	                           success: function () {},
+    	                           cancel: function () {}
+    	                       });
+    	                       //分享给朋友
+    	                       wx.onMenuShareAppMessage({
+    	                           title: name+" "+jobName, // 分享标题
+    	                           link: "http://ffxlsleep.feifanxinli.com:8080/ffyy_api/views/counselors/details.html?id="+id,
+    	                           imgUrl: photo, // 分享图标
+    	                           desc: '擅长领域：'+sc, // 分享描述
+    	                           success: function () {},
+    	                           cancel: function () {
+    	                             alert(name+" ----"+jobName);
+    	                           }
+    	                       });
+    	                       //分享到QQ
+    	                       wx.onMenuShareQQ({
+    	                           title: name+" "+jobName, // 分享标题
+    	                           link: "http://ffxlsleep.feifanxinli.com:8080/ffyy_api/views/counselors/details.html?id="+id,
+    	                           imgUrl: photo, // 分享图标
+    	                           desc: '擅长领域：'+sc, // 分享描述
+    	                           success: function () {},
+    	                           cancel: function () {}
+    	                       });
+    	                       //分享到QQ空间
+    	                       wx.onMenuShareQZone({
+    	                           title: name+" "+jobName, // 分享标题
+    	                           link: "http://ffxlsleep.feifanxinli.com:8080/ffyy_api/views/counselors/details.html?id="+id,
+    	                           imgUrl: photo, // 分享图标
+    	                           desc: '擅长领域：'+sc, // 分享描述
+    	                           success: function () {},
+    	                           cancel: function () {}
+    	                       });
+    	                                           
+    	                       
+    	                       wx.error(function(res){
+    	                           alert("errorMSG:"+res);
+    	                       });
+    	                   });
+    	               }else{
+    	                   alert(data.message);
+    	               }
+    	           },
+    	           error:function(response, status, err){
+    	               //alert("系统异常");
+    	           }
+    	       });
+    		
+    		
+    		
+    	}    	
+    	
+    	
+    	
+	})();
+	</script>
+</body>
+</html>

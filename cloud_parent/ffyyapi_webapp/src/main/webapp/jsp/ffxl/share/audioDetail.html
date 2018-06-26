@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>音频详情页</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" type="text/css" href="css/global.css?v=1"/>
+		<link rel="stylesheet" type="text/css" href="css/class.css"/>
+	</head>
+	<body>
+		<div id="downLoadLine">
+			<img src="images/wxLogo.png"/>
+			<a onclick="more()">下载APP</a>
+		</div>
+		
+		<div class="audioCover">
+			<div class="audioCoverBg"></div>
+			<div class="audioRotate"></div>
+			<h1></h1>
+		</div>
+
+		<div class="audioComponent">
+			<div class="progressBar">
+				<div>
+					<em></em>
+				</div>
+			</div>
+			<p class="currentTime"></p>
+			<p class="totalTime"></p>
+			<a class="audioPrev"></a>
+			<a class="audioBtn audioPlay"></a>
+			<a class="audioNext"></a>
+		</div>
+
+
+		<div class="classComment">
+			<h1 class="classTitle">课程评论<a>评论</a></h1>
+			<ul>
+				<!-- <li>
+					<img class="commentHead" src="" alt="">
+					<p class="commentName">奔跑的小绵羊</p>
+					<p class="commentTime">12:02</p>
+					<p class="praiseNum">2</p>
+					<div class="commentCont">
+						<p>我爸妈天天晚上都特别晚回家，我一个人在家怕，是不知道和谁说，他们好像一点都不关心我在家怕，可是不知道和谁说，他们好像一点都不关心。</p>
+					</div>
+				</li> -->
+			</ul>
+		</div>
+
+		<audio src="" id="audio"></audio>
+		
+		
+		<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/fastclick.js" type="text/javascript" charset="utf-8"></script>
+		<script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+		<script src="js/index.js?v=20180115" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+
+			function audioClassList(sourceId,id){
+				$.ajax({
+			        url: apiUrl+"/sce_homepage/sce_online_list",
+			        type: "post",
+			        data: {sourceId:sourceId},
+			        dataType: "json",
+			        // async:false,
+			        success: function(data) {
+			        	if(data.success){
+			                if(data.code == "2000"){
+								var data = data.data;
+								
+								var fmName = "";
+								var imgUrl = "";
+								var fmUrl = "";
+								$.each(data, function(i,item) {
+									if (id == item.id) {
+										fmName = item.title;
+										imgUrl = item.imgUrl;
+										fmUrl = item.cUrl;
+									}
+								});
+
+								$(".audioCover h1").text(fmName);
+								$(".audioCoverBg").css("background-image","url("+imgUrl+")");
+								$(".audioRotate").css("background-image","url("+imgUrl+")");
+								$("#audio").attr("src",fmUrl);
+			                	audioObj = $("#audio")[0];
+			                	if (isWeChat()) {
+			                		document.addEventListener("WeixinJSBridgeReady", function () { 
+				                		audioObj.play();
+				                		audioObj.pause();
+								        getTime();
+								    }, false); 
+			                	} else {
+			                		getTime();
+			                	}
+
+			                }else{
+			                	
+			                }
+			            }
+			        }
+			    });
+			}
+
+
+
+			function audioDetail(id){
+				$.ajax({
+			        url: apiUrl+"/sce_homepage/sce_online_course",
+			        type: "post",
+			        data: {id:id},
+			        dataType: "json",
+			        // async:false,
+			        success: function(data) {
+			        	if(data.success){
+			                if(data.code == "2000"){
+			                	var data = data.data[0];
+								
+
+								locationUrl = apiUrl+"/jsp/ffxl/share/audioClass.html?id="+id;
+								wxtitle = "我从万心社推荐一门有用的正念课程给你："+data.seriesName;
+								wximgUrl= data.imgUrl;
+								wxdesc = data.shortDesc;
+								wxShare(locationUrl,wxtitle,wximgUrl,wxdesc);
+
+
+			                }else{
+			                	
+			                }
+			            }
+			        }
+			    });
+			}
+
+
+			// 评论
+			function commentList(sourceId){
+				$.ajax({
+			        url: apiUrl+"/ambitus/active_estimate_list",
+			        type: "post",
+			        data: {sourceId:sourceId,sourceType:"on_course"},
+			        dataType: "json",
+			        // async:false,
+			        success: function(data) {
+			        	if(data.success){
+			                if(data.code == "2000"){
+			                	var data = data.data;
+								
+								var html = "";
+								$.each(data, function(i,item) {
+
+									var time = ""
+									var differTime = new Date().getTime()-item.estimateDatetime;
+									if (differTime<=86400000) {
+										var hours = parseInt(differTime / 1000 / 60 / 60 % 24 , 10); //计算剩余的小时 
+										var minutes = parseInt(differTime / 1000 / 60 % 60, 10);//计算剩余的分钟 
+										
+										if (hours!=0) {
+											time = hours+"小时前";
+										} else if (minutes!=0) {
+											time = minutes+"分钟前";
+										} else {
+											time = "1分钟前"
+										}
+									} else {
+										var obj = new Date(item.estimateDatetime);
+										// var oYear = obj.getFullYear();
+										// var oMonth = obj.getMonth()+1;
+										// var oDate = obj.getDate();
+										var oHour = obj.getHours();
+										var oMinute = obj.getMinutes();
+										
+										// time = oYear+"."+getzf(oMonth)+"."+getzf(oDate)+" "+getzf(oHour)+":"+getzf(oMinute);
+										time = getzf(oHour)+":"+getzf(oMinute);
+									}
+
+									var headUrl = "";
+									var name = "";
+									if (item.see) {
+										headUrl = apiUrl+"/jsp/ffxl/share/images/anonymous.png";
+										name = "匿名用户"
+									} else {
+										headUrl = item.uHeadUrl;
+										name = item.uName;
+									}
+						
+									html += "<li>"+
+										"<img class='commentHead' src='"+headUrl+"' />"+
+										"<p class='commentName'>"+name+"</p>"+
+										"<p class='commentTime'>"+time+"</p>"+
+										"<p class='praiseNum'>"+item.pCount+"</p>"+
+										"<div class='commentCont'>"+
+											"<p>"+item.content+"</p>"+
+										"</div>"+
+									"</li>";
+								});
+
+								$(".classComment ul").html(html);
+			                }else{
+			                	
+			                }
+			            }
+			        }
+			    });
+			}
+
+
+			function formatSeconds(value) {  
+			    var theTime = parseInt(value);// 秒  
+			    var theTime1 = 0;// 分  
+				var result = "";
+			    if(theTime > 60) {  
+			        theTime1 = parseInt(theTime/60);  
+			        theTime = parseInt(theTime%60);  
+		            if(theTime1 > 60) {  
+		            	theTime1 = parseInt(theTime1%60);  
+		            }  
+			    }  
+				if (parseInt(theTime)<10) {
+					result = "00:0"+parseInt(theTime); 
+				} else{
+					result = "00:"+parseInt(theTime); 
+				}
+		        
+		        if(theTime1 > 0) {
+					if (theTime1<10) {
+						if (parseInt(theTime)<10) {
+							result = "0"+parseInt(theTime1)+":0"+parseInt(theTime); 
+						} else{
+							result = "0"+parseInt(theTime1)+":"+parseInt(theTime); 
+						}
+					} else{
+						if (parseInt(theTime)<10) {
+							result = parseInt(theTime1)+":0"+parseInt(theTime); 
+						} else{
+							result = parseInt(theTime1)+":"+parseInt(theTime); 
+						}
+					}
+		        }  
+			    return result;  
+			}  
+			
+			
+			function getTime() {
+	            setTimeout(function () {  
+	                totalTime = audioObj.duration;
+	                if(isNaN(totalTime)){
+	                	play = false;
+	                    getTime();  
+	                }  
+	                else{  
+	                    play = true;
+	                    
+					    var totalTimeF =  audioObj.duration.toFixed(0);
+					    $(".currentTime").text(formatSeconds(currentTime));
+						$(".totalTime").text(formatSeconds(totalTimeF)); 
+						
+	                }  
+	            }, 10);  
+	        }  
+			
+			
+			var totalTime = "";
+			var currentTime = 0;
+			var audioObj;
+			var play = false;
+
+			var audioObj;
+
+			var locationUrl = "";
+			var wxtitle = "";
+			var wximgUrl = "";
+			var wxdesc = "";
+			
+			$(function(){
+
+				var coursesId = getQueryString("coursesId");
+				var id = getQueryString("id");
+				audioClassList(coursesId,id);
+				audioDetail(coursesId);
+
+
+				var timer = "";
+				$(".audioComponent .audioBtn").click(function(){
+					if (play) {
+						if ($(this).hasClass("audioPlay")) {
+							$(this).removeClass("audioPlay").addClass("audioPause");
+							audioObj.play();
+							timer = setInterval(function(){
+								if (currentTime == totalTime) {
+									clearInterval(timer);
+									$(".currentTime").text(formatSeconds(totalTime));
+									return false;
+								}
+								$(".currentTime").text(formatSeconds(currentTime.toFixed(0)));
+								$(".progressBar div").css("width",currentTime*100/totalTime+"%");
+								
+							},500)
+						} else {
+							$(this).removeClass("audioPause").addClass("audioPlay");
+							audioObj.pause();
+							clearInterval(timer);
+						}
+					}
+					
+				})
+				
+				
+				$("#audio").on("ended",function(){
+					$(".audioComponent .audioBtn").removeClass("audioPause").addClass("audioPlay");
+					
+				});
+				
+				
+				$("#audio").on("timeupdate",function(){
+					currentTime = audioObj.currentTime;
+				})
+				
+				
+				$(".progressBar").click(function(e){
+					var progressBarW = $(this).width();
+					var offsetL = $(this).offset().left;
+					var distance = e.pageX-offsetL;
+					var percent = distance/progressBarW
+					audioObj.currentTime = totalTime*percent;
+					var currentTimeChange = totalTime*percent;
+					$(".currentTime").text(formatSeconds(currentTimeChange.toFixed(0)));
+					$(".progressBar div").css("width",currentTimeChange*100/totalTime+"%");
+				})
+
+
+				$("body").on("click",".audioPrev,.audioNext,.classTitle a",function(){
+					more();
+				})
+				
+			})
+		</script>
+	</body>
+</html>

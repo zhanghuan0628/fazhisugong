@@ -1,0 +1,281 @@
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>排行榜</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" type="text/css" href="css/swiper-4.2.2.min.css"/>
+		<link rel="stylesheet" type="text/css" href="css/mescroll.min.css"/>
+		<link rel="stylesheet" type="text/css" href="css/team.css?v=6"/>
+	</head>
+	<body>
+
+		<div class="swiper-container rankingDetail" id="answerRanking">
+			<div class="swiper-pagination"></div>
+			<div class="swiper-wrapper">
+				<div class="swiper-slide" id="team">
+					<div class="rankingBoard mescroll" id="teamList">
+						<ul>
+
+						</ul>
+					</div>
+					
+				</div>
+				<div class="swiper-slide" id="personal">
+					<div class="rankingBoard mescroll" id="personalList">
+						<ul>
+
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		
+		
+		<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/swiper-4.2.2.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/mescroll.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/fastclick.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/index.js?v=20180423" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			// 团队答题榜
+			function teamAnsph(userId,actBannerId,teamStatus,page){
+				$.ajax({
+			        url: apiUrl+"/ans_tem/team_ansph",
+			        type: "post",
+			        data: {userId:userId,actBannerId:actBannerId,pageSize:10,pageNo:page.num},
+			        dataType: "json",
+			        async:false,
+			        success: function(data) {
+			        	if(data.success){
+			                if(data.code == "2000"){
+								if (teamStatus != "unTeam") {
+									var selfData = eval("("+data.module+")");
+									var self = "";
+									if (selfData.ranking == "未上榜") {
+										self = "<div class='selfRank'>"+
+											"<h1>"+selfData.tName+"</h1>"+
+											"<p class='notIn'>未上榜</p>"+
+										"</div>";
+									} else {
+										var rankNum = "";
+										if (selfData.ranking == "1") {
+											rankNum = "<img class='rankImg' src='images/rank1.png' />"
+										} else if (selfData.ranking == "2") {
+											rankNum = "<img class='rankImg' src='images/rank2.png' />"
+										} else if (selfData.ranking == "3") {
+											rankNum = "<img class='rankImg' src='images/rank3.png' />"
+										} else if (selfData.ranking == "未上榜") {
+											rankNum = "<i style='font-size:1rem'>"+selfData.ranking+"</i>"
+										} else {
+											rankNum = "<i>"+selfData.ranking+"</i>"
+										}
+										self = "<div class='selfRank'>"+rankNum+
+											"<h1>"+selfData.tName+"</h1>"+
+											"<div class='boardInfo'>"+
+												"<p>"+selfData.ansCount+"</p>"+
+												"<span>答对题数</span>"+
+											"</div>"+
+										"</div>";
+									}
+
+									$("#answerRanking #team .rankingBoard .selfRank").remove();
+									$("#answerRanking #team .rankingBoard").prepend(self);
+								}
+						
+								
+
+			                	var data = data.data.dataList;
+
+								teamMescroll.endByPage(data.length, data.totalPage);
+
+			                	var html = "";
+								$.each(data, function(i,item) {
+									var rankNum = "";
+									if (item.ranking == "1") {
+										rankNum = "<img class='rankImg' src='images/rank1.png' />"
+									} else if (item.ranking == "2") {
+										rankNum = "<img class='rankImg' src='images/rank2.png' />"
+									} else if (item.ranking == "3") {
+										rankNum = "<img class='rankImg' src='images/rank3.png' />"
+									} else {
+										rankNum = "<i>"+item.ranking+"</i>"
+									}
+									html += "<li data-tid='"+item.tId+"'>"+rankNum+
+										"<h1>"+item.tName+"</h1>"+
+										"<div class='boardInfo'>"+
+											"<p>"+item.ansCount+"</p>"+
+											"<span>答对题数</span>"+
+										"</div>"+
+									"</li>"
+								})
+
+								if (page.num == 1) {
+									$("#answerRanking #team .rankingBoard ul").empty();
+								}
+								$("#answerRanking #team .rankingBoard ul").append(html);
+								
+			                }else{
+			                	
+			                }
+			            }
+			        }
+			    });
+			}
+
+
+			// 个人答题榜
+			function preAnsph(userId,actBannerId,teamStatus,page){
+				
+				$.ajax({
+			        url: apiUrl+"/ans_tem/pre_ansph",
+			        type: "post",
+			        data: {userId:userId,actBannerId:actBannerId,pageSize:10,pageNo:page.num},
+			        dataType: "json",
+			        async:false,
+			        success: function(data) {
+			        	if(data.success){
+			                if(data.code == "2000"){
+								if (teamStatus != "unTeam") {
+									var selfData = eval("("+data.module+")");
+									var self = "";
+									if (selfData.ranking == "未上榜") {
+										self = "<div class='selfRank'>"+
+											"<div class='boardUser'>"+
+												"<img src='"+selfData.tImg+"' />"+
+												"<span>"+selfData.tName+"</span>"+
+											"</div>"+
+											"<p class='notIn'>未上榜</p>"+
+										"</div>";
+									} else {
+										var rankNum = "";
+										if (selfData.ranking == "1") {
+											rankNum = "<img class='rankImg' src='images/rank1.png' />"
+										} else if (selfData.ranking == "2") {
+											rankNum = "<img class='rankImg' src='images/rank2.png' />"
+										} else if (selfData.ranking == "3") {
+											rankNum = "<img class='rankImg' src='images/rank3.png' />"
+										} else if (selfData.ranking == "未上榜") {
+											rankNum = "<i style='font-size:1rem'>"+selfData.ranking+"</i>"
+										} else {
+											rankNum = "<i>"+selfData.ranking+"</i>"
+										}
+										self = "<div class='selfRank'>"+rankNum+
+											"<div class='boardUser'>"+
+												"<img src='"+selfData.tImg+"' />"+
+												"<span>"+selfData.tName+"</span>"+
+											"</div>"+
+											"<div class='boardInfo'>"+
+												"<p>"+selfData.ansCount+"</p>"+
+												"<span>答对题数</span>"+
+											"</div>"+
+										"</div>";
+									}
+									
+									$("#answerRanking #personal .rankingBoard .selfRank").remove();
+									$("#answerRanking #personal .rankingBoard").prepend(self);
+								}
+
+			                	var data = data.data.dataList;
+
+								personalMescroll.endByPage(data.length, data.totalPage);
+
+			                	var html = "";
+								$.each(data, function(i,item) {
+									var rankNum = "";
+									if (item.ranking == "1") {
+										rankNum = "<img class='rankImg' src='images/rank1.png' />"
+									} else if (item.ranking == "2") {
+										rankNum = "<img class='rankImg' src='images/rank2.png' />"
+									} else if (item.ranking == "3") {
+										rankNum = "<img class='rankImg' src='images/rank3.png' />"
+									} else {
+										rankNum = "<i>"+item.ranking+"</i>"
+									}
+									html += "<li data-tid='"+item.tId+"'>"+rankNum+
+										"<div class='boardUser'>"+
+											"<img src='"+item.tImg+"' />"+
+											"<span>"+item.tName+"</span>"+
+										"</div>"+
+										"<div class='boardInfo'>"+
+											"<p>"+item.ansCount+"</p>"+
+											"<span>答对题数</span>"+
+										"</div>"+
+									"</li>"
+								})
+
+								if (page.num == 1) {
+									$("#answerRanking #personal .rankingBoard ul").empty();
+								}
+								$("#answerRanking #personal .rankingBoard ul").append(html);
+								
+			                }else{
+			                	
+			                }
+			            }
+			        }
+			    });
+			}
+
+
+			var teamMescroll;
+			var personalMescroll;
+
+			$(function(){
+				var userId =  getQueryString("userId");
+				var actBannerId =  getQueryString("actBannerId");
+				var teamStatus = getQueryString("teamStatus");
+				// teamAnsph(userId,actBannerId,teamStatus);
+				// preAnsph(userId,actBannerId,teamStatus);
+
+				var naviSwiper = new Swiper('.rankingDetail',{
+					observer:true, //修改swiper自己或子元素时，自动初始化swiper
+					observeParents:true,
+					pagination: {
+						el: '.swiper-pagination',
+						clickable: true,
+						renderBullet: function (index, className) {
+							switch(index){
+								case 0:text='团队';break;
+								case 1:text='个人';break;
+							}
+							return '<span class="' + className + '">' + text + '<em></em></span>';
+						},
+					}
+				})  
+
+
+				teamMescroll = new MeScroll("teamList", { 
+					down: {
+						callback: function (mescroll) { 
+							mescroll.resetUpScroll(); 
+						}
+					},
+					up: {
+						auto:false,
+						callback: function (page) { teamAnsph(userId,actBannerId,teamStatus,page); }, 
+						isBounce: false
+					}
+				});
+
+				personalMescroll = new MeScroll("personalList", { 
+					down: {
+						callback: function (mescroll) { 
+							mescroll.resetUpScroll(); 
+						}
+					},
+					up: {
+						auto:false,
+						callback: function (page) { preAnsph(userId,actBannerId,teamStatus,page); }, 
+						isBounce: false
+					}
+				});
+
+				
+				
+			})
+		</script>
+	</body>
+</html>

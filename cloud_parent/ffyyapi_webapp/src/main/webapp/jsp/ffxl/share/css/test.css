@@ -1,0 +1,95 @@
+/*测试详情*/
+.testInfo {border-bottom: .5rem solid #f8f8f8; background-color: #FFFFFF;}
+.testInfo .testCover {height: 18.5rem;background-repeat: no-repeat;background-size: cover;}
+.testInfo .testTitle {height: 7.2rem;border-top: 1px solid #f8f8f8;padding: 1.3rem 1.5rem 0 1.5rem;box-sizing: border-box;}
+.testInfo .testTitle h1 {font-size: 1.6rem;margin-bottom: 1rem;font-weight: bold;}
+.testInfo .testTitle .testData {position: relative;}
+.testInfo .testTitle .testData .testPrice {font-size: 1.6rem;color: #da4547;position: absolute;left: 0;top: 0;line-height: 1.6rem;}
+.testInfo .testTitle .testData .testPrice span {font-size: 1rem;color: #a2a2a2;text-decoration: line-through;}
+.testInfo .testTitle .testData .hasTest {font-size: 1.3rem;color: #999999;position: absolute;right: 0;top: 0;line-height: 1.6rem;}
+
+.testDesc {padding: 0 1.5rem;background-color: #FFFFFF;}
+.titleIcon {margin-bottom: 1.3rem;text-align: center;margin-top: 2.2rem;}
+.titleIcon img {display: block;margin: 0 auto 1.2rem auto;width: 1.6rem;height: 1.6rem;}
+.titleIcon span {padding-top: .7rem;border-top: 1px solid #da4547;font-size: 1.3rem;}
+
+.testDesc .testWhy div,.testDesc .testHint div {font-size: 1.5rem;color: #555555;line-height: 2.4rem;}
+
+.testNow {display: block;position: fixed;bottom: 0;left: 0;width: 100%;height: 5rem;line-height: 5rem;color: #FFFFFF;font-size: 1.7rem;background-color: #da4547;text-align: center;}
+
+
+/*测试题*/
+.testRate {padding: 1.7rem 1.5rem 0 1.5rem;margin-bottom: 4.5rem;}
+.testRate .testNum {color: #999999;font-size: 1.5rem;float: right;}
+.testRate .testNum .which {color: #da4547;font-weight: bold;}
+.testRate .testNum i {display: none;}
+.testRate .pre-test {position: absolute;left: 1.5rem;top: 1.7rem;font-size: 1.5rem;color: #da4547;display: none;float: left;}
+
+.testRate .progressBar {position: relative;margin-top: .9rem;width: 100%; height: .8rem;background-color: #e8e8e8;border-radius: 10px;display: none;}
+.testRate .progressBar em {display: block;position: absolute;left: 0;top: 0;height: 100%;border-radius: 10px;background-color: #da4547;}
+
+.testDescription {padding: 0 1.5rem;font-size: 1.6rem;color: #333333;line-height: 2.4rem;}
+.testDescription img {width: 100%;height: auto;display: block;}
+.testChoice {padding: 0 1.5rem;margin-top: 2.3rem;}
+.testChoice ul {width: 100%;border: 1px solid #EEEEEE;border-radius: 5px;background-color: #FFFFFF;color: #666666;}
+.testChoice ul li {border-top: 1px solid #EEEEEE;padding:1.2rem 1.4rem;}
+.testChoice ul li img {width: auto;height: 3rem;display: block;}
+.testChoice ul li:first-child {border: none;}
+.tc_on {color: #555555!important;background-color: #da4547!important;}
+.testChoice ul li:active {color: #555555;background-color: #da4547;}
+
+.sub-btn {position: fixed;bottom: 2rem;left: 50%; width: 14rem;height: 4.5rem;display: block;transform: translateX(-50%); background-color: #dbdbdb;color: #FFFFFF;font-size: 1.7rem;text-align: center;line-height: 4.5rem;border-radius: 50px;}
+.sub-btn-active {background-color: #da4547!important;}
+
+.testChoice .hasImg {display: flex;display: -webkit-flex;border: none;border-radius: initial;background: none;flex-wrap: wrap;justify-content: space-between;}
+.testChoice .hasImg li {padding: 0;border-radius: 5px;width: 48%;background-color: #FFFFFF;margin-bottom: 1.5rem;}
+.testChoice .hasImg li img {width: 100%;}
+.testChoice .hasImg li p {display: table;height: 4rem;padding: 0 1rem;}
+.testChoice .hasImg li p span {display: table-cell;text-align: center;vertical-align: middle;}
+
+
+.subjective i,.testChoice h2 {color: #333333;}
+.testChoice .subjectiveAnswer {box-sizing: border-box; width: 100%; height: 24rem;border: #e5e5e5;background-color: #FFFFFF;resize: none;padding: .8rem;font-size: 1.5rem;color: #666666;line-height: 2.4rem;margin-top: 1.2rem;word-break: break-all;}
+
+.subjectiveBtn {display: block;margin: 0 1.5rem;height: 4.5rem;line-height: 4.5rem;text-align: center;font-size: 1.5rem;color: #FFFFFF;background-color: #32B16C;border-radius: 5px;}
+
+
+.subjectiveHint {width: 26rem;background-color: #FFFFFF;border-radius: 10px;overflow: hidden;box-sizing: border-box;padding-top: 2.6rem;text-align: center;position: fixed;left: 50%;top: 50%;transform: translate(-50%,-50%);z-index: 40;}
+.subjectiveHint div img {width: 2.7rem;height: 2.7rem;}
+.subjectiveHint div p {font-size: 1.6rem;margin: 1.2rem 0 2.2rem 0;}
+.subjectiveHint a {display: block;width: 100%;height: 4.9rem;line-height: 4.9rem;color: #32B16C;font-size: 1.7rem;text-align: center;border-top: 1px solid #e5e5e5;}
+
+
+
+/*测试结果*/
+.dmnsName {font-size: 1.7rem;color: #333333;line-height: 4.5rem;text-align: center;}
+.dmnsName:before {content: "";display: inline-block;width: 2.2rem;height: 1px;background-color: #333333;margin-right: 1rem;vertical-align: middle;}
+.dmnsName:after {content: "";display: inline-block;width: 2.2rem;height: 1px;background-color: #333333;margin-left: 1rem;vertical-align: middle;}
+
+#testResult {position: absolute;top: 1rem;left: 0;right: 0;bottom: 7.8rem;overflow: hidden;}
+
+#testResult #testResultNavi {height: 3.5rem;overflow: visible;z-index: 20;background-color: #FFFFFF;}
+#testResult #testResultNavi .swiper-slide {background-color: #FFFFFF;color: #666666;text-align: center;line-height: 3.5rem;}
+#testResult #testResultNavi .swiper-slide p {overflow: hidden;text-overflow: ellipsis;white-space: nowrap;}
+#testResult #testResultNavi .swiper-slide img {position: absolute;left: 50%;transform: translateX(-50%);top: 3.2rem;display: none;width: .8rem;height: 2.6rem;}
+#testResult #testResultNavi .trn_on {background-color: #da4547!important;color: #FFFFFF!important;}
+#testResult #testResultNavi .trn_on img {display: block!important;}
+
+#testResult .resultFrame {position: absolute;left: 2rem;right: 1.5rem;bottom: 0;top: 5rem;background-color: rgba(218,69,71,0.3);}
+#testResult #magazine {height: 100%;position: absolute;left: -0.5rem;top: -0.5rem;right: .5rem;bottom: .5rem;}
+#testResult #magazine .turn-page{background-color:#ccc;background-size:100% 100%;}
+#testResult #magazine .trLi {width: 100%;height: 100%;}
+#testResult #magazine .trContent {background-color: #FFFFFF;width: 100%;height: 100%;padding: 2.1rem 1.2rem;box-sizing: border-box;overflow: auto;}
+#testResult #magazine .trContent img {width: 100%;height: auto;}
+#testResult #magazine .trContent .resultTitle {text-align: center;line-height: 4rem;font-size: 1.5rem;}
+#testResult #magazine .trContent .score {font-size: 1.5rem;line-height: 3rem;}
+#testResult #magazine .trContent .reportDetail {line-height: 2.6rem;}
+
+
+.trHint {font-size: 1.3rem;color: #c56262;position: absolute;bottom: 7.5rem;padding: 0 3rem;line-height: 3rem;}
+
+.trBtn {position: absolute;bottom: 1.5rem;left: 1.5rem;right: 1.5rem;display: flex;display: -webkit-flex;justify-content: space-around;}
+.trBtn a {width: 46%;height: 4.3rem;border: 2px solid #da4547;background-color: #FFFFFF;text-align: center;color: #da4547;font-size: 1.5rem;line-height: 4.3rem;border-radius: 5px;}
+
+
+.p-temporal {background-color: #FFFFFF;}

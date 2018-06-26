@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<style>
+			body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,pre,code,form,fieldset,legend,input,button,textarea,p,blockquote,th,td,section,article,aside,header,footer,nav,dialog,figure,figcaption,hgroup { margin:0; padding:0; }
+			table { border-collapse:collapse; border-spacing:0; }
+			img { border:0; }
+			input,button,img { vertical-align:middle; }
+			input:focus { outline:0; }
+			a {text-decoration:none;}
+			* { -webkit-tap-highlight-color:rgba(0,0,0,0); margin: 0;padding: 0;}
+			#webview {width: 100%!important;padding: 15px 15px;box-sizing: border-box;overflow: hidden;word-break: break-all;background-color: #FFFFFF;}
+			table {max-width: 100%!important;}
+			img {max-width: 100%!important;display: block;margin: 0 auto;height: auto!important;}
+			video {max-width: 100% !important;display: block;margin: 0 auto;}
+			section{max-width: 100%!important;box-sizing: border-box;}
+			ul {max-width: 100%!important;}
+		</style>
+	</head>
+
+	<body>
+		<div id="webview">
+			
+		</div>
+		<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/fastclick.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/index.js?v=20180511" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			
+			function detail(id){
+				$.ajax({
+			        url: apiUrl+"/ffxl_active_v202/detail",
+			        type: "post",
+			        data: {id:id},
+			        dataType: "json",
+			        async:false,
+			        success: function(data) {
+			        	if(data.success){
+			                if(data.code == "2000"){
+			                	var data = data.data;
+//		                		活动须知
+								var activeDesc = "";
+								if (data.activeDesc!=null) {
+									activeDesc = data.activeDesc;
+								}
+								$("#webview").html(activeDesc);
+			                }else{
+			                	
+			                }
+			            }
+			        }
+			    });
+			}
+			
+			
+			$(function(){
+				var id = getQueryString("id");
+				detail(id);
+			})
+		</script>
+	</body>
+
+</html>

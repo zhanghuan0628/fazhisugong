@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		    <meta HTTP-EQUIV="pragma" CONTENT="no-cache">
+		    <meta HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+		    <meta HTTP-EQUIV="expires" CONTENT="0">
+		<title>飞凡心理APP</title>
+	</head>
+	<body >
+		<script type="text/javascript" src="//res.cdn.openinstall.io/openinstall.js"></script>
+        <script>
+        $(function(){
+            var mySwiper = new Swiper('.swiper-container', {
+                direction : 'vertical',
+//              initialSlide :4, 
+//              loop : true,
+                onInit: function(swiper){
+                    swiperAnimateCache(swiper); //隐藏动画元素 
+                    swiperAnimate(swiper); //初始化完成开始动画
+                }, 
+                onSlideChangeEnd: function(swiper){ 
+                    swiperAnimate(swiper); //每个slide切换结束时也运行当前slide动画
+                } 
+            })
+        })
+        
+        </script>
+		<script>
+		//取url地址后面的参数，例：getQueryString("id")
+		function getQueryString(name) {
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i"); 
+            var r = window.location.search.substr(1).match(reg); 
+            if (r != null) return unescape(r[2]); return null; 
+        }
+		
+		function isWeChat(){ 
+			var ua = window.navigator.userAgent.toLowerCase(); 
+			if(ua.match(/MicroMessenger/i) == 'micromessenger'){ 
+				return true; 
+			}
+			else{
+				return false; 
+			} 
+		}
+		function isQQ(){ 
+            var ua = window.navigator.userAgent.toLowerCase(); 
+            if(ua.match(/QQ/i) == 'qq'){ 
+                return true; 
+            }
+            else{
+                return false; 
+            } 
+        }
+		function isWeibo(){ 
+            var ua = window.navigator.userAgent.toLowerCase(); 
+            if(ua.match(/WeiBo/i) == 'qq'){ 
+                return true; 
+            }
+            else{
+                return false; 
+            } 
+        }
+		
+		window.onload=function(){
+		    if(isWeChat()){
+				window.location.href="http://a.app.qq.com/o/simple.jsp?pkgname=com.feifanxinli"
+			}else if(isQQ()){
+				window.location.href="http://a.app.qq.com/o/simple.jsp?pkgname=com.feifanxinli"
+			}
+			else{
+				if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)){  //判断iPhone|iPad|iPod|iOS
+					var data = OpenInstall.parseUrlParams();
+				  	var m = new OpenInstall({
+					    appKey : "pph2yo"
+					}, data);
+					
+					m.install();
+//				    window.location.href="https://itunes.apple.com/cn/app/id1226876880?l=zh&ls=1&mt=8"
+				}
+				else if (/(Android)/i.test(navigator.userAgent)){   //判断Android
+					//window.location.href="http://a.app.qq.com/o/simple.jsp?pkgname=com.feifanxinli"//应用宝
+					window.location.href="http://www.wandoujia.com/apps/com.feifanxinli"//豌豆荚
+				}
+				else{
+					//window.location.href="http://a.app.qq.com/o/simple.jsp?pkgname=com.feifanxinli"//应用宝
+				    window.location.href="http://www.wandoujia.com/apps/com.feifanxinli"//豌豆荚
+				}
+			}
+		}
+		</script>
+		<script>
+	    var _mtac = {"performanceMonitor":1};
+	    (function() {
+	        var mta = document.createElement("script");
+	        mta.src = "http://pingjs.qq.com/h5/stats.js?v2.0.4";
+	        mta.setAttribute("name", "MTAH5");
+	        mta.setAttribute("sid", "500347238");
+	        mta.setAttribute("cid", "500347267");
+	        var s = document.getElementsByTagName("script")[0];
+	        s.parentNode.insertBefore(mta, s);
+	    })();
+	  </script>
+	</body>
+</html>

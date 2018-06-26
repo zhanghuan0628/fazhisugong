@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<title>预约咨询流程介绍</title>
+	<link rel="stylesheet" href="../../assets/css/style.css"/>
+</head>
+<body>
+	<ul class="process-list">
+		<li>
+			<div class="process-step">Step 1</div>
+			<div class="process-dot"><div class="process-dot-big"></div><div class="process-dot-small"></div></div>
+			<div class="process-con">
+				<div class="process-con-title">选择心仪咨询师</div>
+				<div class="process-con-text"></div>
+			</div>
+		</li>
+		<li>
+			<div class="process-step">Step 2</div>
+			<div class="process-dot"><div class="process-dot-big"></div><div class="process-dot-small"></div></div>
+			<div class="process-con">
+				<div class="process-con-title">选择咨询方式</div>
+				<div class="process-con-text">文字、电话、视频 、面对面</div>
+			</div>
+		</li>
+		<li>
+			<div class="process-step">Step 3</div>
+			<div class="process-dot"><div class="process-dot-big"></div><div class="process-dot-small"></div></div>
+			<div class="process-con">
+				<div class="process-con-title">选择咨询日期和时间</div>
+				<div class="process-con-text"></div>
+			</div>
+		</li>
+		<li>
+			<div class="process-step">Step 4</div>
+			<div class="process-dot"><div class="process-dot-big"></div><div class="process-dot-small"></div></div>
+			<div class="process-con">
+				<div class="process-con-title">在线支付</div>
+				<div class="process-con-text">微信、支付宝</div>
+			</div>
+		</li>
+		<li>
+			<div class="process-step">Step 5</div>
+			<div class="process-dot"><div class="process-dot-big"></div><div class="process-dot-small"></div></div>
+			<div class="process-con">
+				<div class="process-con-title">预约成功</div>
+				<div class="process-con-text"></div>
+			</div>
+		</li>
+		<li>
+			<div class="process-step">Step 6</div>
+			<div class="process-dot"><div class="process-dot-big"></div><div class="process-dot-small"></div></div>
+			<div class="process-con">
+				<div class="process-con-title">咨询互动，解决您的困扰</div>
+				<div class="process-con-text"></div>
+			</div>
+		</li>
+	</ul>
+	<div class="process-bottom">
+		<a class="counselors-news-footer-btn" href="http://a.app.qq.com/o/simple.jsp?pkgname=com.feifanxinli#opened">预约咨询请下载飞凡心理APP</a>
+	</div>
+	<div class="process-tel"><img src="../../assets/images/news-cou-icon7.png"/>联系客服：<a href="tel:400-080-9291">400-080-9291</a></div>
+	<script src="../../assets/js/jquery/jquery.min.js"></script>
+	<script src="../../assets/js/vue/vue.min.js"></script>
+	<script src="../../assets/js/base.js"></script>
+	<script>
+	$(function(){
+		setTimeout(function(){
+			$(".process-list li").eq(0).addClass("active")
+		},1000)
+		setTimeout(function(){
+			$(".process-list li").eq(1).addClass("active")
+		},2000)
+		setTimeout(function(){
+			$(".process-list li").eq(2).addClass("active")
+		},3000)
+		setTimeout(function(){
+			$(".process-list li").eq(3).addClass("active")
+		},4000)
+		setTimeout(function(){
+			$(".process-list li").eq(4).addClass("active")
+		},5000)
+		setTimeout(function(){
+			$(".process-list li").eq(5).addClass("active")
+		},6000)
+		
+		$.ajax({
+            type: "POST",
+            url : "${base}/jssdk/get_config_param",
+            data: {
+                requesUrl : location.href.split('#')[0]
+                },
+            dataType:'json',
+            async:false,
+            success: function(data){
+                if(data.code == '2000'){	
+                    console.log(data.data.appId);
+                    var appId = data.data.appId;
+                    var timestamp = data.data.timestamp;
+                    var nonceStr = data.data.nonceStr;
+                    var signature = data.data.signature;
+        
+                    wx.config({
+                        debug: false,  
+                        appId: appId,  
+                        timestamp: timestamp,  
+                        nonceStr: nonceStr,  
+                        signature: signature,  
+                        jsApiList: ['onMenuShareTimeline',
+                                    'onMenuShareAppMessage',
+                                    'onMenuShareQQ',
+                                    'onMenuShareWeibo',
+                                    'onMenuShareQZone']  
+                        });  
+                    
+                    wx.ready(function () {
+                        wx.checkJsApi({
+                            jsApiList: ['onMenuShareTimeline',
+                                        'onMenuShareAppMessage',
+                                        'onMenuShareQQ',
+                                        'onMenuShareWeibo',
+                                        'onMenuShareQZone']  , 
+                            success: function(res) {
+                                console.log(JSON.stringify(res));
+                            }
+                        });
+    
+                        //分享到朋友圈
+                        wx.onMenuShareTimeline({
+                            title: "预约咨询流程介绍", // 分享标题
+                            imgUrl: "http://ffxlsleep.feifanxinli.com:8080/ffyy_api/assets/images/news-cou-logo.png", // 分享图标
+                            desc: "让我们抛开心事，好好睡觉", // 分享描述
+                            success: function () {},
+                            cancel: function () {}
+                        });
+                        //分享给朋友
+                        wx.onMenuShareAppMessage({
+                            title: "预约咨询流程介绍", // 分享标题
+                            imgUrl: "http://ffxlsleep.feifanxinli.com:8080/ffyy_api/assets/images/news-cou-logo.png", // 分享图标
+                            desc: "让我们抛开心事，好好睡觉", // 分享描述
+                            success: function () {},
+                            cancel: function () {}
+                        });
+                        //分享到QQ
+                        wx.onMenuShareQQ({
+                            title: "预约咨询流程介绍", // 分享标题
+                            imgUrl: "http://ffxlsleep.feifanxinli.com:8080/ffyy_api/assets/images/news-cou-logo.png", // 分享图标
+                            desc: "让我们抛开心事，好好睡觉", // 分享描述
+                            success: function () {},
+                            cancel: function () {}
+                        });
+                        //分享到QQ空间
+                        wx.onMenuShareQZone({
+                            title: "预约咨询流程介绍", // 分享标题
+                            imgUrl: "http://ffxlsleep.feifanxinli.com:8080/ffyy_api/assets/images/news-cou-logo.png", // 分享图标
+                            desc: "让我们抛开心事，好好睡觉", // 分享描述
+                            success: function () {},
+                            cancel: function () {}
+                        });
+                                            
+                        
+                        wx.error(function(res){
+                            alert("errorMSG:"+res);
+                        });
+                    });
+                }else{
+                    alert(data.message);
+                }
+            },
+            error:function(response, status, err){
+                //alert("系统异常");
+            }
+        });
+	})
+	</script>
+</body>
+</html>

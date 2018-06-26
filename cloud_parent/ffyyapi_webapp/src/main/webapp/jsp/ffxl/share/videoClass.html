@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>线上视频详情</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" type="text/css" href="css/video-js.css"/>
+		<link rel="stylesheet" type="text/css" href="css/swiper-4.2.2.min.css"/>
+		<link rel="stylesheet" type="text/css" href="css/global.css?v=1"/>
+		<link rel="stylesheet" type="text/css" href="css/class.css?v=3"/>
+	</head>
+	<body style="padding-bottom: 4.9rem">
+
+		<div class="classDetail">
+			<a class="closeClassDetail"></a>
+			<div>
+
+			</div>
+		</div>
+
+
+		<div id="downLoadLine">
+			<img src="images/wxLogo.png"/>
+			<a onclick="more()">下载APP</a>
+		</div>
+		
+		<div class="videoClass">
+		</div>
+
+
+		<div class="classData">
+			<div>
+				<h1>课程</h1>
+				<p><span></span>个</p>
+			</div>
+			<div>
+				<h1>总时长</h1>
+				<p><span></span>分钟</p>
+			</div>
+			<div>
+				<h1>参加人数</h1>
+				<p><span></span>人</p>
+			</div>
+		</div>
+
+
+
+		<div class="swiper-container" id="videoTab">
+			<div class="swiper-pagination"></div>
+			<div class="swiper-wrapper">
+				<div class="swiper-slide">
+					<div class="classIntro">
+						<p></p>
+						<a>全部介绍<img src="images/moreDetail.png" alt=""></a>
+					</div>
+					
+					<div class="classComment">
+						<h1 class="classTitle">课程评论<a>评论</a></h1>
+						<ul>
+							<li>
+								<img class="commentHead" src="" alt="">
+								<p class="commentName">奔跑的小绵羊</p>
+								<p class="commentTime">12:02</p>
+								<p class="praiseNum">2</p>
+								<div class="commentCont">
+									<p>我爸妈天天晚上都特别晚回家，我一个人在家怕，是不知道和谁说，他们好像一点都不关心我在家怕，可是不知道和谁说，他们好像一点都不关心。</p>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="swiper-slide">
+					<div class="classList">
+						<h1 class="classTitle">课程列表</h1>
+						<ul>
+							<!-- <li>
+								<i>1</i>
+								<h1>把心唤醒</h1>
+								<p>19:00</p>
+								<span>试看</span>
+								<em></em>
+							</li>
+							<li>
+								<i>2</i>
+								<h1>把心唤醒</h1>
+								<p>19:00</p>
+								<span>试看</span>
+								<em></em>
+							</li>
+							<li class="classLock">
+								<i>3</i>
+								<h1>把心唤醒</h1>
+								<p>19:00</p>
+								<em></em>
+							</li> -->
+						</ul>
+					</div>
+					
+					<div class="classPPT">
+						<h1 class="classTitle">课程PPT</h1>
+						<div class="classPPTFrame">
+							<div class="swiper-container" id="classPPT">
+								<div class="swiper-wrapper">
+									<!-- <div class="swiper-slide" style="background-image: url(images/img.jpg);"></div> -->
+								</div>
+								<div class="swiper-button-prev"></div>
+								<div class="swiper-button-next"></div>
+								<div class="swiper-pagination"></div>
+							</div>
+						</div>
+						
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+		
+		
+
+
+		<div class="classBottom">
+			
+		</div>
+		
+		
+		<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/fastclick.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/video.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/swiper-4.2.2.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+		<script src="js/index.js?v=20" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+
+			function videoDetail(id){
+				$.ajax({
+			        url: apiUrl+"/sce_homepage/sce_online_course",
+			        type: "post",
+			        data: {id:id},
+			        dataType: "json",
+			        // async:false,
+			        success: function(data) {
+			        	if(data.success){
+			                if(data.code == "2000"){
+			                	var data = data.data[0];
+							
+								var reTag = /<(?:.|\s)*?>/g;
+								var shortCont = data.seriesDesc.replace(reTag,"");
+								$(".classIntro p").text(shortCont);
+
+								$(".classDetail div").html(data.seriesDesc);
+
+								$(".classData div").eq(0).find("p span").text(data.totalLess);
+								$(".classData div").eq(1).find("p span").text(data.totalDuration);
+								$(".classData div").eq(2).find("p span").text(data.buyCount);
+
+								$(".classBottom").html("<span>"+data.discountTotalPrice+"</span>元/"+data.totalLess+"节")
+
+								// ppt
+								if (data.pptUrl != "" && data.pptUrl != null) {
+									var ppt = "";
+									if (data.pptUrl.indexOf(",") != -1) {
+										var pptArr = data.pptUrl.split(",");
+										$.each(pptArr, function(i,item) {
+											ppt += "<div class='swiper-slide' style='background-image: url("+item+");'></div>";
+										});
+									} else {
+										ppt = "<div class='swiper-slide' style='background-image: url("+data.pptUrl+");'></div>";
+									}
+									$("#classPPT .swiper-wrapper").html(ppt);
+								} else {
+									$(".classPPT").hide();
+								}
+								
+								
+
+								locationUrl = apiUrl+"/jsp/ffxl/share/videoClass.html?id="+id;
+								wxtitle = "我从万心社推荐一门有用的正念课程给你："+data.seriesName;
+								wximgUrl= data.imgUrl;
+								wxdesc = data.shortDesc;
+								wxShare(locationUrl,wxtitle,wximgUrl,wxdesc);
+
+
+			                }else{
+			                	
+			                }
+			            }
+			        }
+			    });
+			}
+
+			function videoClassList(sourceId){
+				$.ajax({
+			        url: apiUrl+"/sce_homepage/sce_online_list",
+			        type: "post",
+			        data: {sourceId:sourceId},
+			        dataType: "json",
+			        // async:false,
+			        success: function(data) {
+			        	if(data.success){
+			                if(data.code == "2000"){
+			                	var data = data.data;
+								var html = "";
+
+								$(".videoClass").append("<video id='videoClass' class='video-js' controls preload='auto' poster='"+data[0].imgUrl+"'>"+
+									"<source src='"+data[0].cUrl+"' type='video/mp4'>"+
+								"</video>");
+
+								videojs(videoClass).ready(function(){});
+
+								$.each(data, function(i,item) {
+									var isLock = "";
+									var listen = "<span>试看</span>";
+									if (i > 1) {
+										isLock = "classLock";
+										listen = "";
+									}
+									
+									var sortNum = i+1;
+
+									html += "<li class='"+isLock+"'>"+
+										"<i>"+sortNum+"</i>"+
+										"<h1>"+item.title+"</h1>"+
+										"<p>"+item.during+"</p>"+listen+
+										"<em></em>"+
+										"<input type='hidden' name='poster' value='"+item.imgUrl+"' />"+
+										"<input type='hidden' name='videoUrl' value='"+item.cUrl+"' />"+
+									"</li>";
+								});
+
+								$(".classList ul").html(html);
+
+			                }else{
+			                	
+			                }
+			            }
+			        }
+			    });
+			}
+
+
+			// 评论
+			function commentList(sourceId){
+				$.ajax({
+			        url: apiUrl+"/ambitus/active_estimate_list",
+			        type: "post",
+			        data: {sourceId:sourceId,sourceType:"on_course"},
+			        dataType: "json",
+			        // async:false,
+			        success: function(data) {
+			        	if(data.success){
+			                if(data.code == "2000"){
+			                	var data = data.data;
+								
+								var html = "";
+								$.each(data, function(i,item) {
+
+									var time = ""
+									var differTime = new Date().getTime()-item.estimateDatetime;
+									if (differTime<=86400000) {
+										var hours = parseInt(differTime / 1000 / 60 / 60 % 24 , 10); //计算剩余的小时 
+										var minutes = parseInt(differTime / 1000 / 60 % 60, 10);//计算剩余的分钟 
+										
+										if (hours!=0) {
+											time = hours+"小时前";
+										} else if (minutes!=0) {
+											time = minutes+"分钟前";
+										} else {
+											time = "1分钟前"
+										}
+									} else {
+										var obj = new Date(item.estimateDatetime);
+										// var oYear = obj.getFullYear();
+										// var oMonth = obj.getMonth()+1;
+										// var oDate = obj.getDate();
+										var oHour = obj.getHours();
+										var oMinute = obj.getMinutes();
+										
+										// time = oYear+"."+getzf(oMonth)+"."+getzf(oDate)+" "+getzf(oHour)+":"+getzf(oMinute);
+										time = getzf(oHour)+":"+getzf(oMinute);
+									}
+
+									var headUrl = "";
+									var name = "";
+									if (item.see) {
+										headUrl = apiUrl+"/jsp/ffxl/share/images/anonymous.png";
+										name = "匿名用户"
+									} else {
+										headUrl = item.uHeadUrl;
+										name = item.uName;
+									}
+						
+									html += "<li>"+
+										"<img class='commentHead' src='"+headUrl+"' />"+
+										"<p class='commentName'>"+name+"</p>"+
+										"<p class='commentTime'>"+time+"</p>"+
+										"<p class='praiseNum'>"+item.pCount+"</p>"+
+										"<div class='commentCont'>"+
+											"<p>"+item.content+"</p>"+
+										"</div>"+
+									"</li>";
+								});
+
+								$(".classComment ul").html(html);
+			                }else{
+			                	
+			                }
+			            }
+			        }
+			    });
+			}
+
+			var locationUrl = "";
+			var wxtitle = "";
+			var wximgUrl = "";
+			var wxdesc = "";
+			
+			$(function(){
+
+				var id = getQueryString("id");
+				videoDetail(id);
+				videoClassList(id);
+				commentList(id);
+
+
+				var videoSwiper = new Swiper('#videoTab',{
+					// autoHeight: true,
+					observer:true, //修改swiper自己或子元素时，自动初始化swiper
+					observeParents:true,
+					pagination: {
+						el: '.swiper-pagination',
+						clickable: true,
+						renderBullet: function (index, className) {
+							switch(index){
+								case 0:text='课程介绍';break;
+								case 1:text='课程内容';break;
+							}
+							return '<span class="' + className + '">' + text + '<em></em></span>';
+						}
+					}
+				})  
+
+
+				var pptSwiper = new Swiper('#classPPT',{
+					nested:true,
+					// loop : true,
+					observer:true, //修改swiper自己或子元素时，自动初始化swiper
+					observeParents:true,
+					navigation: {
+						nextEl: '.swiper-button-next',
+						prevEl: '.swiper-button-prev',
+					},
+					pagination: {
+						el: '.swiper-pagination',
+						type: 'fraction'
+					},
+				})   
+
+
+				$(".classList").on("click","li",function(){
+					if (!$(this).hasClass("classLock")) {
+						var poster = $(this).find("input[name='poster']").val();
+						var videoUrl = $(this).find("input[name='videoUrl']").val();
+						$("#videoClass").remove();
+
+						$(".videoClass").append("<video id='videoClass' class='video-js' controls preload='auto' poster='"+poster+"'>"+
+							"<source src='"+videoUrl+"' type='video/mp4'>"+
+						"</video>");
+
+						videojs(videoClass).ready(function(){});
+					}
+					
+				});
+
+
+				$(".classIntro a").click(function(){
+					$(".classDetail").show();
+				});
+
+				$(".classDetail .closeClassDetail").click(function(){
+					$(".classDetail").hide();
+				})
+
+				$("body").on("click",".classLock,.praiseNum,.classBottom,.classTitle a",function(){
+					more();
+				})
+				
+			})
+		</script>
+	</body>
+</html>

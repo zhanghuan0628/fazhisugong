@@ -1,0 +1,2204 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" type="text/css" href="css/swiper-3.4.2.min.css"/>
+		<link rel="stylesheet" type="text/css" href="css/global.css"/>
+		<link rel="stylesheet" type="text/css" href="css/forest.css"/>
+	</head>
+	<body>
+		<div id="layer"></div>
+		
+		<!--邀请回答-->
+		<div class="firstSeed">
+			<a class="firstSeedClose"></a>
+			<div class="fs-content">
+				<p>恭喜你已经种下了第<span>1</span>棵种子！</p>
+				<p>快去邀请别人回答你的问题，</p>
+				<p><span>只有采纳了别人的回答，你的种子才能发芽哦~</span></p>
+			</div>
+			<ul>
+				<!--<li class="treeSelOn">
+					<div class="treeSel" style="background-image: url(images/sunshine.png);">
+						<img src="images/treeSel1.png"/>
+					</div>
+					<p>阿达</p>
+				</li>-->
+			</ul>
+			
+			<a class="oneKeyInvite">一键邀请</a>
+		</div>
+		
+		
+		<!--查收环保证书-->
+		<div class="enclosed">
+			<a class="enclosedClose"></a>
+			<div class="enclosedContent">
+				<p>收到来自阿拉善基金会</p>
+				<p>颁发的<span>环保证书</span>，</p>
+				<p>请查收~ </p>
+			</div>
+			<a class="clickCheck">点击查收</a>
+		</div>
+		
+		
+		<!--符合种树条件-->
+		<div class="stockTree">
+			<a class="stockTreeClose"></a>
+			<p>恭喜你养成了第<span>1</span>棵树！快去以你的名义申请种下一棵真树吧！为沙漠送去一片绿色！</p>
+			<a class="applyStock">去申请</a>
+		</div>
+		
+		
+		<!--没有证书-->
+		<div class="noCertPop">
+			<a class="noCertClose"></a>
+			<p>暂时还没有环保证书哦，</p>
+			<p>请继续加油！</p>
+		</div>
+		
+		
+		<div class="forest">
+			
+			<!--背景-->
+			<img class="forestBg" src=""/>
+			<!--左边-->
+			<div class="treeExp">
+				<p class="treeCode"></p>
+				<p class="treeExpNum"></p>
+				<div class="treeExpBar">
+					<em></em>
+				</div>
+				<i>种树</i>
+				
+				<input type="hidden" name="treeId" id="treeId" value="" />
+				<input type="hidden" name="treeExp" id="treeExp" value="" />
+				<input type="hidden" name="treeSize" id="treeSize" value="" />
+				<input type="hidden" name="treeQid" id="treeQid" value="" />
+			</div>
+			
+			<div class="treesList">
+				<ul>
+					<li class="tree5list">
+						<img class="treeListImg" src=""/>
+						<p class="treeListNum"></p>
+						
+						<div class="swiper-container" id="trees5List">
+						    <div class="swiper-wrapper">
+						        <!--<div class="swiper-slide">
+						        	<img src="images/seed1.png"/>
+						        	<p>001</p>
+						        </div>
+						        <div class="swiper-slide">
+						        	<img src="images/seed1.png"/>
+						        	<p>002</p>
+						        </div>
+						        <div class="swiper-slide">
+						        	<img src="images/seed1.png"/>
+						        	<p>001</p>
+						        </div>-->
+						    </div>
+						</div>
+					</li>
+					
+					<li class="tree4list">
+						<img class="treeListImg" src=""/>
+						<p class="treeListNum"></p>
+						
+						<div class="swiper-container" id="trees4List">
+						    <div class="swiper-wrapper">
+						    </div>
+						</div>
+					</li>
+					
+					<li class="tree3list">
+						<img class="treeListImg" src=""/>
+						<p class="treeListNum"></p>
+						
+						<div class="swiper-container" id="trees3List">
+						    <div class="swiper-wrapper">
+						    </div>
+						</div>
+					</li>
+					
+					<li class="tree2list">
+						<img class="treeListImg" src=""/>
+						<p class="treeListNum"></p>
+						
+						<div class="swiper-container" id="trees2List">
+						    <div class="swiper-wrapper">
+						    </div>
+						</div>
+					</li>
+					
+					<li class="tree1list">
+						<img class="treeListImg" src=""/>
+						<p class="treeListNum"></p>
+						
+						<div class="swiper-container" id="trees1List">
+						    <div class="swiper-wrapper">
+						    </div>
+						</div>
+					</li>
+					
+				</ul>
+				
+			</div>
+			
+			
+			<!--右上-->
+			<a class="sunshinePool"></a>
+			<a class="dropSunshine"></a>
+			
+			
+			<!--右下-->
+			<a class="strategy"></a>
+			<a class="trends"></a>
+			
+			
+			<div class="noTree">
+				<p>你还没有自己的树哦，</p>
+				<p>快去提出你的第一个问题，</p>
+				<p>种下自己的第一棵树吧！</p>
+			</div>
+			
+			<!--阳光和树-->
+			<div class="sunshineZone">
+				<!--树-->
+				<img class="tree tree1" src="images/tree1.png"/>
+				<img class="tree tree2" src="images/tree2.png"/>
+				<img class="tree tree3" src="images/tree3.png"/>
+				<img class="tree tree4" src="images/tree4.png"/>
+				<img class="tree tree5" src="images/tree5.png"/>
+				<!--问题-->
+				<div class="otherZone">
+					<p></p>
+					<a>回答</a>
+				</div>
+				
+				<!--树问候-->
+				<div class="treeWords">
+					<p>我是沙漠里的植被之王</p>
+					<span><em></em></span>
+				</div>
+			</div>
+			
+			
+			
+			
+			
+			
+			<!--底部背景-->
+			<img class="forestBottom" src=""/>
+			
+			<a class="quizSeeding">提问播种</a>
+			
+			
+			
+		</div>
+		
+		<div class="otherSeeds">
+			<div class="seedTitle clearfix">
+				<h1>等待发芽的种子</h1>
+				<a>查看更多></a>
+			</div>
+			
+			<div class="swiper-container" id="seedList">
+			    <div class="swiper-wrapper">
+			        <!--<div class="swiper-slide">
+			        	<img src="images/sunshine.png"/>
+			        	<p>花生果果果</p>
+			        </div>
+			        <div class="swiper-slide">
+			        	<img src="images/sunshine.png"/>
+			        	<p>花生果果果</p>
+			        </div>
+			        <div class="swiper-slide">
+			        	<img src="images/sunshine.png"/>
+			        	<p>花生果果果</p>
+			        </div>-->
+			    </div>
+			</div>
+		</div>
+		
+		
+		<div class="treeRank">
+			<div class="seedTitle clearfix">
+				<h1>排行榜</h1>
+				<a>周榜每周一00:00更新</a>
+			</div>
+			
+			<div class="swiper-container" id="treeRank">
+				<div class="certificate">
+					<p>证书</p>
+					<p class="certNum"></p>
+				</div>
+				<div class="swiper-pagination"></div>
+			    <div class="swiper-wrapper">
+			        <div class="swiper-slide" id="treeRankWeek">
+			        	<!--无排名-->
+			        	<div class="noRank">
+			        		<img src="images/noRank.png"/>
+			        		<p>暂无排名，快去给你的树撒阳光，</p>
+			        		<p>抢先上榜～</p>
+			        	</div>
+			        	
+			        	
+			        	<div class="treeTopThree">
+				        </div>
+				        <div class="treeRankList">
+			        		<ul>
+			        			<!--<li>
+			        				<i>4</i>
+			        				<img src="images/sunshine.png"/>
+			        				<h2>啊啊啊</h2>
+			        				<span>获采纳10次</span>
+			        				
+			        				<p>8278.2m</p>
+			        			</li>-->
+			        		</ul>
+			        		<a class="readMoreTree">查看更多好友></a>
+			        	</div>
+			    	</div>
+			    
+			    	<div class="swiper-slide" id="treeRankTotal">
+			    		
+			    		<!--无排名-->
+			        	<div class="noRank">
+			        		<img src="images/noRank.png"/>
+			        		<p>暂无排名，快去给你的树撒阳光，</p>
+			        		<p>抢先上榜～</p>
+			        	</div>
+				        	
+			        	<div class="treeTopThree">
+			        	</div>
+		        	 	<div class="treeRankList">
+			        		<ul>
+			        			<!--<li>
+			        				<i>4</i>
+			        				<img src="images/sunshine.png"/>
+			        				<h2>啊啊啊</h2>
+			        				<span>获采纳10次</span>
+			        				
+			        				<p>8278.2m</p>
+			        			</li>-->
+			        		</ul>
+			        		<a class="readMoreTree">查看更多好友></a>
+			        	</div>
+			        </div>
+			       
+			    
+				</div>
+			</div>
+		
+			<div class="treeTips">你每养成一棵树，我们就为你种下一棵真树</div>
+		</div>
+		
+		<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/index.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/fastclick.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/swiper-3.4.2.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+//			var apiUrl = "http://192.168.0.129:8080/ffyyapi_webapp";
+			var apiUrl = "http://"+window.location.host+"/api";
+			
+//			获取用户有没有种树
+			function getUserTreeOrNo(userId,plantId){
+				$.ajax({
+			        url: apiUrl+"/fxf_tree/getUserTreeOrNo",
+			        type: "post",
+			        data: {userId:plantId},
+			        dataType: "json",
+			        async:false,
+			        success: function(data) {
+			        	if(data.success){
+			                if(data.code == "2000"){
+			                	var nickName = data.module;
+			                	var data = data.data;
+			                	treeNum = data;
+			                	
+			                	if (data==0) {
+//			                		没有树
+			                		$(".forestBg").attr("src","images/forestBg.jpg");
+									$(".forestBg").load(function(){
+										$(".forestBottom").attr("src","images/forestBottom1.png");
+										var forestBgH = $(".forestBg").height();
+										$(".forest").css("height",forestBgH+"px");
+										$(".noTree").show();
+										
+										if (userId==plantId) {
+											if (isAndroid()) {
+						                		window.android.forestTitle("");
+						                	}
+										} else {
+											if (isAndroid()) {
+						                		window.android.forestTitle(nickName+"的小凡森林");
+						                	}
+											$(".forestTitle").text(nickName+"的小凡森林");
+											getIfFisrtViewOthers(userId);
+										}
+										
+										$(".forest").append("<a class='guideQuiz'></a>");
+									})
+			                	} else {
+			                		$(".sunshineZone").show();
+			                		$(".forestBg").attr("src","images/forestBg.jpg");
+									$(".forestBg").load(function(){
+										xMin = parseInt(remTurn * 4.3);
+										xMax = parseInt($(".forestBg").width() - sunshineW);
+										yMin = parseInt(remTurn * 12);
+										yMax = parseInt($(".forestBg").height() - sunshineH - remTurn * 10);
+										$(".treesList,.treeExp,.sunshinePool,.dropSunshine").show();
+										if (userId==plantId) {
+											if (isAndroid()) {
+						                		window.android.forestTitle("");
+						                	}
+											$(".sunshinePool").show();
+											getWaitSunshine(userId);
+										} else {
+											if (isAndroid()) {
+						                		window.android.forestTitle(nickName+"的小凡森林");
+						                	}
+											getIfFisrtViewOthers(userId);
+										}
+										var forestBgH = $(".forestBg").height();
+										$(".forest").css("height",forestBgH+"px");
+										
+										sunshinePoolL = $(".sunshinePool").offset().left;
+										sunshinePoolT = remTurn * 7.1;
+										
+									})
+			                	}
+			                	
+			                }else{
+			                	
+			                }
+			            }
+			        }
+			    });
+			}
+			
+			
+//			获得用户所有种子期的树
+			function getSeedTrees(userId,isBurgeon){
+				$.ajax({
+			        url: apiUrl+"/fxf_tree/getSeedTrees",
+			        type: "post",
+			        data: {userId:userId},
+			        dataType: "json",
+			        async:false,
+			        success: function(data) {
+			        	if(data.success){
+			                if(data.code == "2000"){
+			                	var data = data.data;
+			                	var num = data.length;
+			                	seedNum = num;
+			                	$(".tree1list").find(".treeListNum").text("x"+num);
+			                	if (num == 0) {
+			                		$(".tree1list").addClass("treeNone").find(".treeListImg").attr("src","images/tree1listnone.png");
+			                	} else{
+			                		$(".tree1list").find("img").attr("src","images/tree1list.png");
+			                		
+			                		var html = "";
+			                		$.each(data, function(i,item) {
+			                			html += "<div class='swiper-slide' data-treeid = '"+item.id+"' data-exp = '0' data-questionid = '"+item.questionId+"'>"+
+								        	"<img src='images/seed1.png'/>"+
+								        	"<p>"+item.code+"</p>"+
+								        "</div>"
+			                		});
+			                		
+			                		$("#trees1List .swiper-wrapper").html(html);
+			                		
+			                		if (!biggestTree) {
+			                			biggestTree = true;
+				                		var treeId = "";
+				                		var treeCode = "";
+				                		var exp = -2;
+				                		if ($("#trees1List .swiper-wrapper .swiper-slide").length>0) {
+				                			$("#trees1List .swiper-wrapper .swiper-slide").each(function(){
+					                			if ($(this).data("exp")>exp) {
+					                				exp = $(this).data("exp");
+					                				treeCode = $(this).find("p").text();
+					                				treeId = $(this).data("treeid");
+					                				questionId = $(this).data("questionid");
+					                			}
+					                		});
+				                		}
+				                		
+				                		
+				                		$(".tree1").show();
+				                		$(".forestBottom").attr("src","images/forestBottom1.png");
+				                		$(".treeExp .treeCode").text(treeCode+"号树苗");
+				                		$(".treeExp .treeExpNum").text("0/5200");
+				                		$(".treeExp .treeExpBar em").css("width",0);
+				                		$(".treeExp #treeId").val(treeId);
+				                		$(".treeExp #treeExp").val(0);
+				                		$(".treeExp #treeSize").val(0)
+			                		}
+			                	}
+			                }else{
+			                	
+			                }
+			            }
+			        }
+			    });
+			}
+			
+			
+//			获得用户所有树苗
+			function getPlantTrees(userId,isBurgeon){
+				$.ajax({
+			        url: apiUrl+"/fxf_tree/getPlantTrees",
+			        type: "post",
+			        data: {userId:userId},
+			        dataType: "json",
+			        async:false,
+			        success: function(data) {
+			        	if(data.success){
+			                if(data.code == "2000"){
+			                	var data = data.data;
+			                	var num = data.length;
+			                	saplingNum = num;
+			                	$(".tree2list").find(".treeListNum").text("x"+num);
+			                	if (num == 0) {
+			                		$(".tree2list").addClass("treeNone").find(".treeListImg").attr("src","images/tree2listnone.png");
+			                	} else{
+			                		$(".tree2list").find("img").attr("src","images/tree2list.png");
+			                		
+			                		var html = "";
+			                		$.each(data, function(i,item) {
+			                			html += "<div class='swiper-slide' data-treeid = '"+item.id+"' data-exp = '"+item.exp+"' data-questionid = '"+item.questionId+"'>"+
+								        	"<img src='images/seed2.png'/>"+
+								        	"<p>"+item.code+"</p>"+
+								        "</div>"
+			                		});
+			                		
+			                		$("#trees2List .swiper-wrapper").html(html);
+			                		
+			                		if (!biggestTree && isBurgeon != 1) {
+			                			biggestTree = true;
+				                		var treeId = "";
+				                		var treeCode = "";
+				                		var exp = -2;
+				                		$("#trees2List .swiper-wrapper .swiper-slide").each(function(){
+				                			if ($(this).data("exp")>exp) {
+				                				exp = $(this).data("exp");
+				                				treeCode = $(this).find("p").text();
+				                				treeId = $(this).data("treeid");
+				                				questionId = $(this).data("questionid");
+				                			}
+				                		});
+				                		
+				                		$(".tree2").show();
+				                		$(".forestBottom").attr("src","images/forestBottom2.png");
+				                		$(".treeExp .treeCode").text(treeCode+"号树苗");
+				                		$(".treeExp .treeExpNum").text(exp+"/5200");
+				                		$(".treeExp .treeExpBar em").css("width",exp/52+"%");
+				                		$(".treeExp #treeId").val(treeId);
+				                		$(".treeExp #treeExp").val(exp);
+				                		$(".treeExp #treeSize").val(1)
+			                		}
+			                	}
+			                }else{
+			                	
+			                }
+			            }
+			        }
+			    });
+			}
+			
+			
+//			获得用户所有小树
+			function getTupeloTrees(userId,isBurgeon){
+				$.ajax({
+			        url: apiUrl+"/fxf_tree/getTupeloTrees",
+			        type: "post",
+			        data: {userId:userId},
+			        dataType: "json",
+			        async:false,
+			        success: function(data) {
+			        	if(data.success){
+			                if(data.code == "2000"){
+			                	var data = data.data;
+			                	var num = data.length;
+			                	$(".tree3list").find(".treeListNum").text("x"+num);
+			                	if (num == 0) {
+			                		$(".tree3list").addClass("treeNone").find(".treeListImg").attr("src","images/tree3listnone.png");
+			                	} else{
+			                		$(".tree3list").find("img").attr("src","images/tree3list.png");
+			                		
+			                		var html = "";
+			                		$.each(data, function(i,item) {
+			                			html += "<div class='swiper-slide' data-treeid = '"+item.id+"' data-exp = '"+item.exp+"' data-questionid = '"+item.questionId+"'>"+
+								        	"<img src='images/seed3.png'/>"+
+								        	"<p>"+item.code+"</p>"+
+								        "</div>"
+			                		});
+			                		
+			                		$("#trees3List .swiper-wrapper").html(html);
+			                		
+			                		if (!biggestTree && isBurgeon != 1) {
+			                			biggestTree = true;
+				                		var treeId = "";
+				                		var treeCode = "";
+				                		var exp = -2;
+				                		$("#trees3List .swiper-wrapper .swiper-slide").each(function(){
+				                			if ($(this).data("exp")>exp) {
+				                				exp = $(this).data("exp");
+				                				treeCode = $(this).find("p").text();
+				                				treeId = $(this).data("treeid");
+				                				questionId = $(this).data("questionid");
+				                			}
+				                		});
+				                		
+				                		$(".tree3").show();
+				                		$(".forestBottom").attr("src","images/forestBottom2.png");
+				                		$(".treeExp .treeCode").text(treeCode+"号树苗");
+				                		$(".treeExp .treeExpNum").text(exp+"/5200");
+				                		$(".treeExp .treeExpBar em").css("width",exp/52+"%");
+				                		$(".treeExp #treeId").val(treeId);
+				                		$(".treeExp #treeExp").val(exp);
+				                		$(".treeExp #treeSize").val(2)
+			                		}
+			                	}
+			                }else{
+			                	
+			                }
+			            }
+			        }
+			    });
+			}
+			
+			
+//			获得用户所有中树
+			function getMidTrees(userId,isBurgeon){
+				$.ajax({
+			        url: apiUrl+"/fxf_tree/getMidTrees",
+			        type: "post",
+			        data: {userId:userId},
+			        dataType: "json",
+			        async:false,
+			        success: function(data) {
+			        	if(data.success){
+			                if(data.code == "2000"){
+			                	var data = data.data;
+			                	var num = data.length;
+			                	$(".tree4list").find(".treeListNum").text("x"+num);
+			                	if (num == 0) {
+			                		$(".tree4list").addClass("treeNone").find(".treeListImg").attr("src","images/tree4listnone.png");
+			                	} else{
+			                		$(".tree4list").find("img").attr("src","images/tree4list.png");
+			                		
+			                		var html = "";
+			                		$.each(data, function(i,item) {
+			                			html += "<div class='swiper-slide' data-treeid = '"+item.id+"' data-exp = '"+item.exp+"' data-questionid = '"+item.questionId+"'>"+
+								        	"<img src='images/seed4.png'/>"+
+								        	"<p>"+item.code+"</p>"+
+								        "</div>"
+			                		});
+			                		
+			                		$("#trees4List .swiper-wrapper").html(html);
+			                		
+			                		if (!biggestTree && isBurgeon != 1) {
+			                			biggestTree = true;
+				                		var treeId = "";
+				                		var treeCode = "";
+				                		var exp = -2;
+				                		$("#trees4List .swiper-wrapper .swiper-slide").each(function(){
+				                			if ($(this).data("exp")>exp) {
+				                				exp = $(this).data("exp");
+				                				treeCode = $(this).find("p").text();
+				                				treeId = $(this).data("treeid");
+				                				questionId = $(this).data("questionid");
+				                			}
+				                		});
+				                		
+				                		$(".tree4").show();
+				                		$(".forestBottom").attr("src","images/forestBottom2.png");
+				                		$(".treeExp .treeCode").text(treeCode+"号树苗");
+				                		$(".treeExp .treeExpNum").text(exp+"/5200");
+				                		$(".treeExp .treeExpBar em").css("width",exp/52+"%");
+				                		$(".treeExp #treeId").val(treeId);
+				                		$(".treeExp #treeExp").val(exp);
+				                		$(".treeExp #treeSize").val(3)
+			                		}
+				                		
+			                	}
+			                }else{
+			                	
+			                }
+			            }
+			        }
+			    });
+			}
+			
+			
+//			获得用户所有大树
+			function getGrowedTrees(userId,isBurgeon){
+				$.ajax({
+			        url: apiUrl+"/fxf_tree/getGrowedTrees",
+			        type: "post",
+			        data: {userId:userId},
+			        dataType: "json",
+			        async:false,
+			        success: function(data) {
+			        	if(data.success){
+			                if(data.code == "2000"){
+			                	var data = data.data;
+			                	var num = data.length;
+			                	$(".tree5list").find(".treeListNum").text("x"+num);
+			                	if (num == 0) {
+			                		$(".tree5list").addClass("treeNone").find(".treeListImg").attr("src","images/tree5listnone.png");
+			                	} else{
+			                		$(".tree5list").find("img").attr("src","images/tree5list.png");
+			                		
+			                		var html = "";
+			                		$.each(data, function(i,item) {
+			                			html += "<div class='swiper-slide' data-treeid = '"+item.id+"' data-exp = '"+item.exp+"' data-questionid = '"+item.questionId+"'>"+
+								        	"<img src='images/seed5.png'/>"+
+								        	"<p>"+item.code+"</p>"+
+								        "</div>"
+			                		});
+			                		
+			                		$("#trees5List .swiper-wrapper").html(html);
+			                		
+			                		if (isBurgeon != 1) {
+			                			biggestTree = true;
+				                		var treeId = "";
+				                		var treeCode = "";
+				                		var exp = -2;
+				                		$("#trees5List .swiper-wrapper .swiper-slide").each(function(){
+				                			if ($(this).data("exp")>exp) {
+				                				exp = $(this).data("exp");
+				                				treeCode = $(this).find("p").text();
+				                				treeId = $(this).data("treeid");
+				                				questionId = $(this).data("questionid");
+				                			}
+				                		});
+				                		
+				                		$(".tree5").show();
+				                		$(".forestBottom").attr("src","images/forestBottom2.png");
+				                		$(".treeExp .treeCode").text(treeCode+"号树苗");
+				                		$(".treeExp .treeExpNum").text(exp+"/5200");
+				                		$(".treeExp .treeExpBar em").css("width",exp/52+"%");
+				                		$(".treeExp #treeId").val(treeId);
+				                		$(".treeExp #treeExp").val(exp);
+				                		$(".treeExp #treeSize").val(4)
+			                		}
+			                	}
+			                }else{
+			                	
+			                }
+			            }
+			        }
+			    });
+			}
+			
+			
+//			刷新树列表
+			function refreshTreeList(userId){
+				$.ajax({
+			        url: apiUrl+"/fxf_tree/getPlantTrees",
+			        type: "post",
+			        data: {userId:userId},
+			        dataType: "json",
+			        async:false,
+			        success: function(data) {
+			        	if(data.success){
+			                if(data.code == "2000"){
+			                	var data = data.data;
+			                	var num = data.length;
+			                	saplingNum = num;
+			                	$(".tree2list").find(".treeListNum").text("x"+num);
+			                	if (num == 0) {
+			                		$(".tree2list").addClass("treeNone").find(".treeListImg").attr("src","images/tree2listnone.png");
+			                	} else{
+			                		$(".tree2list").find("img").attr("src","images/tree2list.png");
+			                		
+			                		var html = "";
+			                		$.each(data, function(i,item) {
+			                			html += "<div class='swiper-slide' data-treeid = '"+item.id+"' data-exp = '"+item.exp+"' data-questionid = '"+item.questionId+"'>"+
+								        	"<img src='images/seed2.png'/>"+
+								        	"<p>"+item.code+"</p>"+
+								        "</div>"
+			                		});
+			                		
+			                		$("#trees2List .swiper-wrapper").html(html);
+			                	}
+			                }else{
+			                	
+			                }
+			            }
+			        }
+			    });
+				
+				$.ajax({
+			        url: apiUrl+"/fxf_tree/getTupeloTrees",
+			        type: "post",
+			        data: {userId:userId},
+			        dataType: "json",
+			        async:false,
+			        success: function(data) {
+			        	if(data.success){
+			                if(data.code == "2000"){
+			                	var data = data.data;
+			                	var num = data.length;
+			                	$(".tree3list").find(".treeListNum").text("x"+num);
+			                	if (num == 0) {
+			                		$(".tree3list").addClass("treeNone").find(".treeListImg").attr("src","images/tree3listnone.png");
+			                	} else{
+			                		$(".tree3list").find("img").attr("src","images/tree3list.png");
+			                		
+			                		var html = "";
+			                		$.each(data, function(i,item) {
+			                			html += "<div class='swiper-slide' data-treeid = '"+item.id+"' data-exp = '"+item.exp+"' data-questionid = '"+item.questionId+"'>"+
+								        	"<img src='images/seed3.png'/>"+
+								        	"<p>"+item.code+"</p>"+
+								        "</div>"
+			                		});
+			                		
+			                		$("#trees3List .swiper-wrapper").html(html);
+			                	}
+			                }else{
+			                	
+			                }
+			            }
+			        }
+			    });
+				
+				$.ajax({
+			        url: apiUrl+"/fxf_tree/getMidTrees",
+			        type: "post",
+			        data: {userId:userId},
+			        dataType: "json",
+			        async:false,
+			        success: function(data) {
+			        	if(data.success){
+			                if(data.code == "2000"){
+			                	var data = data.data;
+			                	var num = data.length;
+			                	$(".tree4list").find(".treeListNum").text("x"+num);
+			                	if (num == 0) {
+			                		$(".tree4list").addClass("treeNone").find(".treeListImg").attr("src","images/tree4listnone.png");
+			                	} else{
+			                		$(".tree4list").find("img").attr("src","images/tree4list.png");
+			                		
+			                		var html = "";
+			                		$.each(data, function(i,item) {
+			                			html += "<div class='swiper-slide' data-treeid = '"+item.id+"' data-exp = '"+item.exp+"' data-questionid = '"+item.questionId+"'>"+
+								        	"<img src='images/seed4.png'/>"+
+								        	"<p>"+item.code+"</p>"+
+								        "</div>"
+			                		});
+			                		
+			                		$("#trees4List .swiper-wrapper").html(html);
+			                	}
+			                }else{
+			                	
+			                }
+			            }
+			        }
+			    });
+				
+				$.ajax({
+			        url: apiUrl+"/fxf_tree/getGrowedTrees",
+			        type: "post",
+			        data: {userId:userId},
+			        dataType: "json",
+			        async:false,
+			        success: function(data) {
+			        	if(data.success){
+			                if(data.code == "2000"){
+			                	var data = data.data;
+			                	var num = data.length;
+			                	$(".tree5list").find(".treeListNum").text("x"+num);
+			                	if (num == 0) {
+			                		$(".tree5list").addClass("treeNone").find(".treeListImg").attr("src","images/tree5listnone.png");
+			                	} else{
+			                		$(".tree5list").find("img").attr("src","images/tree5list.png");
+			                		
+			                		var html = "";
+			                		$.each(data, function(i,item) {
+			                			html += "<div class='swiper-slide' data-treeid = '"+item.id+"' data-exp = '"+item.exp+"' data-questionid = '"+item.questionId+"'>"+
+								        	"<img src='images/seed5.png'/>"+
+								        	"<p>"+item.code+"</p>"+
+								        "</div>"
+			                		});
+			                		
+			                		$("#trees5List .swiper-wrapper").html(html);
+			                	}
+			                }else{
+			                	
+			                }
+			            }
+			        }
+			    });
+			}
+			
+			
+//			获取树的经验阶段
+			function getSunRule(){
+				$.ajax({
+			        url: apiUrl+"/fxf_tree/getSunRule",
+			        type: "post",
+			        data: {},
+			        dataType: "json",
+			        async:false,
+			        success: function(data) {
+			        	if(data.success){
+			                if(data.code == "2000"){
+			                	var data = data.data;
+			                	expStage.little = data[3].exp;
+			                	expStage.mid = data[4].exp;
+			                	expStage.large = data[5].exp;
+			                }else{
+			                	
+			                }
+			            }
+			        }
+			    });
+			}
+			
+			
+			
+//			申请种树（现实）
+			function applyForTree(userId,treeId){
+				$.ajax({
+			        url: apiUrl+"/fxf_tree/applyForTree",
+			        type: "post",
+			        data: {userId:userId,treeId:treeId},
+			        dataType: "json",
+			        async:false,
+			        success: function(data) {
+			        	if(data.success){
+			                if(data.code == "2000"){
+			                	var data = data.data;
+			                }else{
+			                	
+			                }
+			            }
+			        }
+			    });
+			}
+			
+			
+			
+//			等待发芽的种子
+			function getWaitTree(userId){
+				$.ajax({
+			        url: apiUrl+"/fxf_tree/getWaitTree",
+			        type: "post",
+			        data: {userId:userId,pageSize:10},
+			        dataType: "json",
+			        async:false,
+			        success: function(data) {
+			        	if(data.success){
+			                if(data.code == "2000"){
+			                	var data = data.data;
+			                	var html = "";
+			                	$.each(data, function(i,item) {
+			                		html += "<div class='swiper-slide' data-plantid='"+item.userId+"'>"+
+							        	"<img src='"+item.headImg+"'/>"+
+							        	"<p>"+item.nickname+"</p>"+
+							        "</div>"	
+			                	});
+			                	
+			                	$("#seedList .swiper-wrapper").html(html)
+			                }else{
+			                	
+			                }
+			            }
+			        }
+			    });
+			}
+			
+			
+//			待收取的阳光
+			function getWaitSunshine(userId){
+				$.ajax({
+			        url: apiUrl+"/fxf_tree/getWaitSunshine",
+			        type: "post",
+			        data: {userId:userId,pageSize:999},
+			        dataType: "json",
+			        async:false,
+			        success: function(data) {
+			        	if(data.success){
+			                if(data.code == "2000"){
+			                	var data = data.data;
+			                	sunshineList = data;
+			                	var sunshineNum = data.length;
+			                	sunshineTotalRounds = Math.ceil(sunshineNum/5);
+		                		sunshineListFunc();
+								
+//								for (var i = 0;i < sunshineNum;i++) {
+//									if (i>0) {
+//										overlapping()
+//									} else{
+//										var randX = rand(xMin,xMax);
+//										var randY = rand(yMin,yMax);
+//										
+//										$(".sunshineZone").append("<div class='sunshinePoint' style='left: "+randX+"px;top:"+randY+"px;'>"+
+//											"<img src='images/sunshine.png'/>"+
+//											"<p>x10</p>"+
+//											"<p>回答获赞</p>"+
+//										"</div>");
+//										
+//			//							var guide2L = parseFloat(randX)+parseFloat(remTurn*2.8);
+//			//							var guide2T = parseFloat(randY)+parseFloat(remTurn*2.3);
+//			//							$(".sunshineZone").css("z-index","110").find("ul").append("<a class='guide2' style='left:"+guide2L+"px;top:"+guide2T+"px;'></a>");
+//			//							$(".sunshineZone").append("<div class='guide2Content'>点击“阳光”，将阳光收集到阳光池里</div>")
+//			//							xArr.push(randX);
+//			//							yArr.push(randY);
+//										arr.push([randX,randY])
+//									}
+//									
+//								}
+			                	
+			                }else{
+			                	
+			                }
+			            }
+			        }
+			    });
+			}
+			
+//			待收取阳光列表
+			function sunshineListFunc(){
+				if (sunshineRounds>sunshineTotalRounds) {
+            		return false;
+            	}
+				
+				
+				$.each(sunshineList, function(i,item) {
+					if (i>=sunshineRounds*5 && i<(sunshineRounds+1)*5) {
+						if (i==0) {
+							var randX = rand(xMin,xMax);
+							var randY = rand(yMin,yMax);
+							
+							$(".sunshineZone").append("<div class='sunshinePoint' data-sunshineid = '"+item.id+"' data-sunnum = '"+item.suns+"' style='left: "+randX+"px;top:"+randY+"px;'>"+
+								"<img src='images/sunshine.png'/>"+
+								"<p>x"+item.suns+"</p>"+
+								"<p>"+item.source+"</p>"+
+							"</div>");
+							
+			//				判断第一次种子发芽
+							if (firstSprout) {
+								var guide2L = parseFloat(randX)+parseFloat(remTurn*2.8);
+								var guide2T = parseFloat(randY)+parseFloat(remTurn*2.3);
+								$("#layer").show();
+								$(".sunshineZone").css("z-index","110").append("<a class='guide2' style='left:"+guide2L+"px;top:"+guide2T+"px;'></a>");
+								$(".sunshineZone").append("<div class='guide2Content'>点击“阳光”，将阳光收集到阳光池里</div>")
+							}
+							
+//							xArr.push(randX);
+//							yArr.push(randY);
+							arr.push([randX,randY])
+						} else{
+							var randX = rand(xMin,xMax);
+							var randY = rand(yMin,yMax);
+							
+							$(".sunshineZone").append("<div class='sunshinePoint' data-sunshineid = '"+item.id+"' data-sunnum = '"+item.suns+"' style='left: "+randX+"px;top:"+randY+"px;'>"+
+								"<img src='images/sunshine.png'/>"+
+								"<p>x"+item.suns+"</p>"+
+								"<p>"+item.source+"</p>"+
+							"</div>");
+						}
+					}
+				});
+			}
+			
+			
+//			重新取值
+//			function reFresh(randX,randY){
+//				var fX;
+//				var fY;
+//				for (var i = 0;i < arr.length;i++) {
+//					if (randX <= arr[i][0]-sunshineW || randX >= arr[i][0]+sunshineW) {
+//						randX = rand(xMin,xMax);
+//						reFresh(randX,randY);
+//					}
+//					if (randY <= arr[i][1]-sunshineH || randY >= arr[i][1]+sunshineH) {
+//						randY = rand(yMin,yMax);
+//						reFresh(randX,randY);
+//					}
+//				}
+//				return {
+//					fX:randX,
+//					fY:randY
+//				}
+//			}
+			
+			
+//			收阳光
+			function pickSunshine(sunId,sunNum){
+				$.ajax({
+			        url: apiUrl+"/fxf_tree/pickSunshine",
+			        type: "post",
+			        data: {sunId:sunId},
+			        dataType: "json",
+			        async:false,
+			        success: function(data) {
+			        	if(data.success){
+			                if(data.code == "2000"){
+			                	var data = data.data;
+			                	$(".forest").append("<i class='increase1'>+"+sunNum+"</i>");
+								setTimeout(function(){
+									$(".increase1").eq(0).remove();
+								},1500)
+			                }else{
+			                	
+			                }
+			            } else {
+			            	if(data.code == "5000"){
+			                	toast("该阳光已过期")
+			                }
+			            }
+			        }
+			    });
+			}
+			
+			
+			
+//			用户阳光池阳光数量、今天获得的数量
+			function getUserSuns(userId){
+				$.ajax({
+			        url: apiUrl+"/fxf_tree/getUserSuns",
+			        type: "post",
+			        data: {userId:userId},
+			        dataType: "json",
+			        async:false,
+			        success: function(data) {
+			        	if(data.success){
+			                if(data.code == "2000"){
+			                	var data = data.data;
+			                	sunsNum = data.suns;
+			                	$(".sunshinePool").text(data.suns);
+			                }else{
+			                	
+			                }
+			            }
+			        }
+			    });
+			}
+			
+			
+			
+//			撒阳光
+			function growTree(userId,treeId,plantId){
+				$.ajax({
+			        url: apiUrl+"/fxf_tree/growTree",
+			        type: "post",
+			        data: {userId:userId,treeId:treeId,exp:"20"},
+			        dataType: "json",
+			        async:false,
+			        success: function(data) {
+			        	if(data.success){
+			                if(data.code == "2000"){
+			                	var data = data.data;
+			                	getUserSuns(userId);
+			                	var expBefore = parseInt($("#treeExp").val());
+			                	var exp = parseInt($("#treeExp").val())+20;
+			                	$("#treeExp").val(exp)
+			                	$(".treeExp .treeExpNum").text(exp+"/5200");
+	        					$(".treeExp .treeExpBar em").css("width",exp/52+"%");
+	        					$(".forest").append("<i class='increase2'>+20</i>");
+								setTimeout(function(){
+									$(".increase2").eq(0).remove();
+								},1500)
+								
+								var windowW = $(window).width();
+								var windowH = $(window).height();
+								
+								$(".forest").append("<div class='dropSunShine'>"+
+									"<div style='width:"+windowW*2+"px;height:"+windowH*2+"px'>"+
+								        "<svg width='100%' height='100%' viewbox='0 0 500 500' style='box-sizing: border-box'>"+
+								        	"<circle cx='250' cy='250' r='0' style='box-sizing:border-box' fill='#fff09a' fill-opacity='1'>"+
+			//					            "<circle cx='250' cy='250' r='0' style='box-sizing:border-box' fill-opacity='0' stroke='#fff09a' stroke-width='250' stroke-opacity='0.8'>"+
+								                "<animate attributename='r' from='0' to='500' begin='0s' dur='2.5s' repeatcount='1'></animate>"+
+								                "<animate attributename='fill-opacity' from='1' to='0' begin='0s' dur='2.5s' repeatcount='1'></animate>"+
+								            "</circle>"+
+								            "<circle cx='250' cy='250' r='0' style='box-sizing:border-box' fill='#fff09a' fill-opacity='1'>"+
+								                "<animate attributename='r' from='0' to='500' begin='0.5s' dur='2.5s' repeatcount='1'></animate>"+
+								                "<animate attributename='fill-opacity' from='1' to='0' begin='0.5s' dur='2.5s' repeatcount='1'></animate>"+
+								            "</circle>"+
+			//					            "<circle cx='250' cy='250' r='0' style='box-sizing:border-box' fill-opacity='0' stroke='#ffffff' stroke-width='20' stroke-opacity='0.6'>"+
+			//					                "<animate attributename='r' from='0' to='650' begin='0.6s' dur='2s' repeatcount='1'></animate>"+
+			//					                "<animate attributename='stroke-width' from='20' to='200' begin='0s' dur='2s' repeatcount='1'></animate>"+
+			//					            "</circle>"+
+			//					            "<circle cx='250' cy='250' r='0' style='box-sizing:border-box' fill-opacity='0' stroke='#ffffff' stroke-width='20' stroke-opacity='0.6'>"+
+			//					                "<animate attributename='r' from='0' to='650' begin='0.9s' dur='2s' repeatcount='1'></animate>"+
+			//					                "<animate attributename='stroke-width' from='20' to='200' begin='0s' dur='2s' repeatcount='1'></animate>"+
+			//					            "</circle>"+
+								        "</svg>"+
+							        "</div>"+
+								"</div>")
+								
+								setTimeout(function(){
+									$(".dropSunShine").remove();
+								},3000)
+								
+								if (expBefore <= expStage.little) {
+									if (exp > expStage.little) {
+										$(".tree").hide();
+										$(".tree3").show();
+										$(".treeExp #treeSize").val(2);
+										refreshTreeList(userId)
+									}
+								} else if (expBefore > expStage.little && expBefore <= expStage.mid) {
+									if (exp > expStage.mid) {
+										$(".tree").hide();
+										$(".tree4").show();
+										$(".treeExp #treeSize").val(3);
+										refreshTreeList(userId)
+									}
+								} else if (expBefore > expStage.mid && expBefore <= expStage.large) {
+									if (exp > expStage.large) {
+										$(".tree").hide();
+										$(".tree5").show();
+										$(".treeExp #treeSize").val(4);
+										refreshTreeList(userId)
+									}
+								}
+								
+								if (userId == plantId) {
+									if (treeSize == 0) {
+				                		$(".treeWords").css({"bottom":"15rem"})
+				                	} else if (treeSize == 1) {
+				                		$(".treeWords").css({"bottom":"18rem"})
+				                	} else if (treeSize == 2) {
+				                		$(".treeWords").css({"bottom":"26.2rem"})
+				                	} else if (treeSize == 3) {
+				                		$(".treeWords").css({"bottom":"26.4rem"})
+				                	} else if (treeSize == 4) {
+				                		$(".treeWords").css({"bottom":"29.6rem"})
+				                	}
+								} 
+								
+								getSunsBillWeek();
+								getSunsBillTotal();
+			                }else{
+			                	
+			                }
+			           } else {
+			           		if (data.code == "5002") {
+			           			toast("种子无法撒阳光")
+			           			var questionId = $("#treeQid").val();
+			           			setTimeout(function(){
+			           				if (isAndroid()) {
+				                		window.android.answerTree(questionId);
+				                	} else {
+				                		answerTree(questionId);
+				                	}
+			           			},1000)
+			           		}
+			           }
+			        }
+			    });
+			}
+			
+			
+//			证书
+			function getMyCert(userId){
+				$.ajax({
+			        url: apiUrl+"/fxf_tree/getMyCert",
+			        type: "post",
+			        data: {userId:userId},
+			        dataType: "json",
+			        async:false,
+			        success: function(data) {
+			        	if(data.success){
+			                if(data.code == "2000"){
+			                	var data = data.data;
+			                	certNum = data.length;
+			                	if(certNum==0){
+			                		$(".certificate").addClass("noCert");
+			                	}
+			                	$(".certificate .certNum").text("x"+certNum);
+			                }else{
+			                	
+			                }
+			            }
+			        }
+			    });
+			}
+			
+			
+//			周榜日榜
+			function getSunsBillWeek(){
+				$.ajax({
+			        url: apiUrl+"/fxf_tree/getSunsBill",
+			        type: "post",
+			        data: {week:1},
+			        dataType: "json",
+			        async:false,
+			        success: function(data) {
+			        	if(data.success){
+			                if(data.code == "2000"){
+			                	var data = data.data;
+			                	
+			                	if (data.length==0) {
+			                		$("#treeRankWeek .noRank").show();
+			                		return false;
+			                	}
+			                	
+			                	$("#treeRankWeek .treeTopThree").css("display","flex");
+			                	$("#treeRankWeek .readMoreTree").css("display","block");
+			                	
+			                	var second = "";
+			                	var third = "";
+			                	
+			                	var secondPlantId = "";
+			                	var thirdPlantId = "";
+			                	
+			                	if (data.length > 1) {
+				                	second = "<div>"+
+										"<img src='"+data[1].headImg+"' />"+
+										"<p>第2名</p>"+
+									"</div>"+
+									"<h2>"+data[1].nickname+"</h2>"+
+									"<p>"+data[1].totalSuns+"m</p>"+
+									"<span>获采纳"+data[1].adopts+"次</span>";
+									secondPlantId = data[1].userId;
+			                	} 
+			                	if (data.length > 2) {
+			                		third = "<div data-plantid='"+data[2].userId+"'>"+
+										"<img src='"+data[2].headImg+"' />"+
+										"<p>第3名</p>"+
+									"</div>"+
+									"<h2>"+data[2].nickname+"</h2>"+
+									"<p>"+data[2].totalSuns+"m</p>"+
+									"<span>获采纳"+data[2].adopts+"次</span>";
+									thirdPlantId = data[2].userId;
+			                	}
+			                	
+			                	
+			                	$("#treeRankWeek .treeTopThree").html("<div class='tree-second' data-plantid='"+secondPlantId+"'>"+second+"</div>"+
+								
+								"<div class='tree-first' data-plantid='"+data[0].userId+"'>"+
+									"<div>"+
+										"<img src='"+data[0].headImg+"' />"+
+										"<p>第1名</p>"+
+									"</div>"+
+									"<h2>"+data[0].nickname+"</h2>"+
+									"<p>"+data[0].totalSuns+"m</p>"+
+									"<span>获采纳"+data[0].adopts+"次</span>"+
+								"</div>"+
+								
+								"<div class='tree-third' data-plantid='"+thirdPlantId+"'>"+third+"</div>")
+			                	
+			                	
+			                	var html = "";
+			                	if (data.length>=3) {
+			                		$.each(data, function(i,item) {
+				                		if (i>2) {
+				                			html += "<li data-plantid='"+item.userId+"'>"+
+						        				"<i>"+i+"</i>"+
+						        				"<img src='"+item.headImg+"'/>"+
+						        				"<h2>"+item.nickname+"</h2>"+
+						        				"<span>获采纳"+item.adopts+"次</span>"+
+						        				
+						        				"<p>"+item.totalSuns+"m</p>"+
+						        			"</li>"
+				                		}
+				                	});
+			                	}
+			                	
+			                	$("#treeRankWeek .treeRankList ul").html(html);
+			                }else{
+			                	
+			                }
+			            }
+			        }
+			    });
+			}
+			
+			function getSunsBillTotal(){
+				$.ajax({
+			        url: apiUrl+"/fxf_tree/getSunsBill",
+			        type: "post",
+			        data: {week:0},
+			        dataType: "json",
+			        async:false,
+			        success: function(data) {
+			        	if(data.success){
+			                if(data.code == "2000"){
+			                	var data = data.data;
+			                	
+			                	if (data.length==0) {
+			                		$("#treeRankTotal .noRank").show();
+			                		return false;
+			                	}
+			                	
+			                	$("#treeRankTotal .treeTopThree").css("display","flex");
+			                	$("#treeRankTotal .readMoreTree").css("display","block");
+			                	var second = "";
+			                	var third = "";
+			                	
+			                	var secondPlantId = "";
+			                	var thirdPlantId = "";
+			                	
+			                	if (data.length > 1) {
+				                	second = "<div>"+
+										"<img src='"+data[1].headImg+"' />"+
+										"<p>第2名</p>"+
+									"</div>"+
+									"<h2>"+data[1].nickname+"</h2>"+
+									"<p>"+data[1].totalSuns+"m</p>"+
+									"<span>获采纳"+data[1].adopts+"次</span>";
+									secondPlantId = data[1].userId;
+			                	} 
+			                	if (data.length > 2) {
+			                		third = "<div>"+
+										"<img src='"+data[2].headImg+"' />"+
+										"<p>第3名</p>"+
+									"</div>"+
+									"<h2>"+data[2].nickname+"</h2>"+
+									"<p>"+data[2].totalSuns+"m</p>"+
+									"<span>获采纳"+data[2].adopts+"次</span>";
+									thirdPlantId = data[2].userId;
+			                	}
+			                	
+			                	
+			                	$("#treeRankTotal .treeTopThree").html("<div class='tree-second' data-plantid='"+secondPlantId+"'>"+second+"</div>"+
+								
+								"<div class='tree-first' data-plantid='"+data[0].userId+"'>"+
+									"<div>"+
+										"<img src='"+data[0].headImg+"' />"+
+										"<p>第1名</p>"+
+									"</div>"+
+									"<h2>"+data[0].nickname+"</h2>"+
+									"<p>"+data[0].totalSuns+"m</p>"+
+									"<span>获采纳"+data[0].adopts+"次</span>"+
+								"</div>"+
+								
+								"<div class='tree-third' data-plantid='"+thirdPlantId+"'>"+third+"</div>")
+			                	
+			                	
+			                	var html = "";
+			                	if (data.length>=3) {
+			                		$.each(data, function(i,item) {
+				                		if (i>2) {
+				                			html += "<li data-plantid='"+item.userId+"'>"+
+						        				"<i>"+i+"</i>"+
+						        				"<img src='"+item.headImg+"'/>"+
+						        				"<h2>"+item.nickname+"</h2>"+
+						        				"<span>获采纳"+item.adopts+"次</span>"+
+						        				
+						        				"<p>"+item.totalSuns+"m</p>"+
+						        			"</li>"
+				                		}
+				                	});
+			                	}
+			                	
+			                	$("#treeRankTotal .treeRankList ul").html(html);
+			                }else{
+			                	
+			                }
+			            }
+			        }
+			    });
+			}
+			
+			
+//			树详情
+			function getTreeById(treeId){
+				$.ajax({
+			        url: apiUrl+"/fxf_tree/getTreeById",
+			        type: "post",
+			        data: {treeId:treeId},
+			        dataType: "json",
+			        async:false,
+			        success: function(data) {
+			        	if(data.success){
+			                if(data.code == "2000"){
+			                	var data = data.data;
+			                	$("#treeQid").val(data.questionId);
+			                	$(".otherZone p").text(data.questionContent);
+			                }else{
+			                	
+			                }
+			            }
+			        }
+			    });
+			}
+			
+			
+			function rand(min,max) {
+				var randNum = parseInt(Math.random() * (max - min + 1) + min);
+				return randNum;
+			}
+			
+			function overlapping(){
+				var randX = rand(xMin,xMax);
+				var randY = rand(yMin,yMax);
+				for (var i = 0;i < arr.length;i++) {
+					if (randX <= arr[i][0]-sunshineW || randX >= arr[i][0]+sunshineW) {
+						if (randY <= arr[i][1]-sunshineH || randY >= arr[i][1]+sunshineH) {
+							$(".sunshineZone").append("<div class='sunshinePoint' data-sunshinenum = '10' style='left: "+randX+"px;top:"+randY+"px'>"+
+								"<img src='images/sunshine.png'/>"+
+								"<p>x10</p>"+
+								"<p>回答获赞</p>"+
+							"</div>");
+							arr.push([randX,randY])
+							break;
+						}
+					}
+						
+				}
+				
+//				for (var j = 0;j < xArr.length;j++) {
+//					if (randX <= xArr[j]-sunshineW || randX >= xArr[j]+sunshineW) {
+//						for (var n = 0;n < xArr.length;n++) {
+//							if (randY <= yArr[n]-sunshineH || randY >= yArr[n]+sunshineH) {
+//								$(".sunshineZone").append("<li style='left: "+randX+"px;top:"+randY+"px'>"+
+//									"<img src='images/sunshine.png'/>"+
+//									"<p>x10</p>"+
+//									"<p>回答获赞</p>"+
+//								"</li>");
+//								xArr.push(randX);
+//								yArr.push(randY);
+//								return false;
+//							} else {
+//								overlapping();
+//							}
+//						}
+//						return false;
+//					} else {
+//						overlapping();
+//					}
+//				}
+			}
+			
+			
+//			邀请列表
+			function getLastLoginUser(userId,questionId){
+				$.ajax({
+			        url: apiUrl+"/fxf_own/getLastLoginUser",
+			        type: "post",
+			        data: {userId:userId,questionId:questionId,pageSize:8},
+			        dataType: "json",
+			        async:false,
+			        success: function(data) {
+			        	if(data.success){
+			                if(data.code == "2000"){
+			                	var data = data.data;
+			                	var html = "";
+			                	$.each(data, function(i,item) {
+			                		html += "<li class='treeSelOn' data-userid='"+item.id+"'>"+
+										"<div class='treeSel' style='background-image: url("+item.headImg+");'>"+
+											"<img src='images/treeSel1.png'/>"+
+										"</div>"+
+										"<p>"+item.nickName+"</p>"+
+									"</li>"
+			                	});
+			                	$(".firstSeed ul").html(html);
+			                }else{
+			                	
+			                }
+			            }
+			        }
+			    });
+			}
+			
+			
+//			一键邀请
+			function inviteAnswer(questionId,userAnswerIds,userBaseId){
+				$.ajax({
+			        url: apiUrl+"/fxf_own/inviteAnswer",
+			        type: "post",
+			        data: {questionId:questionId,userAnswerIds:userAnswerIds,userBaseId:userBaseId},
+			        dataType: "json",
+			        async:false,
+			        success: function(data) {
+			        	if(data.success){
+			                if(data.code == "2000"){
+			                	var data = data.data;
+			                	$(".firstSeed").hide();
+			                	if (firstSeed == 1) {
+			                		$(".treesList").css("z-index","110").append("<a class='guide1'></a><div class='guide1Content'>点击展开你的树苗</div>")
+			                	}
+			                }else{
+			                	
+			                }
+			            }
+			        }
+			    });
+			}
+			
+			
+//			第一次发芽赠送20m阳光
+			function addSuns(userId){
+				$.ajax({
+			        url: apiUrl+"/fxf_tree/addSuns",
+			        type: "post",
+			        data: {userId:userId,type:"first_cn"},
+			        dataType: "json",
+			        async:false,
+			        success: function(data) {
+			        	if(data.success){
+			                if(data.code == "2000"){
+			                	
+			                }else{
+			                	
+			                }
+			            }
+			        }
+			    });
+			}
+			
+			
+//			树语
+			function getTreeHello(){
+				$.ajax({
+			        url: apiUrl+"/fxf_tree/getTreeHello",
+			        type: "post",
+			        data: {},
+			        dataType: "json",
+			        async:false,
+			        success: function(data) {
+			        	if(data.success){
+			                if(data.code == "2000"){
+			                	var data = data.data;
+			                	treeWordsNum = data.length;
+			                	$.each(data, function(i,item) {
+			                		treeWords.push(item.content)
+			                	});
+			                }else{
+			                	
+			                }
+			            }
+			        }
+			    });
+			}
+			
+			
+			
+//			判断是否第一次进入别人森林
+			function getIfFisrtViewOthers(userId){
+				$.ajax({
+			        url: apiUrl+"/fxf_tree/getIfFisrtViewOthers",
+			        type: "post",
+			        data: {userId:userId},
+			        dataType: "json",
+			        async:false,
+			        success: function(data) {
+			        	if(data.success){
+			                if(data.code == "2000"){
+			                	$("#layer").show();
+			                	var questionClone = $(".otherZone").clone().addClass("questionClone").css("z-index","120");
+			                	$(".forest").append(questionClone)
+			                	$(".forest").append("<div class='otherGuide'><p>认真回答问题，可获得10m阳光哦！</p><p>被提问者采纳了，还可以奖励凡豆！</p><a>知道了</a></div>")
+			                }else{
+			                	
+			                }
+			            }
+			        }
+			    });
+			}
+			
+			
+//			确认第一次进别人森林
+			function firstViewOthers(userId){
+				$.ajax({
+			        url: apiUrl+"/fxf_tree/addSuns",
+			        type: "post",
+			        data: {userId:userId,type:"first_view_others"},
+			        dataType: "json",
+			        async:false,
+			        success: function(data) {
+			        	if(data.success){
+			                if(data.code == "2000"){
+			                	$(".questionClone,.otherGuide").remove();
+			                	$("#layer").hide();
+			                }else{
+			                	
+			                }
+			            }
+			        }
+			    });
+			}
+			
+			
+			
+			var htmlPx = $("html").css("font-size")
+			var remTurn = htmlPx.substr(0,htmlPx.length-2)
+			
+			var sunshineW = remTurn * 4.2;
+			var sunshineH = remTurn * 6.2;
+			
+			var xMin = "";
+			var xMax = "";
+			var yMin = "";
+			var yMax = "";
+			
+//			var xArr = [];
+//			var yArr = [];
+			
+			var arr = [];
+			
+			var biggestTree = false;
+			
+			var firstSeed = "";
+			
+			var sunshineTotalRounds = 0;
+			var sunshineRounds = 0;
+			
+			var sunshinePoolL = "";
+			var sunshinePoolT = "";
+			
+			var sunshineList = [];
+			
+			var questionId = "";
+			
+			
+			var treeNum = 0;
+			var seedNum = 0;
+			var saplingNum = 0;
+			
+			var firstSprout = false;
+			
+			var sunsNum = 0;
+			
+			var certNum = 0;
+			
+			var expStage = {};
+			
+			var treeWords = [];
+			var treeWordsNum = 0;
+			var treeWordsNth = 0;
+			var treeWordsTime;
+			
+			$(function(){
+				var userId = getQueryString("userId");
+				var plantId = getQueryString("plantId");
+				var inviteAnswer = getQueryString("inviteAnswer");
+				firstSeed = getQueryString("firstSeed");
+				var isBurgeon = getQueryString("isBurgeon");
+				
+				
+				getUserTreeOrNo(userId,plantId);
+				getGrowedTrees(plantId,isBurgeon);
+				getMidTrees(plantId,isBurgeon);
+				getTupeloTrees(plantId,isBurgeon);
+				getPlantTrees(plantId,isBurgeon);
+				getSeedTrees(plantId,isBurgeon);
+				
+				
+				if (userId == plantId) {
+					getTreeHello();
+					$(".treeWords p").text(treeWords[treeWordsNth]);
+					treeWordsNth++;
+					var treeSize = $(".treeExp #treeSize").val();
+					if (treeSize == 0) {
+                		$(".treeWords").css({"bottom":"15rem"})
+                	} else if (treeSize == 1) {
+                		$(".treeWords").css({"bottom":"18rem"})
+                	} else if (treeSize == 2) {
+                		$(".treeWords").css({"bottom":"26.2rem"})
+                	} else if (treeSize == 3) {
+                		$(".treeWords").css({"bottom":"26.4rem"})
+                	} else if (treeSize == 4) {
+                		$(".treeWords").css({"bottom":"29.6rem"})
+                	}
+                	$(".treeWords").show();
+                	treeWordsTime = setTimeout(function(){
+                		$(".treeWords").hide();
+                	},3000)
+                	
+                	var treeId = $(".treeExp #treeId").val();
+                	if (treeId!="") {
+						getTreeById(treeId);
+					}
+				} else {
+					var treeId = $(".treeExp #treeId").val();
+					if (treeId!="") {
+						getTreeById(treeId);
+						$(".otherZone").show();
+					}
+				}
+				
+				
+				
+				
+//				判断第一次种子发芽
+				if (userId == plantId && treeNum-seedNum == 1 && $("#treeSize").val() == 1 && $("#treeExp").val() == 0) {
+					firstSprout = true;
+					addSuns(userId);
+				}
+				
+//				判断是否提问播种
+				if (inviteAnswer == 1) {
+					$(".firstSeed .fs-content p").eq(0).find("span").text(treeNum)
+					$("#layer,.firstSeed").show();
+					getLastLoginUser(userId,questionId);
+				}
+				
+				
+				getSunRule()
+					
+				getUserSuns(userId);
+				
+				getWaitTree(userId);
+				
+				getMyCert(plantId)
+				
+				getSunsBillWeek();
+				getSunsBillTotal();
+				
+				
+				
+//				收集阳光
+				$(".sunshineZone").on("click",".sunshinePoint",function(){
+					if (firstSprout) {
+						$(".sunshineZone").css("z-index","11")
+						$("#layer").hide();
+						$(".guide2,.guide2Content").remove();
+					}
+					var _this = $(this);
+					var sunId = _this.data("sunshineid");
+					var sunNum = _this.data("sunnum");
+					_this.animate({"left":sunshinePoolL+"px","top":sunshinePoolT+"px"},function(){
+						setTimeout(function(){
+							_this.remove();
+							pickSunshine(sunId,sunNum);
+							getUserSuns(userId);
+							if ($(".sunshinePoint").length==0) {
+								sunshineRounds++;
+								sunshineListFunc();
+								if (firstSprout) {
+									$("#layer").show();
+									$(".dropSunshine").css("z-index","120");
+									$(".forest").append("<a class='guide3'></a><div class='guide3Content'>点击“撒阳光”，<br/>树苗才可以吸收阳光，<br/>加速成长哦~</div>")
+								}
+							}
+						},300)
+					})
+					
+					
+					
+				})
+				
+				
+				var seedSwiper = new Swiper('#seedList', {
+			        slidesPerView: "auto",
+					observer:true, //修改swiper自己或子元素时，自动初始化swiper
+					observeParents:true,
+			        freeMode: true
+			    });
+			    
+			    
+//			    点树颤抖
+				$(".tree").click(function(){
+					var _this = $(this);
+					_this.addClass("treeShake")
+					setTimeout(function(){
+						_this.removeClass("treeShake")
+					},1000)
+					
+					if (userId == plantId) {
+						$(".treeWords p").text(treeWords[treeWordsNth]);
+						treeWordsNth++;
+						if (treeWordsNth >= treeWordsNum) {
+							treeWordsNth = 0;
+						}
+						var treeSize = $(".treeExp #treeSize").val();
+						if (treeSize == 0) {
+	                		$(".treeWords").css({"bottom":"15rem"})
+	                	} else if (treeSize == 1) {
+	                		$(".treeWords").css({"bottom":"18rem"})
+	                	} else if (treeSize == 2) {
+	                		$(".treeWords").css({"bottom":"26.2rem"})
+	                	} else if (treeSize == 3) {
+	                		$(".treeWords").css({"bottom":"26.4rem"})
+	                	} else if (treeSize == 4) {
+	                		$(".treeWords").css({"bottom":"29.6rem"})
+	                	}
+	                	$(".treeWords").show();
+	                	clearTimeout(treeWordsTime);
+	                	treeWordsTime = setTimeout(function(){
+	                		$(".treeWords").hide();
+	                	},3000)
+					}
+						
+				})
+			    
+			    
+//			    树列表
+				$(".treesList li .treeListImg").click(function(){
+					if ($(this).parent().hasClass("treeNone")) {
+						return false;
+					}
+					
+					
+					if ($(".guide1").length!=0) {
+						$("#layer").hide();
+						$(".treesList").css("z-index","12");
+						$(".guide1,.guide1Content").remove();
+					}
+					
+					var _this = $(this);
+					
+					var n = 0;
+					_this.parent().siblings().each(function(){
+						if ($(this).find(".swiper-container").css("display")=="block") {
+							n++;
+							$(this).find(".swiper-container").stop().animate({"width":"toggle"},function(){
+								_this.siblings(".swiper-container").stop().animate({"width":"toggle"});
+							});
+						}
+					})
+					
+					if (n==0){
+						_this.siblings(".swiper-container").stop().animate({"width":"toggle"});
+					}
+					
+					
+//					$(this).siblings(".swiper-container").stop().animate({"width":"toggle"});
+//					$(this).parent().siblings().each(function(){
+//						if ($(this).find(".swiper-container").css("display")=="block") {
+//							$(this).find(".swiper-container").stop().animate({"width":"toggle"});
+//						}
+//					})
+				})
+			    
+			    var treesSwiper = new Swiper('#trees1List', {
+			    	slidesPerView: "auto",
+					observer:true, //修改swiper自己或子元素时，自动初始化swiper
+					observeParents:true,
+			        freeMode: true
+			    });
+			    
+			    var treesSwiper = new Swiper('#trees2List', {
+			    	slidesPerView: "auto",
+					observer:true, //修改swiper自己或子元素时，自动初始化swiper
+					observeParents:true,
+			        freeMode: true
+			    });
+			    
+			    var treesSwiper = new Swiper('#trees3List', {
+			    	slidesPerView: "auto",
+					observer:true, //修改swiper自己或子元素时，自动初始化swiper
+					observeParents:true,
+			        freeMode: true
+			    });
+			    
+			    var treesSwiper = new Swiper('#trees4List', {
+			    	slidesPerView: "auto",
+					observer:true, //修改swiper自己或子元素时，自动初始化swiper
+					observeParents:true,
+			        freeMode: true
+			    });
+			    
+			    var treesSwiper = new Swiper('#trees5List', {
+			    	slidesPerView: "auto",
+					observer:true, //修改swiper自己或子元素时，自动初始化swiper
+					observeParents:true,
+			        freeMode: true
+			    });
+			    
+			    
+			    
+//			    切换树
+				$(".treesList ul").on("click",".swiper-slide",function(){
+					$(this).parents(".swiper-container").stop().animate({"width":"toggle"})
+					
+					var treePId = $(this).parents(".swiper-container").attr("id")
+					var treeId = $(this).data("treeid");
+					var exp = $(this).data("exp");
+					var treeCode = $(this).find("p").text();
+					
+					$(".treeExp .treeCode").text(treeCode+"号树苗");
+	        		$(".treeExp .treeExpNum").text(exp+"/5200");
+	        		$(".treeExp .treeExpBar em").css("width",exp/52+"%");
+	        		$(".treeExp #treeExp").val(exp);
+	        		$(".treeExp #treeId").val(treeId);
+	        		
+	        		if (treePId == "trees1List") {
+	        			$(".treeExp #treeSize").val(0)
+	        		} else if (treePId == "trees2List") {
+	        			$(".treeExp #treeSize").val(1)
+	        		} else if (treePId == "trees3List") {
+	        			$(".treeExp #treeSize").val(2)
+	        		} else if (treePId == "trees4List") {
+	        			$(".treeExp #treeSize").val(3)
+	        		} else if (treePId == "trees5List") {
+	        			$(".treeExp #treeSize").val(4)
+	        		}
+	        		
+	        		var treeSize = $(".treeExp #treeSize").val();
+	        		
+	        		questionId = $(this).data("questionid");
+	        		
+					$(".tree").hide();
+					if ($(this).parents("li").attr("class")=="tree1list") {
+						$(".tree1").show();
+						$(".forestBottom").attr("src","images/forestBottom1.png");
+					} else if ($(this).parents("li").attr("class")=="tree2list") {
+						$(".tree2").show();
+						$(".forestBottom").attr("src","images/forestBottom2.png");
+					} else if ($(this).parents("li").attr("class")=="tree3list") {
+						$(".tree3").show();
+						$(".forestBottom").attr("src","images/forestBottom2.png");
+					} else if ($(this).parents("li").attr("class")=="tree4list") {
+						$(".tree4").show();
+						$(".forestBottom").attr("src","images/forestBottom2.png");
+					} else if ($(this).parents("li").attr("class")=="tree5list") {
+						$(".tree5").show();
+						$(".forestBottom").attr("src","images/forestBottom2.png");
+					}
+					
+					if (userId == plantId) {
+						treeWordsNth = 0;
+						$(".treeWords p").text(treeWords[treeWordsNth]);
+						treeWordsNth++;
+						var treeSize = $(".treeExp #treeSize").val();
+						if (treeSize == 0) {
+	                		$(".treeWords").css({"bottom":"15rem"})
+	                	} else if (treeSize == 1) {
+	                		$(".treeWords").css({"bottom":"18rem"})
+	                	} else if (treeSize == 2) {
+	                		$(".treeWords").css({"bottom":"26.2rem"})
+	                	} else if (treeSize == 3) {
+	                		$(".treeWords").css({"bottom":"26.4rem"})
+	                	} else if (treeSize == 4) {
+	                		$(".treeWords").css({"bottom":"29.6rem"})
+	                	}
+	                	$(".treeWords").show();
+	                	clearTimeout(treeWordsTime);
+	                	treeWordsTime = setTimeout(function(){
+	                		$(".treeWords").hide();
+	                	},3000)
+	                	getTreeById(treeId)
+					} else {
+						getTreeById(treeId)
+					}
+					
+				})
+			    
+			    
+			    var treeRankSwiper = new Swiper('#treeRank', {
+			        pagination: '.swiper-pagination',
+			        paginationClickable: true,
+			        paginationBulletRender: function (swiper, index, className) {
+			        	var pagination = "";
+			        	if (index==0) {
+			        		pagination = '<span class="' + className + '">周榜</span>';
+			        	} else if (index==1){
+			        		pagination = '<span class="' + className + '">总榜</span>';
+			        	}
+			            return pagination;
+			        }
+			    });
+			    
+			    
+			    
+//			    取消选中邀请
+				$(".firstSeed ul").on("click","li",function(){
+					if ($(this).hasClass("treeSelOn")) {
+						$(this).removeClass("treeSelOn").find("img").attr("src","images/treeSel2.png");
+					} else{
+						$(this).addClass("treeSelOn").find("img").attr("src","images/treeSel1.png");
+					}
+				})
+				
+				$(".firstSeedClose").click(function(){
+					$("#layer,.firstSeed").hide();
+				})
+				
+				
+//				撒阳光
+				$(".dropSunshine").click(function(){
+					if ($(".dropSunShine").length != 0) {
+						return false;
+					}
+					
+					var exp = $("#treeExp").val();
+					if (exp == 5200) {
+						$(".stockTree p span").text(certNum+1)
+						$("#layer,.stockTree").show();
+						return false;
+					}
+					
+					if (sunsNum<20) {
+						toast("撒阳光一次需要20m阳光")
+						return false;
+					}
+					
+					if (firstSprout) {
+						$("#layer").hide();
+						$(".dropSunshine").css("z-index","12");
+						$(".guide3,.guide3Content").remove();
+					}
+					
+					var treeId = $("#treeId").val();
+					
+					growTree(userId,treeId,plantId);
+					
+				})
+				
+				
+				$(".stockTree .stockTreeClose").click(function(){
+					$("#layer,.stockTree").hide();
+				})
+				
+				
+				
+//				确认第一次进入他人森林
+				$(".forest").on("click",".otherGuide a",function(){
+					firstViewOthers(userId)
+				})
+				
+				
+//				一键邀请
+				$(".oneKeyInvite").click(function(){
+					var userAnswerIdsArr = [];
+					$(".firstSeed ul .treeSelOn").each(function(){
+						userAnswerIdsArr.push($(this).data("userid"));
+					})
+					var userAnswerIds = userAnswerIdsArr.join(",");
+					if (userAnswerIds == "") {
+						toast("请至少选择一个邀请")
+						return false;
+					}
+					
+					
+					inviteAnswer(questionId,userAnswerIds,userId)
+				})
+				
+				
+				$(".noCertPop .noCertClose").click(function(){
+					$("#layer,.noCertPop").hide();
+				})
+				
+				
+				
+//				设备交互
+//				种树
+				$(".treeExp i,.applyStock").click(function(){
+					var treeId = $("#treeId").val();
+					if (isAndroid()) {
+                		window.android.stockTree(treeId);
+                	} else {
+                		stockTree(treeId);
+                	}
+				})
+				
+				
+//				阳光池
+				$(".sunshinePool").click(function(){
+					if (isAndroid()) {
+                		window.android.sunshinePool();
+                	} else {
+                		sunshinePool();
+                	}
+				})
+				
+//				攻略
+				$(".strategy").click(function(){
+					if (isAndroid()) {
+                		window.android.strategy();
+                	} else {
+                		strategy();
+                	}
+				})
+				
+//				动态
+				$(".trends").click(function(){
+					if (isAndroid()) {
+                		window.android.trends(plantId);
+                	} else {
+                		trends(plantId);
+                	}
+				})
+				
+//				提问播种
+				$(".quizSeeding").click(function(){
+					if (isAndroid()) {
+                		window.android.quizSeeding();
+                	} else {
+                		quizSeeding();
+                	}
+				})
+				
+//				等待发芽的种子(查看更多)
+				$(".otherSeeds .seedTitle a").click(function(){
+					if (isAndroid()) {
+                		window.android.seedsMore();
+                	} else {
+                		seedsMore();
+                	}
+				})
+				
+//				等待发芽的种子(跳转其他人页面)
+				$("#seedList").on("click",".swiper-slide",function(){
+					var plantId = $(this).data("plantid");
+					if (isAndroid()) {
+                		window.android.WaitGermination(plantId,"1");
+                	} else {
+                		WaitGermination(plantId,"1");
+                	}
+				})
+				
+				$("#treeRank").on("click",".tree-first,.tree-second,.tree-third,.treeRankList li",function(){
+					var plantId = $(this).data("plantid");
+					if (plantId == "") {
+						return false;
+					}
+					if (isAndroid()) {
+                		window.android.WaitGermination(plantId,"0");
+                	} else {
+                		WaitGermination(plantId,"0");
+                	}
+				})
+				
+				
+//				证书
+				$(".certificate").click(function(){
+					if ($(this).hasClass("noCert")) {
+						$("#layer,.noCertPop").show();
+						return false;
+					}
+					if (isAndroid()) {
+                		window.android.certificate(plantId);
+                	} else {
+                		certificate(plantId);
+                	}
+				})
+				
+//				周榜查看更多
+				$("#treeRankWeek .readMoreTree").click(function(){
+					if (isAndroid()) {
+                		window.android.treeRankWeek();
+                	} else {
+                		treeRankWeek();
+                	}
+				})
+
+//				总榜查看更多
+				$("#treeRankTotal .readMoreTree").click(function(){
+					if (isAndroid()) {
+                		window.android.treeRankTotal();
+                	} else {
+                		treeRankTotal();
+                	}
+				})
+
+
+//				回答问题
+				$(".otherZone a").click(function(){
+					var questionId = $("#treeQid").val();
+					if (isAndroid()) {
+                		window.android.answerTree(questionId);
+                	} else {
+                		answerTree(questionId);
+                	}
+				})
+				
+				
+
+			})
+		</script>
+	</body>
+</html>

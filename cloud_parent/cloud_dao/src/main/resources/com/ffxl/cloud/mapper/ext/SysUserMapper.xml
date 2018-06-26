@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ffxl.cloud.mapper.SysUserMapper">
+	<resultMap extends="BaseResultMap" id="SysUserMap" type="com.ffxl.cloud.model.SysUser">
+	
+	</resultMap>
+	
+	<select id="queryPageList" resultMap="SysUserMap">
+		SELECT * FROM sys_user
+		WHERE 1=1
+		<if test="model.loginName != null and model.loginName != '' ">
+			and sys_user.login_name like CONCAT('%','${model.loginName}','%' )
+		</if>
+		<if test="model.userName != null and model.userName != '' ">
+			and sys_user.user_name like CONCAT('%','${model.userName}','%' )
+		</if>
+	</select>
+	
+	<update id="updateStatus" parameterType="java.util.List">
+		<foreach close="" collection="idList" index="index" item="item" open="" separator=";">
+                update sys_user
+                <if test="status != null and status !='' ">
+                    <set>
+                        status=#{status}
+                    </set>
+                </if>
+                where id = #{item}
+         </foreach>
+	</update>
+	
+	<update id="deleteByIds" parameterType="java.util.List">
+		<foreach close="" collection="idList" index="index" item="item" open="" separator=";">
+                delete from  sys_user
+                where id = #{item}
+         </foreach>
+	</update>
+
+</mapper>

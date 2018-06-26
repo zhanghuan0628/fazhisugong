@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>万心社</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" type="text/css" href="css/global.css?v=1"/>
+		<style>
+			.teamScan {position: absolute;top: 0;left: 0;width: 100%;height: 100%;background-color: #ffffff;text-align: center;padding-top: 5.3rem;box-sizing: border-box;}
+			.teamScan img {width: 8rem;height: 8rem;}
+			.teamScan p {font-size: 1.8rem;line-height: 1.8rem;margin-top: 2.2rem;}
+			.teamScan a {display: block;width: 19rem;height: 5.9rem;line-height: 5.9rem;color: #ffffff;font-size: 1.8rem;text-align: center;background: url(images/scanBtn.png);background-size: 100% 100%;margin: 9.8rem auto 0 auto;}
+		</style>
+	</head>
+	<body>
+		
+		<div class="teamScan">
+			<img src="images/wxShare.png" alt="">
+			<p></p>
+			<a>去【万心社】扫描</a>
+		</div>
+		
+		<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/fastclick.js" type="text/javascript" charset="utf-8"></script>
+		<script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+		<script src="js/index.js?v=20180115" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			$(function(){
+				var code = location.search.split(",")[1];
+				if (code == "sce") {
+					$(".teamScan p").text("请在【万心社】APP中扫描加入团体");
+				} else {
+					$(".teamScan p").text("请在【万心社】APP中激活服务卡");
+				}
+
+				$(".teamScan a").click(function(){
+					more();
+				})
+			})
+		</script>
+	</body>
+</html>

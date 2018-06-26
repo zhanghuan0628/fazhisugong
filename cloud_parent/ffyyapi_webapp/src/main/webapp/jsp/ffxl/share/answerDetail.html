@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>回答详情</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" type="text/css" href="css/global.css?v=1"/>
+		<link rel="stylesheet" type="text/css" href="css/QA.css"/>
+	</head>
+	<body>
+		<div id="downLoadLine">
+			<img src="images/wxLogo.png"/>
+			<a onclick="more()">下载APP</a>
+		</div>
+		
+		<div class="answerDetail">
+
+			<img class="commentHead" src="" alt="">
+			<p class="commentName"></p>
+			<p class="commentTime"></p>
+			<p class="commentNum"></p>
+			<p class="praiseNum"></p>
+			<div class="commentCont">
+				<p></p>
+			</div>
+		</div>
+
+		<div class="commentList">
+			<h1>全部评论（）</h1>
+			<ul>
+				<!-- <li>
+					<img class="commentHead" src="" alt="">
+					<p class="commentName">奔跑的小绵羊</p>
+					<p class="commentTime">12:02</p>
+					<div class="commentCont">
+						<p>我爸妈天天晚上都特别晚回家，我一个人在家怕，是不知道和谁说，他们好像一点都不关心我在家怕，可是不知道和谁说，他们好像一点都不关心。</p>
+					</div>
+				</li> -->
+			</ul>
+
+			<div class="noComment">
+				<p>暂无评论</p>
+				<a><img src="images/questionComment.png" alt=""> 我要评论</a>
+			</div>
+			
+
+		</div>
+
+		
+		<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/fastclick.js" type="text/javascript" charset="utf-8"></script>
+		<script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+		<script src="js/index.js?v=20180115" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			function answerList(questionId,answerId){
+				$.ajax({
+			        url: apiUrl+"/vicinage/answer_list",
+			        type: "post",
+			        data: {questionId:questionId},
+			        dataType: "json",
+			        // async:false,
+			        success: function(data) {
+			        	if(data.success){
+			                if(data.code == "2000"){
+			                	var data = data.data;
+
+								var html = "";
+								
+								$.each(data, function(i,item) {
+
+									if (item.id == answerId) {
+										var time = ""
+										var differTime = new Date().getTime()-item.createDate;
+										if (differTime<=86400000) {
+											var hours = parseInt(differTime / 1000 / 60 / 60 % 24 , 10); //计算剩余的小时 
+											var minutes = parseInt(differTime / 1000 / 60 % 60, 10);//计算剩余的分钟 
+											
+											if (hours!=0) {
+												time = hours+"小时前";
+											} else if (minutes!=0) {
+												time = minutes+"分钟前";
+											} else {
+												time = "1分钟前"
+											}
+										} else {
+											var obj = new Date(item.createDate);
+											var oYear = obj.getFullYear();
+											var oMonth = obj.getMonth()+1;
+											var oDate = obj.getDate();
+											var oHour = obj.getHours();
+											var oMinute = obj.getMinutes();
+											
+											time = oYear+"."+getzf(oMonth)+"."+getzf(oDate)+" "+getzf(oHour)+":"+getzf(oMinute);
+										}
+
+										$(".answerDetail .commentHead").attr("src",item.uHeadUrl);
+										$(".answerDetail .commentName").text(item.uName);
+										$(".answerDetail .commentTime").text(time);
+										$(".answerDetail .commentNum").text(item.replyCount);
+										$(".answerDetail .praiseNum").text(item.pariseCount);
+										$(".answerDetail .commentCont p").html(item.content);
+
+										if (item.img != null && item.img != "") {
+											var imgs = "";
+											if (item.img.indexOf(",") != -1) {
+												var imgArr = item.img.split(",");
+												for (var i = 0; i < imgArr.length; i++) {
+													imgs += "<img src = '"+imgArr[i]+"' />";
+												};
+											} else {
+												imgs = "<img src = '"+item.img+"' />";
+											}
+
+											$(".answerDetail .commentCont").append(imgs);
+										}
+
+										$(".commentList h1").text("全部评论（"+item.replyCount+"）")
+
+									}
+
+									
+								});
+
+			                }else{
+			                	
+			                }
+			            }
+			        }
+			    });
+			}
+
+
+
+			function answerAnswerList(replyAnswerId){
+				$.ajax({
+			        url: apiUrl+"/vicinage/answer_answer_list",
+			        type: "post",
+			        data: {replyAnswerId:replyAnswerId},
+			        dataType: "json",
+			        // async:false,
+			        success: function(data) {
+			        	if(data.success){
+			                if(data.code == "2000"){
+			                	var data = data.data;
+
+								var html = "";
+
+								if (data.length == 0) {
+									$(".noComment").show();
+									return false;
+								}
+								
+								$.each(data, function(i,item) {
+									var time = ""
+									var differTime = new Date().getTime()-item.createDate;
+									if (differTime<=86400000) {
+										var hours = parseInt(differTime / 1000 / 60 / 60 % 24 , 10); //计算剩余的小时 
+										var minutes = parseInt(differTime / 1000 / 60 % 60, 10);//计算剩余的分钟 
+										
+										if (hours!=0) {
+											time = hours+"小时前";
+										} else if (minutes!=0) {
+											time = minutes+"分钟前";
+										} else {
+											time = "1分钟前"
+										}
+									} else {
+										var obj = new Date(item.createDate);
+										var oYear = obj.getFullYear();
+										var oMonth = obj.getMonth()+1;
+										var oDate = obj.getDate();
+										var oHour = obj.getHours();
+										var oMinute = obj.getMinutes();
+										
+										time = oYear+"."+getzf(oMonth)+"."+getzf(oDate)+" "+getzf(oHour)+":"+getzf(oMinute);
+									}
+
+
+									var imgs = "";
+									if (item.img != null && item.img != "") {
+										if (item.img.indexOf(",") != -1) {
+											var imgArr = item.img.split(",");
+											for (var i = 0; i < imgArr.length; i++) {
+												imgs += "<img src = '"+imgArr[i]+"' />";
+											};
+										} else {
+											imgs = "<img src = '"+item.img+"' />";
+										}
+									}
+
+									var headUrl = "";
+									var name = "";
+									if (item.see) {
+										headUrl = apiUrl+"/jsp/ffxl/share/images/anonymous.png";
+										name = "匿名用户"
+									} else {
+										headUrl = item.uHeadUrl;
+										name = item.uName;
+									}
+
+
+									html += "<li data-id='"+item.id+"'>"+
+										"<img class='commentHead' src='"+headUrl+"' />"+
+										"<p class='commentName'>"+name+"</p>"+
+										"<p class='commentTime'>"+time+"</p>"+
+										"<div class='commentCont'>"+
+											"<p>"+item.content+"</p>"+imgs+
+										"</div>"+
+									"</li>";
+								});
+
+								$(".commentList ul").html(html);
+
+			                }else{
+			                	
+			                }
+			            }
+			        }
+			    });
+			}
+
+
+			var locationUrl = "";
+			var wxtitle = "";
+			var wximgUrl = "";
+			var wxdesc = "";
+			
+			$(function(){
+				var questionId = getQueryString("questionId");
+				var answerId = getQueryString("answerId");
+				answerList(questionId,answerId);
+				answerAnswerList(answerId);
+
+
+				$("body").on("click",".commentNum,.praiseNum,.noComment a",function(){
+					more();
+				})
+
+			})
+		</script>
+	</body>
+</html>

@@ -1,0 +1,80 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>cn.com.ffxl</groupId>
+    <artifactId>cloud_parent</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+  </parent>
+  <artifactId>cloud_mbg</artifactId>
+  <name>cloud-mbg</name>
+  <description>代码生成器</description>
+  
+  <build>
+	 <pluginManagement>
+	 <!-- 自动生成代码器 -->
+		 <plugins>
+			 	<plugin>  
+				  <groupId>org.mybatis.generator</groupId>  
+				    <artifactId>mybatis-generator-maven-plugin</artifactId>  
+				    <version>1.3.2</version>  
+				    <configuration>  
+				        <verbose>true</verbose>  
+				        <overwrite>true</overwrite>  
+				    </configuration>  
+				    <executions>  
+				        <execution>  
+				            <id>Generate MyBatis Artifacts</id>  
+				            <goals>  
+				                <goal>generate</goal>  
+				            </goals>  
+				        </execution>  
+				    </executions>  
+				    <dependencies>  
+				       <dependency>
+				            <groupId>mysql</groupId>
+				            <artifactId>mysql-connector-java</artifactId>
+				            <version>5.1.29</version>
+				        </dependency>
+				        <dependency>
+			            	<groupId>cn.com.ffxl</groupId>
+							 <artifactId>mbg_plugin</artifactId>
+							 <version>0.0.1-SNAPSHOT</version>
+			           </dependency>
+				    </dependencies>  
+				</plugin>
+			  	<plugin>
+			     <groupId>org.mortbay.jetty</groupId>
+			     <artifactId>jetty-maven-plugin</artifactId>
+			     	<version>7.1.6.v20100715</version>
+		           <configuration>
+		            	<scanIntervalSeconds>10</scanIntervalSeconds>
+		            	<webAppConfig>
+		            		<contextPath>/ROOT</contextPath>
+		            	</webAppConfig>
+		           </configuration>
+			    </plugin>
+			    <!--tomcat plugin -->
+			<plugin>
+				<groupId>org.apache.tomcat.maven</groupId>
+				<artifactId>tomcat7-maven-plugin</artifactId>
+				<version>2.2</version>
+				<configuration>
+					<mode>war</mode>
+					<url>http://localhost:8090/manager</url>
+					<server>tomcat-local</server>
+					<username>admin</username>
+					<password>admin</password>
+					<!-- <maxHttpHeaderSize>81920000</maxHttpHeaderSize> -->
+					<path>/</path>
+					<port>8001</port>
+					<uriEncoding>utf-8</uriEncoding>
+					<warDirectory>/src/main/webapp</warDirectory>
+					<!-- Redeploy if already deployed -->
+					<update>true</update>
+				</configuration>
+			</plugin>
+			    
+		 </plugins>
+	 </pluginManagement>
+ </build>
+</project>

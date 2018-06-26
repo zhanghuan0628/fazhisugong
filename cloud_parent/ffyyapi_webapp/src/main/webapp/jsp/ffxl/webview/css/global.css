@@ -1,0 +1,323 @@
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,pre,code,form,fieldset,legend,input,button,textarea,p,blockquote,th,td,section,article,aside,header,footer,nav,dialog,figure,figcaption,hgroup { margin:0; padding:0; }
+table { border-collapse:collapse; border-spacing:0; }
+h1,h2,h3,h4,h5,h6 { font-weight:normal; font-size:100%; }
+ul,ol,li { list-style:none; }
+em,i,b { font-style:normal;font-weight: normal; }
+img { border:0; }
+input,button,img { vertical-align:middle; }
+input:focus { outline:0; }
+a {text-decoration:none;}
+* { -webkit-tap-highlight-color:rgba(0,0,0,0); margin: 0;padding: 0;}
+input,textarea,button {font-family: "微软雅黑";font-size: 1.4rem;outline: none;}
+select {background: none;}
+.clearfix:after { content: "." ; display: block ;height: 0 ;clear: both ;visibility: hidden ;}
+#layer {position: fixed;top: 0;left: 0;right:0;bottom:0;z-index:30;background-color:#000000;-moz-opacity: 0.5;opacity:.50;filter: alpha(opacity=50);display: none;}
+
+html {font-size: 56%;}
+@media only screen and (min-width: 321px){
+    html {
+        font-size: 62.5%!important;
+    }
+}
+@media only screen and (min-width: 401px){
+    html {
+        font-size: 72%!important;
+    }
+}
+@media only screen and (min-width: 481px){
+    html {
+        font-size: 94%!important;
+    }
+}
+@media only screen and (min-width: 561px){
+    html {
+        font-size: 109%!important;
+    }
+}
+@media only screen and (min-width: 641px){
+    html {
+        font-size: 125%!important;
+    }
+}
+
+body {font-family: "微软雅黑";font-size: 1.4rem;}
+
+
+.toast {padding: 1rem 1rem;background-color: rgba(0,0,0,0.5);color: #FFFFFF;font-size: 1.6rem;position: fixed;left: 50%;top: 50%;transform: translate(-50%,-50%);border-radius: 10px;z-index: 100;}
+
+
+.colorBody {background-color: #f5f5f5;}
+
+#downLoadLine {height: 5rem;background-color: #333333;color: #FFFFFF;position: relative;box-sizing: border-box;padding-left: 5.9rem;line-height: 5rem;}
+#downLoadLine img {position: absolute;width: 3.4rem;height: 3.4rem;left: 1.5rem;top: 50%;transform: translateY(-50%);}
+#downLoadLine a {display: block;position: absolute;right: 1.5rem;top: 50%;transform: translateY(-50%);width: 7.2rem;height: 3.4rem;line-height: 3.4rem;color: #FFFFFF;background-color: #da4547;border-radius: 5px;text-align: center;}
+
+
+/*福利活动*/
+#welfareBanner {height: 22.9rem;}
+#welfareBanner .swiper-wrapper .swiper-slide {background-size: cover;background-position: center;}
+#welfareBanner .swiper-pagination-bullet-active {background-color: #da4547;}
+
+.welfareInfo {padding: 1rem 1.5rem 5rem 1.5rem;background-color: #FFFFFF;position: relative;border-bottom: .3rem solid #f5f5f5;}
+.welfareInfo h1 {font-size: 1.7rem; line-height: 2.6rem;}
+.welfareInfo h1 i {display: inline-block;width: 3.5rem;height: 1.6rem;line-height: 1.6rem;background-color: #da4547;border-radius: 5px;text-align: center;font-size: 1.1rem;color: #FFFFFF;margin-right: 1.5rem;vertical-align: .2rem;}
+
+.welfareInfo .normalPrice {position: absolute;line-height: 5rem;left: 0;width: 100%;bottom: 0;text-align: center;font-size: 1.7rem;color: #e64646;}
+
+.welfareInfo .welfarePrice {height: 4.4rem;border: 1px solid #DA4547;position: absolute;bottom: 2.5rem;left: 50%;transform: translateX(-50%);text-align: center;}
+.welfareInfo .welfarePrice h2 {float: left;width: 5rem;line-height: 4.4rem;height: 100%;color: #FFFFFF;font-size: 1.2rem;background-color: #DA4547;}
+.welfareInfo .welfarePrice div {float: left;padding: 0 .7rem 0 .7rem;}
+.welfareInfo .welfarePrice div span {font-size: 1.2rem;color: #999999;text-decoration: line-through;}
+.welfareInfo .welfarePrice div p {font-size: 2.2rem;color: #DA4547;line-height: 2.4rem;}
+
+.welfareTitle {padding-left: 1.4rem;font-size: 1.7rem;background: url(../images/welfareTitle.jpg) no-repeat;background-size: .3rem 1.5rem;background-position: left center;line-height: 5rem;position: relative;}
+
+.welfareIntro {padding: 0 1.5rem 2.2rem 1.5rem;border-bottom: .3rem solid #f5f5f5;}
+.welfareIntro .wi-content {font-size: 1.5rem;line-height: 2.4rem;color: #555555;height: 10rem;overflow: hidden;}
+.welfareIntro .wi-content table,.welfareIntro .wi-content iframe,.welfareIntro .wi-content video {width: 100%!important;height: auto;}
+.welfareIntro .wi-content img {max-width: 100%!important;height: auto!important;}
+.welfareIntro .detail {height: auto!important;}
+.welfareIntro .wi-detailBtn {margin-top: 2.3rem;font-size: 1.5rem;text-align: center;}
+.welfareIntro .wi-detailBtn a {color: #da4547;}
+.welfareIntro .wi-detailBtn img {width: 1.2rem;height: .6rem;}
+
+
+.welfareNotice {padding: 0 1.5rem;}
+.welfareNotice ul li {height: 4.3rem;line-height: 4.3rem;padding-left: 2.2rem; border-bottom: 1px solid #eeeeee;position: relative;color: #555555;}
+.welfareNotice ul li img {width: 1.5rem;height: 1.5rem;position: absolute;top: 50%;transform: translateY(-50%);left: 0;}
+.welfareNotice ul li label {font-size: 1.5rem;font-weight: bold;}
+.welfareNotice ul li p {display: inline-block;font-size: 1.5rem;}
+.welfareNotice ul li .countDown p i {font-size: 1.6rem;padding: .5rem .5rem;background-color: #eeeeee;border-radius: 5px;margin: 0 .3rem;}
+.welfareNotice ul li .enroll {position: absolute;width: 8.1rem;height: 2.8rem;line-height: 2.9rem;border:1px solid #DA4547;text-align: center;background-color: #FFFFFF;color: #DA4547;font-size: 1.6rem;right: 0;top: 50%;transform: translateY(-50%);border-radius: 5px;}
+
+.welfareNotice ul .address {padding-left: 4.5rem;position: relative;}
+.welfareNotice ul .address label {position: absolute;left: 0;top: 0;}
+.welfareNotice ul .address p {overflow: hidden;text-overflow: ellipsis;white-space: nowrap;width: 100%;}
+
+.welfareNavi {position: fixed;bottom: 0;left: 0;width: 100%;height: 4.5rem;display: flex;display: -webkit-flex;justify-content: center;background-color: #f5f5f5;}
+.welfareNavi .wnBtn1,.welfareNavi .wnBtn2 {flex: 1;text-align: center;font-size: 1.2rem;color: #555555;padding-top: .6rem;box-sizing: border-box;background-color: #f5f5f5;}
+.welfareNavi .wnBtn1 img,.welfareNavi .wnBtn2 img {width: 1.9rem;height: 1.9rem;}
+.welfareNavi div {flex: 2;position: relative;}
+.welfareNavi .enrollBtn {font-size: 1.5rem;color: #FFFFFF;text-align: center;display: block;height: 3.7rem; line-height: 3.7rem;background-color: #DA4547;border-radius: 5px;width: 12.5rem;position: absolute;top: 50%;left: 50%;transform: translate(-50%,-50%);}
+
+.welfareShare {width: 18.4rem;height: 11.1rem;position: fixed;top: 0;right: 2.7rem;z-index: 40;}
+
+
+/*催眠曲*/
+.lullaby {}
+.lullabyBg {position: absolute;top: 0;left: 0;bottom: 0;right: 0; background-size: cover;background-repeat: no-repeat; background-position: center center;filter: url(blur.svg#blur);-webkit-filter: blur(30px);-moz-filter: blur(30px);-ms-filter: blur(30px);filter: blur(30px);-o-filter: blur(30px);filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius=30, MakeShadow=false);z-index: -10;}
+.lullabyMusic {position: absolute;top: 10rem;left: 50%;transform: translateX(-50%);overflow: hidden;}
+.lullabyMusic .musicFrame {width: 21rem;height: 21rem;position: relative;border-radius: 50%;overflow: hidden;border: .3rem solid #d8d3d3;margin: 0 auto;}
+
+.fmWrap {width: 100%;height: 100%;position: absolute;left: 0;top: 0;}
+
+.lullabyMusic .musicFrame .musicFm {width: 100%;height: 100%;border-radius: 50%;background-size: cover;background-repeat: no-repeat; background-position: center center;}
+
+
+.lullabyMusic .musicFrame .musicCover {background-color: rgba(0,0,0,0.2);position: absolute;top: 0;left: 0;width: 100%;height: 100%;border-radius: 50%;}
+.lullabyMusic .musicFrame .musicCover em {display: block;position: absolute;top: 50%;left: 50%;transform: translate(-50%,-50%);width: 5.5rem;height: 5.5rem;background-size: 100% 100%;}
+.lullabyMusic .musicFrame .musicCover .play {background-image: url(../images/play.png);}
+.lullabyMusic .musicFrame .musicCover .stop {background-image: url(../images/stop.png);}
+.lullabyMusic h1 {font-size: 1.8rem;text-align: center;color: #FFFFFF;margin-top: 1.8rem;}
+
+.lullabyBtn {position: absolute;bottom: 2.5rem;left: 0;width: 100%;padding: 0 2.8rem;box-sizing: border-box;}
+.lullabyBtn a {display: block;height: 4.3rem;line-height: 4.3rem;text-align: center;border: .1rem solid #FFFFFF;border-radius: 5px;font-size: 1.7rem;color: #FFFFFF;}
+.lullabyBtn .lullabyDownLoad {background-color: #FFFFFF;margin-bottom: 2rem;color: #DA4547;}
+
+.lullabyPlay {animation: lullaby 10s linear infinite;-webkit-animation: lullaby 10s linear infinite}
+
+@keyframes lullaby
+{
+	100% {transform: rotate(1turn);}
+}
+
+@-webkit-keyframes lullaby
+{
+	100% {transform: rotate(1turn);}
+}
+
+.pauseAnimation {-webkit-animation-play-state: paused;animation-play-state: paused;}
+
+
+/*测试详情*/
+.testInfo {border-bottom: .5rem solid #f8f8f8; background-color: #FFFFFF;}
+.testInfo .testCover {height: 18.5rem;background-repeat: no-repeat;background-size: cover;}
+.testInfo .testTitle {height: 7.2rem;border-top: 1px solid #f8f8f8;padding: 1.3rem 1.5rem 0 1.5rem;box-sizing: border-box;}
+.testInfo .testTitle h1 {font-size: 1.6rem;margin-bottom: 1rem;font-weight: bold;}
+.testInfo .testTitle .testData {position: relative;}
+.testInfo .testTitle .testData .testPrice {font-size: 1.6rem;color: #da4547;position: absolute;left: 0;top: 0;line-height: 1.6rem;}
+.testInfo .testTitle .testData .testPrice span {font-size: 1rem;color: #a2a2a2;text-decoration: line-through;}
+.testInfo .testTitle .testData .hasTest {font-size: 1.3rem;color: #999999;position: absolute;right: 0;top: 0;line-height: 1.6rem;}
+
+.testDesc {padding: 0 1.5rem;background-color: #FFFFFF;}
+.titleIcon {margin-bottom: 1.3rem;text-align: center;margin-top: 2.2rem;}
+.titleIcon img {display: block;margin: 0 auto 1.2rem auto;width: 1.6rem;height: 1.6rem;}
+.titleIcon span {padding-top: .7rem;border-top: 1px solid #da4547;font-size: 1.3rem;}
+
+.testDesc .testWhy div,.testDesc .testHint div {font-size: 1.5rem;color: #555555;line-height: 2.4rem;}
+
+.testNow {display: block;position: fixed;bottom: 0;left: 0;width: 100%;height: 5rem;line-height: 5rem;color: #FFFFFF;font-size: 1.7rem;background-color: #da4547;text-align: center;}
+
+
+/*测试题*/
+.testRate {padding: 1.7rem 1.5rem 0 1.5rem;margin-bottom: 4.5rem;}
+.testRate .testNum {color: #999999;font-size: 1.5rem;float: right;}
+.testRate .testNum .which {color: #da4547;font-weight: bold;}
+.testRate .testNum i {display: none;}
+.testRate .pre-test {position: absolute;left: 1.5rem;top: 1.7rem;font-size: 1.5rem;color: #da4547;display: none;float: left;}
+
+.testRate .progressBar {position: relative;margin-top: .9rem;width: 100%; height: .8rem;background-color: #e8e8e8;border-radius: 10px;display: none;}
+.testRate .progressBar em {display: block;position: absolute;left: 0;top: 0;height: 100%;border-radius: 10px;background-color: #da4547;}
+
+.testDescription {padding: 0 1.5rem;font-size: 1.6rem;color: #333333;line-height: 2.4rem;}
+.testDescription img {width: 100%;height: auto;display: block;}
+.testChoice {padding: 0 1.5rem;margin-top: 2.3rem;}
+.testChoice ul {width: 100%;border: 1px solid #EEEEEE;border-radius: 5px;background-color: #FFFFFF;color: #666666;}
+.testChoice ul li {border-top: 1px solid #EEEEEE;padding:1.2rem 1.4rem;}
+.testChoice ul li img {width: auto;height: 3rem;display: block;}
+.testChoice ul li:first-child {border: none;}
+.tc_on {color: #555555!important;background-color: #da4547!important;color: #FFFFFF!important;}
+.testChoice ul li:active {color: #555555;background-color: #da4547;color: #FFFFFF;}
+
+.sub-btn {position: fixed;bottom: 2rem;left: 50%; width: 14rem;height: 4.5rem;display: block;transform: translateX(-50%); background-color: #dbdbdb;color: #FFFFFF;font-size: 1.7rem;text-align: center;line-height: 4.5rem;border-radius: 50px;}
+.sub-btn-active {background-color: #da4547!important;}
+
+.testChoice .hasImg {display: flex;display: -webkit-flex;border: none;border-radius: initial;background: none;flex-wrap: wrap;justify-content: space-between;}
+.testChoice .hasImg li {padding: 0;border-radius: 5px;width: 48%;background-color: #FFFFFF;margin-bottom: 1.5rem;}
+.testChoice .hasImg li img {width: 100%;}
+.testChoice .hasImg li p {display: table;height: 4rem;padding: 0 1rem;}
+.testChoice .hasImg li p span {display: table-cell;text-align: center;vertical-align: middle;}
+
+
+.subjective i,.testChoice h2 {color: #333333;}
+.testChoice .subjectiveAnswer {box-sizing: border-box; width: 100%; height: 24rem;border: #e5e5e5;background-color: #FFFFFF;resize: none;padding: .8rem;font-size: 1.5rem;color: #666666;line-height: 2.4rem;margin-top: 1.2rem;word-break: break-all;}
+
+.subjectiveBtn {display: block;margin: 0 1.5rem;height: 4.5rem;line-height: 4.5rem;text-align: center;font-size: 1.5rem;color: #FFFFFF;background-color: #32B16C;border-radius: 5px;}
+
+
+.subjectiveHint {width: 26rem;background-color: #FFFFFF;border-radius: 10px;overflow: hidden;box-sizing: border-box;padding-top: 2.6rem;text-align: center;position: fixed;left: 50%;top: 50%;transform: translate(-50%,-50%);z-index: 40;}
+.subjectiveHint div img {width: 2.7rem;height: 2.7rem;}
+.subjectiveHint div p {font-size: 1.6rem;margin: 1.2rem 0 2.2rem 0;}
+.subjectiveHint a {display: block;width: 100%;height: 4.9rem;line-height: 4.9rem;color: #32B16C;font-size: 1.7rem;text-align: center;border-top: 1px solid #e5e5e5;}
+
+
+
+/*测试结果*/
+.dmnsName {font-size: 1.7rem;color: #333333;line-height: 4.5rem;text-align: center;}
+.dmnsName:before {content: "";display: inline-block;width: 2.2rem;height: 1px;background-color: #333333;margin-right: 1rem;vertical-align: middle;}
+.dmnsName:after {content: "";display: inline-block;width: 2.2rem;height: 1px;background-color: #333333;margin-left: 1rem;vertical-align: middle;}
+
+#testResult {position: absolute;top: 1rem;left: 0;right: 0;bottom: 1rem;overflow: hidden;}
+
+#testResult #testResultNavi {height: 3.5rem;overflow: visible;z-index: 20;background-color: #FFFFFF;}
+#testResult #testResultNavi .swiper-slide {background-color: #FFFFFF;color: #666666;text-align: center;line-height: 3.5rem;}
+#testResult #testResultNavi .swiper-slide p {overflow: hidden;text-overflow: ellipsis;white-space: nowrap;}
+#testResult #testResultNavi .swiper-slide img {position: absolute;left: 50%;transform: translateX(-50%);top: 3.2rem;display: none;width: .8rem;height: 2.6rem;}
+#testResult #testResultNavi .trn_on {background-color: #da4547!important;color: #FFFFFF!important;}
+#testResult #testResultNavi .trn_on img {display: block!important;}
+
+#testResult .resultFrame {position: absolute;left: 2rem;right: 1.5rem;bottom: 0;top: 5rem;background-color: rgba(218,69,71,0.3);}
+#testResult #magazine {height: 100%;position: absolute;left: -0.5rem;top: -0.5rem;right: .5rem;bottom: .5rem;}
+#testResult #magazine .turn-page{background-color:#ccc;background-size:100% 100%;}
+#testResult #magazine .trLi {width: 100%;height: 100%;}
+#testResult #magazine .trContent {background-color: #FFFFFF;width: 100%;height: 100%;padding: 2.1rem 1.2rem;box-sizing: border-box;overflow: auto;}
+#testResult #magazine .trContent img {width: 100%;height: auto;}
+#testResult #magazine .trContent .resultTitle {text-align: center;line-height: 4rem;font-size: 1.5rem;}
+#testResult #magazine .trContent .score {font-size: 1.5rem;line-height: 3rem;}
+#testResult #magazine .trContent .reportDetail {line-height: 2.6rem;}
+
+
+.trHint {font-size: 1.3rem;color: #888888;position: absolute;bottom: 7.5rem;padding: 0 3rem;line-height: 3rem;}
+
+.trBtn {position: absolute;bottom: 1.5rem;left: 1.5rem;right: 1.5rem;display: flex;display: -webkit-flex;justify-content: space-around;}
+.trBtn a {width: 46%;height: 4.3rem;border: 2px solid #da4547;background-color: #FFFFFF;text-align: center;color: #da4547;font-size: 1.5rem;line-height: 4.3rem;border-radius: 5px;}
+
+
+.p-temporal {background-color: #FFFFFF;}
+
+
+/*文章详情*/
+.article {padding: .5rem 2rem 0 2rem;}
+.serializeTitle {text-align: center;line-height: 4.5rem;color: #DA4547;}
+.serializeTitle:before {content: "";display: inline-block;width: 1.8rem;height: .65rem;vertical-align: middle;background: url(../images/serializeTitle1.png) no-repeat;background-size: 100% 100%;}
+.serializeTitle:after {content: "";display: inline-block;width: 1.8rem;height: .65rem;vertical-align: middle;background: url(../images/serializeTitle2.png) no-repeat;background-size: 100% 100%;}
+.serializeTitle span {padding: 0 .9rem;}
+
+.articleTitle {text-align: center;margin-bottom: 1.5rem;}
+.articleTitle h1 {font-size: 2rem;line-height: 2.8rem;margin-bottom: 1.4rem;}
+.articleTitle span {font-size: 1.3rem;color: #888888;}
+
+.article .articleContent {overflow: hidden;}
+.article .articleContent img {max-width: 100%!important;height: auto!important;}
+.article .articleContent .articleImg {margin-bottom: 2rem;width: 100%!important;}
+.article .articleContent iframe,.article .articleContent video,.article .articleContent table {width: 100%!important;height: auto!important;}
+
+.welfareTitle .serializeIcon {display: block;position: absolute;width: 1.9rem;height: 1.5rem;background: url(../images/serializeIcon.png) no-repeat;background-size: 100% 100%;right: 0;top: 50%;transform: translateY(-50%);}
+
+.serializeList ul li {color: #DA4547;padding-left: 1.4rem;font-size: 1.5rem;background-position: left 0.75rem;background-size:.8rem .8rem;background-repeat: no-repeat; }
+.serializeList ul li:first-child {margin-bottom: 1.1rem;}
+.serializeList ul .serialize1 {background-image: url(../images/serialize1.png);}
+.serializeList ul .serialize2 {background-image: url(../images/serialize2.png);}
+.serializeList ul li span {margin-left: 1.2rem;color: #333333;}
+.serializeList ul .noArticle span {color: #ababab!important;}
+
+.counselorList ul {border-top: 1px solid #ececec;}
+.counselorList ul li {height: 9rem;border-bottom: 1px solid #ececec;position: relative;}
+.counselorList ul li img {width: 5.4rem;height: 5.4rem;border-radius: 50%;position: absolute;left: 0;top: 50%;transform: translateY(-50%);}
+.counselorList ul li h1 {font-size: 1.6rem;line-height: 1.6rem;position: absolute;left: 6.7rem;top: 1.5rem;}
+.counselorList ul li h1 span {line-height: 1.4rem;padding: 0 .9rem;border: 1px solid #ea8f56;color: #ea8f56;border-radius: 10px;}
+.counselorList ul li .consultSkill {position: absolute;left: 6.7rem;top: 4.1rem;font-size: 1.2rem;line-height: 1.2rem;padding-left: 1.6rem;background:url(../images/consultSkill.png) no-repeat;background-position: left center;background-size: 1.1rem 1.1rem;}
+.counselorList ul li .consultData {position: absolute;left: 6.7rem;top: 6.2rem;font-size: 1.2rem;line-height: 1.2rem;color: #666666;}
+.counselorList ul li .consultData .location {background:url(../images/location.png) no-repeat;background-position: left center;background-size: 1.1rem 1.1rem;padding-left: 1.6rem;margin-right: 2rem;}
+.counselorList ul li .consultData .consultCount {background:url(../images/consultCount.png) no-repeat;background-position: left center;background-size: 1.1rem 1.1rem;padding-left: 1.6rem;margin-right: 2rem;}
+.counselorList ul li .consultData .praiseCount {background:url(../images/praiseCount.png) no-repeat;background-position: left center;background-size: 1.1rem 1.1rem;padding-left: 1.6rem;}
+
+
+.articleBottom {box-sizing: border-box;width: 100%;height: 4.5rem;border: 1px solid #eeeeee;background-color: #FFFFFF;display: flex;display: -webkit-flex;position: fixed;left: 0;bottom: 0;}
+.articleBottom a {display: block;flex: 1;line-height: 4.5rem;text-align: center}
+.articleBottom a img {width: 1.6rem;height: 1.3rem;margin-right: .5rem;vertical-align: -0.2rem;}
+
+
+
+
+/*正念放松*/
+.relaxBg {position: absolute;top: 0;left: 0;bottom: 0;right: 0;background-image: url(../images/relaxBg.jpg); background-size: cover;background-repeat: no-repeat; background-position: center center;z-index: -10;}
+.relax {padding-top: 1.5rem;}
+
+.relaxTitle {text-align: center;line-height: 8rem;color: #f5f5f5;font-size: 1.8rem;font-weight: bold;}
+.relaxTitle:before {content: "";display: inline-block;width: 2.55rem;height: .7rem;vertical-align: middle;background: url(../images/relaxTitle1.png) no-repeat;background-size: 100% 100%;}
+.relaxTitle:after {content: "";display: inline-block;width: 2.55rem;height: .7rem;vertical-align: middle;background: url(../images/relaxTitle2.png) no-repeat;background-size: 100% 100%;}
+.relaxTitle span {padding: 0 .9rem;}
+
+.relax .relaxContent {padding: 0 5.6rem;margin-top: 2rem;font-size: 1.5rem;color: #f5f5f5;line-height: 2.4rem;}
+
+.relaxAudio {position: absolute;left: 0;bottom: 0;width: 100%;height: 10rem;}
+.relaxAudio .progressBar {position: absolute;top: .7rem; left: 4.4rem;right: 4.4rem;height: .3rem;background-color: #e2e2e2;}
+.relaxAudio .progressBar div {height: 100%;background-color: #da4547;position: relative;width: 1%;min-width: 1.4rem;}
+.relaxAudio .progressBar div em {display: block;width: 1.4rem;height: 1.4rem;background-color: #ffffff;position: absolute;right: 0;top: 50%;transform: translateY(-50%);border-radius: 50%;box-shadow:3px 3px 12px 1px;}
+.relaxAudio .currentTime {position: absolute;left: .9rem;font-size: 1.2rem;color: #e2e2e2;}
+.relaxAudio .totalTime {position: absolute;right: .9rem;font-size: 1.2rem;color: #e2e2e2;}
+
+.relaxAudio>em {display: block;width: 5.5rem;height: 5.5rem;position: absolute;bottom: 2rem;left: 50%;transform: translateX(-50%);background-size: 100% 100%;}
+.relaxAudio .relaxPlay {background-image: url(../images/relaxPlay.png);}
+.relaxAudio .relaxStop {background-image: url(../images/relaxStop.png);}
+
+
+
+/*催眠故事*/
+.bedTimeStoryAudio {width: 100%;height: 20.6rem;background-repeat: no-repeat;background-size: cover;background-position: center center;position: relative;}
+
+.bedTimeStoryAudio .progressBar {position: absolute;bottom: 0; left: 0;right: 0;height: .3rem;background-color: #e2e2e2;}
+.bedTimeStoryAudio .progressBar div {height: 100%;background-color: #da4547;position: relative;width: 1%;min-width: 1.4rem;}
+.bedTimeStoryAudio .progressBar div em {display: block;width: 1.4rem;height: 1.4rem;background-color: #ffffff;position: absolute;right: 0;top: 50%;transform: translateY(-50%);border-radius: 50%;box-shadow:3px 3px 12px 1px;}
+.bedTimeStoryAudio .currentTime {position: absolute;left: 1.5rem;bottom: 1.2rem; font-size: 1.2rem;color: #e2e2e2;}
+.bedTimeStoryAudio .totalTime {position: absolute;right: 1.5rem;bottom: 1.2rem;font-size: 1.2rem;color: #e2e2e2;}
+
+.bedTimeStoryAudio>em {display: block;width: 3.7rem;height: 3.7rem;position: absolute;top: 50%;left: 50%;transform: translate(-50%,-50%);background-size: 100% 100%;}
+.bedTimeStoryAudio .btsPlay {background-image: url(../images/relaxPlay.png);}
+.bedTimeStoryAudio .btsStop {background-image: url(../images/relaxStop.png);}
+
+.bedTimeStory {padding: .8rem 1.5rem 0 1.5rem;}
+.bedTimeStory h1 {font-size: 1.7rem;color: #333333;line-height: 2.6rem;}
+.bedTimeStory .bedTimeStoryCont {margin-top: 1.2rem;}
+

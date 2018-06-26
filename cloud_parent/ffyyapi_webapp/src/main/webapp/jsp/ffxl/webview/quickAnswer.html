@@ -1,0 +1,312 @@
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>答题</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" type="text/css" href="css/team.css?v=2"/>
+	</head>
+	<body>
+
+		<div class="countDown321">
+			<div class="prepare">
+				<div>
+					<img src="images/3.png" alt="">
+					<img src="images/2.png" alt="">
+					<img src="images/1.png" alt="">
+				</div>
+			</div>
+		</div>
+
+		<div class="answerHint">
+			<img class="hintTitle" src="images/hintTitle.png" alt="">
+			<div class="hintCont">
+				<em></em>
+				<p>1.本次答题限时<span></span>s，答对一题记1分，答错为0分；</p>
+				<p>2.每一关答题机会只有一次；</p>
+				<p>3.如果答题过程中退出，也视作答题结束，以当前分数为最终分数。</p>
+			</div>
+
+			<a class="hintBtn">开始答题</a>
+		</div>
+
+		<div class="quickAnswer">
+			<div class="answerInfo">
+				<p class="answerNum">答题数：<span>0</span></p>
+				<h1 class="countDown"></h1>
+				<p class="rightNum">答对：<span>0</span></p>
+			</div>
+			<div class="answerContainer">
+				<!-- <h1>中国共产党是哪一年建立的？</h1>
+				<ul>
+					<li>1921年7月</li>
+					<li>1921年7月</li>
+					<li>1921年7月</li>
+				</ul> -->
+			</div>
+
+			<p class="bannerName"></p>
+		</div>
+
+
+		<div id="testData" style="height: 0;visibility: hidden;">
+
+		</div>
+
+		
+		
+		<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/fastclick.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/index.js?v=20180423" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			function getMap(userId,actBannerId,mapId){
+				$.ajax({
+			        url: apiUrl+"/ans_tem/get_map",
+			        type: "post",
+			        data: {userId:userId,actBannerId:actBannerId},
+			        dataType: "json",
+			        async:false,
+			        success: function(data) {
+			        	if(data.success){
+			                if(data.code == "2000"){
+			                	var data = data.data;
+
+								$.each(data, function(i,item) {
+									if (item.id == mapId) {
+										$(".quickAnswer").css("background-image","url("+item.answerImg+")");
+										$(".answerContainer").css("background-image","url("+item.scoreImg+")");
+										$(".bannerName").text(item.name)
+									}
+								})
+			                }else{
+			                	
+			                }
+			            }
+			        }
+			    });
+			}
+
+			function questionList(bannerId,mapId,userId,sceId,teamId,flagId,sort){
+				var qList = [];
+				$.ajax({
+			        url: apiUrl+"/ans_tem/question_list",
+			        type: "post",
+			        data: {bannerId:bannerId,mapId:mapId,userId:userId,sceId:sceId,teamId:teamId,flagId:flagId,sort:sort},
+			        dataType: "json",
+			        async:false,
+			        success: function(data) {
+			        	if(data.success){
+			                if(data.code == "2000"){
+								countDownNum = parseInt(data.module);
+								$(".hintCont p").eq(0).find("span").text(countDownNum);
+								$(".countDown").text(getzf(Math.floor(countDownNum/60))+":"+getzf(countDownNum%60));
+								answerLogId = data.data.answerLogId;
+								var data = data.data.qstnList;
+			                	qNum = data.length;
+			                	
+			                	for (var i=0;i<qNum;i++) {
+									var evalData = eval("("+data[i].questionJson+")");
+			                		var oList = "";
+			                		$.each(evalData.optn, function(j,item) {
+										oList += "<li data-option='"+item.result+"'>"+item.title+"</li>";
+			                		});
+			                		
+
+									qList[i] = "<h1>"+evalData.qstn+"</h1>"+
+										"<ul data-answerid='"+data[i].id+"'>"+oList+"</ul>"
+			                	}
+			                	
+								
+			                }else{
+			                	
+			                }
+			            }
+			        }
+				});
+				
+				return qList;
+			}
+
+
+
+			function saveAns(id,userId,mapId,teamId,sceId,actBannerId,flagId,sort,correctCount,correct,answerJson){
+				$.ajax({
+			        url: apiUrl+"/ans_tem/save_ans",
+			        type: "post",
+					data: {id:id,
+						userId:userId,
+						mapId:mapId,
+						teamId:teamId,
+						sceId:sceId,
+						actBannerId:actBannerId,
+						flagId:flagId,
+						sort:sort,
+						correctCount:correctCount,
+						correct:correct,
+						answerJson:JSON.stringify(answerJson)},
+			        dataType: "json",
+			        async:false,
+			        success: function(data) {
+			        	if(data.success){
+			                if(data.code == "2000"){
+								if (isAndroid()) {
+									window.android.finishAnswer(data.data);
+								} else{
+									window.webkit.messageHandlers.finishAnswer.postMessage(data.data);
+								}
+			                }else{
+			                	
+			                }
+			            }
+			        }
+				});
+				
+			}
+			
+			var timer;
+			var answerLogId = "";
+			var qNum = "";
+			var nowNum = 0;
+			
+			var correctCount = 0;
+			var countDownNum;
+
+			var qstnId = [];
+
+			var readyAnswer = true;
+
+			$(function(){
+
+				var conH = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+				$(".countDown321").css({"width":conH*2,"height":conH*2});
+
+				var userId =  getQueryString("userId");
+				var actBannerId =  getQueryString("actBannerId");
+				var mapId =  getQueryString("mapId");
+				var sceId =  getQueryString("sceId");
+				var flagId =  getQueryString("flagId");
+				var sort =  getQueryString("sort");
+				var teamId = getQueryString("teamId");
+
+				getMap(userId,actBannerId,mapId);
+
+				question = questionList(actBannerId,mapId,userId,sceId,teamId,flagId,sort);
+
+				$(".answerContainer").html(question[0]);
+
+
+
+				$(".hintBtn").click(function(){
+					$(".countDown321").show().addClass("countDownscale1");
+					setTimeout(function() {
+						$(".answerHint").hide();
+						$(".countDown321").css("transform","translate(-50%,-50%) scale(1)").removeClass("countDownscale1")
+						$(".countDown321 .prepare").show();
+						// $(".countDown321 .prepare div").append("<img src='images/3.png?"+new Date().getTime()+"' />");
+						$(".countDown321 .prepare div img").eq(0).addClass("numRotate");
+						$(".countDown321 .prepare").append("<p>准备</p>")
+					}, 500);
+					setTimeout(function() {
+						// $(".countDown321 .prepare div img").remove();
+						// $(".countDown321 .prepare div").prepend("<img src='images/2.png?"+new Date().getTime()+"' />");
+						$(".countDown321 .prepare div img").removeClass("numRotate")
+						$(".countDown321 .prepare div img").eq(1).addClass("numRotate");
+					}, 1500);
+					setTimeout(function() {
+						// $(".countDown321 .prepare div img").remove();
+						// $(".countDown321 .prepare div").prepend("<img src='images/1.png?"+new Date().getTime()+"' />");
+						$(".countDown321 .prepare div img").removeClass("numRotate")
+						$(".countDown321 .prepare div img").eq(2).addClass("numRotate");
+					}, 2500);
+					setTimeout(function() {
+						$(".countDown321 .prepare div,.countDown321 .prepare p").remove();
+						$(".countDown321").addClass("countDownscale2");
+					}, 3500);
+					setTimeout(function() {
+						$(".countDown321 .prepare").hide();
+						timer = setInterval(function(){
+							countDownNum--;
+							$(".countDown").text(getzf(Math.floor(countDownNum/60))+":"+getzf(countDownNum%60));
+							if (countDownNum == 0) {
+								var answerJson = [];
+								for (var i=0;i<$("#testData input").length;i++) {
+									var answer_id = $("#testData input").eq(i).attr("name");
+									var correct = $("#testData input").eq(i).val();
+									answerJson.push({"answer_id":answer_id,"correct":correct});
+								}
+								var allCorrect = 0;
+								if (correctCount == qNum) {
+									allCorrect = 1
+								}
+								saveAns(answerLogId,userId,mapId,teamId,sceId,actBannerId,flagId,sort,correctCount,allCorrect,answerJson);
+								clearInterval(timer);
+							}
+							
+						},1000)
+					}, 4000);
+
+				})
+
+				$(".answerContainer").on("click","ul li",function(){
+					if (readyAnswer) {
+						readyAnswer = false;
+						var rightOption = $(this).data("option");
+						var answer_id = $(this).parent().data("answerid");
+						var correct = "";
+						if (rightOption == "1") {
+							$(this).addClass("answerRight").append("<img src='images/answerRight.png' />");
+							correct = "1";
+							correctCount++;
+							$(".rightNum span").text(correctCount);
+						} else {
+							if (isAndroid()) {
+								window.android.shake();
+							} else{
+								window.webkit.messageHandlers.shake.postMessage(null);
+							}
+							
+							$(this).addClass("answerWrong").append("<img src='images/answerWrong.png' />");
+							correct = "0";
+							$(this).siblings().each(function(){
+								if ($(this).data("option") == "1") {
+									$(this).addClass("answerRight").append("<img src='images/answerRight.png' />");
+								}
+							})
+						}
+
+						
+					
+						$("#testData").append("<input type='hidden' name='"+answer_id+"' value='"+correct+"' />");
+						nowNum++;
+						$(".answerNum span").text(nowNum);
+						if (parseInt(qNum) == nowNum) {
+							var answerJson = [];
+							for (var i=0;i<$("#testData input").length;i++) {
+								var answer_id = $("#testData input").eq(i).attr("name");
+								var correct = $("#testData input").eq(i).val();
+								answerJson.push({"answer_id":answer_id,"correct":correct});
+							}
+							var allCorrect = 0;
+							if (correctCount == qNum) {
+								allCorrect = 1;
+							}
+							clearInterval(timer);
+							saveAns(answerLogId,userId,mapId,teamId,sceId,actBannerId,flagId,sort,correctCount,allCorrect,answerJson);
+							return false;
+						}
+						
+						
+						setTimeout(function(){
+							$(".answerContainer").html(question[nowNum]);
+							readyAnswer = true;
+						},1000)
+					}
+					
+				});
+				
+				
+			})
+		</script>
+	</body>
+</html>

@@ -1,0 +1,355 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>cn.com.ffxl</groupId>
+    <artifactId>lib_parent</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+  </parent>
+  <artifactId>platform_parent</artifactId>
+  <packaging>pom</packaging>
+  
+  <build>
+     <resources>  
+           <resource>  
+               <directory>src/main/resources/</directory>  
+               <filtering>true</filtering>  
+               <includes>  
+                   <include>**/*.properties</include>  
+               </includes>  
+           </resource>  
+           <resource>
+               <directory>src/main/resources/</directory>  
+               <filtering>false</filtering>  
+               <includes>  
+                   <include>**/*.xml</include>  
+               </includes>  
+           </resource>  
+       </resources>  
+  </build>
+  
+  <modules>
+    <module>platform_common</module>
+    <module>platform_framework</module>
+    <module>platform_rediscache</module>
+  </modules>
+  
+  <profiles>
+        <profile>
+            <id>dev</id>
+            	  
+            <properties>
+            <!--  姚苏微信
+            <wechat.sleep.appid>wxbebcec6281f9a3da</wechat.sleep.appid>
+            <wechat.sleep.appscret>6cd2ff0453c76ee3fffaafaa47a582c5</wechat.sleep.appscret>
+            <wechat.sleep.mchid>1406723402</wechat.sleep.mchid>
+            <wechat.sleep.key>UH6t8jufh3G4edkfK35pcwBfS4edUrf1</wechat.sleep.key>
+            <wechat.sleep.notifyurl>http://ffyy.tunnel.qydev.com/wechat_order/notify_url</wechat.sleep.notifyurl>
+             -->
+             <!--  贾威微信 -->
+            <wechat.sleep.appid>wx2cdd0813c7d32c89</wechat.sleep.appid>
+            <wechat.sleep.appscret>819420a4f1f1bea7da808a1fecaf09a9</wechat.sleep.appscret>
+            <wechat.sleep.mchid>1406723402</wechat.sleep.mchid>
+            <wechat.sleep.key>UH6t8jufh3G4edkfK35pcwBfS4edUrf1</wechat.sleep.key>
+            <wechat.sleep.notifyurl>http://ffxy.tunnel.qydev.com/wechat_order/notify_url</wechat.sleep.notifyurl>
+            
+            <!-- 飞凡心理睡眠微信公众号
+            <wechat.sleep.appid>wxf8a7a6168cd41f4d</wechat.sleep.appid>
+            <wechat.sleep.appscret>88e71d5e508bc4e0f60e99f923514c94</wechat.sleep.appscret>
+            <wechat.sleep.mchid>1406723402</wechat.sleep.mchid>
+            <wechat.sleep.key>UH6t8jufh3G4edkfK35pcwBfS4edUrf1</wechat.sleep.key>
+            <wechat.sleep.notifyurl>http://shanpost.tunnel.qydev.com/wechat_order/notify_url</wechat.sleep.notifyurl>
+             -->
+            <!-- 飞凡心理测评微信公众号  贾威微信-->
+            <wechat.ceping.appid>wx2cdd0813c7d32c89</wechat.ceping.appid>
+            <wechat.ceping.appscret>819420a4f1f1bea7da808a1fecaf09a9</wechat.ceping.appscret>
+            <wechat.ceping.mchid>1406723402</wechat.ceping.mchid>
+            <wechat.ceping.key>UH6t8jufh3G4edkfK35pcwBfS4edUrf1</wechat.ceping.key>
+            <wechat.ceping.notifyurl>http://ffxy.tunnel.qydev.com/order/notify_url</wechat.ceping.notifyurl>
+            <!-- 飞凡心理微信公众号  wx987b5ae03deb1496  2735e3d27ad5ba00f661f699889face2-->
+	            <wechat.ffxl.appid>wx3fcc9318f76ab31c</wechat.ffxl.appid>
+	            <wechat.ffxl.appscret>97806498abe18acd48bcca0e22edc56e</wechat.ffxl.appscret>
+	            <wechat.ffxl.mchid>1483823322</wechat.ffxl.mchid>
+	            <wechat.ffxl.key>UH6t8jufh3G4edkfK35pcwBfS4edUrf1</wechat.ffxl.key>
+	            <wechat.ffxl.notifyurl>http://ffxlapp.feifanxinli.com/ffyy_api/</wechat.ffxl.notifyurl>
+	            <wechat.ffxl.h5_notifyurl>http://pre-api.feifanxinli.com/ffyy_api/h5/wechatpay/notify_url</wechat.ffxl.h5_notifyurl>
+            <!-- 支付宝 -->
+            <alipay.appid>2016122104493168</alipay.appid>
+            <alipay.private_key>MIICdgIBADANBgkqhkiG9w0BAQEFAASCAmAwggJcAgEAAoGBAKeVm243LDeofWu1OnKwGbT34M/fngaPSjARte+D0QZOkEGA6t6n1y0qH8yWcCWauDLo9Tot1Q06VGvKkl9tb90M/YBu81cmuC1LEzPV9RLPObLTz5AZsc7OqrGzDwHEQzzsPCuWw1XJGzO+0hOH8SFjHmlDmkKsTj1D09TFViSlAgMBAAECgYBUcWdLhxOJzCW+oygbaC7b6Fdoh3Y6OfOY+yOg19v4gJfh2dL/dLVRNbumPFuwJyEPziDbOwLy0mR9mCpfWWaWvFW9W9QhsKL+8wkfGa6UUNnAgj2veBRq3IkgUttR2W5mCJD+VrrbpQANgOjL/RP8qC3DtR2loBgX/FwbWC4sAQJBANH/MLuE3fAMXU9QvdUUFHVASuL73fQs93keh3hbSDUIkOJ5IxfpdTXAmUoqoNrmbmmeQ7oZ2opyQuPVbRO+bQECQQDMS+PDU9NDvGm9YpS+CM0NU/bQNkhSztgGRCIDGzIDwgdzt+TgXTgrItSO+medVA1fFO9ZsPHz0EWJWdQm8uOlAkB/9V2+hcGuyfn5oJtrwSaOI7T+BrdCWDwbo4ysvAKNvkB6n5HQukLflBJT7RHDEPJqjTN7rNFL10AHED+87iYBAkBr9Q5/AaT6fm5CLf38DhqNmHksvgKp/7QYW5i9m3lqkvXtKJhCGAC+isFYbOqkMO5/+EgjVWYGOWEFm/qIOoIhAkEApvOgvRDKw4tXI9czHKcqEXw1WrUupd2FcyNcPD/UxBC2lFKxd0T8Wh1LyQTKOvqdyYMSIkGSHQjGfLrsh10EWw==</alipay.private_key>
+            <alipay.public_key>MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDDI6d306Q8fIfCOaTXyiUeJHkrIvYISRcc73s3vF1ZT7XN8RNPwJxo8pWaJMmvyTn9N4HQ632qJBVHf8sxHi/fEsraprwCtzvzQETrNRwVxLO5jVmRGi60j8Ue1efIlzPXV9je9mkjzOmdssymZkh2QhUrCmZYI/FCEa3/cNMW0QIDAQAB</alipay.public_key>
+            <alipay.notify_url>http://192.168.0.100:8080/ffyy_api/api_ali_pay/ali_async_notify</alipay.notify_url>
+             <!-- 微信开放平台-飞凡心理 
+                <wechat.open.ffxl.appid>wxf96b1a05a4912eab</wechat.open.ffxl.appid>
+                <wechat.open.ffxl.appsecret>91f09ad2555574e12b24fc4dc4b83d9f</wechat.open.ffxl.appsecret>
+                <wechat.open.ffxl.mchid>1429048502</wechat.open.ffxl.mchid>
+                <wechat.open.ffxl.key>UH6t8jufh3G4edkfK35pcwBfS4edUrf1</wechat.open.ffxl.key>
+                -->
+                <wechat.open.ffxl.appid>wxf96b1a05a4912eab</wechat.open.ffxl.appid>
+                <wechat.open.ffxl.appsecret>91f09ad2555574e12b24fc4dc4b83d9f</wechat.open.ffxl.appsecret>
+                <wechat.open.ffxl.mchid>1429048502</wechat.open.ffxl.mchid>
+                <wechat.open.ffxl.key>UH6t8jufh3G4edkfK35pcwBfS4edUrf1</wechat.open.ffxl.key>
+                <wechat.open.ffxl.notifyurl>http://ffyy.feifanxinli.com:8080/ffyy_api/api_wechat_pay/wechat_async_notify</wechat.open.ffxl.notifyurl>
+                <!-- 微信开放平台-飞小凡 -->
+                <wechat.open.fxf.appid>wxd412aaf999a2ac79</wechat.open.fxf.appid>
+                <wechat.open.fxf.appsecret>4fd4a5647e3a65131758be7d3f669716</wechat.open.fxf.appsecret>
+                <wechat.open.fxf.mchid>1462407302</wechat.open.fxf.mchid>
+                <wechat.open.fxf.key>UH6t8jufh3G4edkfK35pcwBfS4edUrf1</wechat.open.fxf.key>
+                <wechat.open.fxf.notifyurl>http://ffyy.feifanxinli.com:8080/ffyy_api/api_wechat_pay/wechat_async_notify</wechat.open.fxf.notifyurl>
+                <!-- 微信开放平台-小程序  硕星微信-->
+                <wechat.xcx.ffxl.appid>wx302740bf76a21bed</wechat.xcx.ffxl.appid>
+                <wechat.xcx.ffxl.appsecret>210a3592b30b03ce8f66c66b02529f93</wechat.xcx.ffxl.appsecret>
+                <wechat.xcx.ffxl.mchid>1462407302</wechat.xcx.ffxl.mchid>
+                <wechat.xcx.ffxl.key>UH6t8jufh3G4edkfK35pcwBfS4edUrf1</wechat.xcx.ffxl.key>
+                <wechat.xcx.ffxl.notifyurl>http://ffyy.feifanxinli.com:8080/ffyy_api/api_wechat_pay/wechat_async_notify</wechat.xcx.ffxl.notifyurl>
+                 <!--融云-->
+                <rong.ffxl.appkey>x18ywvqf8wgrc</rong.ffxl.appkey>
+                <rong.ffxl.appsecret>PH1PYlS3wX</rong.ffxl.appsecret>
+                <rong.fxf.appkey>25wehl3u27j8w</rong.fxf.appkey>
+                <rong.fxf.appsecret>3X86VtHzLkcZ</rong.fxf.appsecret>
+                <!-- 友盟消息模式 -->
+                <ym.production.mode>0</ym.production.mode>
+                <!--微信第三方开发平台账号  -->
+                <wechat.third.component.appid>wxb4764964f9e26714</wechat.third.component.appid>
+                <wechat.third.component.appsecret>486fca92de17e1515464cae93ec7648c</wechat.third.component.appsecret>
+                <wechat.third.component.encodingaeskey>2f3d123dfe32wesr43eto9ikju8yhfu8ie3wsu87enc</wechat.third.component.encodingaeskey>
+                <wechat.third.component.token>ffxl2580</wechat.third.component.token>
+            </properties>
+        </profile>
+
+         <profile>
+            <id>test</id>
+           		
+            <properties>
+            <!-- 微信公众号 -->
+            <wechat.sleep.appid>wx2cdd0813c7d32c89</wechat.sleep.appid>
+            <wechat.sleep.appscret>819420a4f1f1bea7da808a1fecaf09a9</wechat.sleep.appscret>
+            <wechat.sleep.mchid>1406723402</wechat.sleep.mchid>
+            <wechat.sleep.key>UH6t8jufh3G4edkfK35pcwBfS4edUrf1</wechat.sleep.key>
+            <wechat.sleep.notifyurl>http://ffxy.tunnel.qydev.com/ffyy/wechat_order/notify_url</wechat.sleep.notifyurl>
+            <!-- 飞凡心理测评微信公众号  贾威微信-->
+            <wechat.ceping.appid>wx2cdd0813c7d32c89</wechat.ceping.appid>
+            <wechat.ceping.appscret>819420a4f1f1bea7da808a1fecaf09a9</wechat.ceping.appscret>
+            <wechat.ceping.mchid>1406723402</wechat.ceping.mchid>
+            <wechat.ceping.key>UH6t8jufh3G4edkfK35pcwBfS4edUrf1</wechat.ceping.key>
+            <wechat.ceping.notifyurl>http://pre-test.feifanxinli.com/test/order/notify_url</wechat.ceping.notifyurl>
+            <wechat.ceping.recharge.notifyurl>http://pre-test.feifanxinli.com/test/recharge_order/notify_url</wechat.ceping.recharge.notifyurl>
+            <!-- 飞凡心理微信公众号 -->
+            <wechat.ffxl.appid>wx2cdd0813c7d32c89</wechat.ffxl.appid>
+            <wechat.ffxl.appscret>819420a4f1f1bea7da808a1fecaf09a9</wechat.ffxl.appscret>
+            <wechat.ffxl.mchid>1406723402</wechat.ffxl.mchid>
+	        <wechat.ffxl.key>UH6t8jufh3G4edkfK35pcwBfS4edUrf1</wechat.ffxl.key>
+            <wechat.ffxl.notifyurl>http://pre-api.feifanxinli.com/ffyy_api/</wechat.ffxl.notifyurl>
+            <wechat.ffxl.h5_notifyurl>http://pre-api.feifanxinli.com/ffyy_api/h5/wechatpay/notify_url</wechat.ffxl.h5_notifyurl>
+
+            <!-- 支付宝 -->
+            <alipay.appid>2016122104493168</alipay.appid>
+            <alipay.private_key>MIICdgIBADANBgkqhkiG9w0BAQEFAASCAmAwggJcAgEAAoGBAKeVm243LDeofWu1OnKwGbT34M/fngaPSjARte+D0QZOkEGA6t6n1y0qH8yWcCWauDLo9Tot1Q06VGvKkl9tb90M/YBu81cmuC1LEzPV9RLPObLTz5AZsc7OqrGzDwHEQzzsPCuWw1XJGzO+0hOH8SFjHmlDmkKsTj1D09TFViSlAgMBAAECgYBUcWdLhxOJzCW+oygbaC7b6Fdoh3Y6OfOY+yOg19v4gJfh2dL/dLVRNbumPFuwJyEPziDbOwLy0mR9mCpfWWaWvFW9W9QhsKL+8wkfGa6UUNnAgj2veBRq3IkgUttR2W5mCJD+VrrbpQANgOjL/RP8qC3DtR2loBgX/FwbWC4sAQJBANH/MLuE3fAMXU9QvdUUFHVASuL73fQs93keh3hbSDUIkOJ5IxfpdTXAmUoqoNrmbmmeQ7oZ2opyQuPVbRO+bQECQQDMS+PDU9NDvGm9YpS+CM0NU/bQNkhSztgGRCIDGzIDwgdzt+TgXTgrItSO+medVA1fFO9ZsPHz0EWJWdQm8uOlAkB/9V2+hcGuyfn5oJtrwSaOI7T+BrdCWDwbo4ysvAKNvkB6n5HQukLflBJT7RHDEPJqjTN7rNFL10AHED+87iYBAkBr9Q5/AaT6fm5CLf38DhqNmHksvgKp/7QYW5i9m3lqkvXtKJhCGAC+isFYbOqkMO5/+EgjVWYGOWEFm/qIOoIhAkEApvOgvRDKw4tXI9czHKcqEXw1WrUupd2FcyNcPD/UxBC2lFKxd0T8Wh1LyQTKOvqdyYMSIkGSHQjGfLrsh10EWw==</alipay.private_key>
+            <alipay.public_key>MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDDI6d306Q8fIfCOaTXyiUeJHkrIvYISRcc73s3vF1ZT7XN8RNPwJxo8pWaJMmvyTn9N4HQ632qJBVHf8sxHi/fEsraprwCtzvzQETrNRwVxLO5jVmRGi60j8Ue1efIlzPXV9je9mkjzOmdssymZkh2QhUrCmZYI/FCEa3/cNMW0QIDAQAB</alipay.public_key>
+           <alipay.notify_url>http://pre-api.feifanxinli.com/ffyy_api/api_ali_pay/ali_async_notify</alipay.notify_url>
+            <alipay.active_notify_url>http://pre-api.feifanxinli.com/ffyy_api/active_order_ali/ali_async_notify</alipay.active_notify_url>
+            <alipay.room_notify_url>http://pre-api.feifanxinli.com/ffyy_api/room_order_api_ali_pay/ali_async_notify</alipay.room_notify_url>
+            <alipay.active202_notify_url>http://pre-api.feifanxinli.com/ffyy_api/active_order_ali_v202/ali_async_notify</alipay.active202_notify_url>
+            <alipay.test_notify_url>http://pre-api.feifanxinli.com/ffyy_api/test_order_ali/ali_async_notify</alipay.test_notify_url>
+            <alipay.h5_notify_url>http://pre-api.feifanxinli.com/ffyy_api/h5/alipay/notify</alipay.h5_notify_url>
+            <alipay.mdse_notify_url>http://pre-api.feifanxinli.com/ffyy_api/ali_mdse_order/ali_async_notify</alipay.mdse_notify_url>
+            <alipay.redPacket_order_url>http://pre-api.feifanxinli.com/ffyy_api/ali_redPacket_order/ali_async_notify</alipay.redPacket_order_url>
+           <!-- 微信开放平台-飞凡心理 -->
+                <wechat.open.ffxl.appid>wxf96b1a05a4912eab</wechat.open.ffxl.appid>
+                <wechat.open.ffxl.appsecret>91f09ad2555574e12b24fc4dc4b83d9f</wechat.open.ffxl.appsecret>
+                <wechat.open.ffxl.mchid>1429048502</wechat.open.ffxl.mchid>
+                <wechat.open.ffxl.key>UH6t8jufh3G4edkfK35pcwBfS4edUrf1</wechat.open.ffxl.key>
+                <wechat.open.ffxl.notifyurl>http://pre-api.feifanxinli.com/ffyy_api/api_wechat_pay/wechat_async_notify</wechat.open.ffxl.notifyurl>
+                <wechat.open.ffxl.active_notifyurl>http://pre-api.feifanxinli.com/ffyy_api/active_order_wechat/wechat_async_notify</wechat.open.ffxl.active_notifyurl>
+                	<!-- 咨询室回调 -->
+                <wechat.open.ffxl.room_notifyurl>http://pre-api.feifanxinli.com/ffyy_api/room_order_wechat_pay/wechat_async_notify</wechat.open.ffxl.room_notifyurl>
+                <wechat.open.ffxl.active202_notifyurl>http://pre-api.feifanxinli.com/ffyy_api/active_order_wechat_v202/wechat_async_notify</wechat.open.ffxl.active202_notifyurl>
+                <wechat.open.ffxl.test_notifyurl>http://pre-api.feifanxinli.com/ffyy_api/test_order_wechat/wechat_async_notify</wechat.open.ffxl.test_notifyurl>
+                <wechat.open.ffxl.mdse_notifyurl>http://pre-api.feifanxinli.com/ffyy_api/wechat_mdse_order/wechat_async_notify</wechat.open.ffxl.mdse_notifyurl>
+                <wechat.open.ffxl.redPacket_notifyurl>http://pre-api.feifanxinli.com/ffyy_api/wechat_redPacket_order/wechat_async_notify</wechat.open.ffxl.redPacket_notifyurl>
+             <!-- 微信开放平台-飞小凡 -->
+                <wechat.open.fxf.appid>wxd412aaf999a2ac79</wechat.open.fxf.appid>
+                <wechat.open.fxf.appsecret>4fd4a5647e3a65131758be7d3f669716</wechat.open.fxf.appsecret>
+                <wechat.open.fxf.mchid>1462407302</wechat.open.fxf.mchid>
+                <wechat.open.fxf.key>UH6t8jufh3G4edkfK35pcwBfS4edUrf1</wechat.open.fxf.key>
+                <wechat.open.fxf.notifyurl>http://pre-api.feifanxinli.com/ffyy_api/api_wechat_pay/wechat_async_notify</wechat.open.fxf.notifyurl>
+             <!-- 微信开放平台-小程序   硕星微信-->
+                <wechat.xcx.ffxl.appid>wx302740bf76a21bed</wechat.xcx.ffxl.appid>
+                <wechat.xcx.ffxl.appsecret>210a3592b30b03ce8f66c66b02529f93</wechat.xcx.ffxl.appsecret>
+                <wechat.xcx.ffxl.mchid>1462407302</wechat.xcx.ffxl.mchid>
+                <wechat.xcx.ffxl.key>UH6t8jufh3G4edkfK35pcwBfS4edUrf1</wechat.xcx.ffxl.key>
+                <wechat.xcx.ffxl.notifyurl>http://pre-api.feifanxinli.com/ffyy_api/api_wechat_pay/wechat_async_notify</wechat.xcx.ffxl.notifyurl>
+            <!--融云
+                <rong.ffxl.appkey>x18ywvqf8wgrc</rong.ffxl.appkey>
+                <rong.ffxl.appsecret>PH1PYlS3wX</rong.ffxl.appsecret>
+                <rong.fxf.appkey>25wehl3u27j8w</rong.fxf.appkey>
+                <rong.fxf.appsecret>3X86VtHzLkcZ</rong.fxf.appsecret>-->
+             <rong.ffxl.appkey>x4vkb1qpvbd3k</rong.ffxl.appkey>
+             <rong.ffxl.appsecret>YWEU0xIKGz</rong.ffxl.appsecret>
+             <rong.fxf.appkey>qd46yzrfq3uef</rong.fxf.appkey>
+             <rong.fxf.appsecret>6YZcV1Mfocc</rong.fxf.appsecret>
+             <!-- 友盟消息模式 -->
+                <ym.production.mode>0</ym.production.mode>
+              <!--微信第三方开发平台账号  -->
+             <wechat.third.component.appid>wxb4764964f9e26714</wechat.third.component.appid>
+             <wechat.third.component.appsecret>486fca92de17e1515464cae93ec7648c</wechat.third.component.appsecret>
+             <wechat.third.component.encodingaeskey>2f3d123dfe32wesr43eto9ikju8yhfu8ie3wsu87enc</wechat.third.component.encodingaeskey>
+             <wechat.third.component.token>ffxl2580</wechat.third.component.token>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>pre</id>
+          		
+            <properties>
+            <!-- 微信公众号 -->
+            <wechat.sleep.appid>wx2cdd0813c7d32c89</wechat.sleep.appid>
+            <wechat.sleep.appscret>819420a4f1f1bea7da808a1fecaf09a9</wechat.sleep.appscret>
+            <wechat.sleep.mchid>1406723402</wechat.sleep.mchid>
+            <wechat.sleep.key>UH6t8jufh3G4edkfK35pcwBfS4edUrf1</wechat.sleep.key>
+            <wechat.sleep.notifyurl>http://ffxy.tunnel.qydev.com/ffyy/wechat_order/notify_url</wechat.sleep.notifyurl>
+            <!-- 飞凡心理测评微信公众号  贾威微信-->
+            <wechat.ceping.appid>wx2cdd0813c7d32c89</wechat.ceping.appid>
+            <wechat.ceping.appscret>819420a4f1f1bea7da808a1fecaf09a9</wechat.ceping.appscret>
+            <wechat.ceping.mchid>1406723402</wechat.ceping.mchid>
+            <wechat.ceping.key>UH6t8jufh3G4edkfK35pcwBfS4edUrf1</wechat.ceping.key>
+            <wechat.ceping.notifyurl>http://ffxy.tunnel.qydev.com/ceping/order/notify_url</wechat.ceping.notifyurl>
+            <wechat.ceping.recharge.notifyurl>http://ffxy.tunnel.qydev.com/ceping/recharge_order/notify_url</wechat.ceping.recharge.notifyurl>
+            <!-- 飞凡心理微信公众号 -->
+            <wechat.ffxl.appid>wx2cdd0813c7d32c89</wechat.ffxl.appid>
+            <wechat.ffxl.appscret>819420a4f1f1bea7da808a1fecaf09a9</wechat.ffxl.appscret>
+            <wechat.ffxl.mchid>1406723402</wechat.ffxl.mchid>
+	        <wechat.ffxl.key>UH6t8jufh3G4edkfK35pcwBfS4edUrf1</wechat.ffxl.key>
+            <wechat.ffxl.notifyurl>http://ffxy.tunnel.qydev.com/ffyy_api/</wechat.ffxl.notifyurl>
+            <wechat.ffxl.h5_notifyurl>http://ffxy.tunnel.qydev.com/ffyy_api/h5/wechatpay/notify_url</wechat.ffxl.h5_notifyurl>
+
+            <!-- 支付宝 -->
+            <alipay.appid>2016122104493168</alipay.appid>
+            <alipay.private_key>MIICdgIBADANBgkqhkiG9w0BAQEFAASCAmAwggJcAgEAAoGBAKeVm243LDeofWu1OnKwGbT34M/fngaPSjARte+D0QZOkEGA6t6n1y0qH8yWcCWauDLo9Tot1Q06VGvKkl9tb90M/YBu81cmuC1LEzPV9RLPObLTz5AZsc7OqrGzDwHEQzzsPCuWw1XJGzO+0hOH8SFjHmlDmkKsTj1D09TFViSlAgMBAAECgYBUcWdLhxOJzCW+oygbaC7b6Fdoh3Y6OfOY+yOg19v4gJfh2dL/dLVRNbumPFuwJyEPziDbOwLy0mR9mCpfWWaWvFW9W9QhsKL+8wkfGa6UUNnAgj2veBRq3IkgUttR2W5mCJD+VrrbpQANgOjL/RP8qC3DtR2loBgX/FwbWC4sAQJBANH/MLuE3fAMXU9QvdUUFHVASuL73fQs93keh3hbSDUIkOJ5IxfpdTXAmUoqoNrmbmmeQ7oZ2opyQuPVbRO+bQECQQDMS+PDU9NDvGm9YpS+CM0NU/bQNkhSztgGRCIDGzIDwgdzt+TgXTgrItSO+medVA1fFO9ZsPHz0EWJWdQm8uOlAkB/9V2+hcGuyfn5oJtrwSaOI7T+BrdCWDwbo4ysvAKNvkB6n5HQukLflBJT7RHDEPJqjTN7rNFL10AHED+87iYBAkBr9Q5/AaT6fm5CLf38DhqNmHksvgKp/7QYW5i9m3lqkvXtKJhCGAC+isFYbOqkMO5/+EgjVWYGOWEFm/qIOoIhAkEApvOgvRDKw4tXI9czHKcqEXw1WrUupd2FcyNcPD/UxBC2lFKxd0T8Wh1LyQTKOvqdyYMSIkGSHQjGfLrsh10EWw==</alipay.private_key>
+            <alipay.public_key>MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDDI6d306Q8fIfCOaTXyiUeJHkrIvYISRcc73s3vF1ZT7XN8RNPwJxo8pWaJMmvyTn9N4HQ632qJBVHf8sxHi/fEsraprwCtzvzQETrNRwVxLO5jVmRGi60j8Ue1efIlzPXV9je9mkjzOmdssymZkh2QhUrCmZYI/FCEa3/cNMW0QIDAQAB</alipay.public_key>
+            <alipay.notify_url>http://ffxy.tunnel.qydev.com/ffyy_api/api_ali_pay/ali_async_notify</alipay.notify_url>
+            <alipay.active_notify_url>http://ffxy.tunnel.qydev.com/ffyy_api/active_order_ali/ali_async_notify</alipay.active_notify_url>
+            <alipay.room_notify_url>http://ffxy.tunnel.qydev.com/ffyy_api/room_order_api_ali_pay/ali_async_notify</alipay.room_notify_url>
+            <alipay.active202_notify_url>http://ffxy.tunnel.qydev.com/ffyy_api/active_order_ali_v202/ali_async_notify</alipay.active202_notify_url>
+            <alipay.test_notify_url>http://ffxy.tunnel.qydev.com/ffyy_api/test_order_ali/ali_async_notify</alipay.test_notify_url>
+            <alipay.h5_notify_url>http://ffxy.tunnel.qydev.com/ffyy_api/h5/alipay/notify</alipay.h5_notify_url>
+            <alipay.mdse_notify_url>http://ffxy.tunnel.qydev.com/ffyy_api/ali_mdse_order/ali_async_notify</alipay.mdse_notify_url>
+            <alipay.redPacket_order_url>http://ffxy.tunnel.qydev.com/ffyy_api/ali_redPacket_order/ali_async_notify</alipay.redPacket_order_url>
+           <!-- 微信开放平台-飞凡心理 -->
+                <wechat.open.ffxl.appid>wxf96b1a05a4912eab</wechat.open.ffxl.appid>
+                <wechat.open.ffxl.appsecret>91f09ad2555574e12b24fc4dc4b83d9f</wechat.open.ffxl.appsecret>
+                <wechat.open.ffxl.mchid>1429048502</wechat.open.ffxl.mchid>
+                <wechat.open.ffxl.key>UH6t8jufh3G4edkfK35pcwBfS4edUrf1</wechat.open.ffxl.key>
+                <wechat.open.ffxl.notifyurl>http://ffxy.tunnel.qydev.com/ffyy_api/api_wechat_pay/wechat_async_notify</wechat.open.ffxl.notifyurl>
+                <wechat.open.ffxl.active_notifyurl>http://ffxy.tunnel.qydev.com/ffyy_api/active_order_wechat/wechat_async_notify</wechat.open.ffxl.active_notifyurl>
+                <wechat.open.ffxl.room_notifyurl>http://ffxy.tunnel.qydev.com/ffyy_api/room_order_wechat_pay/wechat_async_notify</wechat.open.ffxl.room_notifyurl>
+                <wechat.open.ffxl.active202_notifyurl>http://ffxy.tunnel.qydev.com/ffyy_api/active_order_wechat_v202/wechat_async_notify</wechat.open.ffxl.active202_notifyurl>
+                <wechat.open.ffxl.test_notifyurl>http://ffxy.tunnel.qydev.com/ffyy_api/test_order_wechat/wechat_async_notify</wechat.open.ffxl.test_notifyurl>
+             	<wechat.open.ffxl.mdse_notifyurl>http://ffxy.tunnel.qydev.com/ffyy_api/wechat_mdse_order/wechat_async_notify</wechat.open.ffxl.mdse_notifyurl>
+                <wechat.open.ffxl.redPacket_notifyurl>http://ffxy.tunnel.qydev.com/ffyy_api/wechat_redPacket_order/wechat_async_notify</wechat.open.ffxl.redPacket_notifyurl>
+             
+             <!-- 微信开放平台-飞小凡 -->
+                <wechat.open.fxf.appid>wxd412aaf999a2ac79</wechat.open.fxf.appid>
+                <wechat.open.fxf.appsecret>4fd4a5647e3a65131758be7d3f669716</wechat.open.fxf.appsecret>
+                <wechat.open.fxf.mchid>1462407302</wechat.open.fxf.mchid>
+                <wechat.open.fxf.key>UH6t8jufh3G4edkfK35pcwBfS4edUrf1</wechat.open.fxf.key>
+                <wechat.open.fxf.notifyurl>http://ffxy.tunnel.qydev.com/ffyy_api/api_wechat_pay/wechat_async_notify</wechat.open.fxf.notifyurl>
+             	<wechat.open.fxf.rechargeurl>http://ffxy.tunnel.qydev.com/ffyy_api/fxf_recharge/notify_url</wechat.open.fxf.rechargeurl>
+             <!-- 微信开放平台-小程序   硕星微信-->
+                <wechat.xcx.ffxl.appid>wx302740bf76a21bed</wechat.xcx.ffxl.appid>
+                <wechat.xcx.ffxl.appsecret>210a3592b30b03ce8f66c66b02529f93</wechat.xcx.ffxl.appsecret>
+                <wechat.xcx.ffxl.mchid>1462407302</wechat.xcx.ffxl.mchid>
+                <wechat.xcx.ffxl.key>UH6t8jufh3G4edkfK35pcwBfS4edUrf1</wechat.xcx.ffxl.key>
+                <wechat.xcx.ffxl.notifyurl>http://ffxy.tunnel.qydev.com/ffyy_api/api_wechat_pay/wechat_async_notify</wechat.xcx.ffxl.notifyurl>
+            <!--融云-->
+                <rong.ffxl.appkey>x18ywvqf8wgrc</rong.ffxl.appkey>
+                <rong.ffxl.appsecret>PH1PYlS3wX</rong.ffxl.appsecret>
+                <rong.fxf.appkey>25wehl3u27j8w</rong.fxf.appkey>
+                <rong.fxf.appsecret>3X86VtHzLkcZ</rong.fxf.appsecret>
+            <!-- 友盟消息模式 -->
+                <ym.production.mode>0</ym.production.mode>
+                 <!--微信第三方开发平台账号  -->
+             <wechat.third.component.appid>wxb4764964f9e26714</wechat.third.component.appid>
+             <wechat.third.component.appsecret>486fca92de17e1515464cae93ec7648c</wechat.third.component.appsecret>
+             <wechat.third.component.encodingaeskey>2f3d123dfe32wesr43eto9ikju8yhfu8ie3wsu87enc</wechat.third.component.encodingaeskey>
+             <wechat.third.component.token>ffxl2580</wechat.third.component.token>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>prod</id>
+          		<activation>
+               		<activeByDefault>true</activeByDefault>
+           		</activation>
+            <properties>
+                <!-- 飞凡心理睡眠微信公众号 -->
+                <wechat.sleep.appid>wx83b0015d4e272b79</wechat.sleep.appid>
+                <wechat.sleep.appscret>9bd7e26e21296e5c25b90c401646f638</wechat.sleep.appscret>
+                <wechat.sleep.mchid>1406723402</wechat.sleep.mchid>
+                <wechat.sleep.key>UH6t8jufh3G4edkfK35pcwBfS4edUrf1</wechat.sleep.key>
+                <wechat.sleep.notifyurl>http://ffxlsleep.feifanxinli.com/ffyy/wechat_order/notify_url</wechat.sleep.notifyurl>
+                <!-- 飞凡心理测评微信公众号 -->
+	            <wechat.ceping.appid>wx9c8e953bfdda4600</wechat.ceping.appid>
+	            <wechat.ceping.appscret>a1b504773abe4beb53598bad4fcab170</wechat.ceping.appscret>
+	            <wechat.ceping.mchid>1357417502</wechat.ceping.mchid>
+	            <wechat.ceping.key>Lovejing1314Lovejing1314Lovejing</wechat.ceping.key>
+	            <wechat.ceping.notifyurl>http://ffxltest.feifanxinli.com/test/order/notify_url</wechat.ceping.notifyurl>
+	            <!-- 飞凡心理微信公众号 -->
+	            <wechat.ffxl.appid>wx52c241bcd09bc71c</wechat.ffxl.appid>
+	            <wechat.ffxl.appscret>cbdefa5fd452246cdd9a9f005ca25598</wechat.ffxl.appscret>
+	            <wechat.ffxl.mchid>1483823322</wechat.ffxl.mchid>
+	            <wechat.ffxl.key>UH6t8jufh3G4edkfK35pcwBfS4edUrf1</wechat.ffxl.key>
+	            <wechat.ffxl.notifyurl>http://ffxlapp.feifanxinli.com/ffyy_api/</wechat.ffxl.notifyurl>
+	            <wechat.ffxl.h5_notifyurl>http://ffxlapp.feifanxinli.com/ffyy_api/h5/wechatpay/notify_url</wechat.ffxl.h5_notifyurl>
+                <!-- 支付宝 -->
+                <alipay.appid>2016122104493168</alipay.appid>
+                <alipay.private_key>MIICdgIBADANBgkqhkiG9w0BAQEFAASCAmAwggJcAgEAAoGBAKeVm243LDeofWu1OnKwGbT34M/fngaPSjARte+D0QZOkEGA6t6n1y0qH8yWcCWauDLo9Tot1Q06VGvKkl9tb90M/YBu81cmuC1LEzPV9RLPObLTz5AZsc7OqrGzDwHEQzzsPCuWw1XJGzO+0hOH8SFjHmlDmkKsTj1D09TFViSlAgMBAAECgYBUcWdLhxOJzCW+oygbaC7b6Fdoh3Y6OfOY+yOg19v4gJfh2dL/dLVRNbumPFuwJyEPziDbOwLy0mR9mCpfWWaWvFW9W9QhsKL+8wkfGa6UUNnAgj2veBRq3IkgUttR2W5mCJD+VrrbpQANgOjL/RP8qC3DtR2loBgX/FwbWC4sAQJBANH/MLuE3fAMXU9QvdUUFHVASuL73fQs93keh3hbSDUIkOJ5IxfpdTXAmUoqoNrmbmmeQ7oZ2opyQuPVbRO+bQECQQDMS+PDU9NDvGm9YpS+CM0NU/bQNkhSztgGRCIDGzIDwgdzt+TgXTgrItSO+medVA1fFO9ZsPHz0EWJWdQm8uOlAkB/9V2+hcGuyfn5oJtrwSaOI7T+BrdCWDwbo4ysvAKNvkB6n5HQukLflBJT7RHDEPJqjTN7rNFL10AHED+87iYBAkBr9Q5/AaT6fm5CLf38DhqNmHksvgKp/7QYW5i9m3lqkvXtKJhCGAC+isFYbOqkMO5/+EgjVWYGOWEFm/qIOoIhAkEApvOgvRDKw4tXI9czHKcqEXw1WrUupd2FcyNcPD/UxBC2lFKxd0T8Wh1LyQTKOvqdyYMSIkGSHQjGfLrsh10EWw==</alipay.private_key>
+                <alipay.public_key>MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDDI6d306Q8fIfCOaTXyiUeJHkrIvYISRcc73s3vF1ZT7XN8RNPwJxo8pWaJMmvyTn9N4HQ632qJBVHf8sxHi/fEsraprwCtzvzQETrNRwVxLO5jVmRGi60j8Ue1efIlzPXV9je9mkjzOmdssymZkh2QhUrCmZYI/FCEa3/cNMW0QIDAQAB</alipay.public_key>
+                <alipay.notify_url>http://ffxlapp.feifanxinli.com/ffyy_api/api_ali_pay/ali_async_notify</alipay.notify_url>
+                <alipay.room_notify_url>http://ffxlapp.feifanxinli.com/ffyy_api/room_order_api_ali_pay/ali_async_notify</alipay.room_notify_url>
+                <alipay.active_notify_url>http://ffxlapp.feifanxinli.com/ffyy_api/active_order_ali/ali_async_notify</alipay.active_notify_url>
+            	<alipay.active202_notify_url>http://ffxlapp.feifanxinli.com/ffyy_api/active_order_ali_v202/ali_async_notify</alipay.active202_notify_url>
+            	<alipay.test_notify_url>http://ffxlapp.feifanxinli.com/ffyy_api/test_order_ali/ali_async_notify</alipay.test_notify_url>
+                <alipay.h5_notify_url>http://ffxlapp.feifanxinli.com/ffyy_api/h5/alipay/notify</alipay.h5_notify_url>
+                <alipay.mdse_notify_url>http://ffxlapp.feifanxinli.com/ffyy_api/ali_mdse_order/ali_async_notify</alipay.mdse_notify_url>
+                <alipay.redPacket_order_url>http://ffxlapp.feifanxinli.com/ffyy_api/ali_redPacket_order/ali_async_notify</alipay.redPacket_order_url>
+                <!-- 微信开放平台-飞凡心理 -->
+                <wechat.open.ffxl.appid>wxf96b1a05a4912eab</wechat.open.ffxl.appid>
+                <wechat.open.ffxl.appsecret>91f09ad2555574e12b24fc4dc4b83d9f</wechat.open.ffxl.appsecret>
+                <wechat.open.ffxl.mchid>1429048502</wechat.open.ffxl.mchid>
+                <wechat.open.ffxl.key>UH6t8jufh3G4edkfK35pcwBfS4edUrf1</wechat.open.ffxl.key>
+                <wechat.open.ffxl.notifyurl>http://ffxlapp.feifanxinli.com/ffyy_api/api_wechat_pay/wechat_async_notify</wechat.open.ffxl.notifyurl>
+                <wechat.open.ffxl.active_notifyurl>http://ffxlapp.feifanxinli.com/ffyy_api/active_order_wechat/wechat_async_notify</wechat.open.ffxl.active_notifyurl>
+                     <!-- 咨询室回调 -->
+                <wechat.open.ffxl.room_notifyurl>http://ffxlapp.feifanxinli.com/ffyy_api/room_order_wechat_pay/wechat_async_notify</wechat.open.ffxl.room_notifyurl>
+                <wechat.open.ffxl.active202_notifyurl>http://ffxlapp.feifanxinli.com/ffyy_api/active_order_wechat_v202/wechat_async_notify</wechat.open.ffxl.active202_notifyurl>
+                <wechat.open.ffxl.test_notifyurl>http://ffxlapp.feifanxinli.com/ffyy_api/test_order_wechat/wechat_async_notify</wechat.open.ffxl.test_notifyurl>
+                <wechat.open.ffxl.mdse_notifyurl>http://ffxlapp.feifanxinli.com/ffyy_api/wechat_mdse_order/wechat_async_notify</wechat.open.ffxl.mdse_notifyurl>
+                <wechat.open.ffxl.redPacket_notifyurl>http://ffxlapp.feifanxinli.com/ffyy_api/wechat_redPacket_order/wechat_async_notify</wechat.open.ffxl.redPacket_notifyurl>
+                <!-- 微信开放平台-飞小凡 -->
+                <wechat.open.fxf.appid>wxd412aaf999a2ac79</wechat.open.fxf.appid>
+                <wechat.open.fxf.appsecret>4fd4a5647e3a65131758be7d3f669716</wechat.open.fxf.appsecret>
+                <wechat.open.fxf.mchid>1462407302</wechat.open.fxf.mchid>
+                <wechat.open.fxf.key>UH6t8jufh3G4edkfK35pcwBfS4edUrf1</wechat.open.fxf.key>
+                <wechat.open.fxf.notifyurl>http://fxfapp.feifanxinli.com/ffyy_api/api_wechat_pay/wechat_async_notify</wechat.open.fxf.notifyurl>
+                <wechat.open.fxf.rechargeurl>http://fxfapp.feifanxinli.com/ffyy_api/fxf_recharge/notify_url</wechat.open.fxf.rechargeurl>
+                <!-- 微信开放平台-小程序  -->
+                <wechat.xcx.ffxl.appid>wx029883bef7f1706f</wechat.xcx.ffxl.appid>
+                <wechat.xcx.ffxl.appsecret>4e122153d470c7e51fa80164edc606e2</wechat.xcx.ffxl.appsecret>
+                <wechat.xcx.ffxl.mchid>1429048502</wechat.xcx.ffxl.mchid>
+                <wechat.xcx.ffxl.key>UH6t8jufh3G4edkfK35pcwBfS4edUrf1</wechat.xcx.ffxl.key>
+                <wechat.xcx.ffxl.notifyurl>http://ffxlapp.feifanxinli.com/ffyy_api/api_wechat_pay/wechat_async_notify</wechat.xcx.ffxl.notifyurl>
+                <!--融云-->
+                <rong.ffxl.appkey>x4vkb1qpvbd3k</rong.ffxl.appkey>
+                <rong.ffxl.appsecret>YWEU0xIKGz</rong.ffxl.appsecret>
+                <rong.fxf.appkey>qd46yzrfq3uef</rong.fxf.appkey>
+                <rong.fxf.appsecret>6YZcV1Mfocc</rong.fxf.appsecret>
+                <!-- 友盟消息模式 -->
+                <ym.production.mode>1</ym.production.mode>
+                 <!--微信第三方开发平台账号  -->
+             <wechat.third.component.appid>wxf664be7a0807e7a7</wechat.third.component.appid>
+             <wechat.third.component.appsecret>62b8bed5d542923a367dd03656052ec8</wechat.third.component.appsecret>
+             <wechat.third.component.encodingaeskey>2f3d123dfe32wesr43eto9ikju8yhfu8ie3wsu87enc</wechat.third.component.encodingaeskey>
+             <wechat.third.component.token>ffxl2580</wechat.third.component.token>
+            </properties>
+        </profile>
+        </profiles>
+</project>

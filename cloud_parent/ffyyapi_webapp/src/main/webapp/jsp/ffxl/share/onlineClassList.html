@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>线上课程</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" type="text/css" href="css/mescroll.min.css"/>
+		<link rel="stylesheet" type="text/css" href="css/global.css?v=1"/>
+		<link rel="stylesheet" type="text/css" href="css/class.css"/>
+	</head>
+	<body>
+		<div id="downLoadLine">
+			<img src="images/wxLogo.png"/>
+			<a onclick="more()">下载APP</a>
+		</div>
+		
+		<div class="onlineClassList mescroll" id="onlineClassList">
+			<ul id="list">
+				<li>
+					<i>免费</i>
+					<h1>七天自尊冥想训练</h1>
+					<em></em>
+					<h2>5分钟/12节</h2>
+					<p>927</p>
+					<img src="images/videoClass.png" alt="">
+				</li>
+
+				<li>
+					<i>已购</i>
+					<h1>七天自尊冥想训练</h1>
+					<em></em>
+					<h2>5分钟/12节</h2>
+					<p>927</p>
+					<img src="images/audioClass.png" alt="">
+				</li>
+
+				<li>
+					<i>免费</i>
+					<h1>七天自尊冥想训练</h1>
+					<em></em>
+					<h2>5分钟/12节</h2>
+					<p>927</p>
+					<img src="images/videoClass.png" alt="">
+				</li>
+
+				<li>
+					<i>免费</i>
+					<h1>七天自尊冥想训练</h1>
+					<em></em>
+					<h2>5分钟/12节</h2>
+					<p>927</p>
+					<img src="images/audioClass.png" alt="">
+				</li>
+			</ul>
+		</div>
+		
+		
+		<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/fastclick.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/mescroll.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+		<script src="js/index.js?v=20180115" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			var classMescroll;
+
+			var locationUrl = "";
+			var wxtitle = "";
+			var wximgUrl = "";
+			var wxdesc = "";
+			
+			$(function(){
+				
+				classMescroll = new MeScroll("onlineClassList", { 
+					down: {
+						callback: function (mescroll) { 
+							mescroll.resetUpScroll(); 
+						}
+					},
+					up: {
+						auto:false,
+						// callback: function (page) { teamPraiseph(userId,actBannerId,teamStatus,page); }, 
+						isBounce: false
+					}
+				});
+			})
+		</script>
+	</body>
+</html>
