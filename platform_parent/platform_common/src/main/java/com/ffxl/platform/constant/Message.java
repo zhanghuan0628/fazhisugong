@@ -1,4 +1,4 @@
-package com.ffxl.platform.util;
+package com.ffxl.platform.constant;
 
 
 
@@ -8,6 +8,8 @@ import java.util.Properties;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import com.ffxl.platform.util.HttpHeader;
 
 
 /**
@@ -42,6 +44,9 @@ public class Message {
      * 不能删除超级管理员
      */
     public static final String M6001 = "6001";
+    /**
+     * 登录账号已存在
+     */
     public static final String M6002 = "6002";
     //-----------------------正常的中英文字符翻译(文案信息):6xxx-------------结束
 

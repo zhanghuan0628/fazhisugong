@@ -1,4 +1,4 @@
-package com.ffxl.platform.util;
+package com.ffxl.platform.constant;
 
 import java.util.HashMap;
 import java.util.Map;

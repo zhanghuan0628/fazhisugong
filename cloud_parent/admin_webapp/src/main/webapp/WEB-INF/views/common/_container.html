@@ -14,7 +14,7 @@
 	<link rel="stylesheet" type="text/css" href="${ctxPath}/lib/Hui-iconfont/1.0.8/iconfont.css" />
 	<link rel="stylesheet" type="text/css" href="${ctxPath}/static/h-ui.admin/skin/default/skin.css" id="skin" />
 	<link rel="stylesheet" type="text/css" href="${ctxPath}/static/h-ui.admin/css/style.css" />
-	
+
     
     <!-- 全局js -->
     <!--[if IE 6]>
@@ -25,18 +25,20 @@
     <script type="text/javascript" src="${ctxPath}/lib/layer/2.4/layer.js"></script>
 	<script type="text/javascript" src="${ctxPath}/static/h-ui/js/H-ui.min.js"></script> 
 	<script type="text/javascript" src="${ctxPath}/static/h-ui.admin/js/H-ui.admin.js"></script> <!--/_footer 作为公共模版分离出去-->
-	
 	<script type="text/javascript" src="${ctxPath}/lib/My97DatePicker/4.8/WdatePicker.js"></script> 
 	<script type="text/javascript" src="${ctxPath}/lib/datatables/1.10.0/jquery.dataTables.min.js"></script>
+	<script type="text/javascript" src="${ctxPath}/lib/jquery.validation/1.14.0/jquery.validate.js"></script> 
+	<script type="text/javascript" src="${ctxPath}/lib/jquery.validation/1.14.0/validate-methods.js"></script> 
+	<script type="text/javascript" src="${ctxPath}/lib/jquery.validation/1.14.0/messages_zh.js"></script> 
 	<!-- 
 	<script src="${ctxPath}/lib/bootstrap-table/bootstrap-table.min.js"></script>
     <script src="${ctxPath}/lib/bootstrap-table/bootstrap-table-mobile.min.js"></script>
     <script src="${ctxPath}/lib/bootstrap-table/locale/bootstrap-table-zh-CN.min.js"></script>
      -->
 	<script type="text/javascript" src="${ctxPath}/lib/laypage/1.2/laypage.js"></script>
-	
 	<script src="${ctxPath}/static/modular/common/bootstrap-table-object.js"></script>
 	<script src="${ctxPath}/static/modular/common/dataTable-object.js"></script>
+	<script src="${ctxPath}/static/modular/common/ajax-object.js"></script>
 	<script src="${ctxPath}/static/modular/common/Feng.js"></script>
     <script type="text/javascript">
         Feng.addCtx("${ctxPath}");
@@ -48,9 +50,5 @@
 <div class="wrapper wrapper-content animated fadeInRight">
      ${layoutContent}
 </div>
-
-<!--底侧部分开始-->
-  	@include("/common/_footer.html"){}
-<!--底侧部分结束-->
 </body>
 </html>

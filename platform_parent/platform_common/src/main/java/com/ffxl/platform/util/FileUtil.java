@@ -9,7 +9,8 @@ import java.nio.channels.FileChannel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.ffxl.platform.exception.BusinessException;
+import com.ffxl.platform.constant.Message;
+import com.ffxl.platform.core.exception.BusinessException;
 import com.sun.javafx.PlatformUtil;
 /**
  * 文件操作

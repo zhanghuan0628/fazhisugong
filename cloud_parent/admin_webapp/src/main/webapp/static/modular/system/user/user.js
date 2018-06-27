@@ -5,34 +5,42 @@ var SysUser = {
     id: "sysUserTable",//表格id
     seItem: [],		//选中的条目
     table: null,        //table
-    layerIndex: -1
 };
 
 /*管理员-增加*/
 SysUser.admin_add=function (title,url,w,h){
 	layer_show(title,url,w,h);
 }
+SysUser.operation = function(url,tip,opt){
+    var ajax = new $ax(Feng.ctxPath + url, function (data) {
+    	if(data.code ==2000){
+    		opt;
+			Feng.success(tip+"成功!");
+		}else{
+			Feng.error(data.message);
+		}
+    }, function (data) {
+        Feng.error(tip+"失败!" + data.responseJSON.message + "!");
+    });
+    ajax.start();
+};
+
 /*管理员-删除(单)*/
 SysUser.single_del=function (obj,id){
-	layer.confirm('确认要删除吗？',function(index){
-		$.ajax({
-			type: 'POST',
-			url: Feng.ctxPath +"/sys_user/del?ids="+id,
-			dataType: 'json',
-			success: function(data){
-				if(data.code ==2000){
-					$(obj).parents("tr").remove();
-					layer.msg('已删除!',{icon:1,time:1000});
-				}else{
-					SysUser.table.draw();
-					layer.msg(data.message, {icon: 2,time:1000});
-				}
-			},
-			error:function(data) {
-				console.log(data.msg);
-			},
-		});		
-	});
+	var operation = function(){
+        var ajax = new $ax(Feng.ctxPath + "/sys_user/del?ids="+id, function (data) {
+        	if(data.code ==2000){
+				$(obj).parents("tr").remove();
+				Feng.success("删除成功!");
+			}else{
+				Feng.error(data.message);
+			}
+        }, function (data) {
+            Feng.error("删除失败!" + data.responseJSON.message + "!");
+        });
+        ajax.start();
+    };
+	Feng.confirm('确认要删除吗？',operation);
 }
 
 /**
@@ -56,78 +64,85 @@ SysUser.getSelIds = function(){
 /*管理员-删除(批量)*/
 SysUser.multi_del=function (obj,id){
 	var selIds = SysUser.seItem; 
-	if(SysUser.getSelIds()){
-		layer.confirm('确认要删除吗？',function(index){
-			$.ajax({
-				type: 'POST',
-				url: Feng.ctxPath +"/sys_user/del?ids="+selIds,
-				dataType: 'json',
-				success: function(data){
-					if(data.code ==2000){
-						$(obj).parents("tr").remove();
-						layer.msg('已删除!',{icon:1,time:1000});
-					}else{
-						layer.msg(data.message, {icon: 2,time:1000});
-					}
-				},
-				error:function(data) {
-					console.log(data.msg);
-				},
-			});		
-		});
-	}
+	var operation = function(){
+        var ajax = new $ax(Feng.ctxPath + "/sys_user/del?ids="+selIds, function (data) {
+        	if(data.code ==2000){
+				$(obj).parents("tr").remove();
+				Feng.success("删除成功!");
+			}else{
+				Feng.error(data.message);
+			}
+        }, function (data) {
+            Feng.error("删除失败!" + data.responseJSON.message + "!");
+        });
+        ajax.start();
+    };
+	Feng.confirm('确认要删除吗？',operation);
 }
 
 /*管理员-编辑*/
 SysUser.admin_edit=function (title,url,id,w,h){
-	layer_show(title,url,w,h);
+	layer_show(title,Feng.ctxPath +url+"?id="+id,w,h);
 }
 /*管理员-停用*/
 SysUser.admin_stop=function (obj,id){
-	layer.confirm('确认要停用吗？',function(index){
-		//此处请求后台程序，下方是成功后的前台处理……
-		$.ajax({
-			type: 'POST',
-			url: Feng.ctxPath +"/sys_user/stop?id="+id,
-			dataType: 'json',
-			success: function(data){
-				if(data.code ==2000){
-					SysUser.table.draw();
-					layer.msg('已停用!',{icon: 5,time:1000});
-				}else{
-					layer.msg(data.message, {icon: 2,time:1000});
-				}
-			},
-			error:function(data) {
-				console.log(data.msg);
-			},
-		});		
-	});
+	var operation = function(){
+        var ajax = new $ax(
+         Feng.ctxPath + "/sys_user/stop?id="+id, 
+         function (data) {
+        	if(data.code ==2000){
+        		SysUser.table.draw();
+				Feng.success("停用成功!");
+			}else{
+				Feng.error(data.message);
+			}
+        }, 
+        function (data) {
+            Feng.error("停用失败!" + data.responseJSON.message + "!");
+        });
+        ajax.start();
+    };
+	Feng.confirm('确认要停用吗？',operation);
+	
+//	layer.confirm('确认要停用吗？',function(index){
+//		$.ajax({
+//			type: 'POST',
+//			url: Feng.ctxPath +"/sys_user/stop?id="+id,
+//			dataType: 'json',
+//			success: function(data){
+//				if(data.code ==2000){
+//					SysUser.table.draw();
+//					Feng.success("停用成功!");
+//				}else{
+//					Feng.error(data.message);
+//				}
+//			},
+//			error:function(data) {
+//				console.log(data.msg);
+//			},
+//		});		
+//	});
 }
 
 /*管理员-启用*/
 SysUser.admin_start = function(obj,id){
-	layer.confirm('确认要启用吗？',function(index){
-		//此处请求后台程序，下方是成功后的前台处理……
-		$.ajax({
-			type: 'POST',
-			url: Feng.ctxPath +"/sys_user/start?id="+id,
-			dataType: 'json',
-			success: function(data){
-				if(data.code ==2000){
-					SysUser.table.draw();
-					layer.msg('已启用!', {icon: 6,time:1000});
-				}else{
-					layer.msg(data.message, {icon: 2,time:1000});
-				}
-			},
-			error:function(data) {
-				console.log(data.msg);
-			},
-		});		
-		
-		
-	});
+	var operation = function(){
+        var ajax = new $ax(
+         Feng.ctxPath + "/sys_user/start?id="+id, 
+         function (data) {
+        	if(data.code ==2000){
+        		SysUser.table.draw();
+				Feng.success("启用成功!");
+			}else{
+				Feng.error(data.message);
+			}
+        }, 
+        function (data) {
+            Feng.error("启用失败!" + data.responseJSON.message + "!");
+        });
+        ajax.start();
+    };
+	Feng.confirm('确认要启用吗？',operation);
 }
 
 /**
@@ -164,7 +179,7 @@ SysUser.initColumn = function () {
         				+ "'"
         				+')" href="javascript:;" title="启用"><i class="Hui-iconfont">&#xe615;</i></a>';
         	}	
-        	msg+='<a title="编辑" href="javascript:;" onclick="SysUser.admin_edit(\'管理员编辑\',\'admin-add.html\','
+        	msg+='<a title="编辑" href="javascript:;" onclick="SysUser.admin_edit(\'管理员编辑\',\'/sys_user/user_edit\','
 			+ "'"
 			+row.id
 			+ "'"

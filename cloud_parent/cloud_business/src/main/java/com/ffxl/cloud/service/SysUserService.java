@@ -40,4 +40,11 @@ public interface SysUserService extends GenericService<SysUser, SysUserExample, 
 	 * @return
 	 */
 	int deleteByIds(List<String> idList);
+
+	/**
+	 * 更新用户信息
+	 * @param user
+	 * @return
+	 */
+	int update(SysUser user);
 }

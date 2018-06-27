@@ -1,4 +1,4 @@
-package com.ffxl.platform.exception;
+package com.ffxl.platform.core.exception;
 
 import org.apache.shiro.authc.AuthenticationException;
 

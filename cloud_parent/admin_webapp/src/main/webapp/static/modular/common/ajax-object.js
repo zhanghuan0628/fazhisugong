@@ -12,7 +12,7 @@
 	$ax.prototype = {
 		start : function () {	
 			var me = this;
-			
+			Feng.log(typeof(this.url))
 			if (this.url.indexOf("?") == -1) {
 				this.url = this.url + "?jstime=" + new Date().getTime();
 			} else {

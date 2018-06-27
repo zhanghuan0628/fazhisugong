@@ -126,17 +126,39 @@ var Feng = {
             }
         });
     },
-    initValidator: function(formId,fields){
-        $('#' + formId).bootstrapValidator({
-            feedbackIcons: {
-                valid: 'glyphicon glyphicon-ok',
-                invalid: 'glyphicon glyphicon-remove',
-                validating: 'glyphicon glyphicon-refresh'
-            },
-            fields: fields,
-            live: 'enabled',
-            message: '该字段不能为空'
-        });
+    initValidator: function(formId,validate,url){
+        $('#' + formId).validate({
+    		rules:validate.rules,
+    		messages :validate.messages,
+    		onkeyup:false,
+    		focusCleanup:true,
+    		success:"valid",
+    		submitHandler:function(form){
+    			var options = {
+    					dataType : 'json',
+    					type : 'POST',
+    					url: Feng.ctxPath +url,
+    					async : false,
+    					beforeSubmit : function() {
+    						
+    					},
+    					success : function(data) {
+    						if (data.code == 2000) {
+    							Feng.success("添加成功!");
+    							var index = parent.layer.getFrameIndex(window.name);
+    							parent.SysUser.table.draw();
+    							parent.layer.close(index);
+    						} else if(data.code ==6002){
+    							Feng.error(data.message);
+    						}
+    					},
+    					error : function(msg) {
+    							Feng.error('error!');
+    					},
+    				};
+    				$(form).ajaxSubmit(options);
+    		}
+    	});
     },
     underLineToCamel: function (str) {
         var strArr = str.split('_');

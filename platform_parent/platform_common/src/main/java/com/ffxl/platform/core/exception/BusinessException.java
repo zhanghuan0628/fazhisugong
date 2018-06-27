@@ -1,4 +1,4 @@
-package com.ffxl.platform.exception;
+package com.ffxl.platform.core.exception;
 
 public class BusinessException extends RuntimeException{
 

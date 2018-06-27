@@ -14,7 +14,7 @@ import java.util.Date;
 import org.apache.log4j.Logger;
 
 import com.danga.MemCached.MemCachedClient;
-import com.ffxl.platform.exception.BusinessException;
+import com.ffxl.platform.core.exception.BusinessException;
 
 
 
