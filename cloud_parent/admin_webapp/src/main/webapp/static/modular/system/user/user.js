@@ -30,7 +30,7 @@ SysUser.single_del=function (obj,id){
 	var operation = function(){
         var ajax = new $ax(Feng.ctxPath + "/sys_user/del?ids="+id, function (data) {
         	if(data.code ==2000){
-				$(obj).parents("tr").remove();
+        		SysUser.table.draw();
 				Feng.success("删除成功!");
 			}else{
 				Feng.error(data.message);
@@ -63,11 +63,11 @@ SysUser.getSelIds = function(){
 
 /*管理员-删除(批量)*/
 SysUser.multi_del=function (obj,id){
-	var selIds = SysUser.seItem; 
+	
 	var operation = function(){
         var ajax = new $ax(Feng.ctxPath + "/sys_user/del?ids="+selIds, function (data) {
         	if(data.code ==2000){
-				$(obj).parents("tr").remove();
+        		SysUser.table.draw();
 				Feng.success("删除成功!");
 			}else{
 				Feng.error(data.message);
@@ -77,7 +77,11 @@ SysUser.multi_del=function (obj,id){
         });
         ajax.start();
     };
-	Feng.confirm('确认要删除吗？',operation);
+    if(SysUser.getSelIds()){
+    	var selIds = SysUser.seItem; 
+    	Feng.confirm('确认要删除吗？',operation);
+    }
+	
 }
 
 /*管理员-编辑*/
