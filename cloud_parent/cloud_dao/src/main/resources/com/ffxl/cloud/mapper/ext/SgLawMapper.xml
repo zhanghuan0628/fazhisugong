@@ -29,7 +29,7 @@
 		<where>
 			<if test="model.category == 'law_magic'.toString() ">
 				<if test="model.categoryCode != null and model.categoryCode != '' ">
-					and category_code = #{model.id}
+					and category_code = #{model.categoryCode}
 				</if>
 				<if test="model.categoryCode == null or model.categoryCode == '' ">
 					and (category_code is null or category_code = '' )
@@ -42,7 +42,7 @@
 		</where>
 	</update>
 	<select id="selectMaxSort" resultType="int" parameterType="java.lang.String">
-		select max(num) as num from sg_law 
+		select ifnull(max(num),0) as num from sg_law 
 		<where>
 			<if test="category == 'law_magic'.toString() ">
 				<if test="code != null and code != '' ">

@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 /**
  * 用户列表
@@ -69,5 +70,13 @@ public class SgUserController extends BaseController{
     	sgUserService.updateByPrimaryKeySelective(record);
     	return new JsonResult(Message.M2000);
     	
+    }
+    /**
+     * 跳转到用户详情的页面
+     */
+    @RequestMapping("/user_detail")
+    public String userDetail(String id,Model model) {
+    	model.addAttribute("id", id);
+        return PREFIX + "user_detail.html";
     }
 }

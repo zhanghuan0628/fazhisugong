@@ -130,7 +130,7 @@ public class SgLawMagicController extends BaseController{
             }
         }else{
         	String category = "law_magic";
-            int s = sgLawService.selectMaxSort(id,code,category);
+            int s = sgLawService.selectMaxSort(code,code,category);
             if(s > sort){
             	SgLaw bb = new SgLaw();
                 bb.setNum(sort);
@@ -196,7 +196,7 @@ public class SgLawMagicController extends BaseController{
     @ResponseBody
     @RequestMapping("/add")
     public JsonResult add(SgLaw sgLaw,HttpSession session){
-    	int s = sgLawService.selectMaxSort(null,sgLaw.getCategoryCode(),sgLaw.getCategory());
+    	int s = sgLawService.selectMaxSort(sgLaw.getCategoryCode(),sgLaw.getCategoryCode(),sgLaw.getCategory());
     	sgLaw.setId(UUIDUtil.getUUID());
     	sgLaw.setCreateDate(new Date());
     	sgLaw.setStatus("no_publish");
@@ -233,8 +233,48 @@ public class SgLawMagicController extends BaseController{
      * 跳转到查看苏供法宝详情的页面
      */
     @RequestMapping("/law_magic_detail")
-    public String lawMagicDetail(String id,Model model) {
+    public String lawMagicDetail(String id,String title,Model model) {
     	model.addAttribute("id", id);
+    	model.addAttribute("title", title);
         return PREFIX + "law_magic_detail.html";
     }
+    /**
+     * 跳转到查看苏供法宝详情新增的页面
+     */
+    @RequestMapping("/law_magic_detail_add")
+    public String lawMagicDetailAdd(String id,String title,Model model) {
+    	model.addAttribute("id", id);
+    	model.addAttribute("title", title);
+    	model.addAttribute("info", new SgLaw());
+        return PREFIX + "law_magic_detail_add.html";
+    }
+    /**
+     * 跳转到查看苏供法宝详情修改的页面
+     */
+    @RequestMapping("/law_magic_detail_edit")
+    public String lawMagicDetailEdit(String id,String title,Model model) {
+    	if (StringUtil.isEmpty(id)) {
+            throw new BusinessException(Message.M6002);
+        }
+    	SgLaw sgLaw = sgLawService.selectByPrimaryKey(id);
+    	SgLaw s = sgLawService.selectByPrimaryKey(sgLaw.getCategoryCode());
+        model.addAttribute("info", sgLaw);
+        model.addAttribute("title", s.getTitle());
+        LogObjectHolder.me().set(sgLaw);
+        return PREFIX + "law_magic_detail_edit.html";
+    }
+    /**
+     * 跳转到查看苏供法宝详情修改的页面
+     */
+    @RequestMapping("/law_magic_content")
+    public String lawMagicContent(String id,Model model) {
+    	if (StringUtil.isEmpty(id)) {
+            throw new BusinessException(Message.M6002);
+        }
+    	SgLaw sgLaw = sgLawService.selectByPrimaryKey(id);
+        model.addAttribute("info", sgLaw);
+        LogObjectHolder.me().set(sgLaw);
+        return PREFIX + "law_magic_content.html";
+    }
+    
 }
