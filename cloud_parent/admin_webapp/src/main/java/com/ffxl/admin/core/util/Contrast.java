@@ -3,8 +3,13 @@ package com.ffxl.admin.core.util;
 import java.beans.PropertyDescriptor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
+
+import org.apache.commons.lang.ArrayUtils;
 
 import com.ffxl.admin.core.common.constant.dictmap.base.AbstractDictMap;
 import com.ffxl.admin.core.common.constant.dictmap.factory.DictFieldWarpperFactory;
@@ -32,7 +37,17 @@ public class Contrast {
         String str = "";
         try {
             Class clazz = pojo1.getClass();
-            Field[] fields = pojo1.getClass().getDeclaredFields();
+            Field[] fields1 = pojo1.getClass().getDeclaredFields();//获得某个类的所有声明的字段，即包括public、private和proteced，但是不包括父类的申明字段。
+            Field[] fields2 = pojo1.getClass().getSuperclass().getDeclaredFields();
+
+            List<Field> fieldList = new ArrayList<>();
+
+            fieldList.addAll(new ArrayList<>(Arrays.asList(fields1)));
+            fieldList.addAll(new ArrayList<>(Arrays.asList(fields2)));
+
+            Field[] fields = new Field[fieldList.size()];
+            fields = fieldList.toArray(fields);
+            
             int i = 1;
             for (Field field : fields) {
                 if ("serialVersionUID".equals(field.getName())) {
@@ -73,7 +88,17 @@ public class Contrast {
         String str = parseMutiKey(dictMap, key, pojo2) + separator;
         try {
             Class clazz = pojo1.getClass();
-            Field[] fields = pojo1.getClass().getDeclaredFields();
+            Field[] fields1 = pojo1.getClass().getDeclaredFields();//获得某个类的所有声明的字段，即包括public、private和proteced，但是不包括父类的申明字段。
+            Field[] fields2 = pojo1.getClass().getSuperclass().getDeclaredFields();
+
+            List<Field> fieldList = new ArrayList<>();
+
+            fieldList.addAll(new ArrayList<>(Arrays.asList(fields1)));
+            fieldList.addAll(new ArrayList<>(Arrays.asList(fields2)));
+
+            Field[] fields = new Field[fieldList.size()];
+            fields = fieldList.toArray(fields);
+            
             int i = 1;
             for (Field field : fields) {
                 if ("serialVersionUID".equals(field.getName())) {
@@ -124,7 +149,17 @@ public class Contrast {
         String str = parseMutiKey(dictMap, key, pojo2) + separator;
         try {
             Class clazz = pojo1.getClass();
-            Field[] fields = pojo1.getClass().getDeclaredFields();
+            Field[] fields1 = pojo1.getClass().getDeclaredFields();//获得某个类的所有声明的字段，即包括public、private和proteced，但是不包括父类的申明字段。
+            Field[] fields2 = pojo1.getClass().getSuperclass().getDeclaredFields();
+
+            List<Field> fieldList = new ArrayList<>();
+
+            fieldList.addAll(new ArrayList<>(Arrays.asList(fields1)));
+            fieldList.addAll(new ArrayList<>(Arrays.asList(fields2)));
+
+            Field[] fields = new Field[fieldList.size()];
+            fields = fieldList.toArray(fields);
+            
             int i = 1;
             for (Field field : fields) {
                 if ("serialVersionUID".equals(field.getName())) {
