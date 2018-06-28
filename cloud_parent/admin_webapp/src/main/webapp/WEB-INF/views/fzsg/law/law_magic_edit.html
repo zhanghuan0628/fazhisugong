@@ -1,0 +1,20 @@
+@layout("/common/_container.html"){
+<article class="page-container">
+	<form class="form form-horizontal" id="lawMagicInfoForm">
+	<input type="hidden" value="${info.id}" id="id" name="id">
+	<input type="hidden" value="law_magic" id="category" name="category">
+	<div class="row cl">
+		<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>标题：</label>
+		<div class="formControls col-xs-8 col-sm-9">
+			<input type="text" class="input-text" value="${info.title}"  id="title" name="title">
+		</div>
+	</div>
+	<div class="row cl">
+		<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
+			<input class="btn btn-primary radius" type="submit" value="&nbsp;&nbsp;提交&nbsp;&nbsp;">
+		</div>
+	</div>
+	</form>
+</article>
+<script src="${ctxPath}/static/modular/fzsg/law/law_magic_info.js"></script>
+@}
