@@ -126,7 +126,7 @@ var Feng = {
             }
         });
     },
-    initValidator: function(formId,validate,url){
+    initValidator: function(formId,validate,table,url){
         $('#' + formId).validate({
     		rules:validate.rules,
     		messages :validate.messages,
@@ -146,7 +146,7 @@ var Feng = {
     						if (data.code == 2000) {
     							Feng.success("添加成功!");
     							var index = parent.layer.getFrameIndex(window.name);
-    							parent.SysUser.table.draw();
+    							table.draw();
     							parent.layer.close(index);
     						} else if(data.code ==6002){
     							Feng.error(data.message);

@@ -3,6 +3,7 @@
  */
 var SysUserInfoDlg = {
 	formId : "userInfoForm", //form表单id
+	table : parent.SysUser.table,
     infoData: {
     	id: $("#id").val(),
     	loginName: $("#loginName").val(),
@@ -63,9 +64,9 @@ $(function(){
 		increaseArea: '20%'
 	});
 	if(SysUserInfoDlg.infoData.id ==null ||SysUserInfoDlg.infoData.id =="" ){
-		Feng.initValidator(SysUserInfoDlg.formId, SysUserInfoDlg.validate,"/sys_user/add"); //新增
+		Feng.initValidator(SysUserInfoDlg.formId, SysUserInfoDlg.validate,SysUserInfoDlg.table,"/sys_user/add"); //新增
 	}else{
-		Feng.initValidator(SysUserInfoDlg.formId, SysUserInfoDlg.validate,"/sys_user/edit"); //编辑
+		Feng.initValidator(SysUserInfoDlg.formId, SysUserInfoDlg.validate,SysUserInfoDlg.table,"/sys_user/edit"); //编辑
 	}
 	
 	

@@ -48,6 +48,7 @@ SysUser.single_del=function (obj,id){
  */
 SysUser.getSelIds = function(){
 	var  isCheck =false;
+	SysUser.seItem=[];
 	$('.iCheck').each(function () {
         if($(this).is(':checked')){
         	isCheck = true;
