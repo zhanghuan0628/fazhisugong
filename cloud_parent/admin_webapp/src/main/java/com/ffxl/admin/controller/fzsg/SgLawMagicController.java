@@ -1,0 +1,187 @@
+package com.ffxl.admin.controller.fzsg;
+
+import java.util.List;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.ffxl.admin.controller.base.BaseController;
+import com.ffxl.cloud.model.SgLaw;
+import com.ffxl.cloud.model.SgLawExample;
+import com.ffxl.cloud.model.SysUser;
+import com.ffxl.cloud.model.base.BaseSgLawExample.Criteria;
+import com.ffxl.cloud.service.SgLawService;
+import com.ffxl.cloud.service.impl.SysUserServiceImpl;
+import com.ffxl.platform.constant.JsonResult;
+import com.ffxl.platform.constant.Message;
+import com.ffxl.platform.core.DataTablesUtil;
+import com.ffxl.platform.core.Page;
+import com.ffxl.platform.core.exception.BusinessException;
+import com.ffxl.platform.core.log.LogObjectHolder;
+import com.ffxl.platform.util.StringUtil;
+/**
+ * 苏供法宝库
+ * @author feifan
+ *
+ */
+@Controller
+@RequestMapping("/sg_law_magic")
+public class SgLawMagicController extends BaseController{
+	private static final Logger LOGGER = LoggerFactory.getLogger(SysUserServiceImpl.class);
+	
+	@Autowired
+	private SgLawService sgLawService;
+	
+	private static String PREFIX = "/fzsg/law/";
+	/**
+     * 跳转到苏供法宝的页面
+     */
+    @RequestMapping("/law_magic_list")
+    public String index() {
+        return PREFIX + "lawMagicList.html";
+    }
+    /**
+     * 查询苏供法宝列表
+     */
+    @RequestMapping("/lawMagicList")
+    @ResponseBody
+    public JsonResult list(DataTablesUtil dataTables,Page page,SgLaw sgLaw) {
+    	sgLaw.setCategory("law_magic");
+    	page = this.getPageInfo(page,dataTables);
+    	List<SgLaw> dataList = sgLawService.queryPageList(sgLaw,page);
+        dataTables = this.getDataTables(page, dataTables, dataList);
+        return new JsonResult("2000", dataTables);
+        
+    }
+    /**
+     * 上下架
+     */
+    @RequestMapping("/updateStatus")
+    @ResponseBody
+    public JsonResult updateStatus(String ids,String state){
+    	if (StringUtil.isEmpty(ids)) {
+    		return new JsonResult(Message.M4002);
+        }
+    	int ret = -1;
+    	String[] idArray = ids.split(",");
+    	for(String id:idArray ){
+    		SgLaw record = new SgLaw();
+    		record.setId(id);
+    		record.setStatus(state);
+    		ret = sgLawService.updateByPrimaryKeySelective(record);
+    	}
+    	if(ret >0){
+       	 return new JsonResult(Message.M2000);
+       }else{
+       	 return new JsonResult(Message.M5000);
+       }
+    	
+    }
+    /**
+     * 删除
+     */
+    @RequestMapping("/delLawMagic")
+    @ResponseBody
+    public JsonResult delLawMagic(String ids){
+    	if (StringUtil.isEmpty(ids)) {
+    		return new JsonResult(Message.M4002);
+        }
+    	int ret = -1;
+    	String[] idArray = ids.split(",");
+    	for(String id:idArray ){
+    		ret = sgLawService.deleteByPrimaryKey(id);
+    	}
+    	if(ret >0){
+       	 return new JsonResult(Message.M2000);
+       }else{
+       	 return new JsonResult(Message.M5000);
+       }
+    	
+    }
+    /**
+     * 上移下移
+     */
+    @RequestMapping("/push")
+    @ResponseBody
+    public JsonResult push(String id,String state,String code,int sort){
+    	int i = -1;
+    	SgLaw record = new SgLaw();
+    	SgLawExample example = new SgLawExample();
+        Criteria c= example.createCriteria();
+        c.andIdEqualTo(id);
+        if(state.equals("up")){
+            if(sort > 1){
+            	SgLaw bb = new SgLaw();
+                bb.setNum(sort);
+                bb.setSort(sort - 1);
+                bb.setCategoryCode(code);
+                bb.setCategory("law_magic");
+                i = sgLawService.updateSort(bb);
+                record.setNum(sort - 1);
+                i = sgLawService.updateByExampleSelective(record, example);
+            }
+        }else{
+        	String category = "law_magic";
+            int s = sgLawService.selectMaxSort(id,code,category);
+            if(s > sort){
+            	SgLaw bb = new SgLaw();
+                bb.setNum(sort);
+                bb.setSort(sort + 1);
+                bb.setCategoryCode(code);
+                bb.setCategory("law_magic");
+                i = sgLawService.updateSort(bb);
+                record.setNum(sort + 1);
+                i = sgLawService.updateByExampleSelective(record, example);
+            }
+        }
+        
+        if(i > 0){
+            return new JsonResult(Message.M2000);
+        }
+        return new JsonResult(Message.M5000);
+    	
+    }
+    /**
+     * 跳转到查看苏供法宝新增的页面
+     */
+    @RequestMapping("/law_magic_add")
+    public String lawMagicAdd() {
+        return PREFIX + "law_magic_add.html";
+    }
+    /**
+     * 跳转到查看苏供法宝新增的页面
+     */
+    @RequestMapping("/law_magic_edit")
+    public String lawMagicEdit(String id,Model model) {
+    	if (StringUtil.isEmpty(id)) {
+            throw new BusinessException(Message.M6002);
+        }
+    	SgLaw user = sgLawService.selectByPrimaryKey(id);
+        model.addAttribute("info", user);
+        LogObjectHolder.me().set(user);
+        return PREFIX + "law_magic_edit.html";
+    }
+    /**
+     * 校验title是否存在
+     * @param loginName
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping("/check")
+    public Boolean check(String title) {
+        // 判断账号是否重复
+    	SgLaw model = new SgLaw();
+        model.setTitle(title);
+        SgLaw theUser = sgLawService.queryByModel(model);
+        if (theUser != null) {
+            return false;
+        }else{
+            return true;
+        }
+    }
+}

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ffxl.cloud.mapper.SgLawMapper">
+	<resultMap extends="BaseResultMap" id="SgLawMap" type="com.ffxl.cloud.model.SgLaw">
+	
+	</resultMap>
+	
+	<select id="queryPageList" resultMap="SgLawMap">
+		SELECT * FROM sg_law as sl
+		WHERE 1=1
+		<if test="model.title != null and model.title != '' ">
+			and sl.title like CONCAT('%','${model.title}','%' )
+		</if>
+		<if test="model.category == 'law_magic'.toString() ">
+			<if test="model.categoryCode != null and model.categoryCode != '' ">
+				and category_code = #{model.id}
+			</if>
+			<if test="model.categoryCode == null or model.categoryCode == '' ">
+				and (category_code is null or category_code = '' )
+			</if>
+		</if>
+		<if test="model.category != null and model.category != '' ">
+			and sl.category = #{model.category}
+		</if>
+		order by num asc ,create_date desc
+	</select>
+	<update id="updateSort" parameterType="com.ffxl.cloud.model.SgLaw">
+		update sg_law set num = #{model.num} 
+		<where>
+			<if test="model.category == 'law_magic'.toString() ">
+				<if test="model.categoryCode != null and model.categoryCode != '' ">
+					and category_code = #{model.id}
+				</if>
+				<if test="model.categoryCode == null or model.categoryCode == '' ">
+					and (category_code is null or category_code = '' )
+				</if>
+			</if>
+			<if test="model.category != null and model.category != '' ">
+				and category = #{model.category} and num = #{model.sort}
+			</if>
+			
+		</where>
+	</update>
+	<select id="selectMaxSort" resultType="int" parameterType="java.lang.String">
+		select max(num) as num from sg_law 
+		<where>
+			<if test="category == 'law_magic'.toString() ">
+				<if test="code != null and code != '' ">
+					and category_code = #{id}
+				</if>
+				<if test="code == null or code == '' ">
+					and (category_code is null or category_code = '' )
+				</if>
+			</if>
+			<if test="category != null and category != '' ">
+				and category = #{category}
+			</if>
+		</where>
+	</select>
+</mapper>

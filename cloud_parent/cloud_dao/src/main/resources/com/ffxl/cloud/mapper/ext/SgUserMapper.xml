@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ffxl.cloud.mapper.SgUserMapper">
+	<resultMap extends="BaseResultMap" id="SgUserMap" type="com.ffxl.cloud.model.SgUser">
+	
+	</resultMap>
+	
+	<select id="queryPageList" resultMap="SgUserMap">
+		SELECT * FROM sg_user as su
+		WHERE 1=1
+		<if test="model.loginName != null and model.loginName != '' ">
+			and su.login_name like CONCAT('%','${model.loginName}','%' )
+		</if>
+		<if test="model.userName != null and model.userName != '' ">
+			and su.user_name like CONCAT('%','${model.userName}','%' )
+		</if>
+	</select>
+</mapper>
