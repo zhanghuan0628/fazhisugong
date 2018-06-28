@@ -1,5 +1,5 @@
 /**
- * 苏供法宝
+ * 苏供法宝详情（二级）
  */
 var lawMagic = {
     id: "lawMagicTable",//表格id
@@ -81,12 +81,16 @@ lawMagic.add_lawMagic=function (title,url,w,h){
 lawMagic.edit_lawMagic=function (title,url,id,w,h){
 	layer_show(title,Feng.ctxPath +url+"?id="+id,w,h);
 }
+/*法宝-查看*/
+lawMagic.detail=function (title,url,id,w,h){
+	layer_show(title,Feng.ctxPath +url+"?id="+id,w,h);
+}
 /*法宝-上移*/
-lawMagic.pushUp=function (obj,id,sort){
+lawMagic.pushUp=function (obj,id,sort,code){
 	console.log("id:"+id + "       sort:" + sort);
 		$.ajax({
 			type: 'POST',
-			url: Feng.ctxPath +"/sg_law_magic/push?id="+id+"&state=up&sort="+sort,
+			url: Feng.ctxPath +"/sg_law_magic/push?id="+id+"&state=up&sort="+sort+"&code="+code,
 			dataType: 'json',
 			success: function(data){
 				if(data.code =='2000'){
@@ -102,11 +106,11 @@ lawMagic.pushUp=function (obj,id,sort){
 }
 
 /*法宝-下移*/
-lawMagic.pushDown = function(obj,id,sort){
+lawMagic.pushDown = function(obj,id,sort,code){
 	console.log("id:"+id + "       sort:" + sort);
 		$.ajax({
 			type: 'POST',
-			url: Feng.ctxPath +"/sg_law_magic/push?id="+id+"&state=down&sort="+sort,
+			url: Feng.ctxPath +"/sg_law_magic/push?id="+id+"&state=down&sort="+sort+"&code="+code,
 			dataType: 'json',
 			success: function(data){
 				if(data.code =='2000'){
@@ -137,21 +141,24 @@ lawMagic.initColumn = function () {
         }},
         {title:'操作',width:'300px', render: function(data, type, row, meta){
         	var msg = "";
-        	msg+='<a title="编辑" href="javascript:;" onclick="lawMagic.edit_lawMagic(\'编辑法宝\',\'/sg_law_magic/law_magic_edit\','
+        	msg+='<a title="编辑" href="javascript:;" onclick="lawMagic.edit_lawMagic(\'编辑法宝二级目录\',\'/sg_law_magic/law_magic_detail_edit\','
 			+ "'"
 			+row.id
 			+ "'"
-			+',\'600\',\'200\')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i>'
-			+'</a> <a title="查看" href="javascript:;" onclick="lawMagic.single_del(this,'
+			+',\'800\',\'400\')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i>'
+			+'</a> <a title="查看" href="javascript:;" onclick="lawMagic.detail(\'查看详情\',\'/sg_law_magic/law_magic_content\','
 			+ "'"
 			+row.id
 			+ "'"
-			+')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6f9;</i></a> <a title="上移" href="javascript:;" onclick="lawMagic.pushUp(this,'
+			+',\'800\',\'400\')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6f9;</i></a> <a title="上移" href="javascript:;" onclick="lawMagic.pushUp(this,'
 			+ "'"
 			+row.id
 			+ "'"
 			+ ",'"
 			+row.num
+			+ "'"
+			+ ",'"
+			+row.categoryCode
 			+ "'"
 			+')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe679;</i></a> <a title="下移" href="javascript:;" onclick="lawMagic.pushDown(this,'
 			+ "'"
@@ -159,6 +166,9 @@ lawMagic.initColumn = function () {
 			+ "'"
 			+ ",'"
 			+row.num
+			+ "'"
+			+ ",'"
+			+row.categoryCode
 			+ "'"
 			+')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe674;</i></a>'
 			+'</td>';

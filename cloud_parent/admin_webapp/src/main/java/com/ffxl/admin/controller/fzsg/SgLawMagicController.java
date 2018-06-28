@@ -1,6 +1,9 @@
 package com.ffxl.admin.controller.fzsg;
 
+import java.util.Date;
 import java.util.List;
+
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,6 +25,7 @@ import com.ffxl.platform.core.DataTablesUtil;
 import com.ffxl.platform.core.Page;
 import com.ffxl.platform.core.exception.BusinessException;
 import com.ffxl.platform.util.StringUtil;
+import com.ffxl.platform.util.UUIDUtil;
 /**
  * 苏供法宝库
  * @author feifan
@@ -125,7 +129,7 @@ public class SgLawMagicController extends BaseController{
             }
         }else{
         	String category = "law_magic";
-            int s = sgLawService.selectMaxSort(id,code,category);
+            int s = sgLawService.selectMaxSort(code,code,category);
             if(s > sort){
             	SgLaw bb = new SgLaw();
                 bb.setNum(sort);
@@ -152,7 +156,7 @@ public class SgLawMagicController extends BaseController{
         return PREFIX + "law_magic_add.html";
     }
     /**
-     * 跳转到查看苏供法宝新增的页面
+     * 跳转到查看苏供法宝修改的页面
      */
     @RequestMapping("/law_magic_edit")
     public String lawMagicEdit(String id,Model model) {
@@ -182,4 +186,94 @@ public class SgLawMagicController extends BaseController{
             return true;
         }
     }
+    /**
+     * 新增
+     * @param sgLaw
+     * @param session
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping("/add")
+    public JsonResult add(SgLaw sgLaw,HttpSession session){
+    	int s = sgLawService.selectMaxSort(sgLaw.getCategoryCode(),sgLaw.getCategoryCode(),sgLaw.getCategory());
+    	sgLaw.setId(UUIDUtil.getUUID());
+    	sgLaw.setCreateDate(new Date());
+    	sgLaw.setStatus("no_publish");
+    	sgLaw.setModifyDate(new Date());
+    	sgLaw.setNum(s+1);
+    	int i= sgLawService.insertSelective(sgLaw);
+    	if(i > 0){
+    		return new JsonResult(true);
+        }else{
+        	return new JsonResult(false);
+        }
+    	
+    	
+    }
+    /**
+     * 修改
+     * @param sgLaw
+     * @param session
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping("/edit")
+    public JsonResult edit(SgLaw sgLaw,HttpSession session){
+    	sgLaw.setModifyDate(new Date());
+    	int i= sgLawService.updateByPrimaryKeySelective(sgLaw);
+    	if(i > 0){
+    		return new JsonResult(true);
+        }else{
+        	return new JsonResult(false);
+        }
+    	
+    }
+    /**
+     * 跳转到查看苏供法宝详情的页面
+     */
+    @RequestMapping("/law_magic_detail")
+    public String lawMagicDetail(String id,String title,Model model) {
+    	model.addAttribute("id", id);
+    	model.addAttribute("title", title);
+        return PREFIX + "law_magic_detail.html";
+    }
+    /**
+     * 跳转到查看苏供法宝详情新增的页面
+     */
+    @RequestMapping("/law_magic_detail_add")
+    public String lawMagicDetailAdd(String id,String title,Model model) {
+    	model.addAttribute("id", id);
+    	model.addAttribute("title", title);
+    	model.addAttribute("info", new SgLaw());
+        return PREFIX + "law_magic_detail_add.html";
+    }
+    /**
+     * 跳转到查看苏供法宝详情修改的页面
+     */
+    @RequestMapping("/law_magic_detail_edit")
+    public String lawMagicDetailEdit(String id,String title,Model model) {
+    	if (StringUtil.isEmpty(id)) {
+            throw new BusinessException(Message.M6002);
+        }
+    	SgLaw sgLaw = sgLawService.selectByPrimaryKey(id);
+    	SgLaw s = sgLawService.selectByPrimaryKey(sgLaw.getCategoryCode());
+        model.addAttribute("info", sgLaw);
+        model.addAttribute("title", s.getTitle());
+        LogObjectHolder.me().set(sgLaw);
+        return PREFIX + "law_magic_detail_edit.html";
+    }
+    /**
+     * 跳转到查看苏供法宝详情修改的页面
+     */
+    @RequestMapping("/law_magic_content")
+    public String lawMagicContent(String id,Model model) {
+    	if (StringUtil.isEmpty(id)) {
+            throw new BusinessException(Message.M6002);
+        }
+    	SgLaw sgLaw = sgLawService.selectByPrimaryKey(id);
+        model.addAttribute("info", sgLaw);
+        LogObjectHolder.me().set(sgLaw);
+        return PREFIX + "law_magic_content.html";
+    }
+    
 }

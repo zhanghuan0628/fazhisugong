@@ -28,6 +28,11 @@ var sgLawMagicInfoDlg = {
 					}
 				},
 			},
+			content:{
+				required:true,
+				minlength:1,
+				maxlength:200
+			},
 		},
 		messages : {
 			"title" : {
@@ -50,6 +55,7 @@ $(function(){
 	}else{
 		Feng.initValidator(sgLawMagicInfoDlg.formId, sgLawMagicInfoDlg.validate,sgLawMagicInfoDlg.table,"/sg_law_magic/edit"); //编辑
 	}
+	
 	
 	
 });

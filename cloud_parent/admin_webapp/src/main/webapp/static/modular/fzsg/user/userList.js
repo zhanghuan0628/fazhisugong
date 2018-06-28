@@ -27,11 +27,16 @@ sgUser.getSelIds = function(){
 }
 
 
-/*管理员-编辑*/
-sgUser.admin_edit=function (title,url,id,w,h){
-	layer_show(title,url,w,h);
+/*查看*/
+sgUser.user_detail=function (title,url,id){
+	var index = layer.open({
+		type: 2,
+		title: title,
+		content: Feng.ctxPath +url+"?id="+id,
+	});
+	layer.full(index);
 }
-/*管理员-删除(单)*/
+/*初始化密码*/
 sgUser.updatePassword=function (obj,id){
 	layer.confirm('确认要初始化密码吗？',function(index){
 		$.ajax({
@@ -63,7 +68,7 @@ sgUser.initColumn = function () {
         {title: '账户名称', data: 'userName'},
         {title:'操作',data:'loginName', render: function(data, type, row, meta){
         	var msg = "";
-        	msg+='<a title="查看" href="javascript:;" onclick="sgUser.admin_edit(\'查看用户详情\',\'userDetail.html\','
+        	msg+='<a title="查看" href="javascript:;" onclick="sgUser.user_detail(\'查看用户详情\',\'/sg_user/user_detail\','
 			+ "'"
 			+row.id
 			+ "'"
