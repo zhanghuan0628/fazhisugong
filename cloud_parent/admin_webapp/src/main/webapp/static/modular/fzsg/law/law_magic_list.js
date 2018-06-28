@@ -81,6 +81,10 @@ lawMagic.add_lawMagic=function (title,url,w,h){
 lawMagic.edit_lawMagic=function (title,url,id,w,h){
 	layer_show(title,Feng.ctxPath +url+"?id="+id,w,h);
 }
+/*法宝-查看*/
+lawMagic.detail=function (title,url,id,w,h){
+	layer_show(title,Feng.ctxPath +url+"?id="+id,w,h);
+}
 /*法宝-上移*/
 lawMagic.pushUp=function (obj,id,sort){
 	console.log("id:"+id + "       sort:" + sort);
@@ -142,11 +146,11 @@ lawMagic.initColumn = function () {
 			+row.id
 			+ "'"
 			+',\'600\',\'200\')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i>'
-			+'</a> <a title="查看" href="javascript:;" onclick="lawMagic.single_del(this,'
+			+'</a> <a title="查看" href="javascript:;" onclick="lawMagic.detail(\'查看详情\',\'/sg_law_magic/law_magic_detail\','
 			+ "'"
 			+row.id
 			+ "'"
-			+')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6f9;</i></a> <a title="上移" href="javascript:;" onclick="lawMagic.pushUp(this,'
+			+',\'10001\')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6f9;</i></a> <a title="上移" href="javascript:;" onclick="lawMagic.pushUp(this,'
 			+ "'"
 			+row.id
 			+ "'"

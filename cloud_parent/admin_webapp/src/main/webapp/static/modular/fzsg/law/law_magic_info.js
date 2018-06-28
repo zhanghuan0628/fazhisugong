@@ -3,6 +3,7 @@
  */
 var sgLawMagicInfoDlg = {
 	formId : "lawMagicInfoForm", //form表单id
+	table : parent.lawMagic.table,
     infoData: {
     	id: $("#id").val(),
     	title: $("#title").val(),
@@ -45,9 +46,9 @@ $(function(){
 		increaseArea: '20%'
 	});
 	if(sgLawMagicInfoDlg.infoData.id ==null ||sgLawMagicInfoDlg.infoData.id =="" ){
-		Feng.initValidator(sgLawMagicInfoDlg.formId, sgLawMagicInfoDlg.validate,"/sg_law_magic/add"); //新增
+		Feng.initValidator(sgLawMagicInfoDlg.formId, sgLawMagicInfoDlg.validate,sgLawMagicInfoDlg.table,"/sg_law_magic/add"); //新增
 	}else{
-		Feng.initValidator(sgLawMagicInfoDlg.formId, sgLawMagicInfoDlg.validate,"/sg_law_magic/edit"); //编辑
+		Feng.initValidator(sgLawMagicInfoDlg.formId, sgLawMagicInfoDlg.validate,sgLawMagicInfoDlg.table,"/sg_law_magic/edit"); //编辑
 	}
 	
 	
