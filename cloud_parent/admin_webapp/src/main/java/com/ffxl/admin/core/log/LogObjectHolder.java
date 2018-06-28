@@ -1,13 +1,13 @@
-package com.ffxl.platform.core.log;
+package com.ffxl.admin.core.log;
 
+
+import java.io.Serializable;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.WebApplicationContext;
 
-import com.ffxl.platform.util.SpringContextHolder;
-
-import java.io.Serializable;
+import com.ffxl.admin.core.util.ApplicationContextUtils;
 
 /**
  * 被修改的bean临时存放的地方
@@ -29,7 +29,7 @@ public class LogObjectHolder implements Serializable{
     }
 
     public static LogObjectHolder me(){
-        LogObjectHolder bean = SpringContextHolder.getBean(LogObjectHolder.class);
+        LogObjectHolder bean = ApplicationContextUtils.getBean(LogObjectHolder.class);
         return bean;
     }
 }

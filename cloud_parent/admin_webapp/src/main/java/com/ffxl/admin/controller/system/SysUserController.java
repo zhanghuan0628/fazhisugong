@@ -10,15 +10,16 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ffxl.admin.controller.base.BaseController;
+import com.ffxl.admin.core.common.annotion.BussinessLog;
+import com.ffxl.admin.core.common.constant.dictmap.SysUserDic;
+import com.ffxl.admin.core.log.LogObjectHolder;
 import com.ffxl.cloud.model.SysUser;
 import com.ffxl.cloud.service.SysUserService;
-import com.ffxl.cloud.service.impl.SysUserServiceImpl;
 import com.ffxl.platform.constant.Const;
 import com.ffxl.platform.constant.JsonResult;
 import com.ffxl.platform.constant.Message;
@@ -26,7 +27,6 @@ import com.ffxl.platform.constant.status.SysUserStatus;
 import com.ffxl.platform.core.DataTablesUtil;
 import com.ffxl.platform.core.Page;
 import com.ffxl.platform.core.exception.BusinessException;
-import com.ffxl.platform.core.log.LogObjectHolder;
 import com.ffxl.platform.util.StringUtil;
 import com.ffxl.platform.util.UUIDUtil;
 
@@ -38,8 +38,8 @@ import com.ffxl.platform.util.UUIDUtil;
 @Controller
 @RequestMapping("/sys_user")
 public class SysUserController extends BaseController {
-    private static final Logger logger = LoggerFactory.getLogger(SysUserServiceImpl.class);
-
+    private Logger logger = LoggerFactory.getLogger(this.getClass());
+    
     private static String PREFIX = "/system/user/";
 
     @Autowired
@@ -182,7 +182,7 @@ public class SysUserController extends BaseController {
      * 添加管理员
      */
     @RequestMapping("/add")
-    // @BussinessLog(value = "添加管理员", key = "account", dict = UserDict.class)
+    @BussinessLog(value = "添加管理员", key = "account", dict = SysUserDic.class)
     // @Permission(Const.ADMIN_NAME)
     @ResponseBody
     public JsonResult add(SysUser user) {
@@ -212,7 +212,7 @@ public class SysUserController extends BaseController {
      * @throws NoPermissionException
      */
     @RequestMapping("/edit")
-    // @BussinessLog(value = "修改管理员", key = "account", dict = UserDict.class)
+    @BussinessLog(value = "修改管理员", key = "id", dict = SysUserDic.class)
     @ResponseBody
     public JsonResult edit(SysUser user){
         // if (ShiroKit.hasRole(Const.ADMIN_NAME)) {
@@ -259,7 +259,7 @@ public class SysUserController extends BaseController {
      * 重置管理员的密码
      */
     @RequestMapping("/reset")
-    // @BussinessLog(value = "重置管理员密码", key = "userId", dict = UserDict.class)
+    @BussinessLog(value = "重置管理员密码", key = "id", dict = SysUserDic.class)
     // @Permission(Const.ADMIN_NAME)
     @ResponseBody
     public JsonResult reset(String id) {
@@ -282,7 +282,7 @@ public class SysUserController extends BaseController {
      * 禁用用户
      */
     @RequestMapping("/stop")
-    // @BussinessLog(value = "冻结用户", key = "userId", dict = UserDict.class)
+    @BussinessLog(value = "禁用用户", key = "id", dict = SysUserDic.class)
     // @Permission(Const.ADMIN_NAME)
     @ResponseBody
     public JsonResult stop(@RequestParam String id) {
@@ -305,7 +305,7 @@ public class SysUserController extends BaseController {
      * 启用用户
      */
     @RequestMapping("/start")
-    // @BussinessLog(value = "解除冻结用户", key = "userId", dict = UserDict.class)
+    @BussinessLog(value = "启用用户", key = "id", dict = SysUserDic.class)
     // @Permission(Const.ADMIN_NAME)
     @ResponseBody
     public JsonResult start(@RequestParam String id) {
@@ -324,7 +324,7 @@ public class SysUserController extends BaseController {
      * 删除用户
      */
     @RequestMapping("/del")
-    // @BussinessLog(value = "解除冻结用户", key = "userId", dict = UserDict.class)
+    @BussinessLog(value = "删除用户", key = "id", dict = SysUserDic.class)
     // @Permission(Const.ADMIN_NAME)
     @ResponseBody
     public JsonResult del(@RequestParam String ids) {

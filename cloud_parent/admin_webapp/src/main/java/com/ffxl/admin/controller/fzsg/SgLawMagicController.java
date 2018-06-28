@@ -11,18 +11,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ffxl.admin.controller.base.BaseController;
+import com.ffxl.admin.core.log.LogObjectHolder;
 import com.ffxl.cloud.model.SgLaw;
 import com.ffxl.cloud.model.SgLawExample;
-import com.ffxl.cloud.model.SysUser;
 import com.ffxl.cloud.model.base.BaseSgLawExample.Criteria;
 import com.ffxl.cloud.service.SgLawService;
-import com.ffxl.cloud.service.impl.SysUserServiceImpl;
 import com.ffxl.platform.constant.JsonResult;
 import com.ffxl.platform.constant.Message;
 import com.ffxl.platform.core.DataTablesUtil;
 import com.ffxl.platform.core.Page;
 import com.ffxl.platform.core.exception.BusinessException;
-import com.ffxl.platform.core.log.LogObjectHolder;
 import com.ffxl.platform.util.StringUtil;
 /**
  * 苏供法宝库
@@ -32,7 +30,7 @@ import com.ffxl.platform.util.StringUtil;
 @Controller
 @RequestMapping("/sg_law_magic")
 public class SgLawMagicController extends BaseController{
-	private static final Logger LOGGER = LoggerFactory.getLogger(SysUserServiceImpl.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(SgLawMagicController.class);
 	
 	@Autowired
 	private SgLawService sgLawService;

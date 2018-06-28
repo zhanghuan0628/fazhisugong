@@ -78,6 +78,8 @@
 		</sqlMapGenerator> 
 		
 		<table tableName="sys_user" domainObjectName="SysUser"></table>
+		<table tableName="sys_login_log" domainObjectName="SysLoginLog"></table>
+		<table tableName="sys_operation_log" domainObjectName="SysOperationLog"></table>
 		
 	</context>
 </generatorConfiguration> 

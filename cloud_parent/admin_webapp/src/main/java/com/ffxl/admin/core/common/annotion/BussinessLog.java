@@ -1,15 +1,18 @@
-package com.stylefeng.guns.core.common.annotion;
+package com.ffxl.admin.core.common.annotion;
 
-import com.stylefeng.guns.core.common.constant.dictmap.base.AbstractDictMap;
-import com.stylefeng.guns.core.common.constant.dictmap.base.SystemDict;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Inherited;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 
-import java.lang.annotation.*;
+import com.ffxl.admin.core.common.constant.dictmap.base.AbstractDictMap;
+import com.ffxl.admin.core.common.constant.dictmap.base.SystemDict;
 
 /**
  * 标记需要做业务日志的方法
- *
- * @author fengshuonan
- * @date 2017-03-31 12:46
+ * @author jiawei
+ * 2018年6月28日
  */
 @Inherited
 @Retention(RetentionPolicy.RUNTIME)

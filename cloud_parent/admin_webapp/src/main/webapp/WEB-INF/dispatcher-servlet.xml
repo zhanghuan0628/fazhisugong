@@ -12,12 +12,6 @@
         http://www.springframework.org/schema/task/spring-task-3.0.xsd
 		http://www.springframework.org/schema/tx
 http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
-
-	<!-- 启用spring mvc 注解 会自动注册DefaultAnnotationHandlerMapping与AnnotationMethodHandlerAdapter 
-		两个bean -->
-	<mvc:annotation-driven />
-
-
 	<!-- beetl配置 -->
 	<bean id="beetlConfig" class="org.beetl.ext.spring.BeetlGroupUtilConfiguration"
 		init-method="init">
@@ -34,9 +28,15 @@ http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
 			</list>
 		</property>
 	</bean>
+	
+	<!-- 启用spring mvc 注解 会自动注册DefaultAnnotationHandlerMapping与AnnotationMethodHandlerAdapter 
+		两个bean -->
+	<mvc:annotation-driven />
+	<!-- aop代理开启 -->
+	<aop:aspectj-autoproxy expose-proxy="true"></aop:aspectj-autoproxy>
 
 	<!-- ①：对web包中的所有类进行扫描，以完成Bean创建和自动依赖注入的功能 -->
-	<context:component-scan base-package="com.ffxl.admin.controller" />
+	<context:component-scan base-package="com.ffxl.admin.controller,com.ffxl.admin.core.*" />
 
 	<!-- ②：启动Spring MVC的注解功能，完成请求和注解POJO的映射 , 处理请求response返回值，如下配置能正确返回字符串型返回值,如返回值为对象，则自动转为json -->
 	<bean id="handleAdapter"
