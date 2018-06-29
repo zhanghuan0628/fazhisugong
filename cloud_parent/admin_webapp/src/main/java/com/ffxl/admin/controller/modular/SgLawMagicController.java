@@ -1,4 +1,4 @@
-package com.ffxl.admin.controller.fzsg;
+package com.ffxl.admin.controller.modular;
 
 import java.util.Date;
 import java.util.List;
@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ffxl.admin.controller.base.BaseController;
+import com.ffxl.admin.core.common.annotion.BussinessLog;
+import com.ffxl.admin.core.common.constant.dictmap.SgLawDic;
 import com.ffxl.admin.core.log.LogObjectHolder;
 import com.ffxl.cloud.model.SgLaw;
 import com.ffxl.cloud.model.SgLawExample;
@@ -64,6 +66,7 @@ public class SgLawMagicController extends BaseController{
      * 上下架
      */
     @RequestMapping("/updateStatus")
+    @BussinessLog(value = "上下架法律法宝", key = "id", dict = SgLawDic.class)
     @ResponseBody
     public JsonResult updateStatus(String ids,String state){
     	if (StringUtil.isEmpty(ids)) {
@@ -88,6 +91,7 @@ public class SgLawMagicController extends BaseController{
      * 删除
      */
     @RequestMapping("/delLawMagic")
+    @BussinessLog(value = "删除法律法宝", key = "id", dict = SgLawDic.class)
     @ResponseBody
     public JsonResult delLawMagic(String ids){
     	if (StringUtil.isEmpty(ids)) {
@@ -109,6 +113,7 @@ public class SgLawMagicController extends BaseController{
      * 上移下移
      */
     @RequestMapping("/push")
+    @BussinessLog(value = "上移下移法律法宝", key = "id", dict = SgLawDic.class)
     @ResponseBody
     public JsonResult push(String id,String state,String code,int sort){
     	int i = -1;
@@ -193,6 +198,7 @@ public class SgLawMagicController extends BaseController{
      * @return
      */
     @ResponseBody
+    @BussinessLog(value = "新增法宝", key = "id", dict = SgLawDic.class)
     @RequestMapping("/add")
     public JsonResult add(SgLaw sgLaw,HttpSession session){
     	int s = sgLawService.selectMaxSort(sgLaw.getCategoryCode(),sgLaw.getCategoryCode(),sgLaw.getCategory());
@@ -217,6 +223,7 @@ public class SgLawMagicController extends BaseController{
      * @return
      */
     @ResponseBody
+    @BussinessLog(value = "修改法律法宝", key = "id", dict = SgLawDic.class)
     @RequestMapping("/edit")
     public JsonResult edit(SgLaw sgLaw,HttpSession session){
     	sgLaw.setModifyDate(new Date());
