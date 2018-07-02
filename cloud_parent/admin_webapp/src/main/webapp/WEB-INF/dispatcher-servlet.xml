@@ -15,6 +15,13 @@
         http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
         http://www.springframework.org/schema/util      
         http://www.springframework.org/schema/util/spring-util-3.2.xsd">
+	
+	<!-- 使全局拦截起作用 -->
+	<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerExceptionResolver" />
+
+	<!-- aop代理开启 -->
+	<aop:aspectj-autoproxy expose-proxy="true"></aop:aspectj-autoproxy>
+
 	<!-- beetl配置 -->
 	<bean id="beetlConfig" class="com.ffxl.admin.core.beetl.BeetlConfiguration"
 		init-method="init">
@@ -32,12 +39,6 @@
 		</property>
 	</bean>
 	
-	<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerExceptionResolver" />
-
-	
-	<!-- aop代理开启 -->
-	<aop:aspectj-autoproxy expose-proxy="true"></aop:aspectj-autoproxy>
-
 	<!-- ①：对web包中的所有类进行扫描，以完成Bean创建和自动依赖注入的功能 -->
 	<context:component-scan base-package="com.ffxl.admin.controller,com.ffxl.admin.core.*" />
 

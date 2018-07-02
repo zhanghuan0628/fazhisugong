@@ -45,6 +45,24 @@ public class ConstantFactory implements IConstantFactory {
     public static IConstantFactory me() {
         return ApplicationContextUtils.getBean(IConstantFactory.class);
     }
+    
+//    /**
+//     * 为模板使用时初始化
+//     */
+//    public ConstantFactory(){
+//       if(roleService ==null){
+//           roleService = ApplicationContextUtils.getBean(RoleService.class);
+//       }
+//       if(userService ==null){
+//           userService = ApplicationContextUtils.getBean(SysUserService.class);
+//       } 
+//       if(menuService ==null){
+//           menuService = ApplicationContextUtils.getBean(MenuService.class);
+//       } 
+//       if(dictionaryService ==null){
+//           dictionaryService = ApplicationContextUtils.getBean(DictionaryService.class);
+//       } 
+//    }
 
     /**
      * 根据用户id获取用户名称

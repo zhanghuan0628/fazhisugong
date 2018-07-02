@@ -2,7 +2,9 @@ package com.ffxl.admin.core.beetl;
 
 import org.beetl.ext.spring.BeetlGroupUtilConfiguration;
 
+import com.ffxl.admin.core.common.constant.factory.ConstantFactory;
 import com.ffxl.admin.core.shiro.ShiroKit;
+import com.ffxl.admin.core.util.DictKit;
 import com.ffxl.admin.core.util.KaptchaUtil;
 import com.ffxl.platform.util.ToolUtil;
 
@@ -19,5 +21,6 @@ public class BeetlConfiguration extends BeetlGroupUtilConfiguration {
         groupTemplate.registerFunctionPackage("shiro", new ShiroKit());
         groupTemplate.registerFunctionPackage("tool", new ToolUtil());
         groupTemplate.registerFunctionPackage("kaptcha", new KaptchaUtil());
+        groupTemplate.registerFunctionPackage("dict", new DictKit());
     }
 }
