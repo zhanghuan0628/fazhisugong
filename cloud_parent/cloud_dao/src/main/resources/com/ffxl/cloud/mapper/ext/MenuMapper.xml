@@ -8,8 +8,8 @@
 	<select id="getResUrlsByRoleId" resultType="string">
 		select url from
         sys_role_menu_rel rel
-        inner join sys_menu m on rel.menuId = m.id
-        where rel.roleId = #{roleId}
+        inner join sys_menu m on rel.menu_id = m.id
+        where rel.role_id = #{roleId}
 	</select>
 	
 	<select id="getMenusByRoleIds" resultType="com.ffxl.platform.core.node.MenuNode">
