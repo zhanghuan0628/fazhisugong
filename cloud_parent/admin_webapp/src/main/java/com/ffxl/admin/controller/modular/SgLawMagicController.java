@@ -180,10 +180,11 @@ public class SgLawMagicController extends BaseController{
      */
     @ResponseBody
     @RequestMapping("/check")
-    public Boolean check(String title) {
+    public Boolean check(String title,String category) {
         // 判断账号是否重复
     	SgLaw model = new SgLaw();
         model.setTitle(title);
+        model.setCategory(category);
         SgLaw theUser = sgLawService.queryByModel(model);
         if (theUser != null) {
             return false;

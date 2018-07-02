@@ -26,6 +26,8 @@ public class BaseSgLaw implements Serializable {
 
     private Date modifyDate;
 
+    private String videoUrl;
+
     private static final long serialVersionUID = 1L;
 
     public String getId() {
@@ -116,6 +118,14 @@ public class BaseSgLaw implements Serializable {
         this.modifyDate = modifyDate;
     }
 
+    public String getVideoUrl() {
+        return videoUrl;
+    }
+
+    public void setVideoUrl(String videoUrl) {
+        this.videoUrl = videoUrl == null ? null : videoUrl.trim();
+    }
+
     @Override
     public boolean equals(Object that) {
         if (this == that) {
@@ -138,7 +148,8 @@ public class BaseSgLaw implements Serializable {
             && (this.getCreateBy() == null ? other.getCreateBy() == null : this.getCreateBy().equals(other.getCreateBy()))
             && (this.getCreateDate() == null ? other.getCreateDate() == null : this.getCreateDate().equals(other.getCreateDate()))
             && (this.getModifyBy() == null ? other.getModifyBy() == null : this.getModifyBy().equals(other.getModifyBy()))
-            && (this.getModifyDate() == null ? other.getModifyDate() == null : this.getModifyDate().equals(other.getModifyDate()));
+            && (this.getModifyDate() == null ? other.getModifyDate() == null : this.getModifyDate().equals(other.getModifyDate()))
+            && (this.getVideoUrl() == null ? other.getVideoUrl() == null : this.getVideoUrl().equals(other.getVideoUrl()));
     }
 
     @Override
@@ -156,6 +167,7 @@ public class BaseSgLaw implements Serializable {
         result = prime * result + ((getCreateDate() == null) ? 0 : getCreateDate().hashCode());
         result = prime * result + ((getModifyBy() == null) ? 0 : getModifyBy().hashCode());
         result = prime * result + ((getModifyDate() == null) ? 0 : getModifyDate().hashCode());
+        result = prime * result + ((getVideoUrl() == null) ? 0 : getVideoUrl().hashCode());
         return result;
     }
 }
