@@ -24,7 +24,8 @@ var sgLawMagicInfoDlg = {
 						"title" : function() {
 							if (sgLawMagicInfoDlg.infoData.title != $("#title").val())
 								return $("#title").val();
-						}
+						},
+						"category":"law_magic"
 					}
 				},
 			},

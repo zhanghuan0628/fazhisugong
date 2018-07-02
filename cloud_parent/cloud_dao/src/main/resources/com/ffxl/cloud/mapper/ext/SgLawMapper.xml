@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ffxl.cloud.mapper.SgLawMapper">
 	<resultMap extends="BaseResultMap" id="SgLawMap" type="com.ffxl.cloud.model.SgLaw">
 	
@@ -41,7 +41,7 @@
 			
 		</where>
 	</update>
-	<select id="selectMaxSort" resultType="int" parameterType="java.lang.String">
+	<select id="selectMaxSort" parameterType="java.lang.String" resultType="int">
 		select ifnull(max(num),0) as num from sg_law 
 		<where>
 			<if test="category == 'law_magic'.toString() ">

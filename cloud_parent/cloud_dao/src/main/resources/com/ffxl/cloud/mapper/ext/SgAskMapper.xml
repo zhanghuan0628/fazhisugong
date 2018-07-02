@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ffxl.cloud.mapper.SgAskMapper">
+	<resultMap extends="BaseResultMap" id="SgAskMap" type="com.ffxl.cloud.model.SgAsk">
+	
+	</resultMap>
+	
+	<select id="queryPageList" resultMap="SgAskMap">
+		select *,DATE_FORMAT(create_date,'%Y-%m-%d %h:%i:%s')as createTime from sg_ask 
+		where 1 = 1 
+		<if test="model.userId != null and model.userId != '' ">
+			and user_id = #{model.userId}
+		</if>
+		<if test="model.title != null and model.title != '' ">
+			and title like CONCAT('%','${model.title}','%')
+		</if>
+	</select>
+
+	<select id="queryUserAsk" resultMap="SgAskMap">
+		SELECT
+			sa.*, su.user_name AS userName,DATE_FORMAT(create_date,'%Y-%m-%d %h:%i:%s')as createTime
+		FROM
+			sg_ask sa
+		JOIN sg_user su ON sa.user_id = su.id
+		WHERE
+			sa.user_id = #{id}
+	</select>
+
+</mapper>

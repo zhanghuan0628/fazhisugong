@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ffxl.cloud.mapper.SgThmemeAnswerLogMapper">
+	<resultMap extends="BaseResultMap" id="SgThmemeAnswerLogMap" type="com.ffxl.cloud.model.SgThmemeAnswerLog">
+	
+	</resultMap>
+	
+	<select id="queryThemeAnswerUser" resultMap="SgThmemeAnswerLogMap" parameterType="java.lang.String">
+		SELECT DISTINCT
+		(
+			SELECT
+				count(*)
+			FROM
+				sg_theme_answer_log
+			WHERE
+				user_id = #{id}
+			AND score >= 60
+		) AS num,
+		(
+			SELECT
+				FORMAT(AVG(score), 2) AS score
+			FROM
+				sg_theme_answer_log
+			WHERE
+				user_id = #{id}
+		) AS avgScore,
+		(
+			SELECT
+				IFNULL(MAX(score), 0) AS maxScore
+			FROM
+				sg_theme_answer_log
+			WHERE
+				user_id = #{id}
+		) AS maxScore
+	FROM
+		sg_theme_answer_log
+	</select>
+
+</mapper>

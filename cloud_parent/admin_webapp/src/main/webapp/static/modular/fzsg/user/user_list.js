@@ -25,8 +25,6 @@ sgUser.getSelIds = function(){
     }
     return isCheck;
 }
-
-
 /*查看*/
 sgUser.user_detail=function (title,url,id){
 	var index = layer.open({
