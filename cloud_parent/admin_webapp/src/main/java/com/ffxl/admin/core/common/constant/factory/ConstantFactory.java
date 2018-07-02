@@ -5,16 +5,17 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
-import org.springframework.context.annotation.DependsOn;
 import org.springframework.stereotype.Component;
 
 import com.ffxl.admin.core.common.constant.cache.Cache;
 import com.ffxl.admin.core.common.constant.cache.CacheKey;
 import com.ffxl.admin.core.log.LogObjectHolder;
 import com.ffxl.admin.core.util.ApplicationContextUtils;
+import com.ffxl.cloud.model.Dictionary;
 import com.ffxl.cloud.model.Menu;
 import com.ffxl.cloud.model.Role;
 import com.ffxl.cloud.model.SysUser;
+import com.ffxl.cloud.service.DictionaryService;
 import com.ffxl.cloud.service.MenuService;
 import com.ffxl.cloud.service.RoleService;
 import com.ffxl.cloud.service.SysUserService;
@@ -31,13 +32,6 @@ import com.ffxl.platform.util.ToolUtil;
  */
 @Component
 public class ConstantFactory implements IConstantFactory {
-
-//    private RoleMapper roleMapper = SpringContextHolder.getBean(RoleMapper.class);
-//    private DeptMapper deptMapper = SpringContextHolder.getBean(DeptMapper.class);
-//    private DictMapper dictMapper = SpringContextHolder.getBean(DictMapper.class);
-//    private userService userService = SpringContextHolder.getBean(userService.class);
-//    private MenuMapper menuMapper = SpringContextHolder.getBean(MenuMapper.class);
-//    private NoticeMapper noticeMapper = SpringContextHolder.getBean(NoticeMapper.class);
     
     @Autowired
     private RoleService roleService;
@@ -45,6 +39,8 @@ public class ConstantFactory implements IConstantFactory {
     private SysUserService userService;
     @Autowired
     private MenuService menuService;
+    @Autowired
+    private DictionaryService dictionaryService;
 
     public static IConstantFactory me() {
         return ApplicationContextUtils.getBean(IConstantFactory.class);
@@ -64,6 +60,31 @@ public class ConstantFactory implements IConstantFactory {
         } else {
             return "--";
         }
+    }
+    
+    /**
+     * 获取被缓存的对象(用户删除业务)
+     */
+    @Override
+    public String getCacheObject(String para) {
+        return LogObjectHolder.me().get().toString();
+    }
+
+    
+    /**
+     * 获取性别名称
+     */
+    @Override
+    public String getSexName(String sex) {
+        return getDictsByName("性别", sex);
+    }
+
+    /**
+     * 获取用户登录状态
+     */
+    @Override
+    public String getStatusName(Integer status) {
+        return SysUserStatus.valueOf(status);
     }
 
     /**
@@ -132,19 +153,6 @@ public class ConstantFactory implements IConstantFactory {
     }
 
     /**
-     * 获取部门名称
-     */
-    @Override
-    @Cacheable(value = Cache.CONSTANT, key = "'" + CacheKey.DEPT_NAME + "'+#deptId")
-    public String getDeptName(String deptId) {
-//        Dept dept = deptMapper.selectById(deptId);
-//        if (ToolUtil.isNotEmpty(dept) && ToolUtil.isNotEmpty(dept.getFullname())) {
-//            return dept.getFullname();
-//        }
-        return "";
-    }
-
-    /**
      * 获取菜单的名称们(多个)
      */
     @Override
@@ -195,83 +203,7 @@ public class ConstantFactory implements IConstantFactory {
             }
         }
     }
-
-    /**
-     * 获取字典名称
-     */
-    @Override
-    public String getDictName(String dictId) {
-//        if (ToolUtil.isEmpty(dictId)) {
-//            return "";
-//        } else {
-//            Dict dict = dictMapper.selectById(dictId);
-//            if (dict == null) {
-//                return "";
-//            } else {
-//                return dict.getName();
-//            }
-//        }
-        return "未完待续";
-    }
-
-    /**
-     * 获取通知标题
-     */
-    @Override
-    public String getNoticeTitle(String dictId) {
-//        if (ToolUtil.isEmpty(dictId)) {
-//            return "";
-//        } else {
-//            Notice notice = noticeMapper.selectById(dictId);
-//            if (notice == null) {
-//                return "";
-//            } else {
-//                return notice.getTitle();
-//            }
-//        }
-        return "未完待续";
-    }
-
-    /**
-     * 根据字典名称和字典中的值获取对应的名称
-     */
-    @Override
-    public String getDictsByName(String name, String val) {
-//        Dict temp = new Dict();
-//        temp.setName(name);
-//        Dict dict = dictMapper.selectOne(temp);
-//        if (dict == null) {
-//            return "";
-//        } else {
-//            Wrapper<Dict> wrapper = new EntityWrapper<>();
-//            wrapper = wrapper.eq("pid", dict.getId());
-//            List<Dict> dicts = dictMapper.selectList(wrapper);
-//            for (Dict item : dicts) {
-//                if (item.getNum() != null && item.getNum().equals(val)) {
-//                    return item.getName();
-//                }
-//            }
-//            return "";
-//        }
-        return "未完待续";
-    }
-
-    /**
-     * 获取性别名称
-     */
-    @Override
-    public String getSexName(String sex) {
-        return getDictsByName("性别", sex);
-    }
-
-    /**
-     * 获取用户登录状态
-     */
-    @Override
-    public String getStatusName(Integer status) {
-        return SysUserStatus.valueOf(status);
-    }
-
+    
     /**
      * 获取菜单状态
      */
@@ -281,32 +213,64 @@ public class ConstantFactory implements IConstantFactory {
     }
 
     /**
-     * 查询字典
-     */
-//    @Override
-//    public List<Dict> findInDict(String id) {
-//        if (ToolUtil.isEmpty(id)) {
-//            return null;
-//        } else {
-//            EntityWrapper<Dict> wrapper = new EntityWrapper<>();
-//            List<Dict> dicts = dictMapper.selectList(wrapper.eq("pid", id));
-//            if (dicts == null || dicts.size() == 0) {
-//                return null;
-//            } else {
-//                return dicts;
-//            }
-//        }
-//        return "未完待续";
-//    }
-
-    /**
-     * 获取被缓存的对象(用户删除业务)
+     * 获取字典名称
      */
     @Override
-    public String getCacheObject(String para) {
-        return LogObjectHolder.me().get().toString();
+    public String getDictName(String dictId) {
+        if (ToolUtil.isEmpty(dictId)) {
+            return "";
+        } else {
+            Dictionary dict = dictionaryService.selectByPrimaryKey(dictId);
+            if (dict == null) {
+                return "";
+            } else {
+                return dict.getName();
+            }
+        }
     }
 
+    /**
+     * 根据字典名称和字典中的值获取对应的名称
+     */
+    @Override
+    public String getDictsByName(String name, String val) {
+        Dictionary temp = new Dictionary();
+        temp.setName(name);
+        Dictionary dict = dictionaryService.queryByModel(temp);
+        if (dict == null) {
+            return "";
+        } else {
+            Dictionary qm = new Dictionary();
+            qm.setPid(dict.getId());
+            List<Dictionary> dicts = dictionaryService.queryListByPid(qm);
+            for (Dictionary item : dicts) {
+                if (item.getNum() != null && item.getNum().equals(val)) {
+                    return item.getName();
+                }
+            }
+            return "";
+        }
+    }
+
+    /**
+     * 查询字典
+     */
+    @Override
+    public List<Dictionary> findInDict(String id) {
+        if (ToolUtil.isEmpty(id)) {
+            return null;
+        } else {
+            Dictionary qm = new Dictionary();
+            qm.setPid(id);
+            List<Dictionary> dicts = dictionaryService.queryListByPid(qm);
+            if (dicts == null || dicts.size() == 0) {
+                return null;
+            } else {
+                return dicts;
+            }
+        }
+    }
+   
     /**
      * 获取子部门id
      */
@@ -341,6 +305,36 @@ public class ConstantFactory implements IConstantFactory {
 //        }
         return parentDeptIds;
     }
+    
+    /**
+     * 获取部门名称
+     */
+    @Override
+    @Cacheable(value = Cache.CONSTANT, key = "'" + CacheKey.DEPT_NAME + "'+#deptId")
+    public String getDeptName(String deptId) {
+//        Dept dept = deptMapper.selectById(deptId);
+//        if (ToolUtil.isNotEmpty(dept) && ToolUtil.isNotEmpty(dept.getFullname())) {
+//            return dept.getFullname();
+//        }
+        return "";
+    }
 
+    /**
+     * 获取通知标题
+     */
+    @Override
+    public String getNoticeTitle(String dictId) {
+//        if (ToolUtil.isEmpty(dictId)) {
+//            return "";
+//        } else {
+//            Notice notice = noticeMapper.selectById(dictId);
+//            if (notice == null) {
+//                return "";
+//            } else {
+//                return notice.getTitle();
+//            }
+//        }
+        return "未完待续";
+    }
 
 }

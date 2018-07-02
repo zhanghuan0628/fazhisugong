@@ -45,7 +45,7 @@
         sys_role_menu_rel rela
         WHERE
         rela.role_id IN 
-        <foreach collection="list" index="index" item="i" open="(" separator="," close=")">
+        <foreach close=")" collection="list" index="index" item="i" open="(" separator=",">
             #{i}
         </foreach>
         )

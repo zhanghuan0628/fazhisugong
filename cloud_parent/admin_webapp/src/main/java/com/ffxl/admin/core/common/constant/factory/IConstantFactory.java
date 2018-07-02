@@ -2,6 +2,8 @@ package com.ffxl.admin.core.common.constant.factory;
 
 import java.util.List;
 
+import com.ffxl.cloud.model.Dictionary;
+
 /**
  * 常量生产工厂的接口
  * 
@@ -23,6 +25,21 @@ public interface IConstantFactory {
      * @date 2017年5月16日21:55:371
      */
     String getUserAccountById(String userId);
+    
+    /**
+     * 获取性别名称
+     */
+    String getSexName(String sex);
+    
+    /**
+     * 获取被缓存的对象(用户删除业务)
+     */
+    String getCacheObject(String para);
+
+    /**
+     * 获取用户登录状态
+     */
+    String getStatusName(Integer status);
 
     /**
      * 通过角色ids获取角色名称
@@ -40,11 +57,6 @@ public interface IConstantFactory {
     String getSingleRoleTip(String roleId);
 
     /**
-     * 获取部门名称
-     */
-    String getDeptName(String deptId);
-
-    /**
      * 获取菜单的名称们(多个)
      */
     String getMenuNames(String menuIds);
@@ -58,6 +70,11 @@ public interface IConstantFactory {
      * 获取菜单名称通过编号
      */
     String getMenuNameByCode(String code);
+    
+    /**
+     * 获取菜单状态
+     */
+    String getMenuStatusName(Integer status);
 
     /**
      * 获取字典名称
@@ -65,40 +82,20 @@ public interface IConstantFactory {
     String getDictName(String dictId);
 
     /**
-     * 获取通知标题
-     */
-    String getNoticeTitle(String dictId);
-
-    /**
      * 根据字典名称和字典中的值获取对应的名称
      */
     String getDictsByName(String name, String val);
 
     /**
-     * 获取性别名称
+     * 查询字典
      */
-    String getSexName(String sex);
+    List<Dictionary> findInDict(String id);
 
     /**
-     * 获取用户登录状态
+     * 获取部门名称
      */
-    String getStatusName(Integer status);
-
-    /**
-     * 获取菜单状态
-     */
-    String getMenuStatusName(Integer status);
-
-//    /**
-//     * 查询字典
-//     */
-//    List<Dict> findInDict(String id);
-
-    /**
-     * 获取被缓存的对象(用户删除业务)
-     */
-    String getCacheObject(String para);
-
+    String getDeptName(String deptId);
+    
     /**
      * 获取子部门id
      */
@@ -108,5 +105,10 @@ public interface IConstantFactory {
      * 获取所有父部门id
      */
     List<String> getParentDeptIds(String deptid);
+    
+    /**
+     * 获取通知标题
+     */
+    String getNoticeTitle(String dictId);
 
 }

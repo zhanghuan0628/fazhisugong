@@ -4,7 +4,7 @@ import com.ffxl.platform.core.Page;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BaseRoleExample {
+public class BaseDictionaryExample {
     protected String orderByClause;
 
     protected boolean distinct;
@@ -13,7 +13,7 @@ public class BaseRoleExample {
 
     protected Page page;
 
-    public BaseRoleExample() {
+    public BaseDictionaryExample() {
         oredCriteria = new ArrayList<Criteria>();
     }
 

@@ -2,7 +2,7 @@ package com.ffxl.cloud.model.base;
 
 import java.io.Serializable;
 
-public class BaseRole implements Serializable {
+public class BaseDictionary implements Serializable {
     private String id;
 
     private Integer num;
@@ -66,7 +66,7 @@ public class BaseRole implements Serializable {
         if (getClass() != that.getClass()) {
             return false;
         }
-        BaseRole other = (BaseRole) that;
+        BaseDictionary other = (BaseDictionary) that;
         return (this.getId() == null ? other.getId() == null : this.getId().equals(other.getId()))
             && (this.getNum() == null ? other.getNum() == null : this.getNum().equals(other.getNum()))
             && (this.getPid() == null ? other.getPid() == null : this.getPid().equals(other.getPid()))
