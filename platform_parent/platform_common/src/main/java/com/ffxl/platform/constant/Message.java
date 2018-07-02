@@ -111,6 +111,10 @@ public class Message {
      * AliPay参数配置错误
      */
     public static final String M5015 = "5015";
+    /**
+     * 服务器异常
+     */
+    public static final String M5016 = "5016";
     //-----------------------服务执行错误:5xxx-------------结束
     
 
@@ -177,42 +181,17 @@ public class Message {
      */
     public static final String M3005 = "3005";
     /**
-     * 该时段已被其他用户预约，请重新选择服务时段
+     * 权限异常
      */
     public static final String M3006 = "3006";
-    /**
-     * 咨询师的互联账号未初始化
-     */
     public static final String M3007 = "3007";
-    /**
-     * 未找到咨询师提供的服务内容
-     */
     public static final String M3008 = "3008";
     public static final String M3009 = "3009";
-    /**
-     * 订单不存在
-     */
     public static final String M3010 = "3010";
-    /**
-     * 订单金额错误
-     */
     public static final String M3011 = "3011";
-    /**
-     * 商户appId不匹配
-     */
     public static final String M3012 = "3012";
-    /**
-     * 支付宝签名验证失败
-     */
     public static final String M3013 = "3013";
-
-    /**
-     * 未绑定互联账号
-     */
     public static final String M3014 = "3014";
-    /**
-     * 服务不存在
-     */
     public static final String M3015 = "3015";
     //-----------------------业务类错误:3xxx-------------结束
     

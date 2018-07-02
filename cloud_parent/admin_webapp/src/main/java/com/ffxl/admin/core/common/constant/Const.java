@@ -1,9 +1,10 @@
-package com.ffxl.platform.constant;
+package com.ffxl.admin.core.common.constant;
 
 /**
  * 系统常量
- * @author jiawei
- * 2018年6月22日
+ *
+ * @author fengshuonan
+ * @date 2017年2月12日 下午9:42:53
  */
 public interface Const {
 
@@ -20,12 +21,12 @@ public interface Const {
     /**
      * 管理员id
      */
-    String ADMIN_ID = "1";
+    Integer ADMIN_ID = 1;
 
     /**
      * 超级管理员角色id
      */
-    String ADMIN_ROLE_ID = "1";
+    Integer ADMIN_ROLE_ID = 1;
 
     /**
      * 接口文档的菜单名

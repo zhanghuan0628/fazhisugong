@@ -9,6 +9,8 @@ public class BaseSysUser implements Serializable {
 
     private String loginPassword;
 
+    private String salt;
+
     private String userName;
 
     private String roleId;
@@ -45,6 +47,14 @@ public class BaseSysUser implements Serializable {
 
     public void setLoginPassword(String loginPassword) {
         this.loginPassword = loginPassword == null ? null : loginPassword.trim();
+    }
+
+    public String getSalt() {
+        return salt;
+    }
+
+    public void setSalt(String salt) {
+        this.salt = salt == null ? null : salt.trim();
     }
 
     public String getUserName() {
@@ -110,6 +120,7 @@ public class BaseSysUser implements Serializable {
         return (this.getId() == null ? other.getId() == null : this.getId().equals(other.getId()))
             && (this.getLoginName() == null ? other.getLoginName() == null : this.getLoginName().equals(other.getLoginName()))
             && (this.getLoginPassword() == null ? other.getLoginPassword() == null : this.getLoginPassword().equals(other.getLoginPassword()))
+            && (this.getSalt() == null ? other.getSalt() == null : this.getSalt().equals(other.getSalt()))
             && (this.getUserName() == null ? other.getUserName() == null : this.getUserName().equals(other.getUserName()))
             && (this.getRoleId() == null ? other.getRoleId() == null : this.getRoleId().equals(other.getRoleId()))
             && (this.getSex() == null ? other.getSex() == null : this.getSex().equals(other.getSex()))
@@ -125,6 +136,7 @@ public class BaseSysUser implements Serializable {
         result = prime * result + ((getId() == null) ? 0 : getId().hashCode());
         result = prime * result + ((getLoginName() == null) ? 0 : getLoginName().hashCode());
         result = prime * result + ((getLoginPassword() == null) ? 0 : getLoginPassword().hashCode());
+        result = prime * result + ((getSalt() == null) ? 0 : getSalt().hashCode());
         result = prime * result + ((getUserName() == null) ? 0 : getUserName().hashCode());
         result = prime * result + ((getRoleId() == null) ? 0 : getRoleId().hashCode());
         result = prime * result + ((getSex() == null) ? 0 : getSex().hashCode());

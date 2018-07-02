@@ -4,38 +4,48 @@ package com.ffxl.admin.controller.base;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.ffxl.platform.core.DataTablesUtil;
 import com.ffxl.platform.core.Page;
+import com.ffxl.platform.core.support.HttpKit;
 
 public class BaseController {
+    @Autowired
+    private HttpSession session;
+    
+    protected static String REDIRECT = "redirect:";
+    protected static String FORWARD = "forward:";
 	
-	@Autowired  
-    private HttpServletRequest request;
-	
-	@Autowired  
-    private HttpSession session;  
-	
-	/**
-	 * 得到ContextPath
-	 */
-	public String getBasePath(String url){
-		return request.getContextPath()+url;
-	}
-	
-	public Page defaultBTPage() {
-		Page page =new Page();
-        int limit = Integer.valueOf(request.getParameter("limit"));     //每页多少条数据
-        int offset = Integer.valueOf(request.getParameter("offset"));   //每页的偏移量(本页当前有多少条)
-        String sort = request.getParameter("sort");         //排序字段名称
-        String order = request.getParameter("order");       //asc或desc(升序或降序)
-        page.setPageNo((offset / limit + 1));
-		page.setPageSize(limit);
-		return page;
+    protected HttpServletRequest getHttpServletRequest() {
+        return HttpKit.getRequest();
     }
+
+    protected HttpServletResponse getHttpServletResponse() {
+        return HttpKit.getResponse();
+    }
+
+    protected HttpSession getSession() {
+        return session;
+    }
+
+    protected HttpSession getSession(Boolean flag) {
+        return session;
+    }
+
+    protected String getPara(String name) {
+        return HttpKit.getRequest().getParameter(name);
+    }
+
+    protected void setAttr(String name, Object value) {
+        HttpKit.getRequest().setAttribute(name, value);
+    }
+    
+	
+
 	
 	public Page getPageInfo(Page page ,DataTablesUtil dataTables){
 		if(dataTables.getLength()  == 0){

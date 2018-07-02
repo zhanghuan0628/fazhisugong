@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ffxl.cloud.mapper.MenuMapper">
+	<resultMap extends="BaseResultMap" id="MenuMap" type="com.ffxl.cloud.model.Menu">
+	
+	</resultMap>
+	
+	<select id="getResUrlsByRoleId" resultType="string">
+		select url from
+        sys_role_menu_rel rel
+        inner join sys_menu m on rel.menuId = m.id
+        where rel.roleId = #{roleId}
+	</select>
+	
+	<select id="getMenusByRoleIds" resultType="com.ffxl.platform.core.node.MenuNode">
+		SELECT
+        m1.id AS id,
+        m1.icon AS icon,
+        (
+        CASE
+        WHEN (m2.id = 0 OR m2.id IS NULL) THEN
+        0
+        ELSE
+        m2.id
+        END
+        ) AS parentId,
+        m1.NAME as name,
+        m1.url as url,
+        m1.levels as levels,
+        m1.is_menu as ismenu,
+        m1.num as num
+        FROM
+        sys_menu m1
+        LEFT join sys_menu m2 ON m1.pcode = m2. CODE
+        INNER JOIN (
+        SELECT
+        ID
+        FROM
+        sys_menu
+        WHERE
+        ID IN (
+        SELECT
+        menu_id
+        FROM
+        sys_role_menu_rel rela
+        WHERE
+        rela.role_id IN 
+        <foreach collection="list" index="index" item="i" open="(" separator="," close=")">
+            #{i}
+        </foreach>
+        )
+        ) m3 ON m1.id = m3.id
+        where m1.is_menu = 1
+        order by levels,num asc
+	</select>
+
+</mapper>

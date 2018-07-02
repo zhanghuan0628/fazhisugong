@@ -5,6 +5,7 @@
     <id column="id" property="id" jdbcType="VARCHAR" />
     <result column="login_name" property="loginName" jdbcType="VARCHAR" />
     <result column="login_password" property="loginPassword" jdbcType="VARCHAR" />
+    <result column="salt" property="salt" jdbcType="VARCHAR" />
     <result column="user_name" property="userName" jdbcType="VARCHAR" />
     <result column="role_id" property="roleId" jdbcType="VARCHAR" />
     <result column="sex" property="sex" jdbcType="VARCHAR" />
@@ -71,7 +72,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, login_name, login_password, user_name, role_id, sex, cellphone, email, status
+    id, login_name, login_password, salt, user_name, role_id, sex, cellphone, email, 
+    status
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ffxl.cloud.model.SysUserExample" >
     select
@@ -105,13 +107,13 @@
   </delete>
   <insert id="insert" parameterType="com.ffxl.cloud.model.SysUser" >
     insert into sys_user (id, login_name, login_password, 
-      user_name, role_id, sex, 
-      cellphone, email, status
-      )
+      salt, user_name, role_id, 
+      sex, cellphone, email, 
+      status)
     values (#{id,jdbcType=VARCHAR}, #{loginName,jdbcType=VARCHAR}, #{loginPassword,jdbcType=VARCHAR}, 
-      #{userName,jdbcType=VARCHAR}, #{roleId,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, 
-      #{cellphone,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}
-      )
+      #{salt,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, #{roleId,jdbcType=VARCHAR}, 
+      #{sex,jdbcType=VARCHAR}, #{cellphone,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
+      #{status,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.ffxl.cloud.model.SysUser" >
     insert into sys_user
@@ -124,6 +126,9 @@
       </if>
       <if test="loginPassword != null" >
         login_password,
+      </if>
+      <if test="salt != null" >
+        salt,
       </if>
       <if test="userName != null" >
         user_name,
@@ -153,6 +158,9 @@
       </if>
       <if test="loginPassword != null" >
         #{loginPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="salt != null" >
+        #{salt,jdbcType=VARCHAR},
       </if>
       <if test="userName != null" >
         #{userName,jdbcType=VARCHAR},
@@ -192,6 +200,9 @@
       <if test="record.loginPassword != null" >
         login_password = #{record.loginPassword,jdbcType=VARCHAR},
       </if>
+      <if test="record.salt != null" >
+        salt = #{record.salt,jdbcType=VARCHAR},
+      </if>
       <if test="record.userName != null" >
         user_name = #{record.userName,jdbcType=VARCHAR},
       </if>
@@ -220,6 +231,7 @@
     set id = #{record.id,jdbcType=VARCHAR},
       login_name = #{record.loginName,jdbcType=VARCHAR},
       login_password = #{record.loginPassword,jdbcType=VARCHAR},
+      salt = #{record.salt,jdbcType=VARCHAR},
       user_name = #{record.userName,jdbcType=VARCHAR},
       role_id = #{record.roleId,jdbcType=VARCHAR},
       sex = #{record.sex,jdbcType=VARCHAR},
@@ -238,6 +250,9 @@
       </if>
       <if test="loginPassword != null" >
         login_password = #{loginPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="salt != null" >
+        salt = #{salt,jdbcType=VARCHAR},
       </if>
       <if test="userName != null" >
         user_name = #{userName,jdbcType=VARCHAR},
@@ -264,6 +279,7 @@
     update sys_user
     set login_name = #{loginName,jdbcType=VARCHAR},
       login_password = #{loginPassword,jdbcType=VARCHAR},
+      salt = #{salt,jdbcType=VARCHAR},
       user_name = #{userName,jdbcType=VARCHAR},
       role_id = #{roleId,jdbcType=VARCHAR},
       sex = #{sex,jdbcType=VARCHAR},

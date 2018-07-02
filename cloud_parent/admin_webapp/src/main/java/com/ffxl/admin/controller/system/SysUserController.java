@@ -16,17 +16,19 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ffxl.admin.controller.base.BaseController;
 import com.ffxl.admin.core.common.annotion.BussinessLog;
+import com.ffxl.admin.core.common.constant.Const;
 import com.ffxl.admin.core.common.constant.dictmap.SysUserDic;
 import com.ffxl.admin.core.log.LogObjectHolder;
+import com.ffxl.admin.core.shiro.ShiroKit;
 import com.ffxl.cloud.model.SysUser;
 import com.ffxl.cloud.service.SysUserService;
-import com.ffxl.platform.constant.Const;
 import com.ffxl.platform.constant.JsonResult;
 import com.ffxl.platform.constant.Message;
 import com.ffxl.platform.constant.status.SysUserStatus;
 import com.ffxl.platform.core.DataTablesUtil;
 import com.ffxl.platform.core.Page;
 import com.ffxl.platform.core.exception.BusinessException;
+import com.ffxl.platform.util.Convert;
 import com.ffxl.platform.util.StringUtil;
 import com.ffxl.platform.util.UUIDUtil;
 
@@ -195,8 +197,8 @@ public class SysUserController extends BaseController {
         }
         // 完善账号信息
         user.setId(UUIDUtil.getUUID());
-        // user.setSalt(ShiroKit.getRandomSalt(5));
-        // user.setPassword(ShiroKit.md5(user.getPassword(), user.getSalt()));
+        user.setSalt(ShiroKit.getRandomSalt(5));
+        user.setLoginPassword(ShiroKit.md5(Const.DEFAULT_PWD, user.getSalt()));//默认密码
         user.setStatus(SysUserStatus.OK.getCode());
         int ret = userService.insert(user);
         if (ret > 0) {
@@ -331,7 +333,7 @@ public class SysUserController extends BaseController {
         if (StringUtil.isEmpty(ids)) {
             return new JsonResult(Message.M4002);
         }
-        String[] idArray = ids.split(",");
+        String[] idArray = Convert.toStrArray(",", ids);
         List<String> idList = new ArrayList<String>();
         for (int i = 0; i < idArray.length; i++) {
             idList.add(idArray[i]);

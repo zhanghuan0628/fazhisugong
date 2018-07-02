@@ -18,6 +18,7 @@ import com.ffxl.platform.core.GenericMapper;
 import com.ffxl.platform.core.GenericServiceImpl;
 import com.ffxl.platform.core.Page;
 import com.ffxl.platform.core.exception.BusinessException;
+import com.ffxl.platform.util.StringUtil;
 
  /**
  * Generate By MBG for serviceImpl
@@ -37,6 +38,9 @@ public class SysUserServiceImpl extends GenericServiceImpl<SysUser, SysUserExamp
     public SysUser queryByModel(SysUser sysUser) {
         SysUserExample example = new SysUserExample();
         Criteria c= example.createCriteria();
+        if(!StringUtil.isEmpty(sysUser.getLoginName())){
+            c.andLoginNameEqualTo(sysUser.getLoginName());
+        }
         c.andLoginNameEqualTo(sysUser.getLoginName());
         List<SysUser> modelList =  sysUserMapper.selectByExample(example);
         if(modelList.size() > 0){

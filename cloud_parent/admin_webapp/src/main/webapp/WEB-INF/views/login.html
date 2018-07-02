@@ -14,6 +14,7 @@
 <link href="${ctxPath}/static/h-ui.admin/css/H-ui.login.css" rel="stylesheet" type="text/css" />
 <link href="${ctxPath}/static/h-ui.admin/css/style.css" rel="stylesheet" type="text/css" />
 <link href="${ctxPath}/lib/Hui-iconfont/1.0.8/iconfont.css" rel="stylesheet" type="text/css" />
+<link href="${ctxPath}/lib/bootstrap/validate/bootstrapValidator.min.css" rel="stylesheet">
 <!--[if IE 6]>
 <script type="text/javascript" src="${ctxPath}/lib/DD_belatedPNG_0.0.8a-min.js" ></script>
 <script>DD_belatedPNG.fix('*');</script>
@@ -24,32 +25,35 @@
 </head>
 <body>
 <input type="hidden" id="TenantId" name="TenantId" value="" />
-<div class="header"></div>
+<div class="header"><div class="title">后台管理系统</div></div>
 <div class="loginWraper">
   <div id="loginform" class="loginBox">
-    <form class="form form-horizontal" action="index.html" method="post">
+  	<h4 style="color: red; text-align: center;">${tips!}</h4>
+    <form class="form form-horizontal" action="${ctxPath}/login" method="post">
       <div class="row cl">
         <label class="form-label col-xs-3"><i class="Hui-iconfont">&#xe60d;</i></label>
         <div class="formControls col-xs-8">
-          <input id="1" name="" type="text" placeholder="账户" class="input-text size-L">
+          <input required="" name="username" type="text" placeholder="用户名" class="input-text size-L">
         </div>
       </div>
       <div class="row cl">
         <label class="form-label col-xs-3"><i class="Hui-iconfont">&#xe60e;</i></label>
         <div class="formControls col-xs-8">
-          <input id="2" name="" type="password" placeholder="密码" class="input-text size-L">
+          <input required="" name="password" type="password" placeholder="密码" class="input-text size-L">
         </div>
       </div>
+      @if(kaptcha.getKaptchaOnOff() == true){
       <div class="row cl">
         <div class="formControls col-xs-8 col-xs-offset-3">
-          <input class="input-text size-L" type="text" placeholder="验证码" onblur="if(this.value==''){this.value='验证码:'}" onclick="if(this.value=='验证码:'){this.value='';}" value="验证码:" style="width:150px;">
-          <img src="${ctxPath}/kaptcha"> <a id="kaptcha">看不清，换一张</a> </div>
+          <input required="" class="input-text size-L"  type="text" placeholder="验证码" style="width:150px;" name="kaptcha">
+          <img id="code" src="${ctxPath}/kaptcha"> <a id="kaptcha">看不清，换一张</a> </div>
       </div>
+      @}
       <div class="row cl">
         <div class="formControls col-xs-8 col-xs-offset-3">
           <label for="online">
-            <input type="checkbox" name="online" id="online" value="">
-            使我保持登录状态</label>
+            <input type="checkbox" name="remember" id="remember" value="" >记住我
+            </label>
         </div>
       </div>
       <div class="row cl">
@@ -64,10 +68,12 @@
 <div class="footer">Copyright 法制苏供 by H-ui.admin v3.1</div>
 <script type="text/javascript" src="${ctxPath}/lib/jquery/1.9.1/jquery.min.js"></script> 
 <script type="text/javascript" src="${ctxPath}/static/h-ui/js/H-ui.min.js"></script>
+<script src="${ctxPath}/lib/bootstrap/validate/bootstrapValidator.min.js"></script>
+    <script src="${ctxPath}/lib/bootstrap/validate/zh_CN.js"></script>
 <script>
-    $(function () {
+	$(document).ready(function() {
         $("#kaptcha").on('click', function () {
-            $("#kaptcha").attr('src', '${ctxPath}/kaptcha?' + Math.floor(Math.random() * 100)).fadeIn();
+            $("#code").attr('src', '${ctxPath}/kaptcha?' + Math.floor(Math.random() * 100)).fadeIn();
         });
     });
 </script>
