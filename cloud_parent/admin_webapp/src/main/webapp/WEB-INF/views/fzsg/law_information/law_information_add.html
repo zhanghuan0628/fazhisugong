@@ -1,0 +1,40 @@
+@layout("/common/_container.html"){
+<article class="page-container">
+	<form class="form form-horizontal" id="lawInformationInfoForm">
+	<input type="hidden" value="" id="id" name="id">
+	<input type="hidden" value="law_information" id="category" name="category">
+	<div class="row cl">
+		<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>标题：</label>
+		<div class="formControls col-xs-8 col-sm-9">
+			<input type="text" class="input-text" value="" id="title" name="title">
+		</div>
+	</div>
+	<div class="row cl">
+		<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>发布时间：</label>
+		<div class="formControls col-xs-8 col-sm-9">
+			<input type="text" class="input-text" value="${dateString}" disabled="disabled">
+		</div>
+	</div>
+	<div class="row cl">
+		<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>作者：</label>
+		<div class="formControls col-xs-8 col-sm-9">
+			<input type="text" class="input-text" id="author" name="author"/>
+		</div>
+	</div>
+	<div id="text">
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>内容简介：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<textarea style="width: 300px;height: 150px;" id="content" name="content"></textarea>
+	        </div>
+        </div>
+	</div>
+	<div class="row cl">
+		<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
+			<input class="btn btn-primary radius" type="submit" value="&nbsp;&nbsp;提交&nbsp;&nbsp;">
+		</div>
+	</div>
+	</form>
+</article>
+<script src="${ctxPath}/static/modular/fzsg/law_information/law_information_info.js"></script>
+@}

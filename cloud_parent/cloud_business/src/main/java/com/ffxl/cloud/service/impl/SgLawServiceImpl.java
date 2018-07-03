@@ -55,7 +55,7 @@ public class SgLawServiceImpl extends GenericServiceImpl<SgLaw, SgLawExample, St
 		for(SgLaw sl:list){
 			SgUserFavoriteExample example = new SgUserFavoriteExample();
 	        com.ffxl.cloud.model.base.BaseSgUserFavoriteExample.Criteria c= example.createCriteria();
-	        c.andSourceTypeEqualTo("law_lecture_room");
+	        c.andSourceTypeEqualTo(sgLaw.getCategory());
 	        c.andSourceIdEqualTo(sl.getId());
 			int count = sgUserFavoriteService.countByExample(example);
 			sl.setCount(count);
