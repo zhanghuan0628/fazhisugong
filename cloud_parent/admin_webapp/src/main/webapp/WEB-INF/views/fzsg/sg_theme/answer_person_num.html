@@ -1,0 +1,22 @@
+@layout("/common/_container.html"){
+<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 内容管理 <span class="c-gray en">&gt;</span> 法治动态 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
+<div class="page-container">
+	<div class="text-c">
+		期数：<input type="text" class="input-text" style="width:250px" id="stage" name="stage">
+		<button type="button" class="btn btn-success" id="search" onclick="answerNum.search()"  ><i class="Hui-iconfont">&#xe665;</i> 查询</button>
+	</div>
+	<table id="answerNumTable" class="table table-border table-bordered table-bg">
+		<thead>
+			<tr>
+			
+			</tr>
+		</thead>
+	</table>
+	
+	
+</div>
+<!--底侧部分开始-->
+		@include("/common/_footer.html"){}	
+<!--底侧部分结束-->
+<script src="${ctxPath}/static/modular/fzsg/sg_theme/answer_person_num.js"></script>
+@}

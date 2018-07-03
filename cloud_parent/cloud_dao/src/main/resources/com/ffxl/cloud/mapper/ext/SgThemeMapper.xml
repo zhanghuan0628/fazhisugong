@@ -1,3 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.ffxl.cloud.mapper.SgThemeMapper" />
+<mapper namespace="com.ffxl.cloud.mapper.SgThemeMapper">
+	<resultMap extends="BaseResultMap" id="SgLawSgTheme" type="com.ffxl.cloud.model.SgTheme">
+	</resultMap>
+	<select id="queryPageList" resultMap="SgLawSgTheme">
+		select * from sg_theme where 1 = 1
+		<if test="model.num != null and model.num !='' ">
+			and num like CONCAT('%','${model.num}','%')
+		</if>
+		order by num desc
+	</select>
+</mapper>

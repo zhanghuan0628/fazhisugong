@@ -22,7 +22,12 @@
 		<if test="model.category != null and model.category != '' ">
 			and sl.category = #{model.category}
 		</if>
-		order by num asc ,create_date desc
+		<if test="model.category == 'law_magic'.toString()">
+			order by num asc ,create_date desc
+		</if>
+		<if test="model.category == 'law_information'.toString()">
+			order by create_date desc
+		</if>
 	</select>
 	<update id="updateSort" parameterType="com.ffxl.cloud.model.SgLaw">
 		update sg_law set num = #{model.num} 

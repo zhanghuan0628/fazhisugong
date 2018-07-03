@@ -6,8 +6,6 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,33 +27,31 @@ import com.ffxl.platform.util.StringUtil;
 import com.ffxl.platform.util.UUIDUtil;
 
 /**
- * 法治讲堂
+ * 法治动态
  * @author feifan
  *
  */
 @Controller
-@RequestMapping("/sg_law_hall")
-public class SgLawHallController extends BaseController{
-	private static final Logger LOGGER = LoggerFactory.getLogger(SgLawHallController.class);
-	
+@RequestMapping("/sg_law_information")
+public class SgLawInformationController extends BaseController{
 	@Autowired
 	private SgLawService sgLawService;
 	
-	private static String PREFIX = "/fzsg/law_hall/";
+	private static String PREFIX = "/fzsg/law_information/";
 	/**
-     * 跳转到法治讲堂的页面
+     * 跳转到法治动态的页面
      */
-    @RequestMapping("/law_hall_list")
+    @RequestMapping("/law_information_list")
     public String index() {
-        return PREFIX + "law_hall_list.html";
+        return PREFIX + "law_information_list.html";
     }
     /**
-     * 查询法治讲堂列表
+     * 查询法治动态列表
      */
-    @RequestMapping("/law_hall_List")
+    @RequestMapping("/law_information_pageList")
     @ResponseBody
     public JsonResult list(DataTablesUtil dataTables,Page page,SgLaw sgLaw) {
-    	sgLaw.setCategory("law_lecture_room");
+    	sgLaw.setCategory("law_information");
     	page = this.getPageInfo(page,dataTables);
     	List<SgLaw> dataList = sgLawService.queryPageList(sgLaw,page);
         dataTables = this.getDataTables(page, dataTables, dataList);
@@ -66,7 +62,7 @@ public class SgLawHallController extends BaseController{
      * 上下架
      */
     @RequestMapping("/updateStatus")
-    @BussinessLog(value = "上下架法治讲堂", key = "id", dict = SgLawDic.class)
+    @BussinessLog(value = "上下架法治动态", key = "id", dict = SgLawDic.class)
     @ResponseBody
     public JsonResult updateStatus(String ids,String state){
     	if (StringUtil.isEmpty(ids)) {
@@ -90,10 +86,10 @@ public class SgLawHallController extends BaseController{
     /**
      * 删除
      */
-    @RequestMapping("/del_law_Hall")
-    @BussinessLog(value = "删除法治讲堂", key = "id", dict = SgLawDic.class)
+    @RequestMapping("/del_law_information")
+    @BussinessLog(value = "删除法治动态", key = "id", dict = SgLawDic.class)
     @ResponseBody
-    public JsonResult dellawHall(String ids){
+    public JsonResult dellawInformation(String ids){
     	if (StringUtil.isEmpty(ids)) {
     		return new JsonResult(Message.M4002);
         }
@@ -110,24 +106,21 @@ public class SgLawHallController extends BaseController{
     	
     }
     /**
-     * 跳转到查看法治讲堂新增的页面
+     * 跳转到查看法治动态新增的页面
      */
-    @RequestMapping("/law_hall_add")
-    public String lawHallAdd(Model model) {
+    @RequestMapping("/law_information_add")
+    public String lawInformationAdd(Model model) {
     	Date currentTime = new Date();
     	SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     	String dateString = formatter.format(currentTime);
     	model.addAttribute("dateString", dateString);
-    	SgLaw sgLaw = new SgLaw();
-    	sgLaw.setType("text");
-    	model.addAttribute("info", sgLaw);
-        return PREFIX + "law_hall_add.html";
+        return PREFIX + "law_information_add.html";
     }
     /**
-     * 跳转到查看法治讲堂修改的页面
+     * 跳转到查看法治动态修改的页面
      */
-    @RequestMapping("/law_hall_edit")
-    public String lawHallEdit(String id,Model model) {
+    @RequestMapping("/law_information_edit")
+    public String lawInformationEdit(String id,Model model) {
     	if (StringUtil.isEmpty(id)) {
             throw new BusinessException(Message.M6002);
         }
@@ -135,14 +128,9 @@ public class SgLawHallController extends BaseController{
     	SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     	String dateString = formatter.format(user.getCreateDate());
     	user.setCreateTime(dateString);
-    	if(StringUtil.isEmpty(user.getVideoUrl())){
-    		user.setType("text");
-    	}else{
-    		user.setType("video");
-    	}
         model.addAttribute("info", user);
         LogObjectHolder.me().set(user);
-        return PREFIX + "law_hall_edit.html";
+        return PREFIX + "law_information_edit.html";
     }
     /**
      * 校验title是否存在
@@ -170,26 +158,17 @@ public class SgLawHallController extends BaseController{
      * @return
      */
     @ResponseBody
-    @BussinessLog(value = "新增法治讲堂", key = "id", dict = SgLawDic.class)
+    @BussinessLog(value = "新增法治动态", key = "id", dict = SgLawDic.class)
     @RequestMapping("/add")
     public JsonResult add(SgLaw sgLaw,HttpSession session){
     	int i = -1;
-    	SgLaw sl = new SgLaw();
-    	sl.setId(UUIDUtil.getUUID());
-    	sl.setCategory(sgLaw.getCategory());
-    	sl.setModifyDate(new Date());
-    	sl.setCreateDate(new Date());
-    	sl.setTitle(sgLaw.getTitle());
-    	sl.setStatus("no_publish");
-    	if(sgLaw.getType().equals("text")){
-    		sl.setContent(sgLaw.getContent());
-    		i = sgLawService.insertSelective(sl);
-    	}else{
-    		sl.setContent(sgLaw.getDetail());
-    		sl.setNum(sgLaw.getNum());
-    		sl.setVideoUrl(sgLaw.getVideoUrl());
-    		i= sgLawService.insertSelective(sl);
-    	}
+    	sgLaw.setId(UUIDUtil.getUUID());
+    	sgLaw.setModifyDate(new Date());
+    	sgLaw.setCreateDate(new Date());
+    	sgLaw.setStatus("no_publish");
+    	int s = sgLawService.selectMaxSort(sgLaw.getCategoryCode(),sgLaw.getCategoryCode(),sgLaw.getCategory());
+    	sgLaw.setNum(s+1);
+    	i = sgLawService.insertSelective(sgLaw);
     	if(i > 0){
     		return new JsonResult(true);
         }else{
@@ -205,24 +184,13 @@ public class SgLawHallController extends BaseController{
      * @return
      */
     @ResponseBody
-    @BussinessLog(value = "修改法治讲堂", key = "id", dict = SgLawDic.class)
+    @BussinessLog(value = "修改法治动态", key = "id", dict = SgLawDic.class)
     @RequestMapping("/edit")
     public JsonResult edit(SgLaw sgLaw,HttpSession session){
     	int i = -1;
-    	SgLaw sl = new SgLaw();
-    	sl.setId(sgLaw.getId());
-    	sl.setCategory(sgLaw.getCategory());
-    	sl.setModifyDate(new Date());
-    	sl.setTitle(sgLaw.getTitle());
-    	if(sgLaw.getType().equals("text")){
-    		sl.setContent(sgLaw.getContent());
-    		i = sgLawService.updateByPrimaryKeySelective(sl);
-    	}else{
-    		sl.setContent(sgLaw.getDetail());
-    		sl.setNum(sgLaw.getNum());
-    		sl.setVideoUrl(sgLaw.getVideoUrl());
-    		i= sgLawService.updateByPrimaryKeySelective(sl);
-    	}
+    	sgLaw.setId(sgLaw.getId());
+    	sgLaw.setModifyDate(new Date());
+		i = sgLawService.updateByPrimaryKeySelective(sgLaw);
     	if(i > 0){
     		return new JsonResult(true);
         }else{
