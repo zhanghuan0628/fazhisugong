@@ -33,6 +33,7 @@ public class SgUserServiceImpl extends GenericServiceImpl<SgUser, SgUserExample,
     public SgUser queryByModel(SgUser sgUser) {
         SgUserExample example = new SgUserExample();
         Criteria c= example.createCriteria();
+        c.andLoginNameEqualTo(sgUser.getLoginName());
         List<SgUser> modelList =  sgUserMapper.selectByExample(example);
         if(modelList.size() > 0){
             return modelList.get(0);
