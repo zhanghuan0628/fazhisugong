@@ -1,66 +1,97 @@
 package com.ffxl.api.interceptor;
 
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+
+import io.jsonwebtoken.JwtException;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
+import com.ffxl.api.auth.util.JwtTokenUtil;
+import com.ffxl.api.config.JwtProperties;
+import com.ffxl.platform.constant.JsonResult;
+import com.ffxl.platform.constant.Message;
+import com.ffxl.platform.core.support.HttpKit;
+import com.ffxl.platform.util.DateUtil;
 import com.ffxl.platform.util.HttpHeader;
+import com.ffxl.platform.util.RenderUtil;
 
 public class PostHeaderInterceptor extends HandlerInterceptorAdapter{
-    private static final Logger logger = LoggerFactory.getLogger(PostHeaderInterceptor.class);
-    
-    @Override
-    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        logger.info("=======post请求头信息保存======");
-        HttpHeader header = new HttpHeader();
-        header.setAcceptLanguage(request.getHeader(HttpHeader.ACCEPT_LANGUAGE));
-        header.setDeviceModel(request.getHeader(HttpHeader.DEVICE_MODEL));
-        header.setDeviceBrand(request.getHeader(HttpHeader.DEVICE_BRAND));
-        header.setSystemType(request.getHeader(HttpHeader.SYSTEM_TYPE));
-        header.setSystemVersion(request.getHeader(HttpHeader.SYSTEM_VERSION));
-        header.setDeviceToken(request.getHeader(HttpHeader.DEVICE_TOKEN));
-        header.setAppType(request.getHeader(HttpHeader.APP_TYPE));
-        header.setAppVersion(request.getHeader(HttpHeader.APP_VERSION));
-        header.setToken(request.getHeader(HttpHeader.TOKEN));
+        private static final Logger logger = LoggerFactory.getLogger(PostHeaderInterceptor.class);
+       
+        @Autowired
+        private JwtTokenUtil jwtTokenUtil;
+
+        @Autowired
+        private JwtProperties jwtProperties;
         
-        header.setAppId(request.getHeader(HttpHeader.APP_ID));
-        header.setNonceStr(request.getHeader(HttpHeader.NONCE_STR));
-        header.setTimestamp(request.getHeader(HttpHeader.TIMESTAMP));
-        header.setSign(request.getHeader(HttpHeader.SIGN));
-
-        String ip = request.getHeader("x-forwarded-for");
-        if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
-            ip = request.getHeader("Proxy-Client-IP");
-        }
-        if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
-            ip = request.getHeader("WL-Proxy-Client-IP");
-        }
-        if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
-            ip = request.getRemoteAddr();
-        }
-        logger.info("获取ip地址:" + ip);
-        header.setIp(ip);
-        HttpHeader.set(header);
-
-        logger.info("$$$$$$$$ header.toString()=" + header.toString());
-        response.setHeader("Access-Control-Allow-Origin", "*");
-        response.setHeader("Access-Control-Allow-Headers", "X-Requested-With");
-        response.setHeader("Access-Control-Allow-Methods", "PUT,POST,GET,DELETE,OPTIONS");
-
-        return true;
+        @Override
+        public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+            logger.info("开始执行Token拦截器------------------------");
+            if (request.getServletPath().equals("/" + jwtProperties.getAuthPath())) {
+                // TODO 可在此处验证头参数
+                return true;
+            }
+            final String requestHeader = request.getHeader(jwtProperties.getHeader());
+            String authToken = null;
+            if (requestHeader != null && requestHeader.startsWith("Bearer ")) {
+                authToken = requestHeader.substring(7);
+                //验证token是否过期,包含了验证jwt是否正确
+                try {
+                    boolean flag = jwtTokenUtil.isTokenExpired(authToken);
+                    if (flag) {
+                        RenderUtil.renderJson(response, new JsonResult(Message.M5017));
+                        return false;
+                    }
+                    String loginName = jwtTokenUtil.getUsernameFromToken(authToken);//获取用户id
+                    Date date = jwtTokenUtil.getIssuedAtDateFromToken(authToken);//获取jwt发布时间
+                    //解析token中的其他头参数
+                    String ip = jwtTokenUtil.getPrivateClaimFromToken(authToken, HttpHeader.IP);
+                    //TODO 在此获取头参数
+                    
+                    //封装登陆用户
+                    HttpHeader header = new HttpHeader();
+                    header.setUserId(loginName);
+                    header.set(header);
+                   
+                    logger.info("请求IP:"+ ip ); 
+                    logger.info("请求由"+loginName+"在【"+DateUtil.formatStandardDatetime(date)+"】发起请求");        
+                    
+                } catch (JwtException e) {
+                    //有异常就是token解析失败
+                    RenderUtil.renderJson(response,new JsonResult(Message.M3008));
+                    return false;
+                }
+            } else {
+                //header没有带Bearer字段
+                RenderUtil.renderJson(response,new JsonResult(Message.M3010));
+                return false;
+            }
+            return true;
     }
 
+    /**
+     * 当前请求进行处理之后
+     */
     @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
             ModelAndView modelAndView) throws Exception {
     }
 
+    /**
+     * 整个请求结束之后
+     */
     @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex)
             throws Exception {
+        
     }
 }

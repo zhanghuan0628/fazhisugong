@@ -8,8 +8,10 @@ import com.ffxl.cloud.service.SgUserService;
 import com.ffxl.platform.core.GenericMapper;
 import com.ffxl.platform.core.GenericServiceImpl;
 import com.ffxl.platform.core.Page;
+import com.ffxl.platform.util.ToolUtil;
 
 import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +35,9 @@ public class SgUserServiceImpl extends GenericServiceImpl<SgUser, SgUserExample,
     public SgUser queryByModel(SgUser sgUser) {
         SgUserExample example = new SgUserExample();
         Criteria c= example.createCriteria();
+        if(ToolUtil.isNotEmpty(sgUser.getLoginName())){
+            c.andLoginNameEqualTo(sgUser.getLoginName());
+        }
         List<SgUser> modelList =  sgUserMapper.selectByExample(example);
         if(modelList.size() > 0){
             return modelList.get(0);

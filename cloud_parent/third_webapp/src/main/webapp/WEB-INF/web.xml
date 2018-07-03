@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:web="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_5.xsd http://java.sun.com/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee" version="2.5">
+<web-app xmlns="http://java.sun.com/xml/ns/j2ee" version="2.5" 
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance
+		http://www.springmodules.org/schema/cache/springmodules-cache.xsd 
+		http://www.springmodules.org/schema/cache/springmodules-ehcache.xsd"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_5.xsd">
   <context-param>
     <param-name>contextConfigLocation</param-name>
     <param-value> 
@@ -8,6 +12,9 @@
   </context-param>
   <listener>
     <listener-class> org.springframework.web.context.ContextLoaderListener </listener-class>
+  </listener>
+  <listener>
+    <listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
   </listener>
   <filter>
     <filter-name>encodingFilter</filter-name>
@@ -27,7 +34,7 @@
   </context-param>
   <context-param>
     <param-name>webAppRootKey</param-name>
-    <param-value>ceping.root</param-value>
+    <param-value>admin.root</param-value>
   </context-param>
   <context-param>
     <param-name>log4jRefreshInterval</param-name>
@@ -50,6 +57,10 @@
   <servlet-mapping>
     <servlet-name>default</servlet-name>
     <url-pattern>*.png</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>default</servlet-name>
+    <url-pattern>*.ico</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>default</servlet-name>
@@ -85,7 +96,15 @@
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>default</servlet-name>
-    <url-pattern>*.txt</url-pattern>
+    <url-pattern>*.p12</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>default</servlet-name>
+    <url-pattern>*.ftl</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>default</servlet-name>
+    <url-pattern>*.ashx</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>default</servlet-name>
@@ -101,18 +120,14 @@
     <url-pattern>/</url-pattern>
   </servlet-mapping>
   <welcome-file-list>
-    <welcome-file>index.jsp</welcome-file>
+    <welcome-file></welcome-file>
   </welcome-file-list>
   <error-page>
     <error-code>404</error-code>
-    <location>/404.jsp</location>
+    <location>/404</location>
   </error-page>
   <error-page>
     <error-code>500</error-code>
-    <location>/500.jsp</location>
-  </error-page>
-  <error-page>
-    <exception-type>org.apache.shiro.authz.AuthorizationException</exception-type>
-    <location>/401.jsp</location>
+    <location>/500</location>
   </error-page>
 </web-app>
