@@ -25,10 +25,7 @@ public class HttpHeader {
     public static final String TOKEN = "token";
     public static final String IP = "ip";
     
-    public static final String APP_ID = "appid";
-    public static final String NONCE_STR = "nonceStr";
-    public static final String TIMESTAMP = "timestamp";
-    public static final String SIGN = "sign";
+    public static final String USER_ID = "userId"; 
 
     /**
      * 请求线程内共享对象
@@ -50,6 +47,8 @@ public class HttpHeader {
     private String nonceStr;//随机数
     private String timestamp;//时间戳
     private String sign;//密文
+    
+    private String userId;
 
     public static void set(HttpHeader header) {
         local.set(header);
@@ -190,6 +189,17 @@ public class HttpHeader {
     public void setSign(String sign) {
         this.sign = sign;
     }
+
+    
+    public String getUserId() {
+        return userId;
+    }
+
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
 
     @Override
     public String toString() {

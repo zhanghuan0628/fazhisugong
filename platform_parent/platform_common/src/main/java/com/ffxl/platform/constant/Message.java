@@ -204,6 +204,9 @@ public class Message {
      * token验证失败-header缺少Bearer字段
      */
     public static final String M3010 = "3010";
+    /**
+     * 签名校验失败,数据被改动过!
+     */
     public static final String M3011 = "3011";
     public static final String M3012 = "3012";
     public static final String M3013 = "3013";
