@@ -115,6 +115,10 @@ public class Message {
      * 服务器异常
      */
     public static final String M5016 = "5016";
+    /**
+     * 渲染界面错误
+     */
+    public static final String M5017 = "5017";
     //-----------------------服务执行错误:5xxx-------------结束
     
 
@@ -165,7 +169,7 @@ public class Message {
      */
     public static final String M3001 = "3001";
     /**
-     * 密码错误
+     * 账号或密码错误
      */
     public static final String M3002 = "3002";
     /**
@@ -184,9 +188,21 @@ public class Message {
      * 权限异常
      */
     public static final String M3006 = "3006";
+    /**
+     * token过期
+     */
     public static final String M3007 = "3007";
+    /**
+     * token验证失败
+     */
     public static final String M3008 = "3008";
+    /**
+     * 签名验证失败
+     */
     public static final String M3009 = "3009";
+    /**
+     * token验证失败-header缺少Bearer字段
+     */
     public static final String M3010 = "3010";
     public static final String M3011 = "3011";
     public static final String M3012 = "3012";
