@@ -12,6 +12,9 @@ import com.ffxl.platform.core.GenericServiceImpl;
 import com.ffxl.platform.core.Page;
 import com.ffxl.platform.util.StringUtil;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -79,6 +82,23 @@ public class SgThemeServiceImpl extends GenericServiceImpl<SgTheme, SgThemeExamp
 			String stage = toChinese(st.getNum().toString());
 			st.setStage("第"+stage+"期");
 			st.setPersonNum(count);
+			Date now = new Date();
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			String n = sdf.format(now);
+			try {
+				Date start =  sdf.parse(st.getStartDate());
+				Date endd =  sdf.parse(st.getEndDate());
+				Date noww =  sdf.parse(n);
+				if (noww.compareTo(endd)>0){  
+			        st.setState("1");//活动已结束
+				}else if(start.compareTo(noww)>0){
+					st.setState("2");//活动未开始
+				}else{
+					st.setState("3");//活动进行中
+				}
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
 		}
 		return list;
 	}
@@ -163,4 +183,14 @@ public class SgThemeServiceImpl extends GenericServiceImpl<SgTheme, SgThemeExamp
         }
         return result;
     }
+
+	@Override
+	public int selectMaxNum() {
+		return sgThemeMapper.selectMaxNum();
+	}
+
+	@Override
+	public SgTheme selectMaxEndDate(String num) {
+		return sgThemeMapper.selectMaxEndDate(num);
+	}
 }

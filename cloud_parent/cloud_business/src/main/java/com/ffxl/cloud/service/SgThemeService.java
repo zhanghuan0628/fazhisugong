@@ -24,4 +24,14 @@ public interface SgThemeService extends GenericService<SgTheme, SgThemeExample, 
      * @return
      */
 	List<SgTheme> queryPageList(SgTheme sgTheme, Page page);
+	/**
+	 * 查询最大期数
+	 * @return
+	 */
+	int selectMaxNum();
+	/**
+	 * 最大结束日期
+	 * @return
+	 */
+	SgTheme selectMaxEndDate(String num);
 }

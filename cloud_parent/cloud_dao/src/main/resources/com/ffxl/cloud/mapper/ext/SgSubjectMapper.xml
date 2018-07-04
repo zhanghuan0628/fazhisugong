@@ -9,5 +9,6 @@
 		<if test="model.qstn != null and model.qstn != '' ">
 			and question_json like CONCAT('%','${model.qstn}','%')
 		</if>
+		order by create_date desc
 	</select>
 </mapper>

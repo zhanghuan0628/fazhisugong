@@ -1,0 +1,49 @@
+@layout("/common/_container.html"){
+<article class="page-container">
+	<form class="form form-horizontal" id="themeInfoForm">
+	<input type="hidden" value="" id="id" name="id">
+	<div class="row cl">
+		<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>期数：</label>
+		<div class="formControls col-xs-4 col-sm-3">
+			第<input type="text" class="input-text" value="${num}" id="stage" name="stage" disabled="disabled">期
+		</div>
+	</div>
+	<div class="row cl">
+		<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>主题：</label>
+		<div class="formControls col-xs-8 col-sm-9">
+			<input type="text" class="input-text" id="title" name="title" >
+		</div>
+	</div>
+	<div class="row cl">
+		<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>开始时间：</label>
+		<div class="formControls col-xs-8 col-sm-9">
+			<input id="d5221" class="Wdate input-text" type="text" name="startDate"  onclick="var d5222=$dp.$('d5222');WdatePicker({onpicked:function(){d5222.click();},minDate:'${endDate}',maxDate:'#F{$dp.$D(\'d5222\')}'})"/>
+		</div>
+	</div>
+	<div class="row cl">
+		<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>结束时间：</label>
+		<div class="formControls col-xs-8 col-sm-9">
+			<input id="d5222" class="Wdate input-text" name="endDate" type="text" onclick="WdatePicker({minDate:'#F{$dp.$D(\'d5221\')}'})"/>
+        </div>
+    </div>
+	<div class="row cl">
+		<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>本期题数：</label>
+		<div class="formControls col-xs-8 col-sm-9">
+			<input type="text" class="input-text" id="subjectCounts" name="subjectCounts" >
+        </div>
+     </div>
+     <div class="row cl">
+		<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>内容：</label>
+		<div class="formControls col-xs-8 col-sm-9">
+			<textarea style="width: 400px;height: 100px;" id="content" name="content"></textarea>
+        </div>
+     </div>
+	<div class="row cl">
+		<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
+			<input class="btn btn-primary radius" type="submit" value="&nbsp;&nbsp;提交&nbsp;&nbsp;">
+		</div>
+	</div>
+	</form>
+</article>
+<script src="${ctxPath}/static/modular/fzsg/sg_theme/theme_info.js"></script>
+@}

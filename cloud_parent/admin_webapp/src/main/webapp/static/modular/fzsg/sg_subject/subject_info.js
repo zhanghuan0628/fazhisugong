@@ -31,7 +31,7 @@ var sgSubjectInfoDlg = {
 	 
 	
 };
-function saveInfo(){
+function getJson(){
        var optn = new Array();
       
   	   $(".choose").each(function(){
@@ -47,8 +47,8 @@ function saveInfo(){
   	   })
   	   var qstn = $("#qstn").val();
   	   var questionJson = {"qstn":qstn,"optn":optn};   	   
-  	   $("#questionJson").val(questionJson);
-  	   console.log( $("#questionJson").val());
+  	   console.log(questionJson);
+  	   return questionJson;
 }
 
 $(function(){
@@ -98,11 +98,48 @@ $(function(){
   	   $(this).siblings().removeAttr("checked");
   	   $(this).prop('checked',true);           	  
      })
-     
-	if(sgSubjectInfoDlg.infoData.id ==null ||sgSubjectInfoDlg.infoData.id =="" ){
-		/*Feng.initValidator(sgSubjectInfoDlg.formId, sgSubjectInfoDlg.validate,sgSubjectInfoDlg.table,"/sg_subject/add"); //新增
-*/	}else{
-		Feng.initValidator(sgSubjectInfoDlg.formId, sgSubjectInfoDlg.validate,sgSubjectInfoDlg.table,"/sg_subject/edit"); //编辑
-	}
-	
+      var flag = true;
+       $("#save").click(function(){
+    	   var url = "";
+    	   if($("#id").val()!=null&&$("#id").val()!=""){
+    		   url="/sg_subject/edit";
+    	   }else{
+    		   url="/sg_subject/add";
+    	   }
+    	   $(".rad").each(function(){
+               if($(this).prop('checked')){
+                   flag = true;
+                   return false;
+               }else{
+                   flag = false;
+               }
+           })
+           if($("#qstn").val()!=null&&$("#qstn").val()!=""){
+        	   if(flag == true){
+                   console.log(getJson());
+                   var questionJson = getJson();
+                   $.ajax({
+                       url:Feng.ctxPath+url,
+                       data:{"id":$("#id").val(),questionJson:JSON.stringify(questionJson)},
+                       type:"post",
+                       dataType:"json",
+                       success:function(data){
+                           if (data.code == "2000") {
+                        	   parent.subject.table.draw();
+                        	   var index = parent.layer.getFrameIndex(window.name);
+                        	   parent.layer.close(index);
+                           } else{
+                               Feng.info("操作失败");
+                           }                           
+                       }
+                   }) 
+               }else{
+                   Feng.info("请选择答案");
+               }
+           }else{
+        	   Feng.info("题目不可为空");
+           }
+           
+       })    
+	   
 });

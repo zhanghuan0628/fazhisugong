@@ -1,0 +1,34 @@
+@layout("/common/_container.html"){
+<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 内容管理 <span class="c-gray en">&gt;</span> 咨询管理 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
+<div class="page-container">
+	<div class="text-c">
+		咨询标题：<input type="text" class="input-text" style="width:250px" id="title" name="title">
+		提问者：<input type="text" class="input-text" style="width:250px" id="userName" name="userName">
+		咨询形式：<select id="see" name="see" class="input-text" style="width:250px">
+					<option value="">全部</option>
+					<option value="1">匿名</option>
+					<option value="0">公开</option>
+				 </select>
+		<button type="button" class="btn btn-success" id="search" onclick="ask.search()"  ><i class="Hui-iconfont">&#xe665;</i> 查询</button>
+	</div>
+	<div class="cl pd-5 bg-1 bk-gray mt-20"> 
+		<span class="l">
+			<a href="javascript:;" onclick="ask.del_ask()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a>
+			<a href="javascript:;" onclick="ask.ask_add('新增虚拟咨询管理','${ctxPath}/sg_ask/ask_add','1000','800')" class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i> 新增虚拟咨询管理</a>
+		</span> 
+	</div>
+	<table id="askTable" class="table table-border table-bordered table-bg">
+		<thead>
+			<tr>
+			
+			</tr>
+		</thead>
+	</table>
+	
+	
+</div>
+<!--底侧部分开始-->
+		@include("/common/_footer.html"){}	
+<!--底侧部分结束-->
+<script src="${ctxPath}/static/modular/fzsg/sg_ask/ask_list.js"></script>
+@}

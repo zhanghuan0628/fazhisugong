@@ -18,6 +18,8 @@ public class BaseSgUser implements Serializable {
 
     private Date lastLoginDate;
 
+    private Boolean dummy;
+
     private static final long serialVersionUID = 1L;
 
     public String getId() {
@@ -76,6 +78,14 @@ public class BaseSgUser implements Serializable {
         this.lastLoginDate = lastLoginDate;
     }
 
+    public Boolean getDummy() {
+        return dummy;
+    }
+
+    public void setDummy(Boolean dummy) {
+        this.dummy = dummy;
+    }
+
     @Override
     public boolean equals(Object that) {
         if (this == that) {
@@ -94,7 +104,8 @@ public class BaseSgUser implements Serializable {
             && (this.getModifyPassword() == null ? other.getModifyPassword() == null : this.getModifyPassword().equals(other.getModifyPassword()))
             && (this.getUserName() == null ? other.getUserName() == null : this.getUserName().equals(other.getUserName()))
             && (this.getHeadUrl() == null ? other.getHeadUrl() == null : this.getHeadUrl().equals(other.getHeadUrl()))
-            && (this.getLastLoginDate() == null ? other.getLastLoginDate() == null : this.getLastLoginDate().equals(other.getLastLoginDate()));
+            && (this.getLastLoginDate() == null ? other.getLastLoginDate() == null : this.getLastLoginDate().equals(other.getLastLoginDate()))
+            && (this.getDummy() == null ? other.getDummy() == null : this.getDummy().equals(other.getDummy()));
     }
 
     @Override
@@ -108,6 +119,7 @@ public class BaseSgUser implements Serializable {
         result = prime * result + ((getUserName() == null) ? 0 : getUserName().hashCode());
         result = prime * result + ((getHeadUrl() == null) ? 0 : getHeadUrl().hashCode());
         result = prime * result + ((getLastLoginDate() == null) ? 0 : getLastLoginDate().hashCode());
+        result = prime * result + ((getDummy() == null) ? 0 : getDummy().hashCode());
         return result;
     }
 }
