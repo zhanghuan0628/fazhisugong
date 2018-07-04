@@ -457,62 +457,122 @@ public class BaseSgAskExample {
         }
 
         public Criteria andSeeIsNull() {
-            addCriterion("see is null");
+            addCriterion("is_see is null");
             return (Criteria) this;
         }
 
         public Criteria andSeeIsNotNull() {
-            addCriterion("see is not null");
+            addCriterion("is_see is not null");
             return (Criteria) this;
         }
 
-        public Criteria andSeeEqualTo(Byte value) {
-            addCriterion("see =", value, "see");
+        public Criteria andSeeEqualTo(Boolean value) {
+            addCriterion("is_see =", value, "see");
             return (Criteria) this;
         }
 
-        public Criteria andSeeNotEqualTo(Byte value) {
-            addCriterion("see <>", value, "see");
+        public Criteria andSeeNotEqualTo(Boolean value) {
+            addCriterion("is_see <>", value, "see");
             return (Criteria) this;
         }
 
-        public Criteria andSeeGreaterThan(Byte value) {
-            addCriterion("see >", value, "see");
+        public Criteria andSeeGreaterThan(Boolean value) {
+            addCriterion("is_see >", value, "see");
             return (Criteria) this;
         }
 
-        public Criteria andSeeGreaterThanOrEqualTo(Byte value) {
-            addCriterion("see >=", value, "see");
+        public Criteria andSeeGreaterThanOrEqualTo(Boolean value) {
+            addCriterion("is_see >=", value, "see");
             return (Criteria) this;
         }
 
-        public Criteria andSeeLessThan(Byte value) {
-            addCriterion("see <", value, "see");
+        public Criteria andSeeLessThan(Boolean value) {
+            addCriterion("is_see <", value, "see");
             return (Criteria) this;
         }
 
-        public Criteria andSeeLessThanOrEqualTo(Byte value) {
-            addCriterion("see <=", value, "see");
+        public Criteria andSeeLessThanOrEqualTo(Boolean value) {
+            addCriterion("is_see <=", value, "see");
             return (Criteria) this;
         }
 
-        public Criteria andSeeIn(List<Byte> values) {
-            addCriterion("see in", values, "see");
+        public Criteria andSeeIn(List<Boolean> values) {
+            addCriterion("is_see in", values, "see");
             return (Criteria) this;
         }
 
-        public Criteria andSeeNotIn(List<Byte> values) {
-            addCriterion("see not in", values, "see");
+        public Criteria andSeeNotIn(List<Boolean> values) {
+            addCriterion("is_see not in", values, "see");
             return (Criteria) this;
         }
 
-        public Criteria andSeeBetween(Byte value1, Byte value2) {
-            addCriterion("see between", value1, value2, "see");
+        public Criteria andSeeBetween(Boolean value1, Boolean value2) {
+            addCriterion("is_see between", value1, value2, "see");
             return (Criteria) this;
         }
 
-        public Criteria andSeeNotBetween(Byte value1, Byte value2) {
-            addCriterion("see not between", value1, value2, "see");
+        public Criteria andSeeNotBetween(Boolean value1, Boolean value2) {
+            addCriterion("is_see not between", value1, value2, "see");
+            return (Criteria) this;
+        }
+
+        public Criteria andDummyIsNull() {
+            addCriterion("is_dummy is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andDummyIsNotNull() {
+            addCriterion("is_dummy is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andDummyEqualTo(Boolean value) {
+            addCriterion("is_dummy =", value, "dummy");
+            return (Criteria) this;
+        }
+
+        public Criteria andDummyNotEqualTo(Boolean value) {
+            addCriterion("is_dummy <>", value, "dummy");
+            return (Criteria) this;
+        }
+
+        public Criteria andDummyGreaterThan(Boolean value) {
+            addCriterion("is_dummy >", value, "dummy");
+            return (Criteria) this;
+        }
+
+        public Criteria andDummyGreaterThanOrEqualTo(Boolean value) {
+            addCriterion("is_dummy >=", value, "dummy");
+            return (Criteria) this;
+        }
+
+        public Criteria andDummyLessThan(Boolean value) {
+            addCriterion("is_dummy <", value, "dummy");
+            return (Criteria) this;
+        }
+
+        public Criteria andDummyLessThanOrEqualTo(Boolean value) {
+            addCriterion("is_dummy <=", value, "dummy");
+            return (Criteria) this;
+        }
+
+        public Criteria andDummyIn(List<Boolean> values) {
+            addCriterion("is_dummy in", values, "dummy");
+            return (Criteria) this;
+        }
+
+        public Criteria andDummyNotIn(List<Boolean> values) {
+            addCriterion("is_dummy not in", values, "dummy");
+            return (Criteria) this;
+        }
+
+        public Criteria andDummyBetween(Boolean value1, Boolean value2) {
+            addCriterion("is_dummy between", value1, value2, "dummy");
+            return (Criteria) this;
+        }
+
+        public Criteria andDummyNotBetween(Boolean value1, Boolean value2) {
+            addCriterion("is_dummy not between", value1, value2, "dummy");
             return (Criteria) this;
         }
     }

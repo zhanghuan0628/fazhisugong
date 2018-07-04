@@ -14,7 +14,9 @@ public class BaseSgAsk implements Serializable {
 
     private Date createDate;
 
-    private Byte see;
+    private Boolean see;
+
+    private Boolean dummy;
 
     private static final long serialVersionUID = 1L;
 
@@ -58,12 +60,20 @@ public class BaseSgAsk implements Serializable {
         this.createDate = createDate;
     }
 
-    public Byte getSee() {
+    public Boolean getSee() {
         return see;
     }
 
-    public void setSee(Byte see) {
+    public void setSee(Boolean see) {
         this.see = see;
+    }
+
+    public Boolean getDummy() {
+        return dummy;
+    }
+
+    public void setDummy(Boolean dummy) {
+        this.dummy = dummy;
     }
 
     @Override
@@ -83,7 +93,8 @@ public class BaseSgAsk implements Serializable {
             && (this.getContent() == null ? other.getContent() == null : this.getContent().equals(other.getContent()))
             && (this.getUserId() == null ? other.getUserId() == null : this.getUserId().equals(other.getUserId()))
             && (this.getCreateDate() == null ? other.getCreateDate() == null : this.getCreateDate().equals(other.getCreateDate()))
-            && (this.getSee() == null ? other.getSee() == null : this.getSee().equals(other.getSee()));
+            && (this.getSee() == null ? other.getSee() == null : this.getSee().equals(other.getSee()))
+            && (this.getDummy() == null ? other.getDummy() == null : this.getDummy().equals(other.getDummy()));
     }
 
     @Override
@@ -96,6 +107,7 @@ public class BaseSgAsk implements Serializable {
         result = prime * result + ((getUserId() == null) ? 0 : getUserId().hashCode());
         result = prime * result + ((getCreateDate() == null) ? 0 : getCreateDate().hashCode());
         result = prime * result + ((getSee() == null) ? 0 : getSee().hashCode());
+        result = prime * result + ((getDummy() == null) ? 0 : getDummy().hashCode());
         return result;
     }
 }

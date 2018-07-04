@@ -19,6 +19,7 @@ import com.ffxl.cloud.model.SgAsk;
 import com.ffxl.cloud.model.SgLawComment;
 import com.ffxl.cloud.model.SgThmemeAnswerLog;
 import com.ffxl.cloud.model.SgUser;
+import com.ffxl.cloud.model.SysUser;
 import com.ffxl.cloud.service.SgAskService;
 import com.ffxl.cloud.service.SgLawCommentService;
 import com.ffxl.cloud.service.SgThmemeAnswerLogService;
@@ -29,6 +30,7 @@ import com.ffxl.platform.constant.Message;
 import com.ffxl.platform.core.DataTablesUtil;
 import com.ffxl.platform.core.Page;
 import com.ffxl.platform.util.StringUtil;
+import com.ffxl.platform.util.UUIDUtil;
 /**
  * 用户列表
  * @author feifan
@@ -60,13 +62,32 @@ public class SgUserController extends BaseController{
     public String index() {
         return PREFIX + "userList.html";
     }
-    
+    /**
+     * 跳转到虚拟用户列表的页面
+     */
+    @RequestMapping("/dummy_user")
+    public String dummyUser() {
+        return PREFIX + "dummy_user.html";
+    }
     /**
      * 查询用户列表
      */
     @RequestMapping("/userlist")
     @ResponseBody
     public JsonResult list(DataTablesUtil dataTables,Page page,SgUser sgUser) {
+    	page = this.getPageInfo(page,dataTables);
+    	List<SgUser> dataList = sgUserService.queryPageList(sgUser,page);
+        dataTables = this.getDataTables(page, dataTables, dataList);
+        return new JsonResult("2000", dataTables);
+        
+    }
+    /**
+     * 查询用户列表
+     */
+    @RequestMapping("/dummy_user_list")
+    @ResponseBody
+    public JsonResult dummyUserList(DataTablesUtil dataTables,Page page,SgUser sgUser) {
+    	sgUser.setDummy(true);
     	page = this.getPageInfo(page,dataTables);
     	List<SgUser> dataList = sgUserService.queryPageList(sgUser,page);
         dataTables = this.getDataTables(page, dataTables, dataList);
@@ -189,5 +210,49 @@ public class SgUserController extends BaseController{
         	return new JsonResult(false);
         }
     	
+    }
+    /**
+     * 跳转到新增虚拟用户详情的页面
+     */
+    @RequestMapping("/add_dummy_user")
+    public String addDummyUser(String id,Model model) {
+        return PREFIX + "add_dummy_user.html";
+    }
+    /**
+     * 新增虚拟用户
+     * @return
+     */
+    @ResponseBody
+    @BussinessLog(value = "新增虚拟用户", key = "id", dict = SgUserDic.class)
+    @RequestMapping("/add_dummy")
+    public JsonResult addDummy(SgUser SgUser){
+    	SgUser.setId(UUIDUtil.getUUID());
+    	SgUser.setPassword("123456");
+    	SgUser.setDummy(true);
+    	int i = sgUserService.insertSelective(SgUser);
+    	if(i > 0){
+    		return new JsonResult(true);
+        }else{
+        	return new JsonResult(false);
+        }
+    	
+    }
+    /**
+     * 校验账号是否存在
+     * @param loginName
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping("/check")
+    public Boolean check(String loginName) {
+        // 判断账号是否重复
+        SgUser model = new SgUser();
+        model.setLoginName(loginName);
+        SgUser theUser = sgUserService.queryByModel(model);
+        if (theUser != null) {
+            return false;
+        }else{
+            return true;
+        }
     }
 }

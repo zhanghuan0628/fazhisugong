@@ -585,6 +585,66 @@ public class BaseSgUserExample {
             addCriterion("last_login_date not between", value1, value2, "lastLoginDate");
             return (Criteria) this;
         }
+
+        public Criteria andDummyIsNull() {
+            addCriterion("is_dummy is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andDummyIsNotNull() {
+            addCriterion("is_dummy is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andDummyEqualTo(Boolean value) {
+            addCriterion("is_dummy =", value, "dummy");
+            return (Criteria) this;
+        }
+
+        public Criteria andDummyNotEqualTo(Boolean value) {
+            addCriterion("is_dummy <>", value, "dummy");
+            return (Criteria) this;
+        }
+
+        public Criteria andDummyGreaterThan(Boolean value) {
+            addCriterion("is_dummy >", value, "dummy");
+            return (Criteria) this;
+        }
+
+        public Criteria andDummyGreaterThanOrEqualTo(Boolean value) {
+            addCriterion("is_dummy >=", value, "dummy");
+            return (Criteria) this;
+        }
+
+        public Criteria andDummyLessThan(Boolean value) {
+            addCriterion("is_dummy <", value, "dummy");
+            return (Criteria) this;
+        }
+
+        public Criteria andDummyLessThanOrEqualTo(Boolean value) {
+            addCriterion("is_dummy <=", value, "dummy");
+            return (Criteria) this;
+        }
+
+        public Criteria andDummyIn(List<Boolean> values) {
+            addCriterion("is_dummy in", values, "dummy");
+            return (Criteria) this;
+        }
+
+        public Criteria andDummyNotIn(List<Boolean> values) {
+            addCriterion("is_dummy not in", values, "dummy");
+            return (Criteria) this;
+        }
+
+        public Criteria andDummyBetween(Boolean value1, Boolean value2) {
+            addCriterion("is_dummy between", value1, value2, "dummy");
+            return (Criteria) this;
+        }
+
+        public Criteria andDummyNotBetween(Boolean value1, Boolean value2) {
+            addCriterion("is_dummy not between", value1, value2, "dummy");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

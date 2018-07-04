@@ -20,4 +20,14 @@ public interface SgThemeMapper extends GenericMapper<SgTheme, SgThemeExample, St
 	 * @return
 	 */
 	List<SgTheme> queryPageList(@Param("model")SgTheme sgTheme, @Param("page")Page page);
+	/**
+	 * 查询最大期数
+	 * @return
+	 */
+	int selectMaxNum();
+	/**
+	 * 最大结束日期
+	 * @return
+	 */
+	SgTheme selectMaxEndDate(@Param("num")String num);
 }

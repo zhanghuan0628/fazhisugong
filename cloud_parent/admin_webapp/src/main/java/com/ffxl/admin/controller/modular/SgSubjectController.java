@@ -1,7 +1,10 @@
 package com.ffxl.admin.controller.modular;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -11,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.alibaba.fastjson.JSONObject;
 import com.ffxl.admin.controller.base.BaseController;
 import com.ffxl.admin.core.common.annotion.BussinessLog;
 import com.ffxl.admin.core.common.constant.dictmap.SgLawDic;
@@ -74,7 +78,14 @@ public class SgSubjectController extends BaseController{
             throw new BusinessException(Message.M6002);
         }
     	SgSubject info = sgSubjectService.selectByPrimaryKey(id);
-        model.addAttribute("info", info);
+    	
+    	JSONObject jsStr = JSONObject.parseObject(info.getQuestionJson());
+        Map<String,Object> map = new HashMap<String,Object>();
+        map.put("qstn", jsStr.get("qstn"));
+        map.put("optn", jsStr.get("optn"));
+        map.put("id", info.getId());
+        
+        model.addAttribute("info", map);
         LogObjectHolder.me().set(info);
         return PREFIX + "subject_edit.html";
     }
@@ -98,4 +109,46 @@ public class SgSubjectController extends BaseController{
         	return new JsonResult(false);
         }
     }
+    /**
+     * 修改
+     * @param sgLaw
+     * @param session
+     * @return
+     */
+    @ResponseBody
+    @BussinessLog(value = "修改法官题目", key = "id", dict = SgSubjectDic.class)
+    @RequestMapping("/edit")
+    public JsonResult edit(SgSubject sgSubject){
+    	sgSubject.setModifyDate(new Date());
+    	int i = sgSubjectService.updateByPrimaryKeySelective(sgSubject);
+    	if(i > 0){
+    		return new JsonResult(true);
+        }else{
+        	return new JsonResult(false);
+        }
+    }
+    /**
+     * 删除
+     * @param ids
+     * @return
+     */
+   @RequestMapping("/del_subject")
+   @BussinessLog(value = "删除法官题目", key = "id", dict = SgSubjectDic.class)
+   @ResponseBody
+   public JsonResult del(String ids){
+   	if (StringUtil.isEmpty(ids)) {
+   		return new JsonResult(Message.M4002);
+       }
+   	int ret = -1;
+   	String[] idArray = ids.split(",");
+   	for(String id:idArray ){
+   		ret = sgSubjectService.deleteByPrimaryKey(id);
+   	}
+   	if(ret >0){
+      	 return new JsonResult(Message.M2000);
+      }else{
+      	 return new JsonResult(Message.M5000);
+      }
+   	
+   }
 }

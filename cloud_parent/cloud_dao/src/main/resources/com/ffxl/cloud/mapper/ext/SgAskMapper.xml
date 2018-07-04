@@ -6,13 +6,20 @@
 	</resultMap>
 	
 	<select id="queryPageList" resultMap="SgAskMap">
-		select *,DATE_FORMAT(create_date,'%Y-%m-%d %h:%i:%s')as createTime from sg_ask 
+		SELECT
+			sa.*, su.user_name AS userName,DATE_FORMAT(create_date,'%Y-%m-%d %h:%i:%s')as createTime
+		FROM
+			sg_ask sa
+		JOIN sg_user su ON sa.user_id = su.id
 		where 1 = 1 
 		<if test="model.userId != null and model.userId != '' ">
-			and user_id = #{model.userId}
+			and sa.user_id = #{model.userId}
 		</if>
 		<if test="model.title != null and model.title != '' ">
-			and title like CONCAT('%','${model.title}','%')
+			and sa.title like CONCAT('%','${model.title}','%')
+		</if>
+		<if test="model.userName != null and model.userName != '' ">
+			and su.user_name like CONCAT('%','${model.userName}','%')
 		</if>
 	</select>
 

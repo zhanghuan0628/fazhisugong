@@ -69,6 +69,7 @@ public class SgSubjectServiceImpl extends GenericServiceImpl<SgSubject, SgSubjec
             	}
             	i++;
             }
+            map.put("id", ss.getId());
             map.put("num", l.size());
             newList.add(map);
 		}

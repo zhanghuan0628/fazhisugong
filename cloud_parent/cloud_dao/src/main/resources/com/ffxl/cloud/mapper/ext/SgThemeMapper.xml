@@ -4,10 +4,29 @@
 	<resultMap extends="BaseResultMap" id="SgLawSgTheme" type="com.ffxl.cloud.model.SgTheme">
 	</resultMap>
 	<select id="queryPageList" resultMap="SgLawSgTheme">
-		select * from sg_theme where 1 = 1
+		SELECT
+			*, DATE_FORMAT(start_time, '%Y-%m-%d') AS startDate,
+			DATE_FORMAT(end_time, '%Y-%m-%d') AS endDate
+		FROM
+			sg_theme
+		WHERE
+			1 = 1
 		<if test="model.num != null and model.num !='' ">
 			and num like CONCAT('%','${model.num}','%')
 		</if>
+		<if test="model.id != null and model.id !='' ">
+			and id = #{model.id}
+		</if>
 		order by num desc
+	</select>
+	<select id="selectMaxNum" resultType="int">
+		select IFNULL(max(num),0)as num FROM sg_theme
+	</select>
+	<select id="selectMaxEndDate" resultMap="SgLawSgTheme" parameterType="java.lang.String">
+		select DATE_FORMAT(max(end_time), '%Y-%m-%d') as endDate FROM sg_theme
+		where 1 = 1
+		<if test="num != null and num !='' ">
+			and num = ${num}
+		</if>
 	</select>
 </mapper>
