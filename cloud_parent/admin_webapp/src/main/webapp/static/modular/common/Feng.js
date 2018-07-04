@@ -192,23 +192,16 @@ var Feng = {
 	        }
 	    })
 	},
-	 //table行单选
+	 //table行多选
 	selectMultiRow : function(id) {
-		
 	    $('#'+id).on('click', 'tr', function () {
-	    	
-	    	
 	    	var check = $(this).find(".iCheck").prop("checked");
 	        if(check && check==true){
 	             $(this).find('.iCheck').prop("checked",false);
+	             $(this).removeClass('selected');
 	        }else{
 	             $(this).find('.iCheck').prop("checked",true);
-	        }
-	        if ($(this).hasClass('selected') ) {
-	           $(this).removeClass('selected');
-	        } else {
-	        	SysUser.table.$('tr.selected').removeClass('selected');
-	            $(this).addClass('selected'); 
+	             $(this).addClass('selected'); 
 	        }
 	    })
 	}
