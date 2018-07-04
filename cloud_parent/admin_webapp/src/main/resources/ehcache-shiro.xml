@@ -8,9 +8,9 @@
         eternal="false" 
         overflowToDisk="false" 
         diskPersistent="false"
-        timeToIdleSeconds="120"
-        timeToLiveSeconds="120" 
-        diskExpiryThreadIntervalSeconds="120"
+        timeToIdleSeconds="12000"
+        timeToLiveSeconds="12000" 
+        diskExpiryThreadIntervalSeconds="12000"
         memoryStoreEvictionPolicy="LRU">
     </defaultCache>
 </ehcache>

@@ -205,6 +205,9 @@ SysUser.initColumn = function () {
  */
 SysUser.dataTables = function (columns) {
 	    var options ={
+	    		option:{
+					
+				},
 	    		columns : columns,
 	    		others : {
 	    			selector : '#'+SysUser.id,
@@ -227,4 +230,7 @@ $(function () {
     var defaultColunms = SysUser.initColumn();
     var options = SysUser.dataTables(defaultColunms);    
     SysUser.table = defDataTables(options);
+    
+    //Feng.selectSingleRow(SysUser.id);
+    Feng.selectMultiRow(SysUser.id);
 });

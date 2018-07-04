@@ -118,7 +118,7 @@ function defDataTables(pageOptions) {
 			});
 		},
 		columns : dt.columns,
-		"createdRow" : function(row, data, index) {
+		createdRow : function(row, data, index) {
 			// 行渲染回调,在这里可以对该行dom元素进行任何操作
 			// 给当前行加样式
 			if (data.role) {

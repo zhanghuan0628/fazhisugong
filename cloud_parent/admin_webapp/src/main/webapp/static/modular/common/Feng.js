@@ -167,5 +167,49 @@ var Feng = {
         }
         var result = strArr.join('');
         return result.charAt(0).toUpperCase() + result.substring(1);
-    }
+    },
+    //table行单选
+	selectSingleRow : function(id) {
+		
+	    $('#'+id).on('click', 'tr', function () {
+	    	
+	    	
+	    	var check = $(this).find(".iCheck").prop("checked");
+	        if(check && check==true){
+	        	 //先全部取消
+		    	 $(".iCheck").prop("checked", false);
+	             $(this).find('.iCheck').prop("checked",false);
+	        }else{
+	        	 //先全部取消
+		    	 $(".iCheck").prop("checked", false);
+	             $(this).find('.iCheck').prop("checked",true);
+	        }
+	        if ($(this).hasClass('selected') ) {
+	           $(this).removeClass('selected');
+	        } else {
+	        	SysUser.table.$('tr.selected').removeClass('selected');
+	            $(this).addClass('selected'); 
+	        }
+	    })
+	},
+	 //table行单选
+	selectMultiRow : function(id) {
+		
+	    $('#'+id).on('click', 'tr', function () {
+	    	
+	    	
+	    	var check = $(this).find(".iCheck").prop("checked");
+	        if(check && check==true){
+	             $(this).find('.iCheck').prop("checked",false);
+	        }else{
+	             $(this).find('.iCheck').prop("checked",true);
+	        }
+	        if ($(this).hasClass('selected') ) {
+	           $(this).removeClass('selected');
+	        } else {
+	        	SysUser.table.$('tr.selected').removeClass('selected');
+	            $(this).addClass('selected'); 
+	        }
+	    })
+	}
 };
