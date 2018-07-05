@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ffxl.admin.controller.base.BaseController;
 import com.ffxl.admin.core.common.annotion.BussinessLog;
+import com.ffxl.admin.core.common.constant.dictmap.SgLawCommentDic;
 import com.ffxl.admin.core.common.constant.dictmap.SgLawDic;
 import com.ffxl.admin.core.log.LogObjectHolder;
 import com.ffxl.admin.core.shiro.ShiroKit;
@@ -23,6 +24,7 @@ import com.ffxl.admin.core.shiro.ShiroUser;
 import com.ffxl.cloud.model.Dictionary;
 import com.ffxl.cloud.model.SgLaw;
 import com.ffxl.cloud.model.SgLawComment;
+import com.ffxl.cloud.model.SgLawCommentExample;
 import com.ffxl.cloud.model.SgLawExample;
 import com.ffxl.cloud.model.base.BaseSgLawExample.Criteria;
 import com.ffxl.cloud.service.DictionaryService;
@@ -335,5 +337,98 @@ public class SgLawRiskController extends BaseController{
         dataTables = this.getDataTables(page, dataTables, dataList);
         return new JsonResult("2000", dataTables);
         
+    }
+    /**
+     * 通不通过
+     */
+    @RequestMapping("/updateState")
+    @BussinessLog(value = "通不通过评论", key = "id", dict = SgLawCommentDic.class)
+    @ResponseBody
+    public JsonResult updateState(String ids,String state){
+    	if (StringUtil.isEmpty(ids)) {
+    		return new JsonResult(Message.M4002);
+        }
+    	int ret = -1;
+    	String[] idArray = ids.split(",");
+    	for(String id:idArray ){
+    		SgLawComment record = new SgLawComment();
+    		record.setId(id);
+    		record.setState(state);
+    		ret = sgLawCommentService.updateByPrimaryKeySelective(record);
+    	}
+    	if(ret >0){
+       	 return new JsonResult(Message.M2000);
+       }else{
+       	 return new JsonResult(Message.M5000);
+       }
+    	
+    }
+    /**
+     * 跳转到回复的页面
+     */
+    @RequestMapping("/counselor_back")
+    public String counselorBack(String id,Model model) {
+    	ShiroUser shiroUser = ShiroKit.getUser();
+    	String userId = shiroUser.getId();
+    	SgLawComment m = new SgLawComment();
+    	m.setId(id);
+    	List<SgLawComment> dataList = sgLawCommentService.queryPageList(m,null);
+    	SgLawComment sgLawComment = dataList.get(0);
+        SgLawCommentExample example = new SgLawCommentExample();
+        com.ffxl.cloud.model.base.BaseSgLawCommentExample.Criteria c= example.createCriteria();
+        c.andTopicIdEqualTo(id);
+        c.andReplyUserIdEqualTo(userId);
+        List<SgLawComment> list = sgLawCommentService.selectByExample(example);
+        if(list != null && list.size() > 0){
+        	 SgLawComment sc = list.get(0);
+        	 sgLawComment.setReplyContent(sc.getReplyContent());
+        	 sgLawComment.setReplyId(sc.getId());
+        }
+        model.addAttribute("info", sgLawComment);
+        return PREFIX + "counselor_back.html";
+    }
+    /**
+     * 修改咨询师回复
+     * @param sgLaw
+     * @param session
+     * @return
+     */
+    @ResponseBody
+    @BussinessLog(value = "修改咨询师回复", key = "id", dict = SgLawCommentDic.class)
+    @RequestMapping("/edit_counselor_back")
+    public JsonResult edit(SgLawComment sgLawComment,HttpSession session){
+    	ShiroUser shiroUser = ShiroKit.getUser();
+    	String userId = shiroUser.getId();
+    	sgLawComment.setReplyUserId(userId);
+    	sgLawComment.setReplyUserType("sys");
+    	int i= sgLawCommentService.updateByPrimaryKeySelective(sgLawComment);
+    	if(i > 0){
+    		return new JsonResult(true);
+        }else{
+        	return new JsonResult(false);
+        }
+    	
+    }
+    /**
+     * 删除
+     */
+    @RequestMapping("/delComment")
+    @BussinessLog(value = "删除法律风险", key = "id", dict = SgLawDic.class)
+    @ResponseBody
+    public JsonResult delComment(String ids){
+    	if (StringUtil.isEmpty(ids)) {
+    		return new JsonResult(Message.M4002);
+        }
+    	int ret = -1;
+    	String[] idArray = ids.split(",");
+    	for(String id:idArray ){
+    		ret = sgLawCommentService.deleteByPrimaryKey(id);
+    	}
+    	if(ret >0){
+       	 return new JsonResult(Message.M2000);
+       }else{
+       	 return new JsonResult(Message.M5000);
+       }
+    	
     }
 }

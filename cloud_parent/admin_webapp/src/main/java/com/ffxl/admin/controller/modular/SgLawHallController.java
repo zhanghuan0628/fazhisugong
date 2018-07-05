@@ -18,6 +18,8 @@ import com.ffxl.admin.controller.base.BaseController;
 import com.ffxl.admin.core.common.annotion.BussinessLog;
 import com.ffxl.admin.core.common.constant.dictmap.SgLawDic;
 import com.ffxl.admin.core.log.LogObjectHolder;
+import com.ffxl.admin.core.shiro.ShiroKit;
+import com.ffxl.admin.core.shiro.ShiroUser;
 import com.ffxl.cloud.model.SgLaw;
 import com.ffxl.cloud.service.SgLawService;
 import com.ffxl.platform.constant.JsonResult;
@@ -135,11 +137,6 @@ public class SgLawHallController extends BaseController{
     	SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     	String dateString = formatter.format(user.getCreateDate());
     	user.setCreateTime(dateString);
-    	if(StringUtil.isEmpty(user.getVideoUrl())){
-    		user.setType("text");
-    	}else{
-    		user.setType("video");
-    	}
         model.addAttribute("info", user);
         LogObjectHolder.me().set(user);
         return PREFIX + "law_hall_edit.html";
@@ -172,7 +169,7 @@ public class SgLawHallController extends BaseController{
     @ResponseBody
     @BussinessLog(value = "新增法治讲堂", key = "id", dict = SgLawDic.class)
     @RequestMapping("/add")
-    public JsonResult add(SgLaw sgLaw,HttpSession session){
+    public JsonResult add(SgLaw sgLaw){
     	int i = -1;
     	SgLaw sl = new SgLaw();
     	sl.setId(UUIDUtil.getUUID());
@@ -181,12 +178,18 @@ public class SgLawHallController extends BaseController{
     	sl.setCreateDate(new Date());
     	sl.setTitle(sgLaw.getTitle());
     	sl.setStatus("no_publish");
+    	ShiroUser shiroUser = ShiroKit.getUser();
+    	String userId = shiroUser.getId();
+    	sl.setCreateBy(userId);
+    	sl.setModifyBy(userId);
     	if(sgLaw.getType().equals("text")){
     		sl.setContent(sgLaw.getContent());
+    		sl.setType("text");
     		i = sgLawService.insertSelective(sl);
     	}else{
-    		sl.setContent(sgLaw.getDetail());
+    		sl.setContent(sgLaw.getContent());
     		sl.setNum(sgLaw.getNum());
+    		sl.setType("video");
     		sl.setVideoUrl(sgLaw.getVideoUrl());
     		i= sgLawService.insertSelective(sl);
     	}
@@ -207,20 +210,25 @@ public class SgLawHallController extends BaseController{
     @ResponseBody
     @BussinessLog(value = "修改法治讲堂", key = "id", dict = SgLawDic.class)
     @RequestMapping("/edit")
-    public JsonResult edit(SgLaw sgLaw,HttpSession session){
+    public JsonResult edit(SgLaw sgLaw){
     	int i = -1;
     	SgLaw sl = new SgLaw();
     	sl.setId(sgLaw.getId());
     	sl.setCategory(sgLaw.getCategory());
     	sl.setModifyDate(new Date());
     	sl.setTitle(sgLaw.getTitle());
+    	ShiroUser shiroUser = ShiroKit.getUser();
+    	String userId = shiroUser.getId();
+    	sl.setModifyBy(userId);
     	if(sgLaw.getType().equals("text")){
     		sl.setContent(sgLaw.getContent());
+    		sl.setType("text");
     		i = sgLawService.updateByPrimaryKeySelective(sl);
     	}else{
-    		sl.setContent(sgLaw.getDetail());
+    		sl.setContent(sgLaw.getContent());
     		sl.setNum(sgLaw.getNum());
     		sl.setVideoUrl(sgLaw.getVideoUrl());
+    		sl.setType("video");
     		i= sgLawService.updateByPrimaryKeySelective(sl);
     	}
     	if(i > 0){

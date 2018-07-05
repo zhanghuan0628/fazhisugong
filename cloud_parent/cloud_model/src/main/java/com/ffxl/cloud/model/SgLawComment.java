@@ -6,6 +6,7 @@ public class SgLawComment extends BaseSgLawComment {
 	private String title;
 	private String userName;
 	private String createTime;
+	private String replyId;
 	public String getTitle() {
 		return title;
 	}
@@ -23,6 +24,12 @@ public class SgLawComment extends BaseSgLawComment {
 	}
 	public void setCreateTime(String createTime) {
 		this.createTime = createTime;
+	}
+	public String getReplyId() {
+		return replyId;
+	}
+	public void setReplyId(String replyId) {
+		this.replyId = replyId;
 	}
 	
 }

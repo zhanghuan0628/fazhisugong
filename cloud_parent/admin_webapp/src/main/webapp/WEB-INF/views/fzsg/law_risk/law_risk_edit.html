@@ -59,6 +59,13 @@
 						<input type="hidden" id="topicId" name="topicId" value="${info.id}" class="input-text">
 						<button type="button" class="btn btn-success" id="search" onclick="sgRisk.search()"  ><i class="Hui-iconfont">&#xe665;</i> 查询</button>
 					</div>
+					<div class="cl pd-5 bg-1 bk-gray mt-20"> 
+						<span class="l">
+							<a href="javascript:;" onclick="sgRisk.del_sgRisk()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a>
+							<a href="javascript:;" onclick="sgRisk.push_lawRisk('pass')" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e1;</i> 审核通过</a>
+							<a href="javascript:;" onclick="sgRisk.push_lawRisk('no_pass')" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6dd;</i> 审核不通过</a>
+						</span> 
+					</div>
 					<table id="sgRiskTable" class="table table-border table-bordered table-bg">
 						<thead>
 							<tr>

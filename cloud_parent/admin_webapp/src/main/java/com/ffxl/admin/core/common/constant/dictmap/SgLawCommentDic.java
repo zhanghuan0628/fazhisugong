@@ -15,6 +15,7 @@ public class SgLawCommentDic extends AbstractDictMap{
         put("replyContent","回复内容");
         put("replyUserType","回复人类型 sys：管理员 sg： 苏供用户");
         put("replyUserId","回复人id");
+        put("state","状态");
 	}
 
 	@Override

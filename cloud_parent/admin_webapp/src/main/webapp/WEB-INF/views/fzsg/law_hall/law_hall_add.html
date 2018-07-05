@@ -1,8 +1,7 @@
 @layout("/common/_container.html"){
 <article class="page-container">
-	<form class="form form-horizontal" id="lawHallInfoForm">
+	<form class="form form-horizontal" id="lawHallInfoForm" onsubmit="return getContent();">
 	<input type="hidden" value="" id="id" name="id">
-	<input type="hidden" value="${info.type}" id="url">
 	<input type="hidden" value="law_lecture_room" id="category" name="category">
 	<div class="row cl">
 		<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>标题：</label>
@@ -25,15 +24,6 @@
 			</select>
 		</div>
 	</div>
-	<div id="text">
-		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>内容简介：</label>
-			<div class="formControls col-xs-8 col-sm-9">
-				<textarea style="display: none" id="content" name="content"></textarea>
-		        <div id="editor" style="height: 400px; max-height: 500px;"></div>
-	        </div>
-        </div>
-	</div>
 	<div id="video" style="display: none">
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>播放量：</label>
@@ -45,16 +35,20 @@
 			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>视频文件上传：</label>
 			<div class="formControls col-xs-8 col-sm-9">
 				<input type="file" class="input-text" id="file"/>
-				<input type="hidden" class="input-text" id="videoUrl" name="videoUrl"/>
 			</div>
-		</div>
-		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>视频简介：</label>
+			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>视频文件路径：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<textarea id="content"  name="content" style="width: 400px;height: 150px;"></textarea>
+				<input type="text" class="input-text" id="videoUrl" name="videoUrl" readonly="readonly"/>
 			</div>
 		</div>
 	</div>
+	<div class="row cl">
+		<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>内容：</label>
+		<div class="formControls col-xs-8 col-sm-9">
+			<textarea style="display: none" id="content" name="content"></textarea>
+	        <div id="editor" style="height: 400px; max-height: 500px;"></div>
+        </div>
+    </div>
 	<div class="row cl">
 		<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
 			<input class="btn btn-primary radius" type="submit" value="&nbsp;&nbsp;提交&nbsp;&nbsp;">
