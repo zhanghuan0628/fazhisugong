@@ -16,8 +16,17 @@ import com.ffxl.admin.controller.base.BaseController;
 import com.ffxl.admin.core.common.annotion.BussinessLog;
 import com.ffxl.admin.core.common.constant.dictmap.SgAskDic;
 import com.ffxl.admin.core.common.constant.dictmap.SgLawDic;
+import com.ffxl.admin.core.shiro.ShiroKit;
+import com.ffxl.admin.core.shiro.ShiroUser;
 import com.ffxl.cloud.model.SgAsk;
+import com.ffxl.cloud.model.SgAskExample;
+import com.ffxl.cloud.model.SgLawComment;
+import com.ffxl.cloud.model.SgLawCommentExample;
+import com.ffxl.cloud.model.SgUser;
+import com.ffxl.cloud.model.base.BaseSgAskExample.Criteria;
 import com.ffxl.cloud.service.SgAskService;
+import com.ffxl.cloud.service.SgLawCommentService;
+import com.ffxl.cloud.service.SgUserService;
 import com.ffxl.cloud.service.impl.SysUserServiceImpl;
 import com.ffxl.platform.constant.JsonResult;
 import com.ffxl.platform.core.DataTablesUtil;
@@ -37,6 +46,12 @@ public class SgAskController extends BaseController{
 	private static String PREFIX = "/fzsg/sg_ask/";
 	@Autowired
 	private SgAskService sgAskService;
+	
+	@Autowired
+	private SgUserService sgUserService;
+	
+	@Autowired
+	private SgLawCommentService sgLawCommentService;
 	
 	/**
      * 跳转到咨询管理列表的页面
@@ -75,7 +90,6 @@ public class SgAskController extends BaseController{
     public String askDetail(String id,Model model) {
     	SgAsk user = sgAskService.queryUserAsk(id);
         model.addAttribute("info", user);
-        model.addAttribute("see", user.getSee());
         return PREFIX + "ask_detail.html";
     }
     /**
@@ -83,7 +97,19 @@ public class SgAskController extends BaseController{
      */
     @RequestMapping("/counselor_back")
     public String counselorBack(String id,Model model) {
+    	ShiroUser shiroUser = ShiroKit.getUser();
+    	String userId = shiroUser.getId();
         SgAsk user = sgAskService.queryUserAsk(id);
+        SgLawCommentExample example = new SgLawCommentExample();
+        com.ffxl.cloud.model.base.BaseSgLawCommentExample.Criteria c= example.createCriteria();
+        c.andTopicIdEqualTo(id);
+        c.andReplyUserIdEqualTo(userId);
+        List<SgLawComment> list = sgLawCommentService.selectByExample(example);
+        if(list != null && list.size() > 0){
+        	 SgLawComment sc = list.get(0);
+             user.setReplyContent(sc.getReplyContent());
+             user.setCommentId(sc.getId());
+        }
         model.addAttribute("info", user);
         return PREFIX + "counselor_back.html";
     }
@@ -103,5 +129,22 @@ public class SgAskController extends BaseController{
         }else{
         	return new JsonResult(false);
         }
+    }
+    /**
+     * 跳转到虚拟用户的页面
+     */
+    @RequestMapping("/add_xnUser")
+    public String addXNUser() {
+        return PREFIX + "add_xnUser.html";
+    }
+    /**
+     * 查询虚拟用户
+     */
+    @RequestMapping("/queryDummName")
+    @ResponseBody
+    public JsonResult queryDummName(String id) {
+    	SgUser user = sgUserService.selectByPrimaryKey(id);
+    	return new JsonResult(true,user);
+       
     }
 }

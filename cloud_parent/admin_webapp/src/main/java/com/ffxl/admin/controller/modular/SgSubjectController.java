@@ -1,12 +1,9 @@
 package com.ffxl.admin.controller.modular;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,10 +14,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.alibaba.fastjson.JSONObject;
 import com.ffxl.admin.controller.base.BaseController;
 import com.ffxl.admin.core.common.annotion.BussinessLog;
-import com.ffxl.admin.core.common.constant.dictmap.SgLawDic;
 import com.ffxl.admin.core.common.constant.dictmap.SgSubjectDic;
 import com.ffxl.admin.core.log.LogObjectHolder;
-import com.ffxl.cloud.model.SgLaw;
 import com.ffxl.cloud.model.SgSubject;
 import com.ffxl.cloud.service.SgSubjectService;
 import com.ffxl.platform.constant.JsonResult;

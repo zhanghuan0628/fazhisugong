@@ -12,6 +12,8 @@ public class SgLaw extends BaseSgLaw {
 	private String type;//类型
 	
 	private String detail;
+	
+	private String name;//专业名称
 
 	public int getSort() {
 		return sort;
@@ -51,5 +53,13 @@ public class SgLaw extends BaseSgLaw {
 
 	public void setDetail(String detail) {
 		this.detail = detail;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 }

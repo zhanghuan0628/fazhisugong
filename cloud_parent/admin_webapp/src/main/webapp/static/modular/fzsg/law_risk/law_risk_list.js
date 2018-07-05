@@ -1,15 +1,15 @@
 /**
- * 苏供法宝
+ * 苏供法律风险
  */
-var lawMagic = {
-    id: "lawMagicTable",//表格id
+var lawRisk = {
+    id: "lawRiskTable",//表格id
     seItem: [],		//选中的条目
     table: null,        //table
     layerIndex: -1
 };
 
-/*法宝-增加*/
-lawMagic.admin_add=function (title,url,w,h){
+/*法律风险-增加*/
+lawRisk.admin_add=function (title,url,w,h){
 	layer_show(title,url,w,h);
 }
 
@@ -17,13 +17,13 @@ lawMagic.admin_add=function (title,url,w,h){
 /**
  * 获取选中数据
  */
-lawMagic.getSelIds = function(){
+lawRisk.getSelIds = function(){
 	var  isCheck =false;
-	lawMagic.seItem=[];
+	lawRisk.seItem=[];
 	$('.iCheck').each(function () {
         if($(this).is(':checked')){
         	isCheck = true;
-        	lawMagic.seItem.push($(this).val());
+        	lawRisk.seItem.push($(this).val());
         }
     });
 
@@ -33,12 +33,12 @@ lawMagic.getSelIds = function(){
     return isCheck;
 }
 
-/*法宝-删除(批量)*/
-lawMagic.del_lawMagic=function (){
+/*法律风险-删除(批量)*/
+lawRisk.del_lawRisk=function (){
 	var operation = function(){
-        var ajax = new $ax(Feng.ctxPath +"/sg_law_magic/delLawMagic?ids="+selIds, function (data) {
+        var ajax = new $ax(Feng.ctxPath +"/sg_law_risk/dellawRisk?ids="+selIds, function (data) {
         	if(data.code ==2000){
-        		lawMagic.table.draw();
+        		lawRisk.table.draw();
 				Feng.success("已删除!");
 			}else{
 				Feng.error(data.message);
@@ -48,17 +48,17 @@ lawMagic.del_lawMagic=function (){
         });
         ajax.start();
     };
-    if(lawMagic.getSelIds()){
-    	var selIds = lawMagic.seItem; 
+    if(lawRisk.getSelIds()){
+    	var selIds = lawRisk.seItem; 
     	Feng.confirm('确认要删除吗？',operation);
     }
 }
-/*法宝-上下架(批量)*/
-lawMagic.push_lawMagic=function (state){
+/*法律风险-上下架(批量)*/
+lawRisk.push_lawRisk=function (state){
 	var operation = function(){
-        var ajax = new $ax(Feng.ctxPath +"/sg_law_magic/updateStatus?ids="+selIds+"&state="+state, function (data) {
+        var ajax = new $ax(Feng.ctxPath +"/sg_law_risk/updateStatus?ids="+selIds+"&state="+state, function (data) {
         	if(data.code ==2000){
-        		lawMagic.table.draw();
+        		lawRisk.table.draw();
 				Feng.success("操作成功");
 			}else{
 				Feng.error(data.message);
@@ -68,38 +68,33 @@ lawMagic.push_lawMagic=function (state){
         });
         ajax.start();
     };
-    if(lawMagic.getSelIds()){
-    	var selIds = lawMagic.seItem; 
+    if(lawRisk.getSelIds()){
+    	var selIds = lawRisk.seItem; 
     	Feng.confirm('确认要操作吗？',operation);
     }
 }
-/*法宝-增加*/
-lawMagic.add_lawMagic=function (title,url,w,h){
+/*法律风险-增加*/
+lawRisk.add_lawRisk=function (title,url,w,h){
 	layer_show(title,url,w,h);
 }
-/*法宝-编辑*/
-lawMagic.edit_lawMagic=function (title,url,id,w,h){
-	layer_show(title,Feng.ctxPath +url+"?id="+id,w,h);
-}
-/*法宝-查看*/
-lawMagic.detail=function (title,url,id,name){
+/*法律风险-编辑*/
+lawRisk.edit_lawRisk=function (title,url,id){
 	var index = layer.open({
 		type: 2,
 		title: title,
-		content: Feng.ctxPath +url+"?id="+id+"&title="+name,
+		content: Feng.ctxPath +url+"?id="+id,
 	});
 	layer.full(index);
 }
-/*法宝-上移*/
-lawMagic.pushUp=function (obj,id,sort){
-	console.log("id:"+id + "       sort:" + sort);
+/*法律风险-上移*/
+lawRisk.pushUp=function (obj,id,sort){
 		$.ajax({
 			type: 'POST',
-			url: Feng.ctxPath +"/sg_law_magic/push?id="+id+"&state=up&sort="+sort,
+			url: Feng.ctxPath +"/sg_law_risk/push?id="+id+"&state=up&sort="+sort,
 			dataType: 'json',
 			success: function(data){
 				if(data.code =='2000'){
-					lawMagic.table.draw();
+					lawRisk.table.draw();
 				}else{
 					Feng.error(data.message);
 				}
@@ -110,16 +105,16 @@ lawMagic.pushUp=function (obj,id,sort){
 		});		
 }
 
-/*法宝-下移*/
-lawMagic.pushDown = function(obj,id,sort){
+/*法律风险-下移*/
+lawRisk.pushDown = function(obj,id,sort){
 	console.log("id:"+id + "       sort:" + sort);
 		$.ajax({
 			type: 'POST',
-			url: Feng.ctxPath +"/sg_law_magic/push?id="+id+"&state=down&sort="+sort,
+			url: Feng.ctxPath +"/sg_law_risk/push?id="+id+"&state=down&sort="+sort,
 			dataType: 'json',
 			success: function(data){
 				if(data.code =='2000'){
-					lawMagic.table.draw();
+					lawRisk.table.draw();
 				}else{
 					Feng.error(data.message);
 				}
@@ -134,11 +129,12 @@ lawMagic.pushDown = function(obj,id,sort){
  * 初始化表格的列
  * 
  */
-lawMagic.initColumn = function () {
+lawRisk.initColumn = function () {
     var columns = [
         {title: '', data:"id",width:'10px',  render: function(data, type, row, meta) { return '<input type="checkbox" name="checklist" value="'+data+'" class="iCheck">';}},
         {title: '序号',width:'50px', data: 'num'},
         {title: '标题',width:'300px', data: 'title'},
+        {title: '专业',width:'300px', data: 'name'},
         {title: '状态',width:'300px', data: 'status',render: function(data, type, row, meta){
         	if(data=='publish')return '<span class="label label-success radius">上架</span>';	
         	else if(data=='no_publish')return '<span class="label label-default radius">下架</span>';
@@ -146,33 +142,26 @@ lawMagic.initColumn = function () {
         }},
         {title:'操作',width:'300px', render: function(data, type, row, meta){
         	var msg = "";
-        	msg+='<a title="编辑" href="javascript:;" onclick="lawMagic.edit_lawMagic(\'编辑法宝\',\'/sg_law_magic/law_magic_edit\','
+        	msg+='<a title="编辑" href="javascript:;" onclick="lawRisk.edit_lawRisk(\'编辑法律风险\',\'/sg_law_risk/law_risk_edit\','
 			+ "'"
 			+row.id
 			+ "'"
 			+',\'600\',\'200\')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i>'
-			+'</a> <a title="查看" href="javascript:;" onclick="lawMagic.detail(\'查看详情\',\'/sg_law_magic/law_magic_detail\','
-			+ "'"
-			+row.id
-			+ "'"
-			+ ",'"
-			+row.title
-			+ "'"
-			+',\'10001\')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6f9;</i></a> <a title="下移" href="javascript:;" onclick="lawMagic.pushUp(this,'
+			+'</a> <a title="下移" href="javascript:;" onclick="lawRisk.pushUp(this,'
 			+ "'"
 			+row.id
 			+ "'"
 			+ ",'"
 			+row.num
 			+ "'"
-			+')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe679;</i></a> <a title="上移" href="javascript:;" onclick="lawMagic.pushDown(this,'
+			+')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe674;</i></a> <a title="上移" href="javascript:;" onclick="lawRisk.pushDown(this,'
 			+ "'"
 			+row.id
 			+ "'"
 			+ ",'"
 			+row.num
 			+ "'"
-			+')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe674;</i></a>'
+			+')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe679;</i></a>'
 			+'</td>';
         	return msg;
         }}];
@@ -182,12 +171,12 @@ lawMagic.initColumn = function () {
 /**
  * 初始化表格参数
  */
-lawMagic.dataTables = function (columns) {
+lawRisk.dataTables = function (columns) {
 	    var options ={
 	    		columns : columns,
 	    		others : {
-	    			selector : '#'+lawMagic.id,
-	    			url : Feng.ctxPath +"/sg_law_magic/lawMagicList",
+	    			selector : '#'+lawRisk.id,
+	    			url : Feng.ctxPath +"/sg_law_risk/law_risk_pageList",
 	    			param : ["title","categoryCode"]
 	    		}	
 	    }
@@ -197,13 +186,13 @@ lawMagic.dataTables = function (columns) {
 /**
  * 搜索
  */
-lawMagic.search = function () {
-	lawMagic.table.draw();
+lawRisk.search = function () {
+	lawRisk.table.draw();
    
 }
 
 $(function () {
-    var defaultColunms = lawMagic.initColumn();
-    var options = lawMagic.dataTables(defaultColunms);    
-    lawMagic.table = defDataTables(options);
+    var defaultColunms = lawRisk.initColumn();
+    var options = lawRisk.dataTables(defaultColunms);    
+    lawRisk.table = defDataTables(options);
 });

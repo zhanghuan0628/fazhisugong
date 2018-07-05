@@ -5,6 +5,7 @@ import java.util.List;
 import com.ffxl.cloud.model.Dictionary;
 import com.ffxl.cloud.model.DictionaryExample;
 import com.ffxl.platform.core.GenericService;
+import com.ffxl.platform.core.Page;
 
  /**
  * Generate By MBG 
@@ -25,4 +26,17 @@ public interface DictionaryService extends GenericService<Dictionary, Dictionary
      * @return
      */
     List<Dictionary> queryListByPid(Dictionary qm);
+    /**
+     * 查询专业列表
+     * @param dictionary
+     * @param page
+     * @return
+     */
+	List<Dictionary> queryPageList(Dictionary dictionary, Page page);
+	/**
+	 * 查询最大num
+	 * @param pid
+	 * @return
+	 */
+	int queryMaxNumByPid(String pid);
 }

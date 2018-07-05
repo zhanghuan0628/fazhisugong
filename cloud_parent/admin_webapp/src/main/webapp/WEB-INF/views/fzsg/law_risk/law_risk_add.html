@@ -1,0 +1,45 @@
+@layout("/common/_container.html"){
+<article class="page-container">
+	<form class="form form-horizontal" id="lawRiskInfoForm" onsubmit="return getContent();">
+	<input type="hidden" value="" id="id" name="id">
+	<input type="hidden" value="law_risk" id="category" name="category">
+	<div class="row cl">
+		<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>标题：</label>
+		<div class="formControls col-xs-8 col-sm-9">
+			<input type="text" class="input-text" value="" id="title" name="title">
+		</div>
+	</div>
+	<div class="row cl">
+		<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>专业：：</label>
+		<div class="formControls col-xs-8 col-sm-9">
+			<select id="categoryCode" name="categoryCode" class="input-text" style="width:250px">
+				@for(dic in list){
+	        	<option value="${dic.id}">
+	        	${dic.name}
+	        	</option>
+				@}
+			</select>
+		</div>
+	</div>
+	<div class="row cl">
+		<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>创建时间：</label>
+		<div class="formControls col-xs-8 col-sm-9">
+			<input type="text" class="input-text" value="${dateString}" disabled="disabled">
+		</div>
+	</div>
+	<div class="row cl">
+		<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>内容：</label>
+		<div class="formControls col-xs-8 col-sm-9">
+			<textarea style="display: none" id="content" name="content"></textarea>
+		    <div id="editor" style="height: 400px; max-height: 500px;"></div>
+		</div>
+	</div>
+	<div class="row cl">
+		<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
+			<input class="btn btn-primary radius" type="submit" value="&nbsp;&nbsp;提交&nbsp;&nbsp;">
+		</div>
+	</div>
+	</form>
+</article>
+<script src="${ctxPath}/static/modular/fzsg/law_risk/law_risk_info.js"></script>
+@}

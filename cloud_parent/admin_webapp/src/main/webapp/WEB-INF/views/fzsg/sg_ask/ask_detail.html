@@ -12,12 +12,12 @@
 		<div class="formControls col-xs-8 col-sm-9">
 			<select id="see" name="see" class="input-text">
 				<option value="0"
-					@if(see==0||see==null||see==''||see==false){
+					@if(info.see==0||info.see==null||info.see==''||info.see==false){
 		        		selected="selected"
 		        	@}
 				>否</option>
 				<option value="1"
-					@if(see==1||see==true){
+					@if(info.see==1||info.see==true){
 		        		selected="selected"
 		        	@}
 				>是</option>

@@ -13,6 +13,7 @@ var sgUser = {
  */
 sgUser.getSelIds = function(){
 	var  isCheck =false;
+	sgUser.seItem=[];
 	$('.iCheck').each(function () {
         if($(this).is(':checked')){
         	isCheck = true;
@@ -21,7 +22,7 @@ sgUser.getSelIds = function(){
     });
 
     if(!isCheck) {
-    	Feng.error("请至少选择一条数据!");
+    	Feng.error("请选择一条数据!");
     }
     return isCheck;
 }
@@ -58,13 +59,36 @@ sgUser.updatePassword=function (obj,id){
 		});		
 	});
 }
+var id = "";
+sgUser.check=function(){
+	var num = 0;
+	id = "";
+	var idArray = $(".iCheck");
+	for (var i = 0; i < idArray.length; i++) {
+		if(idArray[i].checked == true){
+			num++;
+		}
+    }
+	for (var i = 0; i < idArray.length; i++) {
+        if(num==1){
+        	if(idArray[i].checked == true){
+                id += idArray[i].value;
+                return true;
+            }
+        }else{
+        	Feng.error("请选择一条数据!");
+            return false;
+        }
+        
+    }
+}
 /**
  * 初始化表格的列
  * 
  */
 sgUser.initColumn = function () {
     var columns = [
-        {title: '', data:"id",width:'10px',  render: function(data, type, row, meta) { return '<input type="checkbox" name="checklist" value="'+data+'" class="iCheck">';}},
+        {title: '', data:"id",width:'10px',  render: function(data, type, row, meta) { return '<input type="checkbox" name="checklists" value="'+data+'" class="iCheck" onclick="sgUser.check()">';}},
         {title: '协同账号', data: 'loginName'},
         {title: '账户名称', data: 'userName'},
         {title:'操作',data:'loginName', render: function(data, type, row, meta){
@@ -105,9 +129,35 @@ sgUser.dataTables = function (columns) {
  */
 sgUser.search = function () {
 	sgUser.table.draw();
-   
 }
-
+/**
+ * 保存
+ */
+sgUser.save = function(){
+		var operation = function(){
+			$.ajax({
+				dataType : 'json',
+				type : 'POST',
+				url : Feng.ctxPath+"/sg_ask/queryDummName",
+				data :{"id":id},
+				success : function(result) {
+					var data = result.data;
+					console.log(data.userName);
+					console.log(data.id);
+					var userId = data.id;
+					var userName = data.userName;
+					parent.getValue(userId,userName);
+					var index = parent.layer.getFrameIndex(window.name);
+					parent.layer.close(index);
+				}
+			});
+			console.log(id);
+	    };
+	    if(sgUser.check()){
+	    	var selIds = sgUser.seItem; 
+	    	Feng.confirm('确认要添加吗？',operation);
+	    }
+}
 $(function () {
     var defaultColunms = sgUser.initColumn();
     var options = sgUser.dataTables(defaultColunms);    

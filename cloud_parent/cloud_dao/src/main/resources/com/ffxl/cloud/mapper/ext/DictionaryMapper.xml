@@ -1,3 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.ffxl.cloud.mapper.DictionaryMapper" />
+<mapper namespace="com.ffxl.cloud.mapper.DictionaryMapper">
+	<resultMap extends="BaseResultMap" id="DictionaryMap" type="com.ffxl.cloud.model.Dictionary">
+	
+	</resultMap>
+	<select id="queryPageList" resultMap="DictionaryMap">
+		select * from sys_dictionary where 1 = 1
+		<if test="model.pid != null and model.pid != '' ">
+			and pid = #{model.pid}
+		</if>
+		<if test="model.name != null and model.name != '' ">
+		   and name like CONCAT('%','${model.name}','%')
+		</if>
+	</select>
+	<select id="queryMaxNumByPid" parameterType="java.lang.String" resultType="int">
+		select max(num)as num from sys_dictionary where pid = #{pid}
+	</select>
+</mapper>

@@ -1,6 +1,7 @@
 package com.ffxl.cloud.model.base;
 
 import java.io.Serializable;
+import java.util.Date;
 
 public class BaseSgLawComment implements Serializable {
     private String id;
@@ -20,6 +21,8 @@ public class BaseSgLawComment implements Serializable {
     private String replyUserType;
 
     private String replyUserId;
+
+    private Date createDate;
 
     private static final long serialVersionUID = 1L;
 
@@ -95,6 +98,14 @@ public class BaseSgLawComment implements Serializable {
         this.replyUserId = replyUserId == null ? null : replyUserId.trim();
     }
 
+    public Date getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(Date createDate) {
+        this.createDate = createDate;
+    }
+
     @Override
     public boolean equals(Object that) {
         if (this == that) {
@@ -115,7 +126,8 @@ public class BaseSgLawComment implements Serializable {
             && (this.getFromUserId() == null ? other.getFromUserId() == null : this.getFromUserId().equals(other.getFromUserId()))
             && (this.getReplyContent() == null ? other.getReplyContent() == null : this.getReplyContent().equals(other.getReplyContent()))
             && (this.getReplyUserType() == null ? other.getReplyUserType() == null : this.getReplyUserType().equals(other.getReplyUserType()))
-            && (this.getReplyUserId() == null ? other.getReplyUserId() == null : this.getReplyUserId().equals(other.getReplyUserId()));
+            && (this.getReplyUserId() == null ? other.getReplyUserId() == null : this.getReplyUserId().equals(other.getReplyUserId()))
+            && (this.getCreateDate() == null ? other.getCreateDate() == null : this.getCreateDate().equals(other.getCreateDate()));
     }
 
     @Override
@@ -131,6 +143,7 @@ public class BaseSgLawComment implements Serializable {
         result = prime * result + ((getReplyContent() == null) ? 0 : getReplyContent().hashCode());
         result = prime * result + ((getReplyUserType() == null) ? 0 : getReplyUserType().hashCode());
         result = prime * result + ((getReplyUserId() == null) ? 0 : getReplyUserId().hashCode());
+        result = prime * result + ((getCreateDate() == null) ? 0 : getCreateDate().hashCode());
         return result;
     }
 }
