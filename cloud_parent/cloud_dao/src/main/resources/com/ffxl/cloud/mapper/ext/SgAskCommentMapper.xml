@@ -1,3 +1,23 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.ffxl.cloud.mapper.SgAskCommentMapper" />
+<mapper namespace="com.ffxl.cloud.mapper.SgAskCommentMapper">
+	<resultMap extends="BaseResultMap" id="SgAskCommentMap" type="com.ffxl.cloud.model.SgAskComment">
+	
+	</resultMap>
+	<select id="queryAllAskComment" resultMap="SgAskCommentMap" parameterType="java.lang.String">
+		SELECT
+			sc.*,
+			sa.title as qTitle,
+			sa.content as qContent,
+			su.user_name as userName
+		FROM
+			sg_law_comment sc
+		JOIN sys_user su ON sc.reply_user_id = su.id join sg_ask sa on sc.topic_id = sa.id
+		WHERE
+			1 = 1
+		AND topic_type = 'ask'
+		<if test="id != null and id != '' ">
+			sc.topic_id = #{id}
+		</if>
+	</select>
+</mapper>

@@ -20,6 +20,8 @@ public class BaseSgTheme implements Serializable {
 
     private Date createTime;
 
+    private Integer sore;
+
     private static final long serialVersionUID = 1L;
 
     public String getId() {
@@ -86,6 +88,14 @@ public class BaseSgTheme implements Serializable {
         this.createTime = createTime;
     }
 
+    public Integer getSore() {
+        return sore;
+    }
+
+    public void setSore(Integer sore) {
+        this.sore = sore;
+    }
+
     @Override
     public boolean equals(Object that) {
         if (this == that) {
@@ -105,7 +115,8 @@ public class BaseSgTheme implements Serializable {
             && (this.getStartTime() == null ? other.getStartTime() == null : this.getStartTime().equals(other.getStartTime()))
             && (this.getEndTime() == null ? other.getEndTime() == null : this.getEndTime().equals(other.getEndTime()))
             && (this.getSubjectCounts() == null ? other.getSubjectCounts() == null : this.getSubjectCounts().equals(other.getSubjectCounts()))
-            && (this.getCreateTime() == null ? other.getCreateTime() == null : this.getCreateTime().equals(other.getCreateTime()));
+            && (this.getCreateTime() == null ? other.getCreateTime() == null : this.getCreateTime().equals(other.getCreateTime()))
+            && (this.getSore() == null ? other.getSore() == null : this.getSore().equals(other.getSore()));
     }
 
     @Override
@@ -120,6 +131,7 @@ public class BaseSgTheme implements Serializable {
         result = prime * result + ((getEndTime() == null) ? 0 : getEndTime().hashCode());
         result = prime * result + ((getSubjectCounts() == null) ? 0 : getSubjectCounts().hashCode());
         result = prime * result + ((getCreateTime() == null) ? 0 : getCreateTime().hashCode());
+        result = prime * result + ((getSore() == null) ? 0 : getSore().hashCode());
         return result;
     }
 }

@@ -1,5 +1,7 @@
 package com.ffxl.cloud.model;
 
+import java.util.List;
+
 import com.ffxl.cloud.model.base.BaseSgAsk;
 
 public class SgAsk extends BaseSgAsk {
@@ -12,6 +14,12 @@ public class SgAsk extends BaseSgAsk {
 	private String topicId;
 	
 	private String commentId;
+	
+	private List backList;
+	
+	private String nickName;
+	
+	private String isAnswer;
 
 	public String getCreateTime() {
 		return createTime;
@@ -51,5 +59,29 @@ public class SgAsk extends BaseSgAsk {
 
 	public void setCommentId(String commentId) {
 		this.commentId = commentId;
+	}
+
+	public List getBackList() {
+		return backList;
+	}
+
+	public void setBackList(List backList) {
+		this.backList = backList;
+	}
+
+	public String getNickName() {
+		return nickName;
+	}
+
+	public void setNickName(String nickName) {
+		this.nickName = nickName;
+	}
+
+	public String getIsAnswer() {
+		return isAnswer;
+	}
+
+	public void setIsAnswer(String isAnswer) {
+		this.isAnswer = isAnswer;
 	}
 }

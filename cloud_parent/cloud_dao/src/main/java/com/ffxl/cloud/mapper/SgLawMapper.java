@@ -33,4 +33,47 @@ public interface SgLawMapper extends GenericMapper<SgLaw, SgLawExample, String> 
 	 * @return
 	 */
 	int selectMaxSort(@Param("id")String id,@Param("code")String code, @Param("category")String category);
+	/**
+	 * 首页的法治动态和法律讲堂
+	 * @param category
+	 * @param page
+	 * @return
+	 */
+	List<SgLaw> querySgLawByPage(@Param("category")String category, @Param("page")Page page);
+	/**
+	 * 查询最大sortnum
+	 * @param category
+	 * @return
+	 */
+	int selectMaxSortNum(@Param("category")String category);
+	/**
+	 * 上一篇
+	 * @param sl
+	 * @return
+	 */
+	SgLaw queryNextLawRoom(@Param("model")SgLaw sl);
+	/**
+	 * 下一篇
+	 * @param sl
+	 * @return
+	 */
+	SgLaw queryPreLawRoom(@Param("model")SgLaw sl);
+	/**
+	 * 下一章
+	 * @param sl
+	 * @return
+	 */
+	SgLaw queryNextLawMagic(@Param("model")SgLaw sl);
+	/**
+	 * 上一章
+	 * @param sl
+	 * @return
+	 */
+	SgLaw queryPreLawMagic(@Param("model")SgLaw sl);
+	/**
+	 * 推荐阅读
+	 * @param sgLaw
+	 * @return
+	 */
+	List<SgLaw> queryRandLawRisk(@Param("model")SgLaw sgLaw);
 }

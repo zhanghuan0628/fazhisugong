@@ -3,12 +3,17 @@ package com.ffxl.cloud.service.impl;
 import com.ffxl.cloud.mapper.SgAskMapper;
 import com.ffxl.cloud.model.SgAsk;
 import com.ffxl.cloud.model.SgAskExample;
+import com.ffxl.cloud.model.SgLawComment;
+import com.ffxl.cloud.model.SgLawCommentExample;
 import com.ffxl.cloud.model.base.BaseSgAskExample.Criteria;
+import com.ffxl.cloud.service.SgAskCommentService;
 import com.ffxl.cloud.service.SgAskService;
+import com.ffxl.cloud.service.SgLawCommentService;
 import com.ffxl.platform.core.GenericMapper;
 import com.ffxl.platform.core.GenericServiceImpl;
 import com.ffxl.platform.core.Page;
 
+import java.util.ArrayList;
 import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,6 +29,12 @@ public class SgAskServiceImpl extends GenericServiceImpl<SgAsk, SgAskExample, St
 
     @Autowired
     private SgAskMapper sgAskMapper;
+    
+    @Autowired
+	private SgAskCommentService sgAskCommentService;
+    
+    @Autowired
+	private SgLawCommentService sgLawCommentService;
 
     @Override
     public GenericMapper<SgAsk, SgAskExample, String> getGenericMapper() {
@@ -49,5 +60,39 @@ public class SgAskServiceImpl extends GenericServiceImpl<SgAsk, SgAskExample, St
 	@Override
 	public SgAsk queryUserAsk(String id) {
 		return sgAskMapper.queryUserAsk(id);
+	}
+
+	@Override
+	public SgAsk queryUserAskById(String topicId) {
+		SgAsk sgAsk = sgAskMapper.queryUserAskById(topicId);
+		List list = sgAskCommentService.queryAllAskComment(topicId,null);
+		if(list != null && list.size() > 0){
+			sgAsk.setBackList(list);
+		}else{
+			sgAsk.setBackList(new ArrayList());
+		}
+		return sgAsk;
+	}
+
+	@Override
+	public List<SgAsk> queryMyAsk(String userId) {
+		SgAskExample example = new SgAskExample();
+        Criteria c= example.createCriteria();
+        c.andUserIdEqualTo(userId);
+        example.setOrderByClause(" create_date desc ");
+		List<SgAsk> list = sgAskMapper.selectByExample(example);
+		for(SgAsk sa:list){
+			SgLawCommentExample e = new SgLawCommentExample();
+	        com.ffxl.cloud.model.base.BaseSgLawCommentExample.Criteria cc= e.createCriteria();
+	        cc.andTopicIdEqualTo(sa.getId());
+	        cc.andTopicTypeEqualTo("ask");
+	        List<SgLawComment> l = sgLawCommentService.selectByExample(e);
+	        if(l!=null && l.size()>0){
+	        	sa.setIsAnswer("1");//已回答
+	        }else{
+	        	sa.setIsAnswer("0");//未回答
+	        }
+		}
+		return list;
 	}
 }

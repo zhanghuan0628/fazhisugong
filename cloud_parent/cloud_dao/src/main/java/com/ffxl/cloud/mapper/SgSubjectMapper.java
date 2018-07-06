@@ -20,4 +20,10 @@ public interface SgSubjectMapper extends GenericMapper<SgSubject, SgSubjectExamp
 	 * @return
 	 */
 	List<SgSubject> queryPageList(@Param("model")SgSubject sgSubject, @Param("page")Page page);
+	/**
+	 * 根据活动找到题库
+	 * @param num
+	 * @return
+	 */
+	List<SgSubject> querySubjectByTheme(@Param("num")String num);
 }

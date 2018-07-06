@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ffxl.cloud.mapper.SgThemeAnswerLogMapper">
+	<resultMap extends="BaseResultMap" id="SgThemeAnswerLogMap" type="com.ffxl.cloud.model.SgThemeAnswerLog">
+	
+	</resultMap>
+	
+	<select id="queryAnswerLogByUser" resultMap="SgThemeAnswerLogMap" parameterType="java.lang.String">
+		SELECT
+			sl.*, su.user_name AS userName
+		FROM
+			sg_theme_answer_log sl
+		JOIN sg_user su ON sl.user_id = su.id
+		WHERE
+			user_id = #{userId}
+		AND theme_id = #{themeId}
+	</select>
+	
+	<select id="queryMyTheme" resultMap="SgThemeAnswerLogMap" parameterType="java.lang.String">
+		SELECT
+			sl.*, st.title,
+			st.num
+		FROM
+			sg_theme_answer_log sl
+		JOIN sg_theme st ON sl.theme_id = st.id
+		WHERE
+			sl.user_id = #{userId}
+		ORDER BY
+			num DESC
+	</select>
+</mapper>

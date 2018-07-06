@@ -625,6 +625,66 @@ public class BaseSgThemeExample {
             addCriterion("create_time not between", value1, value2, "createTime");
             return (Criteria) this;
         }
+
+        public Criteria andSoreIsNull() {
+            addCriterion("sore is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSoreIsNotNull() {
+            addCriterion("sore is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSoreEqualTo(Integer value) {
+            addCriterion("sore =", value, "sore");
+            return (Criteria) this;
+        }
+
+        public Criteria andSoreNotEqualTo(Integer value) {
+            addCriterion("sore <>", value, "sore");
+            return (Criteria) this;
+        }
+
+        public Criteria andSoreGreaterThan(Integer value) {
+            addCriterion("sore >", value, "sore");
+            return (Criteria) this;
+        }
+
+        public Criteria andSoreGreaterThanOrEqualTo(Integer value) {
+            addCriterion("sore >=", value, "sore");
+            return (Criteria) this;
+        }
+
+        public Criteria andSoreLessThan(Integer value) {
+            addCriterion("sore <", value, "sore");
+            return (Criteria) this;
+        }
+
+        public Criteria andSoreLessThanOrEqualTo(Integer value) {
+            addCriterion("sore <=", value, "sore");
+            return (Criteria) this;
+        }
+
+        public Criteria andSoreIn(List<Integer> values) {
+            addCriterion("sore in", values, "sore");
+            return (Criteria) this;
+        }
+
+        public Criteria andSoreNotIn(List<Integer> values) {
+            addCriterion("sore not in", values, "sore");
+            return (Criteria) this;
+        }
+
+        public Criteria andSoreBetween(Integer value1, Integer value2) {
+            addCriterion("sore between", value1, value2, "sore");
+            return (Criteria) this;
+        }
+
+        public Criteria andSoreNotBetween(Integer value1, Integer value2) {
+            addCriterion("sore not between", value1, value2, "sore");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

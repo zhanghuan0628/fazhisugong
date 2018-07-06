@@ -145,12 +145,8 @@ lawMagic.initColumn = function () {
 			+ "'"
 			+row.id
 			+ "'"
-			+',\'800\',\'400\')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i>'
-			+'</a> <a title="查看" href="javascript:;" onclick="lawMagic.detail(\'查看详情\',\'/sg_law_magic/law_magic_content\','
-			+ "'"
-			+row.id
-			+ "'"
-			+',\'800\',\'400\')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6f9;</i></a> <a title="上移" href="javascript:;" onclick="lawMagic.pushUp(this,'
+			+',\'1000\',\'500\')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i>'
+			+'</a> <a title="上移" href="javascript:;" onclick="lawMagic.pushUp(this,'
 			+ "'"
 			+row.id
 			+ "'"

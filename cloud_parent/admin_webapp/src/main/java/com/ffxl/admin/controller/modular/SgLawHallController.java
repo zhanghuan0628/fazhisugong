@@ -178,10 +178,13 @@ public class SgLawHallController extends BaseController{
     	sl.setCreateDate(new Date());
     	sl.setTitle(sgLaw.getTitle());
     	sl.setStatus("no_publish");
+    	sl.setImgUrl(sgLaw.getImgUrl());
     	ShiroUser shiroUser = ShiroKit.getUser();
     	String userId = shiroUser.getId();
     	sl.setCreateBy(userId);
     	sl.setModifyBy(userId);
+    	int sort = sgLawService.selectMaxSortNum("law_lecture_room");
+    	sl.setSortnum(sort+1);
     	if(sgLaw.getType().equals("text")){
     		sl.setContent(sgLaw.getContent());
     		sl.setType("text");
@@ -217,6 +220,7 @@ public class SgLawHallController extends BaseController{
     	sl.setCategory(sgLaw.getCategory());
     	sl.setModifyDate(new Date());
     	sl.setTitle(sgLaw.getTitle());
+    	sl.setImgUrl(sgLaw.getImgUrl());
     	ShiroUser shiroUser = ShiroKit.getUser();
     	String userId = shiroUser.getId();
     	sl.setModifyBy(userId);

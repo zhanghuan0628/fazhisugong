@@ -22,7 +22,7 @@
 	<select id="selectMaxNum" resultType="int">
 		select IFNULL(max(num),0)as num FROM sg_theme
 	</select>
-	<select id="selectMaxEndDate" resultMap="SgLawSgTheme" parameterType="java.lang.String">
+	<select id="selectMaxEndDate" parameterType="java.lang.String" resultMap="SgLawSgTheme">
 		select DATE_FORMAT(max(end_time), '%Y-%m-%d') as endDate FROM sg_theme
 		where 1 = 1
 		<if test="num != null and num !='' ">

@@ -35,7 +35,7 @@
 		</if>
 	</select>
 
-	<select id="queryUserAsk" resultMap="SgAskMap" parameterType="java.lang.String">
+	<select id="queryUserAsk" parameterType="java.lang.String" resultMap="SgAskMap">
 		SELECT
 			sa.*, su.user_name AS userName,
 			DATE_FORMAT(
@@ -50,5 +50,18 @@
 		AND sa.id = #{id}
 		
 	</select>
-
+	<select id="queryUserAskById" resultMap="SgAskMap" parameterType="java.lang.String">
+		SELECT
+			sa.*, CASE sa.is_see 
+		WHEN 1
+		THEN
+			'匿名用户'
+		ELSE
+			su.user_name
+		END as nickName
+		FROM
+			sg_ask sa
+		JOIN sg_user su ON sa.user_id = su.id
+		where 1 = 1 and sa.id = #{topicId}
+	</select>
 </mapper>

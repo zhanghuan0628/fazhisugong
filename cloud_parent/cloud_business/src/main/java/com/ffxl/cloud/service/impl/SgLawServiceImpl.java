@@ -75,4 +75,39 @@ public class SgLawServiceImpl extends GenericServiceImpl<SgLaw, SgLawExample, St
 	public int selectMaxSort(String id,String code, String category) {
 		return sgLawMapper.selectMaxSort(id,code,category);
 	}
+
+	@Override
+	public List<SgLaw> querySgLawByPage(String category, Page page) {
+		return sgLawMapper.querySgLawByPage(category,page);
+	}
+
+	@Override
+	public int selectMaxSortNum(String string) {
+		return sgLawMapper.selectMaxSortNum(string);
+	}
+
+	@Override
+	public SgLaw queryNextLawRoom(SgLaw sl) {
+		return sgLawMapper.queryNextLawRoom(sl);
+	}
+
+	@Override
+	public SgLaw queryPreLawRoom(SgLaw sl) {
+		return sgLawMapper.queryPreLawRoom(sl);
+	}
+
+	@Override
+	public SgLaw queryNextLawMagic(SgLaw sl) {
+		return sgLawMapper.queryNextLawMagic(sl);
+	}
+
+	@Override
+	public SgLaw queryPreLawMagic(SgLaw sl) {
+		return sgLawMapper.queryPreLawMagic(sl);
+	}
+
+	@Override
+	public List<SgLaw> queryRandLawRisk(SgLaw sgLaw) {
+		return sgLawMapper.queryRandLawRisk(sgLaw);
+	}
 }

@@ -45,4 +45,9 @@ public class SgLawCommentServiceImpl extends GenericServiceImpl<SgLawComment, Sg
 	public List<SgLawComment> queryPageList(SgLawComment sgLawComment, Page page) {
 		return sgLawCommentMapper.queryPageList(sgLawComment,page);
 	}
+
+	@Override
+	public List<SgLawComment> queryLawCommentDetail(String string) {
+		return sgLawCommentMapper.queryLawCommentDetail(string);
+	}
 }

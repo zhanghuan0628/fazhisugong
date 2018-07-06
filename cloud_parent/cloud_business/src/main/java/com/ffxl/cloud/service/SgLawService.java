@@ -37,4 +37,47 @@ public interface SgLawService extends GenericService<SgLaw, SgLawExample, String
 	 * @return
 	 */
 	int selectMaxSort(String id,String code, String category);
+	/**
+	 * 首页的法治动态和法律讲堂
+	 * @param category
+	 * @param page
+	 * @return
+	 */
+	List<SgLaw> querySgLawByPage(String category, Page page);
+	/**
+	 * 查询最大号
+	 * @param string
+	 * @return
+	 */
+	int selectMaxSortNum(String string);
+	/**
+	 * 上一篇
+	 * @param sl
+	 * @return
+	 */
+	SgLaw queryNextLawRoom(SgLaw sl);
+	/**
+	 * 下一篇
+	 * @param sl
+	 * @return
+	 */
+	SgLaw queryPreLawRoom(SgLaw sl);
+	/**
+	 * 下一章
+	 * @param sl
+	 * @return
+	 */
+	SgLaw queryNextLawMagic(SgLaw sl);
+	/**
+	 * 上一章
+	 * @param sl
+	 * @return
+	 */
+	SgLaw queryPreLawMagic(SgLaw sl);
+	/**
+	 * 推荐阅读
+	 * @param sgLaw
+	 * @return
+	 */
+	List<SgLaw> queryRandLawRisk(SgLaw sgLaw);
 }

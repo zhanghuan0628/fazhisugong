@@ -26,6 +26,7 @@ import com.ffxl.platform.constant.Message;
 import com.ffxl.platform.core.DataTablesUtil;
 import com.ffxl.platform.core.Page;
 import com.ffxl.platform.core.exception.BusinessException;
+import com.ffxl.platform.util.DateUtil;
 import com.ffxl.platform.util.StringUtil;
 import com.ffxl.platform.util.UUIDUtil;
 /**
@@ -250,6 +251,8 @@ public class SgLawMagicController extends BaseController{
      */
     @RequestMapping("/law_magic_detail_add")
     public String lawMagicDetailAdd(String id,String title,Model model) {
+    	String time = DateUtil.formatStandardDatetime(new Date());
+    	model.addAttribute("time", time);
     	model.addAttribute("id", id);
     	model.addAttribute("title", title);
     	model.addAttribute("info", new SgLaw());
@@ -265,6 +268,8 @@ public class SgLawMagicController extends BaseController{
         }
     	SgLaw sgLaw = sgLawService.selectByPrimaryKey(id);
     	SgLaw s = sgLawService.selectByPrimaryKey(sgLaw.getCategoryCode());
+    	String time = DateUtil.formatStandardDatetime(sgLaw.getModifyDate());
+    	sgLaw.setCreateTime(time);
         model.addAttribute("info", sgLaw);
         model.addAttribute("title", s.getTitle());
         LogObjectHolder.me().set(sgLaw);

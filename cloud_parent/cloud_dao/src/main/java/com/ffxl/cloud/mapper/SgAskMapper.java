@@ -26,4 +26,10 @@ public interface SgAskMapper extends GenericMapper<SgAsk, SgAskExample, String> 
 	 * @return
 	 */
 	SgAsk queryUserAsk(@Param("id")String id);
+	/**
+	 * 用户咨询详情
+	 * @param topicId
+	 * @return
+	 */
+	SgAsk queryUserAskById(@Param("topicId")String topicId);
 }

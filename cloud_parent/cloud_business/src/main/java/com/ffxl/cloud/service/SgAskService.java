@@ -30,4 +30,16 @@ public interface SgAskService extends GenericService<SgAsk, SgAskExample, String
 	 * @return
 	 */
 	SgAsk queryUserAsk(String id);
+	/**
+	 * 用户咨询详情
+	 * @param topicId
+	 * @return
+	 */
+	SgAsk queryUserAskById(String topicId);
+	/**
+	 * 我的咨询
+	 * @param userId
+	 * @return
+	 */
+	List<SgAsk> queryMyAsk(String userId);
 }

@@ -33,6 +33,9 @@
 		<if test="model.category == 'law_information'.toString()">
 			order by create_date desc
 		</if>
+		<if test="model.category == 'law_lecture_room'.toString()">
+			order by status desc, sortNum desc ,create_date desc
+		</if>
 	</select>
 	<update id="updateSort" parameterType="com.ffxl.cloud.model.SgLaw">
 		update sg_law set num = #{model.num} 
@@ -66,5 +69,122 @@
 				and category = #{category}
 			</if>
 		</where>
+	</select>
+	
+	<select id="querySgLawByPage" parameterType="java.lang.String" resultMap="SgLawMap">
+		select * from sg_law where 1 = 1 and status = 'publish'
+		<if test="category != null and category != '' ">
+			and category = #{category}
+		</if>
+		<if test="model.category == 'law_lecture_room'.toString()">
+			order by sortNum desc
+		</if>
+		<if test="model.category != 'law_lecture_room'.toString()">
+			order by create_date desc
+		</if>
+		
+	</select>
+	
+	<select id="selectMaxSortNum" parameterType="java.lang.String" resultType="int">
+		select ifnull(max(sortNum),0) as num from sg_law where category = #{category}
+	</select>
+	
+	<!-- 上一篇 -->
+	<select id="queryNextLawRoom" resultMap="SgLawMap">
+		SELECT
+			sortNum,
+			id,
+			title
+		FROM
+			sg_law
+		WHERE
+			sortNum = (
+				SELECT
+					min(sortNum)
+				FROM
+					sg_law
+				WHERE
+					sortNum &gt; #{model.sortnum}
+				AND category = 'law_lecture_room' and `status` = 'publish' ORDER BY sortNum DESC
+			)
+	</select>
+	
+	<!-- 下一篇 -->
+	<select id="queryPreLawRoom" resultMap="SgLawMap">
+		SELECT
+			sortNum,
+				id,
+				title
+			FROM
+				sg_law
+			WHERE
+				sortNum = (
+					SELECT
+						max(sortNum)
+					FROM
+						sg_law
+					WHERE
+						sortNum &lt; #{model.sortnum}
+					AND category = 'law_lecture_room' and `status` = 'publish' ORDER BY sortNum DESC
+				)
+	</select>
+	
+	<!-- 上一章 -->
+	<select id="queryPreLawMagic" resultMap="SgLawMap">
+		SELECT
+			num,
+			id,
+			title
+		FROM
+			sg_law
+		WHERE
+			num = (
+				SELECT
+					max(num)
+				FROM
+					sg_law
+				WHERE
+					num &lt; 2
+				AND category = 'law_magic'
+				AND `status` = 'publish'
+				AND category_code = #{model.num}
+				ORDER BY
+					num DESC
+			)
+		AND category = 'law_magic'
+		AND `status` = 'publish'
+		AND category_code = #{model.num}
+	</select>
+	
+	<!-- 下一章-->
+	<select id="queryNextLawMagic" resultMap="SgLawMap">
+		SELECT
+			num,
+			id,
+			title
+		FROM
+			sg_law
+		WHERE
+			num = (
+				SELECT
+					min(num)
+				FROM
+					sg_law
+				WHERE
+					num &gt; 2
+				AND category = 'law_magic'
+				AND `status` = 'publish'
+				AND category_code = #{model.num}
+				ORDER BY
+					num DESC
+			)
+		AND category = 'law_magic'
+		AND `status` = 'publish'
+		AND category_code = #{model.num}
+	</select>
+	
+	
+	<select id="queryRandLawRisk" resultMap="SgLawMap">
+		SELECT * FROM sg_law where category = #{model.category} ORDER BY RAND() LIMIT 3;
 	</select>
 </mapper>

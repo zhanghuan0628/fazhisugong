@@ -16,6 +16,8 @@ import com.ffxl.admin.controller.base.BaseController;
 import com.ffxl.admin.core.common.annotion.BussinessLog;
 import com.ffxl.admin.core.common.constant.dictmap.SgLawDic;
 import com.ffxl.admin.core.log.LogObjectHolder;
+import com.ffxl.admin.core.shiro.ShiroKit;
+import com.ffxl.admin.core.shiro.ShiroUser;
 import com.ffxl.cloud.model.SgLaw;
 import com.ffxl.cloud.service.SgLawService;
 import com.ffxl.platform.constant.JsonResult;
@@ -160,15 +162,31 @@ public class SgLawInformationController extends BaseController{
     @ResponseBody
     @BussinessLog(value = "新增法治动态", key = "id", dict = SgLawDic.class)
     @RequestMapping("/add")
-    public JsonResult add(SgLaw sgLaw,HttpSession session){
+    public JsonResult add(SgLaw sgLaw){
     	int i = -1;
-    	sgLaw.setId(UUIDUtil.getUUID());
-    	sgLaw.setModifyDate(new Date());
-    	sgLaw.setCreateDate(new Date());
-    	sgLaw.setStatus("no_publish");
-    	int s = sgLawService.selectMaxSort(sgLaw.getCategoryCode(),sgLaw.getCategoryCode(),sgLaw.getCategory());
-    	sgLaw.setNum(s+1);
-    	i = sgLawService.insertSelective(sgLaw);
+    	SgLaw sl = new SgLaw();
+    	sl.setId(UUIDUtil.getUUID());
+    	sl.setCategory(sgLaw.getCategory());
+    	sl.setModifyDate(new Date());
+    	sl.setCreateDate(new Date());
+    	sl.setTitle(sgLaw.getTitle());
+    	sl.setStatus("no_publish");
+    	sl.setImgUrl(sgLaw.getImgUrl());
+    	ShiroUser shiroUser = ShiroKit.getUser();
+    	String userId = shiroUser.getId();
+    	sl.setCreateBy(userId);
+    	sl.setModifyBy(userId);
+    	if(sgLaw.getType().equals("text")){
+    		sl.setContent(sgLaw.getContent());
+    		sl.setType("text");
+    		i = sgLawService.insertSelective(sl);
+    	}else{
+    		sl.setContent(sgLaw.getContent());
+    		sl.setNum(sgLaw.getNum());
+    		sl.setType("video");
+    		sl.setVideoUrl(sgLaw.getVideoUrl());
+    		i= sgLawService.insertSelective(sl);
+    	}
     	if(i > 0){
     		return new JsonResult(true);
         }else{
@@ -186,11 +204,28 @@ public class SgLawInformationController extends BaseController{
     @ResponseBody
     @BussinessLog(value = "修改法治动态", key = "id", dict = SgLawDic.class)
     @RequestMapping("/edit")
-    public JsonResult edit(SgLaw sgLaw,HttpSession session){
+    public JsonResult edit(SgLaw sgLaw){
     	int i = -1;
-    	sgLaw.setId(sgLaw.getId());
-    	sgLaw.setModifyDate(new Date());
-		i = sgLawService.updateByPrimaryKeySelective(sgLaw);
+    	SgLaw sl = new SgLaw();
+    	sl.setId(sgLaw.getId());
+    	sl.setCategory(sgLaw.getCategory());
+    	sl.setModifyDate(new Date());
+    	sl.setTitle(sgLaw.getTitle());
+    	sl.setImgUrl(sgLaw.getImgUrl());
+    	ShiroUser shiroUser = ShiroKit.getUser();
+    	String userId = shiroUser.getId();
+    	sl.setModifyBy(userId);
+    	if(sgLaw.getType().equals("text")){
+    		sl.setContent(sgLaw.getContent());
+    		sl.setType("text");
+    		i = sgLawService.updateByPrimaryKeySelective(sl);
+    	}else{
+    		sl.setContent(sgLaw.getContent());
+    		sl.setNum(sgLaw.getNum());
+    		sl.setVideoUrl(sgLaw.getVideoUrl());
+    		sl.setType("video");
+    		i= sgLawService.updateByPrimaryKeySelective(sl);
+    	}
     	if(i > 0){
     		return new JsonResult(true);
         }else{

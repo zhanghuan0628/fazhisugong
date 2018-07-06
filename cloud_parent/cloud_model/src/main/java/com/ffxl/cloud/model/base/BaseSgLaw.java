@@ -32,6 +32,10 @@ public class BaseSgLaw implements Serializable {
 
     private String type;
 
+    private Integer sortnum;
+
+    private String imgUrl;
+
     private static final long serialVersionUID = 1L;
 
     public String getId() {
@@ -146,6 +150,22 @@ public class BaseSgLaw implements Serializable {
         this.type = type == null ? null : type.trim();
     }
 
+    public Integer getSortnum() {
+        return sortnum;
+    }
+
+    public void setSortnum(Integer sortnum) {
+        this.sortnum = sortnum;
+    }
+
+    public String getImgUrl() {
+        return imgUrl;
+    }
+
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl == null ? null : imgUrl.trim();
+    }
+
     @Override
     public boolean equals(Object that) {
         if (this == that) {
@@ -171,7 +191,9 @@ public class BaseSgLaw implements Serializable {
             && (this.getModifyDate() == null ? other.getModifyDate() == null : this.getModifyDate().equals(other.getModifyDate()))
             && (this.getVideoUrl() == null ? other.getVideoUrl() == null : this.getVideoUrl().equals(other.getVideoUrl()))
             && (this.getAuthor() == null ? other.getAuthor() == null : this.getAuthor().equals(other.getAuthor()))
-            && (this.getType() == null ? other.getType() == null : this.getType().equals(other.getType()));
+            && (this.getType() == null ? other.getType() == null : this.getType().equals(other.getType()))
+            && (this.getSortnum() == null ? other.getSortnum() == null : this.getSortnum().equals(other.getSortnum()))
+            && (this.getImgUrl() == null ? other.getImgUrl() == null : this.getImgUrl().equals(other.getImgUrl()));
     }
 
     @Override
@@ -192,6 +214,8 @@ public class BaseSgLaw implements Serializable {
         result = prime * result + ((getVideoUrl() == null) ? 0 : getVideoUrl().hashCode());
         result = prime * result + ((getAuthor() == null) ? 0 : getAuthor().hashCode());
         result = prime * result + ((getType() == null) ? 0 : getType().hashCode());
+        result = prime * result + ((getSortnum() == null) ? 0 : getSortnum().hashCode());
+        result = prime * result + ((getImgUrl() == null) ? 0 : getImgUrl().hashCode());
         return result;
     }
 }

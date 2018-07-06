@@ -149,7 +149,37 @@ function genOssFileName(fileType, entityType, suffix) {
     var fileName = "fzsg/lawHall/"+date +"." + suffix;
     return fileName;
 }
-
+$("#imgFile").bind("change", function(e) {
+	   for (var i = 0; i < e.target.files.length; i++) {
+	       var file = e.target.files[i];
+	       
+	       var geshiStr = $("#imgFile").val();
+	       if (geshiStr.indexOf(".jpg") < 0  && geshiStr.indexOf(".png") < 0 && geshiStr.indexOf(".JPG") < 0  && geshiStr.indexOf(".PNG") < 0 ) {
+	           alert("格式不正确！请上传mp4,mp4格式！");
+	           return false;
+	       }
+	       var fileSplits = file.name.split(".");
+	      /* $("#progressWindow").window('center');
+	       $("#progressWindow").window({
+	           "modal" : true
+	       });*/
+	       /*$("#progressWindow").window('open');*/
+	       var ossFileName = genOssFileName("image", "storelayout", fileSplits[fileSplits.length - 1]);
+	       console.log("22222"+ossFileName);
+	       ossClient.multipartUpload(ossFileName, file,{progress: function* (p) {
+	           /*$('#progress').progressbar('setValue', p.toFixed(2)*100);*/
+	           
+	       }}).then(function (result) {
+	          /* $("#progressWindow").window('close');*/
+	    	   Feng.info("上传成功!");
+	           var url = "http://ffxl.oss-cn-shanghai.aliyuncs.com/" + ossFileName;
+	           newUrl = url;
+	           console.log("3333"+newUrl);
+	           $("#imgUrl").val(newUrl);
+	           $("#img").attr("src",newUrl);
+	         })
+	   }
+	});
 $(function(){
 	$('.skin-minimal input').iCheck({
 		checkboxClass: 'icheckbox-blue',

@@ -1065,6 +1065,136 @@ public class BaseSgLawExample {
             addCriterion("type not between", value1, value2, "type");
             return (Criteria) this;
         }
+
+        public Criteria andSortnumIsNull() {
+            addCriterion("sortNum is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSortnumIsNotNull() {
+            addCriterion("sortNum is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSortnumEqualTo(Integer value) {
+            addCriterion("sortNum =", value, "sortnum");
+            return (Criteria) this;
+        }
+
+        public Criteria andSortnumNotEqualTo(Integer value) {
+            addCriterion("sortNum <>", value, "sortnum");
+            return (Criteria) this;
+        }
+
+        public Criteria andSortnumGreaterThan(Integer value) {
+            addCriterion("sortNum >", value, "sortnum");
+            return (Criteria) this;
+        }
+
+        public Criteria andSortnumGreaterThanOrEqualTo(Integer value) {
+            addCriterion("sortNum >=", value, "sortnum");
+            return (Criteria) this;
+        }
+
+        public Criteria andSortnumLessThan(Integer value) {
+            addCriterion("sortNum <", value, "sortnum");
+            return (Criteria) this;
+        }
+
+        public Criteria andSortnumLessThanOrEqualTo(Integer value) {
+            addCriterion("sortNum <=", value, "sortnum");
+            return (Criteria) this;
+        }
+
+        public Criteria andSortnumIn(List<Integer> values) {
+            addCriterion("sortNum in", values, "sortnum");
+            return (Criteria) this;
+        }
+
+        public Criteria andSortnumNotIn(List<Integer> values) {
+            addCriterion("sortNum not in", values, "sortnum");
+            return (Criteria) this;
+        }
+
+        public Criteria andSortnumBetween(Integer value1, Integer value2) {
+            addCriterion("sortNum between", value1, value2, "sortnum");
+            return (Criteria) this;
+        }
+
+        public Criteria andSortnumNotBetween(Integer value1, Integer value2) {
+            addCriterion("sortNum not between", value1, value2, "sortnum");
+            return (Criteria) this;
+        }
+
+        public Criteria andImgUrlIsNull() {
+            addCriterion("img_url is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andImgUrlIsNotNull() {
+            addCriterion("img_url is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andImgUrlEqualTo(String value) {
+            addCriterion("img_url =", value, "imgUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andImgUrlNotEqualTo(String value) {
+            addCriterion("img_url <>", value, "imgUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andImgUrlGreaterThan(String value) {
+            addCriterion("img_url >", value, "imgUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andImgUrlGreaterThanOrEqualTo(String value) {
+            addCriterion("img_url >=", value, "imgUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andImgUrlLessThan(String value) {
+            addCriterion("img_url <", value, "imgUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andImgUrlLessThanOrEqualTo(String value) {
+            addCriterion("img_url <=", value, "imgUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andImgUrlLike(String value) {
+            addCriterion("img_url like", value, "imgUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andImgUrlNotLike(String value) {
+            addCriterion("img_url not like", value, "imgUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andImgUrlIn(List<String> values) {
+            addCriterion("img_url in", values, "imgUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andImgUrlNotIn(List<String> values) {
+            addCriterion("img_url not in", values, "imgUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andImgUrlBetween(String value1, String value2) {
+            addCriterion("img_url between", value1, value2, "imgUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andImgUrlNotBetween(String value1, String value2) {
+            addCriterion("img_url not between", value1, value2, "imgUrl");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

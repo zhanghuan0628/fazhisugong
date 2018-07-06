@@ -4,11 +4,14 @@ import com.alibaba.fastjson.JSONObject;
 import com.ffxl.cloud.mapper.SgSubjectMapper;
 import com.ffxl.cloud.model.SgSubject;
 import com.ffxl.cloud.model.SgSubjectExample;
+import com.ffxl.cloud.model.SgTheme;
 import com.ffxl.cloud.model.base.BaseSgSubjectExample.Criteria;
 import com.ffxl.cloud.service.SgSubjectService;
+import com.ffxl.cloud.service.SgThemeService;
 import com.ffxl.platform.core.GenericMapper;
 import com.ffxl.platform.core.GenericServiceImpl;
 import com.ffxl.platform.core.Page;
+import com.ffxl.platform.util.StringUtil;
 
 import net.sf.json.JSONArray;
 
@@ -31,6 +34,9 @@ public class SgSubjectServiceImpl extends GenericServiceImpl<SgSubject, SgSubjec
 
     @Autowired
     private SgSubjectMapper sgSubjectMapper;
+    
+    @Autowired
+    private SgThemeService sgThemeService;
 
     @Override
     public GenericMapper<SgSubject, SgSubjectExample, String> getGenericMapper() {
@@ -74,5 +80,33 @@ public class SgSubjectServiceImpl extends GenericServiceImpl<SgSubject, SgSubjec
             newList.add(map);
 		}
 		return newList;
+	}
+
+	@Override
+	public Map queryCheckTheme() {
+		List<SgTheme> list = sgThemeService.queryPageList(null,null);
+		Map map = new HashMap();
+		for(SgTheme st:list){
+			if(st.getStage().equals("3")){
+				String id = st.getId();
+				int num  = st.getNum();
+				int score = st.getSore();
+				map.put("themeId", id);
+				map.put("num", num);
+				map.put("score", score);
+				break;
+			}
+		}
+		return map;
+		
+	}
+
+	@Override
+	public List<SgSubject> querySubjectByTheme(String themeId, int num) {
+		List<SgSubject> list = sgSubjectMapper.querySubjectByTheme(num+"");
+		for(SgSubject ss:list){
+			ss.setThemeId(themeId);
+		}
+		return list;
 	}
 }

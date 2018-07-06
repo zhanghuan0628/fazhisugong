@@ -18,6 +18,8 @@ public class BaseSgAsk implements Serializable {
 
     private Boolean dummy;
 
+    private String urgent;
+
     private static final long serialVersionUID = 1L;
 
     public String getId() {
@@ -76,6 +78,14 @@ public class BaseSgAsk implements Serializable {
         this.dummy = dummy;
     }
 
+    public String getUrgent() {
+        return urgent;
+    }
+
+    public void setUrgent(String urgent) {
+        this.urgent = urgent == null ? null : urgent.trim();
+    }
+
     @Override
     public boolean equals(Object that) {
         if (this == that) {
@@ -94,7 +104,8 @@ public class BaseSgAsk implements Serializable {
             && (this.getUserId() == null ? other.getUserId() == null : this.getUserId().equals(other.getUserId()))
             && (this.getCreateDate() == null ? other.getCreateDate() == null : this.getCreateDate().equals(other.getCreateDate()))
             && (this.getSee() == null ? other.getSee() == null : this.getSee().equals(other.getSee()))
-            && (this.getDummy() == null ? other.getDummy() == null : this.getDummy().equals(other.getDummy()));
+            && (this.getDummy() == null ? other.getDummy() == null : this.getDummy().equals(other.getDummy()))
+            && (this.getUrgent() == null ? other.getUrgent() == null : this.getUrgent().equals(other.getUrgent()));
     }
 
     @Override
@@ -108,6 +119,7 @@ public class BaseSgAsk implements Serializable {
         result = prime * result + ((getCreateDate() == null) ? 0 : getCreateDate().hashCode());
         result = prime * result + ((getSee() == null) ? 0 : getSee().hashCode());
         result = prime * result + ((getDummy() == null) ? 0 : getDummy().hashCode());
+        result = prime * result + ((getUrgent() == null) ? 0 : getUrgent().hashCode());
         return result;
     }
 }

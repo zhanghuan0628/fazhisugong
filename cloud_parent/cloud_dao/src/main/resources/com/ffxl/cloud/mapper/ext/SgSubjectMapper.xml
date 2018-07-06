@@ -11,4 +11,7 @@
 		</if>
 		order by create_date desc
 	</select>
+	<select id="querySubjectByTheme" resultMap="SgSubjectMap"  parameterType="java.lang.String">
+		SELECT * FROM sg_subject ORDER BY RAND() LIMIT #{num}
+	</select>
 </mapper>

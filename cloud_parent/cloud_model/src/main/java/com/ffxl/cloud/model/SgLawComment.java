@@ -7,6 +7,20 @@ public class SgLawComment extends BaseSgLawComment {
 	private String userName;
 	private String createTime;
 	private String replyId;
+	private String headUrl;
+	public String getHeadUrl() {
+		return headUrl;
+	}
+	public void setHeadUrl(String headUrl) {
+		this.headUrl = headUrl;
+	}
+	public String getReplyName() {
+		return replyName;
+	}
+	public void setReplyName(String replyName) {
+		this.replyName = replyName;
+	}
+	private String replyName;
 	public String getTitle() {
 		return title;
 	}

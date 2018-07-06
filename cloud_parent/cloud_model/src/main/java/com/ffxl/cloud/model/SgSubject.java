@@ -7,6 +7,7 @@ public class SgSubject extends BaseSgSubject {
 	private String title;//选项
 	private String result;//结果
 	private int num;//选项数
+	private String themeId;//期数id
 	public String getQstn() {
 		return qstn;
 	}
@@ -30,5 +31,11 @@ public class SgSubject extends BaseSgSubject {
 	}
 	public void setNum(int num) {
 		this.num = num;
+	}
+	public String getThemeId() {
+		return themeId;
+	}
+	public void setThemeId(String themeId) {
+		this.themeId = themeId;
 	}
 }

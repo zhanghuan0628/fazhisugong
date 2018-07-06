@@ -1,6 +1,6 @@
 @layout("/common/_container.html"){
 <article class="page-container">
-	<form class="form form-horizontal" id="lawMagicInfoForm">
+	<form class="form form-horizontal" id="lawMagicInfoForm" onsubmit="return getContent();">
 	<input type="hidden" value="${info.id}" id="id" name="id">
 	<div class="row cl">
 		<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>标题：</label>
@@ -17,15 +17,16 @@
 	<div class="row cl">
 		<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>编辑时间：</label>
 		<div class="formControls col-xs-8 col-sm-9 skin-minimal">
-			<input type="text" class="input-text" value="${info.modifyDate}" id="createDate" name="createDate">
+			<input type="text" class="input-text" value="${info.createTime}">
 		</div>
 	</div>
 	<div class="row cl">
 		<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>内容：</label>
 		<div class="formControls col-xs-8 col-sm-9">
-			<textarea id="content" name="content" class="input-text" style="width: 400px;height: 100px;">${info.content}</textarea>
-		</div>
-	</div>
+			<textarea style="display: none" id="content" name="content">${info.content}</textarea>
+	        <div id="editor" style="height: 400px; max-height: 500px;">${info.content}</div>
+        </div>
+    </div>
 	<div class="row cl">
 		<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
 			<input class="btn btn-primary radius" type="submit" value="&nbsp;&nbsp;提交&nbsp;&nbsp;">

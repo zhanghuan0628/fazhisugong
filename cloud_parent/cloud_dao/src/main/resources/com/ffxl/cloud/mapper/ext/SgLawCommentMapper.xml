@@ -23,5 +23,20 @@
 		   and su.user_name like CONCAT('%','${model.userName}','%')
 		</if>
 	</select>
-
+	
+	<select id="queryLawCommentDetail" resultMap="SgLawCommentMap" parameterType="java.lang.String">
+		SELECT
+			sc.*, su.user_name AS userName,
+			su.head_url AS headUrl,
+			sr.user_name AS replyName
+		FROM
+			sg_law_comment sc
+		LEFT JOIN sg_user su ON sc.from_user_id = su.id
+		LEFT JOIN sys_user sr ON sc.reply_user_id = sr.id
+		WHERE
+			1 = 1
+		AND topic_type = 'law'
+		AND sc.topic_id = #{string}
+		AND state = 'pass'
+	</select>
 </mapper>

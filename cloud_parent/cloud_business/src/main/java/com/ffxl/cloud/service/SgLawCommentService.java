@@ -24,4 +24,9 @@ public interface SgLawCommentService extends GenericService<SgLawComment, SgLawC
      * @return
      */
 	List<SgLawComment> queryPageList(SgLawComment sgLawComment, Page page);
+	/**
+	 * 留言详情
+	 * @param string
+	 */
+	List<SgLawComment> queryLawCommentDetail(String string);
 }

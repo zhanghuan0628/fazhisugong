@@ -575,6 +575,76 @@ public class BaseSgAskExample {
             addCriterion("is_dummy not between", value1, value2, "dummy");
             return (Criteria) this;
         }
+
+        public Criteria andUrgentIsNull() {
+            addCriterion("urgent is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andUrgentIsNotNull() {
+            addCriterion("urgent is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andUrgentEqualTo(String value) {
+            addCriterion("urgent =", value, "urgent");
+            return (Criteria) this;
+        }
+
+        public Criteria andUrgentNotEqualTo(String value) {
+            addCriterion("urgent <>", value, "urgent");
+            return (Criteria) this;
+        }
+
+        public Criteria andUrgentGreaterThan(String value) {
+            addCriterion("urgent >", value, "urgent");
+            return (Criteria) this;
+        }
+
+        public Criteria andUrgentGreaterThanOrEqualTo(String value) {
+            addCriterion("urgent >=", value, "urgent");
+            return (Criteria) this;
+        }
+
+        public Criteria andUrgentLessThan(String value) {
+            addCriterion("urgent <", value, "urgent");
+            return (Criteria) this;
+        }
+
+        public Criteria andUrgentLessThanOrEqualTo(String value) {
+            addCriterion("urgent <=", value, "urgent");
+            return (Criteria) this;
+        }
+
+        public Criteria andUrgentLike(String value) {
+            addCriterion("urgent like", value, "urgent");
+            return (Criteria) this;
+        }
+
+        public Criteria andUrgentNotLike(String value) {
+            addCriterion("urgent not like", value, "urgent");
+            return (Criteria) this;
+        }
+
+        public Criteria andUrgentIn(List<String> values) {
+            addCriterion("urgent in", values, "urgent");
+            return (Criteria) this;
+        }
+
+        public Criteria andUrgentNotIn(List<String> values) {
+            addCriterion("urgent not in", values, "urgent");
+            return (Criteria) this;
+        }
+
+        public Criteria andUrgentBetween(String value1, String value2) {
+            addCriterion("urgent between", value1, value2, "urgent");
+            return (Criteria) this;
+        }
+
+        public Criteria andUrgentNotBetween(String value1, String value2) {
+            addCriterion("urgent not between", value1, value2, "urgent");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

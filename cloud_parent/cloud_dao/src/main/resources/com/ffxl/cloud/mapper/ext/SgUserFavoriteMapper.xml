@@ -1,3 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.ffxl.cloud.mapper.SgUserFavoriteMapper" />
+<mapper namespace="com.ffxl.cloud.mapper.SgUserFavoriteMapper">
+	<resultMap extends="BaseResultMap" id="SgUserFavoriteMap" type="com.ffxl.cloud.model.SgUserFavorite">
+	
+	</resultMap>
+	<select id="queryMyFavorite" resultMap="SgUserFavoriteMap" parameterType="java.lang.String">
+		SELECT
+			sf.source_id,
+			sl.title as title,
+		  sl.content as content,
+			sf.source_type
+		FROM
+			sg_user_favorite sf
+		JOIN sg_law sl ON sf.source_id = sl.id
+		WHERE
+			user_id = #{userId}
+		AND source_type = #{sourceType}
+	</select>
+</mapper>

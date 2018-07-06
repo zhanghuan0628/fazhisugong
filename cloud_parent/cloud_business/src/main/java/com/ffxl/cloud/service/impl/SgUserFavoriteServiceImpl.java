@@ -38,4 +38,9 @@ public class SgUserFavoriteServiceImpl extends GenericServiceImpl<SgUserFavorite
             return null;
         }
     }
+
+	@Override
+	public List<SgUserFavorite> queryMyFavorite(String userId, String sourceType) {
+		return sgUserFavoriteMapper.queryMyFavorite(userId,sourceType);
+	}
 }

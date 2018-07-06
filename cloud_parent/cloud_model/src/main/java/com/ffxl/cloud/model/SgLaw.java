@@ -1,5 +1,7 @@
 package com.ffxl.cloud.model;
 
+import java.util.Map;
+
 import com.ffxl.cloud.model.base.BaseSgLaw;
 
 public class SgLaw extends BaseSgLaw {
@@ -12,6 +14,14 @@ public class SgLaw extends BaseSgLaw {
 	private String detail;
 	
 	private String name;//专业名称
+	
+	private String favorite;//是否已收藏
+	
+	private String chapter;//章节
+	
+	private Map<String,String> map;
+	
+	private String allChapter;
 
 	public int getSort() {
 		return sort;
@@ -51,5 +61,37 @@ public class SgLaw extends BaseSgLaw {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getFavorite() {
+		return favorite;
+	}
+
+	public void setFavorite(String favorite) {
+		this.favorite = favorite;
+	}
+
+	public Map<String,String> getMap() {
+		return map;
+	}
+
+	public void setMap(Map<String,String> map) {
+		this.map = map;
+	}
+
+	public String getChapter() {
+		return chapter;
+	}
+
+	public void setChapter(String chapter) {
+		this.chapter = chapter;
+	}
+
+	public String getAllChapter() {
+		return allChapter;
+	}
+
+	public void setAllChapter(String allChapter) {
+		this.allChapter = allChapter;
 	}
 }

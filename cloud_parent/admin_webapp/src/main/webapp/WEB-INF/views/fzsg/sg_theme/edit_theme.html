@@ -49,6 +49,16 @@
         </div>
      </div>
      <div class="row cl">
+		<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>本期每题分数：</label>
+		<div class="formControls col-xs-8 col-sm-9">
+			<input type="text" class="input-text" value="${info.sore}" id="sore" name="sore" 
+				@if(type=="see"){
+	        		disabled="disabled"
+	        	@}
+			/>
+        </div>
+     </div>
+     <div class="row cl">
 		<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>内容：</label>
 		<div class="formControls col-xs-8 col-sm-9">
 			<textarea style="width: 400px;height: 100px;" id="content" name="content"

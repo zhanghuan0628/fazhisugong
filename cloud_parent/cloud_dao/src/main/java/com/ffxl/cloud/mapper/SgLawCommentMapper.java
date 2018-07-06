@@ -20,4 +20,10 @@ public interface SgLawCommentMapper extends GenericMapper<SgLawComment, SgLawCom
 	 * @return
 	 */
 	List<SgLawComment> queryPageList(@Param("model")SgLawComment sgLawComment, @Param("page")Page page);
+	/**
+	 * 留言详情
+	 * @param string
+	 * @return
+	 */
+	List<SgLawComment> queryLawCommentDetail(@Param("string")String string);
 }

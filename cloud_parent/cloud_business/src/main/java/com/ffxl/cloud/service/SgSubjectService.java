@@ -1,6 +1,7 @@
 package com.ffxl.cloud.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.ffxl.cloud.model.SgSubject;
 import com.ffxl.cloud.model.SgSubjectExample;
@@ -24,4 +25,16 @@ public interface SgSubjectService extends GenericService<SgSubject, SgSubjectExa
      * @return
      */
 	List<SgSubject> queryPageList(SgSubject sgSubject, Page page);
+	/**
+	 * 查询题库
+	 * @return
+	 */
+	Map queryCheckTheme();
+	/**
+	 * 根据活动找到题库
+	 * @param themeId
+	 * @param num
+	 * @return
+	 */
+	List<SgSubject> querySubjectByTheme(String themeId, int num);
 }
