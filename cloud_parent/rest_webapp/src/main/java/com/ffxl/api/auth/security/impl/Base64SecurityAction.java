@@ -1,5 +1,6 @@
 package com.ffxl.api.auth.security.impl;
 
+import org.springframework.stereotype.Component;
 import org.springframework.util.Base64Utils;
 
 import com.ffxl.api.auth.security.DataSecurityAction;
@@ -10,6 +11,7 @@ import com.ffxl.api.auth.security.DataSecurityAction;
  * @author jiawei
  * 2018年7月3日
  */
+@Component
 public class Base64SecurityAction implements DataSecurityAction {
 
     @Override

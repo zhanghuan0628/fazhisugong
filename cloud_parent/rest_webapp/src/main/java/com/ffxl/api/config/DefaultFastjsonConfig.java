@@ -17,9 +17,9 @@ import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
 
 /**
  * fastjson配置类
- *
- * @author fengshuonan
- * @date 2017-05-23 22:56
+ * 
+ * @author jiawei
+ * 2018年7月4日
  */
 public class DefaultFastjsonConfig {
 
