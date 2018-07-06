@@ -2,13 +2,18 @@
 <nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 内容管理 <span class="c-gray en">&gt;</span> 咨询管理 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
 <div class="page-container">
 	<div class="text-c">
-		咨询标题：<input type="text" class="input-text" style="width:250px" id="title" name="title">
-		提问者：<input type="text" class="input-text" style="width:250px" id="userName" name="userName">
-		咨询形式：<select id="see" name="see" class="input-text" style="width:250px">
+		咨询标题：<input type="text" class="input-text" style="width:120px" id="title" name="title">
+		提问者：<input type="text" class="input-text" style="width:120px" id="userName" name="userName">
+		咨询形式：<select id="see" name="see" class="input-text" style="width:120px">
 					<option value="">全部</option>
 					<option value="1">匿名</option>
 					<option value="0">公开</option>
 				 </select>
+		 是否虚拟：<select id="dummy" name="dummy" class="input-text" style="width:120px">
+			<option value="">全部</option>
+			<option value="1">是</option>
+			<option value="0">否</option>
+		 </select>
 		<button type="button" class="btn btn-success" id="search" onclick="ask.search()"  ><i class="Hui-iconfont">&#xe665;</i> 查询</button>
 	</div>
 	<div class="cl pd-5 bg-1 bk-gray mt-20"> 

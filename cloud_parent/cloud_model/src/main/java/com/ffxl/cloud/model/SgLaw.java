@@ -9,9 +9,9 @@ public class SgLaw extends BaseSgLaw {
 	
 	private String createTime;//发布时间
 	
-	private String type;//类型
-	
 	private String detail;
+	
+	private String name;//专业名称
 
 	public int getSort() {
 		return sort;
@@ -37,19 +37,19 @@ public class SgLaw extends BaseSgLaw {
 		this.createTime = createTime;
 	}
 
-	public String getType() {
-		return type;
-	}
-
-	public void setType(String type) {
-		this.type = type;
-	}
-
 	public String getDetail() {
 		return detail;
 	}
 
 	public void setDetail(String detail) {
 		this.detail = detail;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 }

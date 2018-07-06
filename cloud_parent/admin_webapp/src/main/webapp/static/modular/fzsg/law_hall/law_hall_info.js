@@ -1,6 +1,9 @@
 /**
  * 法治讲堂详情对话框（可用于添加和修改对话框）
  */
+/**
+ * 图文
+ */
 var editor = new wangEditor('editor');
  // 仅仅想移除某几个菜单，例如想移除『插入代码』和『位置』菜单：
  // 其中的 wangEditor.config.menus 可获取默认情况下的菜单配置
@@ -40,6 +43,7 @@ var editor = new wangEditor('editor');
  editor.config.hideLinkImg = true;
 
  editor.create();
+ 
 
 var sgLawHallInfoDlg = {
 	formId : "lawHallInfoForm", //form表单id
@@ -75,6 +79,9 @@ var sgLawHallInfoDlg = {
 				minlength:1,
 				maxlength:10000,
 			},
+			videoUrl:{
+				required:true,
+			},
 			num:{
 				required:true,
 				minlength:1,
@@ -91,8 +98,57 @@ var sgLawHallInfoDlg = {
     }
     
 	 
-	
+		
 };
+function getContent(){
+	var html = editor.$txt.html();
+    console.log(html);
+    $("#content").val(html);
+    
+}
+
+var ossClient = new OSS.Wrapper({
+    region: "oss-cn-shanghai",
+    accessKeyId: "LTAICG7rs8rsGNj4",
+    accessKeySecret: "FDtacJMEQXKRwIPgK3WKYR2Cyv8xKm",
+    bucket: "ffxl"
+});
+var newUrl = "";
+$("#file").bind("change", function(e) {
+   for (var i = 0; i < e.target.files.length; i++) {
+       var file = e.target.files[i];
+       
+       var geshiStr = $("#file").val();
+       if (geshiStr.indexOf(".mp4") < 0  && geshiStr.indexOf(".MP4") < 0 ) {
+           alert("格式不正确！请上传mp4,mp4格式！");
+           return false;
+       }
+       var fileSplits = file.name.split(".");
+      /* $("#progressWindow").window('center');
+       $("#progressWindow").window({
+           "modal" : true
+       });*/
+       /*$("#progressWindow").window('open');*/
+       var ossFileName = genOssFileName("image", "storelayout", fileSplits[fileSplits.length - 1]);
+       console.log("22222"+ossFileName);
+       ossClient.multipartUpload(ossFileName, file,{progress: function* (p) {
+           /*$('#progress').progressbar('setValue', p.toFixed(2)*100);*/
+           
+       }}).then(function (result) {
+          /* $("#progressWindow").window('close');*/
+    	   Feng.info("上传成功!");
+           var url = "http://ffxl.oss-cn-shanghai.aliyuncs.com/" + ossFileName;
+           newUrl = url;
+           console.log("3333"+newUrl);
+           $("#videoUrl").val(newUrl);
+         })
+   }
+});
+function genOssFileName(fileType, entityType, suffix) {
+    var date = new Date().getTime(); 
+    var fileName = "fzsg/lawHall/"+date +"." + suffix;
+    return fileName;
+}
 
 $(function(){
 	$('.skin-minimal input').iCheck({
@@ -100,7 +156,7 @@ $(function(){
 		radioClass: 'iradio-blue',
 		increaseArea: '20%'
 	});
-	if($("#url").val()=="text"){
+	if($("#type").val()=="text"){
 		$("#text").show();
 		$("#video").hide();
 	}else{

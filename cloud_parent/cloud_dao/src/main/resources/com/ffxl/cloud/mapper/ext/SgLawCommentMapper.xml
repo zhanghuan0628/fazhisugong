@@ -1,3 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.ffxl.cloud.mapper.SgLawCommentMapper" />
+<mapper namespace="com.ffxl.cloud.mapper.SgLawCommentMapper">
+	<resultMap extends="BaseResultMap" id="SgLawCommentMap" type="com.ffxl.cloud.model.SgLawComment">
+	
+	</resultMap>
+	
+	<select id="queryPageList" resultMap="SgLawCommentMap">
+		SELECT
+			sc.*,
+			sl.title as title,
+			su.user_name as userName,
+			DATE_FORMAT(sc.create_date,'%Y-%m-%d %H:%i:%s')as createTime
+		FROM
+			sg_law_comment sc
+		JOIN sg_law sl ON sc.topic_id = sl.id
+		JOIN sg_user su ON sc.from_user_id = su.id
+		where 1 = 1
+		<if test="model.topicId != null and model.topicId != '' ">
+			and topic_id = #{model.topicId}
+		</if>
+		<if test="model.userName != null and model.userName != '' ">
+		   and su.user_name like CONCAT('%','${model.userName}','%')
+		</if>
+	</select>
+
+</mapper>

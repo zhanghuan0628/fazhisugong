@@ -7,6 +7,8 @@ import com.ffxl.cloud.model.base.BaseSgLawCommentExample.Criteria;
 import com.ffxl.cloud.service.SgLawCommentService;
 import com.ffxl.platform.core.GenericMapper;
 import com.ffxl.platform.core.GenericServiceImpl;
+import com.ffxl.platform.core.Page;
+
 import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -38,4 +40,9 @@ public class SgLawCommentServiceImpl extends GenericServiceImpl<SgLawComment, Sg
             return null;
         }
     }
+
+	@Override
+	public List<SgLawComment> queryPageList(SgLawComment sgLawComment, Page page) {
+		return sgLawCommentMapper.queryPageList(sgLawComment,page);
+	}
 }

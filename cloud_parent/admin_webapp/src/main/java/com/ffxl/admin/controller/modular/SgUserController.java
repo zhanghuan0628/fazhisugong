@@ -1,5 +1,6 @@
 package com.ffxl.admin.controller.modular;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -15,8 +16,11 @@ import com.ffxl.admin.controller.base.BaseController;
 import com.ffxl.admin.core.common.annotion.BussinessLog;
 import com.ffxl.admin.core.common.constant.dictmap.SgLawCommentDic;
 import com.ffxl.admin.core.common.constant.dictmap.SgUserDic;
+import com.ffxl.admin.core.shiro.ShiroKit;
+import com.ffxl.admin.core.shiro.ShiroUser;
 import com.ffxl.cloud.model.SgAsk;
 import com.ffxl.cloud.model.SgLawComment;
+import com.ffxl.cloud.model.SgLawCommentExample;
 import com.ffxl.cloud.model.SgThmemeAnswerLog;
 import com.ffxl.cloud.model.SgUser;
 import com.ffxl.cloud.model.SysUser;
@@ -150,7 +154,19 @@ public class SgUserController extends BaseController{
      */
     @RequestMapping("/counselor_back")
     public String counselorBack(String id,Model model) {
+    	ShiroUser shiroUser = ShiroKit.getUser();
+    	String userId = shiroUser.getId();
         SgAsk user = sgAskService.queryUserAsk(id);
+        SgLawCommentExample example = new SgLawCommentExample();
+        com.ffxl.cloud.model.base.BaseSgLawCommentExample.Criteria c= example.createCriteria();
+        c.andTopicIdEqualTo(id);
+        c.andReplyUserIdEqualTo(userId);
+        List<SgLawComment> list = sgLawCommentService.selectByExample(example);
+        if(list != null && list.size() > 0){
+        	 SgLawComment sc = list.get(0);
+             user.setReplyContent(sc.getReplyContent());
+             user.setCommentId(sc.getId());
+        }
         model.addAttribute("info", user);
         return PREFIX + "counselor_back.html";
     }
@@ -160,12 +176,17 @@ public class SgUserController extends BaseController{
      * @param session
      * @return
      */
-    /*@ResponseBody
+    @ResponseBody
     @BussinessLog(value = "新增咨询师回复", key = "id", dict = SgLawCommentDic.class)
-    @RequestMapping("/add")
-    public JsonResult add(SgLawComment sgLawComment,HttpSession session){
+    @RequestMapping("/add_counselor_back")
+    public JsonResult add(SgLawComment sgLawComment){
     	sgLawComment.setId(UUIDUtil.getUUID());
     	sgLawComment.setCreateDate(new Date());
+    	ShiroUser shiroUser = ShiroKit.getUser();
+    	String userId = shiroUser.getId();
+    	sgLawComment.setReplyUserId(userId);
+    	sgLawComment.setReplyUserType("sys");
+    	sgLawComment.setTopicType("ask");
     	int i= sgLawCommentService.insertSelective(sgLawComment);
     	if(i > 0){
     		return new JsonResult(true);
@@ -174,7 +195,7 @@ public class SgUserController extends BaseController{
         }
     	
     	
-    }*/
+    }
     /**
      * 修改咨询师回复
      * @param sgLaw
@@ -183,7 +204,7 @@ public class SgUserController extends BaseController{
      */
     @ResponseBody
     @BussinessLog(value = "修改咨询师回复", key = "id", dict = SgLawCommentDic.class)
-    @RequestMapping("/edit")
+    @RequestMapping("/edit_counselor_back")
     public JsonResult edit(SgLawComment sgLawComment,HttpSession session){
     	int i= sgLawCommentService.updateByPrimaryKeySelective(sgLawComment);
     	if(i > 0){
@@ -255,4 +276,5 @@ public class SgUserController extends BaseController{
             return true;
         }
     }
+    
 }

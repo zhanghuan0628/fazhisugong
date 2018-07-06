@@ -56,6 +56,13 @@ ask.initColumn = function () {
         		return "否";
         	}
         }},
+        {title: '是否虚拟', data: 'dummy',render: function(data, type, row, meta){
+        	if(data==1){
+        		return "是";
+        	}else{
+        		return "否";
+        	}
+        }},
         {title:'操作', render: function(data, type, row, meta){
         	var msg = "";
         	msg+='<a title="查看" href="javascript:;" onclick="ask.ask_detail(\'查看详情\',\'/sg_ask/ask_detail\','
@@ -87,7 +94,7 @@ ask.dataTables = function (columns) {
 	    		others : {
 	    			selector : '#'+ask.id,
 	    			url : Feng.ctxPath +"/sg_ask/ask_pageList",
-	    			param : ["title","userName","see"]
+	    			param : ["title","userName","see","dummy"]
 	    		}	
 	    }
 	    return options;

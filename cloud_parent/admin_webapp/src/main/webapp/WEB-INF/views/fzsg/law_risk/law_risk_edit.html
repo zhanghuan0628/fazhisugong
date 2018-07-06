@@ -1,0 +1,84 @@
+@layout("/common/_container.html"){
+<article class="cl pd-20">
+	<form action="" method="post" class="form form-horizontal" id="lawRiskInfoForm" onsubmit="return getContent();">
+		<div id="tab-system" class="HuiTab">
+			<div class="tabBar cl"><span>详情</span><span>评论</span></div>
+			<div class="tabCon">
+				<form class="form form-horizontal" id="lawRiskInfoForm">
+					<input type="hidden" id="id" name="id" value="${info.id}" class="input-text">
+					<input type="hidden" value="law_risk" id="category" name="category">
+					<div class="row cl">
+						<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>标题：</label>
+						<div class="formControls col-xs-8 col-sm-9">
+							<input type="text" class="input-text" value="${info.title}" id="title" name="title">
+						</div>
+					</div>
+					<div class="row cl">
+						<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>专业：：</label>
+						<div class="formControls col-xs-8 col-sm-9">
+							<select id="categoryCode" name="categoryCode" class="input-text" style="width:250px">
+								@for(dic in list){
+					        	<option value="${dic.id}" 
+					        		@if(info.categoryCode==dic.id){
+						        		selected="selected"
+						        	@}
+					        	>
+					        	${dic.name}
+					        	</option>
+								@}
+							</select>
+						</div>
+					</div>
+					<div class="row cl">
+						<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>创建时间：</label>
+						<div class="formControls col-xs-8 col-sm-9">
+							<input type="text" class="input-text" value="${info.createTime}" disabled="disabled">
+						</div>
+					</div>
+					<div class="row cl">
+						<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>内容：</label>
+						<div class="formControls col-xs-8 col-sm-9">
+							<textarea style="display: none" id="content" name="content">${info.content}</textarea>
+						    <div id="editor" style="height: 400px; max-height: 500px;">${info.content}</div>
+						</div>
+					</div>
+					<div class="row cl">
+						<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
+							<input class="btn btn-primary radius" type="submit" value="&nbsp;&nbsp;提交&nbsp;&nbsp;">
+						</div>
+					</div>
+				</form>
+			</div>
+			
+			
+			
+			<div class="tabCon">
+				<div class="page-container">
+					<div class="text-c">
+						昵称：<input type="text" class="input-text" style="width:250px" id="" name="userName">
+						<input type="hidden" id="topicId" name="topicId" value="${info.id}" class="input-text">
+						<button type="button" class="btn btn-success" id="search" onclick="sgRisk.search()"  ><i class="Hui-iconfont">&#xe665;</i> 查询</button>
+					</div>
+					<div class="cl pd-5 bg-1 bk-gray mt-20"> 
+						<span class="l">
+							<a href="javascript:;" onclick="sgRisk.del_sgRisk()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a>
+							<a href="javascript:;" onclick="sgRisk.push_lawRisk('pass')" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e1;</i> 审核通过</a>
+							<a href="javascript:;" onclick="sgRisk.push_lawRisk('no_pass')" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6dd;</i> 审核不通过</a>
+						</span> 
+					</div>
+					<table id="sgRiskTable" class="table table-border table-bordered table-bg">
+						<thead>
+							<tr>
+							
+							</tr>
+						</thead>
+					</table>
+					
+				</div>
+			</div>
+			
+		</div>
+	</form>
+</article>
+<script src="${ctxPath}/static/modular/fzsg/law_risk/law_risk_info.js"></script>
+@}

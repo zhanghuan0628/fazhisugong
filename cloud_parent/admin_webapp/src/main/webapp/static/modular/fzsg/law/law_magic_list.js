@@ -158,14 +158,14 @@ lawMagic.initColumn = function () {
 			+ ",'"
 			+row.title
 			+ "'"
-			+',\'10001\')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6f9;</i></a> <a title="上移" href="javascript:;" onclick="lawMagic.pushUp(this,'
+			+',\'10001\')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6f9;</i></a> <a title="下移" href="javascript:;" onclick="lawMagic.pushUp(this,'
 			+ "'"
 			+row.id
 			+ "'"
 			+ ",'"
 			+row.num
 			+ "'"
-			+')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe679;</i></a> <a title="下移" href="javascript:;" onclick="lawMagic.pushDown(this,'
+			+')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe679;</i></a> <a title="上移" href="javascript:;" onclick="lawMagic.pushDown(this,'
 			+ "'"
 			+row.id
 			+ "'"

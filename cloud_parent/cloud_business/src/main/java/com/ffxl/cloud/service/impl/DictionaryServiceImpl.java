@@ -7,6 +7,7 @@ import com.ffxl.cloud.model.base.BaseDictionaryExample.Criteria;
 import com.ffxl.cloud.service.DictionaryService;
 import com.ffxl.platform.core.GenericMapper;
 import com.ffxl.platform.core.GenericServiceImpl;
+import com.ffxl.platform.core.Page;
 import com.ffxl.platform.util.ToolUtil;
 
 import java.util.List;
@@ -37,6 +38,9 @@ public class DictionaryServiceImpl extends GenericServiceImpl<Dictionary, Dictio
         if(ToolUtil.isNotEmpty(dictionary.getName())){
             c.andNameEqualTo(dictionary.getName());
         }
+        if(ToolUtil.isNotEmpty(dictionary.getPid())){
+            c.andPidEqualTo(dictionary.getPid());
+        }
         List<Dictionary> modelList =  dictionaryMapper.selectByExample(example);
         if(modelList.size() > 0){
             return modelList.get(0);
@@ -56,4 +60,15 @@ public class DictionaryServiceImpl extends GenericServiceImpl<Dictionary, Dictio
         List<Dictionary> modelList =  dictionaryMapper.selectByExample(example);
         return modelList;
     }
+
+	@Override
+	public List<Dictionary> queryPageList(Dictionary dictionary, Page page) {
+		
+		return dictionaryMapper.queryPageList(dictionary,page);
+	}
+
+	@Override
+	public int queryMaxNumByPid(String pid) {
+		return dictionaryMapper.queryMaxNumByPid(pid);
+	}
 }

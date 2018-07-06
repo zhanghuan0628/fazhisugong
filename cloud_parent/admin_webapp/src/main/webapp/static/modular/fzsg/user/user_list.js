@@ -13,6 +13,7 @@ var sgUser = {
  */
 sgUser.getSelIds = function(){
 	var  isCheck =false;
+	sgUser.seItem=[];
 	$('.iCheck').each(function () {
         if($(this).is(':checked')){
         	isCheck = true;

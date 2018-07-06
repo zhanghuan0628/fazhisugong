@@ -3,14 +3,14 @@
  */
 var userInfoDig = {
 	formId : "counselorBackForm", //form表单id
-	table : parent.sgUserAsk.table,
+	table : parent.sgRisk.table,
     infoData: {
-    	id: $("#id").val(),
+    	replyId: $("#replyId").val(),
     },
     //验证方式
     validate: {
 	    rules: {
-	    	content:{
+	    	replyContent:{
 				required:true,
 				minlength:1,
 				maxlength:500
@@ -27,11 +27,9 @@ $(function(){
 		radioClass: 'iradio-blue',
 		increaseArea: '20%'
 	});
-	if(userInfoDig.infoData.id ==null ||userInfoDig.infoData.id =="" ){
-		Feng.initValidator(userInfoDig.formId, userInfoDig.validate,userInfoDig.table,"/sg_user/add_counselor_back"); //新增
-	}else{
-		Feng.initValidator(userInfoDig.formId, userInfoDig.validate,userInfoDig.table,"/sg_user/edit_counselor_back"); //编辑
-	}
+	
+	Feng.initValidator(userInfoDig.formId, userInfoDig.validate,userInfoDig.table,"/sg_law_risk/edit_counselor_back"); //编辑
+	
 	
 	
 });

@@ -6,7 +6,7 @@
 	</resultMap>
 	
 	<select id="queryPageList" resultMap="SgLawMap">
-		SELECT * FROM sg_law as sl
+		SELECT sl.*,DATE_FORMAT(create_date,'%Y-%m-%d %H:%i:%s')as createTime FROM sg_law as sl
 		WHERE 1=1
 		<if test="model.title != null and model.title != '' ">
 			and sl.title like CONCAT('%','${model.title}','%' )
@@ -22,8 +22,13 @@
 		<if test="model.category != null and model.category != '' ">
 			and sl.category = #{model.category}
 		</if>
-		<if test="model.category == 'law_magic'.toString()">
-			order by num asc ,create_date desc
+		<if test="model.category == 'law_risk'.toString()">
+			<if test="model.categoryCode != null and model.categoryCode != '' ">
+				and category_code = #{model.categoryCode}
+			</if>
+		</if>
+		<if test="model.category == 'law_magic'.toString() or model.category == 'law_risk'.toString()">
+			order by status desc, num desc ,create_date desc
 		</if>
 		<if test="model.category == 'law_information'.toString()">
 			order by create_date desc
