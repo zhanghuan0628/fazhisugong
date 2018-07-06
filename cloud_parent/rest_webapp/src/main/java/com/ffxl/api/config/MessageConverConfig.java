@@ -1,6 +1,7 @@
 package com.ffxl.api.config;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
 import com.ffxl.api.auth.converter.WithSignMessageConverter;
@@ -16,6 +17,7 @@ public class MessageConverConfig {
     @Value("#{settings['sign-open']}")  
     public String SIGN_OPEN;  
 
+    @Bean
     public WithSignMessageConverter withSignMessageConverter() {
         WithSignMessageConverter withSignMessageConverter = new WithSignMessageConverter();
         DefaultFastjsonConfig defaultFastjsonConfig = new DefaultFastjsonConfig();

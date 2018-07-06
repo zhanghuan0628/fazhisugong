@@ -204,5 +204,13 @@ var Feng = {
 	             $(this).addClass('selected'); 
 	        }
 	    })
+	},
+	//复选框全选/取消全选
+	checkAll: function(){
+		$(".checkall").click(function () {
+	           var check = $(this).prop("checked");
+	           $(".iCheck").prop("checked", check);
+	     });
 	}
+	     
 };

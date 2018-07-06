@@ -24,8 +24,10 @@ public class HttpHeader {
     public static final String APP_VERSION = "appVersion"; //应用版本号 v_1.2
     public static final String TOKEN = "token";
     public static final String IP = "ip";
+    public static final String SIGN = "sign"; 
     
     public static final String USER_ID = "userId"; 
+    public static final String MD5_KEY = "md5_key"; 
 
     /**
      * 请求线程内共享对象
@@ -42,13 +44,11 @@ public class HttpHeader {
     private String appVersion;
     private String token;
     private String ip;
-    
-    private String appId; //应用id
-    private String nonceStr;//随机数
-    private String timestamp;//时间戳
     private String sign;//密文
+   
     
     private String userId;
+    private String md5key;
 
     public static void set(HttpHeader header) {
         local.set(header);
@@ -156,32 +156,6 @@ public class HttpHeader {
         this.ip = ip;
     }
 
-    public String getAppId() {
-        return appId;
-    }
-
-    public void setAppId(String appId) {
-        this.appId = appId;
-    }
-
-  
-
-    public String getNonceStr() {
-        return nonceStr;
-    }
-
-    public void setNonceStr(String nonceStr) {
-        this.nonceStr = nonceStr;
-    }
-
-    public String getTimestamp() {
-        return timestamp;
-    }
-
-    public void setTimestamp(String timestamp) {
-        this.timestamp = timestamp;
-    }
-
     public String getSign() {
         return sign;
     }
@@ -198,6 +172,16 @@ public class HttpHeader {
 
     public void setUserId(String userId) {
         this.userId = userId;
+    }
+
+
+    public String getMd5key() {
+        return md5key;
+    }
+
+
+    public void setMd5key(String md5key) {
+        this.md5key = md5key;
     }
 
 

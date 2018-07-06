@@ -36,11 +36,14 @@ public class PostHeaderInterceptor extends HandlerInterceptorAdapter{
         @Override
         public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
             logger.info("开始执行Token拦截器------------------------");
+            HttpHeader header = new HttpHeader();
             if (request.getServletPath().equals("/" + jwtProperties.getAuthPath())) {
                 // TODO 可在此处验证头参数
+                HttpHeader.set(header);
                 return true;
             }
             final String requestHeader = request.getHeader(jwtProperties.getHeader());
+            String sign = request.getHeader(HttpHeader.SIGN); //加密串，可自行规定是否使用
             String authToken = null;
             if (requestHeader != null && requestHeader.startsWith("Bearer ")) {
                 authToken = requestHeader.substring(7);
@@ -53,14 +56,16 @@ public class PostHeaderInterceptor extends HandlerInterceptorAdapter{
                     }
                     String loginName = jwtTokenUtil.getUsernameFromToken(authToken);//获取用户id
                     Date date = jwtTokenUtil.getIssuedAtDateFromToken(authToken);//获取jwt发布时间
+                    String md5key = jwtTokenUtil.getMd5KeyFromToken(authToken);//获取jwt发布时间
                     //解析token中的其他头参数
                     String ip = jwtTokenUtil.getPrivateClaimFromToken(authToken, HttpHeader.IP);
                     //TODO 在此获取头参数
                     
                     //封装登陆用户
-                    HttpHeader header = new HttpHeader();
                     header.setUserId(loginName);
-                    header.set(header);
+                    header.setMd5key(md5key);
+                    header.setSign(sign);
+                    HttpHeader.set(header);
                    
                     logger.info("请求IP:"+ ip ); 
                     logger.info("请求由"+loginName+"在【"+DateUtil.formatStandardDatetime(date)+"】发起请求");        
