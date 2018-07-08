@@ -20,6 +20,8 @@ public class SgAsk extends BaseSgAsk {
 	private String nickName;
 	
 	private String isAnswer;
+	
+	private String headUrl;
 
 	public String getCreateTime() {
 		return createTime;
@@ -83,5 +85,13 @@ public class SgAsk extends BaseSgAsk {
 
 	public void setIsAnswer(String isAnswer) {
 		this.isAnswer = isAnswer;
+	}
+
+	public String getHeadUrl() {
+		return headUrl;
+	}
+
+	public void setHeadUrl(String headUrl) {
+		this.headUrl = headUrl;
 	}
 }

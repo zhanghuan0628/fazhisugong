@@ -6,6 +6,7 @@ public class SgAskComment extends BaseSgAskComment {
 	private String qTitle;//问题标题
 	private String qContent;//问题内容
 	private String userName;//回答人名称
+	private String headImg;//用户头像
 	public String getqTitle() {
 		return qTitle;
 	}
@@ -23,5 +24,11 @@ public class SgAskComment extends BaseSgAskComment {
 	}
 	public void setUserName(String userName) {
 		this.userName = userName;
+	}
+	public String getHeadImg() {
+		return headImg;
+	}
+	public void setHeadImg(String headImg) {
+		this.headImg = headImg;
 	}
 }

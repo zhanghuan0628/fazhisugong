@@ -58,7 +58,8 @@
 			'匿名用户'
 		ELSE
 			su.user_name
-		END as nickName
+		END as nickName,
+		su.head_url as headUrl
 		FROM
 			sg_ask sa
 		JOIN sg_user su ON sa.user_id = su.id

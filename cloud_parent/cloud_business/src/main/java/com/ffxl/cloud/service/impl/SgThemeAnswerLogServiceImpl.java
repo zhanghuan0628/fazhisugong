@@ -41,7 +41,10 @@ public class SgThemeAnswerLogServiceImpl extends GenericServiceImpl<SgThemeAnswe
 
 	@Override
 	public SgThemeAnswerLog queryAnswerLogByUser(String userId, String themeId) {
-		return sgThemeAnswerLogMapper.queryAnswerLogByUser(userId,themeId);
+		SgThemeAnswerLog m = sgThemeAnswerLogMapper.queryAnswerLogByUser(userId,themeId);
+		String num = toChinese(m.getNum());
+		m.setStage("第"+num+"期");
+		return m;
 	}
 
 	@Override

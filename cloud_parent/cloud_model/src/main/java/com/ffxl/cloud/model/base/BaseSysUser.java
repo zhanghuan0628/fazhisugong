@@ -23,6 +23,8 @@ public class BaseSysUser implements Serializable {
 
     private Integer status;
 
+    private String headImg;
+
     private static final long serialVersionUID = 1L;
 
     public String getId() {
@@ -105,6 +107,14 @@ public class BaseSysUser implements Serializable {
         this.status = status;
     }
 
+    public String getHeadImg() {
+        return headImg;
+    }
+
+    public void setHeadImg(String headImg) {
+        this.headImg = headImg == null ? null : headImg.trim();
+    }
+
     @Override
     public boolean equals(Object that) {
         if (this == that) {
@@ -126,7 +136,8 @@ public class BaseSysUser implements Serializable {
             && (this.getSex() == null ? other.getSex() == null : this.getSex().equals(other.getSex()))
             && (this.getCellphone() == null ? other.getCellphone() == null : this.getCellphone().equals(other.getCellphone()))
             && (this.getEmail() == null ? other.getEmail() == null : this.getEmail().equals(other.getEmail()))
-            && (this.getStatus() == null ? other.getStatus() == null : this.getStatus().equals(other.getStatus()));
+            && (this.getStatus() == null ? other.getStatus() == null : this.getStatus().equals(other.getStatus()))
+            && (this.getHeadImg() == null ? other.getHeadImg() == null : this.getHeadImg().equals(other.getHeadImg()));
     }
 
     @Override
@@ -143,6 +154,7 @@ public class BaseSysUser implements Serializable {
         result = prime * result + ((getCellphone() == null) ? 0 : getCellphone().hashCode());
         result = prime * result + ((getEmail() == null) ? 0 : getEmail().hashCode());
         result = prime * result + ((getStatus() == null) ? 0 : getStatus().hashCode());
+        result = prime * result + ((getHeadImg() == null) ? 0 : getHeadImg().hashCode());
         return result;
     }
 }

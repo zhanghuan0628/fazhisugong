@@ -6,6 +6,7 @@ public class SgThemeAnswerLog extends BaseSgThemeAnswerLog {
 	private String title;
 	private String num;
 	private String stage;
+	private String userName;
 	public String getTitle() {
 		return title;
 	}
@@ -23,5 +24,11 @@ public class SgThemeAnswerLog extends BaseSgThemeAnswerLog {
 	}
 	public void setStage(String stage) {
 		this.stage = stage;
+	}
+	public String getUserName() {
+		return userName;
+	}
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 }

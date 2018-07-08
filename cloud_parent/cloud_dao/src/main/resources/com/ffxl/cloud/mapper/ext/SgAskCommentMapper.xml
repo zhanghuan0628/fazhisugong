@@ -9,7 +9,8 @@
 			sc.*,
 			sa.title as qTitle,
 			sa.content as qContent,
-			su.user_name as userName
+			su.user_name as userName,
+			su.head_img as headImg
 		FROM
 			sg_law_comment sc
 		JOIN sys_user su ON sc.reply_user_id = su.id join sg_ask sa on sc.topic_id = sa.id

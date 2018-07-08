@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.ffxl.cloud.model.SgBanner;
 import com.ffxl.cloud.model.SgBannerExample;
 import com.ffxl.cloud.model.SgLaw;
 import com.ffxl.cloud.model.SgLawExample;
@@ -52,8 +53,8 @@ public class SgHomePageController {
         com.ffxl.cloud.model.base.BaseSgBannerExample.Criteria c= example.createCriteria();
         c.andStatusEqualTo("publish");
         example.setOrderByClause(" sort_num desc ");
-		sgBannerService.selectByExample(example);
-		return null;
+		List<SgBanner> list = sgBannerService.selectByExample(example);
+		return new JsonResult(Message.M2000,list);
 		
 	}
 	
@@ -166,6 +167,9 @@ public class SgHomePageController {
 	@RequestMapping(value = "/querySgMagic")
     @ResponseBody
 	public JsonResult querySgMagic(String category,String categoryCode,String title){
+		if(StringUtil.isEmpty(category)){
+			return new JsonResult(Message.M4003);
+		}
 		SgLawExample example = new SgLawExample();
         Criteria c= example.createCriteria();
         c.andStatusEqualTo("publish");

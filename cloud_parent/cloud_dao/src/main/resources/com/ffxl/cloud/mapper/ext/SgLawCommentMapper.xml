@@ -28,7 +28,8 @@
 		SELECT
 			sc.*, su.user_name AS userName,
 			su.head_url AS headUrl,
-			sr.user_name AS replyName
+			sr.user_name AS replyName,
+			sr.head_img as headImg
 		FROM
 			sg_law_comment sc
 		LEFT JOIN sg_user su ON sc.from_user_id = su.id

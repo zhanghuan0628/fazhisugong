@@ -6,10 +6,10 @@
 	</resultMap>
 	<select id="queryMyFavorite" resultMap="SgUserFavoriteMap" parameterType="java.lang.String">
 		SELECT
-			sf.source_id,
+			sf.*,
 			sl.title as title,
-		  sl.content as content,
-			sf.source_type
+		    sl.content as content,
+			sl.img_url as imgUrl
 		FROM
 			sg_user_favorite sf
 		JOIN sg_law sl ON sf.source_id = sl.id

@@ -8,6 +8,8 @@ public class SgLawComment extends BaseSgLawComment {
 	private String createTime;
 	private String replyId;
 	private String headUrl;
+	private String replyName;
+	private String headImg;
 	public String getHeadUrl() {
 		return headUrl;
 	}
@@ -20,7 +22,7 @@ public class SgLawComment extends BaseSgLawComment {
 	public void setReplyName(String replyName) {
 		this.replyName = replyName;
 	}
-	private String replyName;
+	
 	public String getTitle() {
 		return title;
 	}
@@ -44,6 +46,12 @@ public class SgLawComment extends BaseSgLawComment {
 	}
 	public void setReplyId(String replyId) {
 		this.replyId = replyId;
+	}
+	public String getHeadImg() {
+		return headImg;
+	}
+	public void setHeadImg(String headImg) {
+		this.headImg = headImg;
 	}
 	
 }
