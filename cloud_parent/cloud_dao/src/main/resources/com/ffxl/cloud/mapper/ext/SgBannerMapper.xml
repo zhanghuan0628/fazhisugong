@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ffxl.cloud.mapper.SgBannerMapper">
+	<resultMap extends="BaseResultMap" id="SgBannerMap" type="com.ffxl.cloud.model.SgBanner">
+	
+	</resultMap>
+	<select id="queryPageList" resultMap="SgBannerMap">
+		SELECT
+			*
+		FROM
+			sg_banner
+		WHERE
+			1 = 1
+			<if test="model.title != null and model.title != '' ">
+			   and title like CONCAT('%','${model.title}','%')
+			</if>
+		ORDER BY
+			STATUS DESC,
+			sort_num DESC,
+			create_date
+	</select>
+	<select id="queryMaxNum" resultType="int">
+		select IFNULL(max(sort_num),0)as num from sg_banner
+	</select>
+	
+	<update id="updateSort" parameterType="com.ffxl.cloud.model.SgBanner">
+		update sg_banner set sort_num = #{model.num}  where sort_num = #{model.sortNum}
+	</update>
+</mapper>

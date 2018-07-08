@@ -1,0 +1,30 @@
+@layout("/common/_container.html"){
+<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 内容管理 <span class="c-gray en">&gt;</span> banner管理 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
+<div class="page-container">
+	<div class="text-c">
+		
+		标题：<input type="text" class="input-text" style="width:250px" id="title" name="title">
+		<button type="button" class="btn btn-success" id="search" onclick="banner.search()"  ><i class="Hui-iconfont">&#xe665;</i> 查询</button>
+	</div>
+	<div class="cl pd-5 bg-1 bk-gray mt-20"> 
+		<span class="l">
+			<a href="javascript:;" onclick="banner.add_banner('新增Banner','/sg_banner/add_banner')" class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i> 新增</a>
+			<a href="javascript:;" onclick="banner.push_banner('publish')" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e1;</i> 上架</a>
+			<a href="javascript:;" onclick="banner.push_banner('no_publish')" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6dd;</i> 下架</a>
+		</span> 
+	</div>
+	<table id="bannerTable" class="table table-border table-bordered table-bg">
+		<thead>
+			<tr>
+			
+			</tr>
+		</thead>
+	</table>
+	
+	
+</div>
+<!--底侧部分开始-->
+		@include("/common/_footer.html"){}	
+<!--底侧部分结束-->
+<script src="${ctxPath}/static/modular/fzsg/sg_banner/banner_list.js"></script>
+@}

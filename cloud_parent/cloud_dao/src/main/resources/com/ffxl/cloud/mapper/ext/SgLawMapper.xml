@@ -11,6 +11,9 @@
 		<if test="model.title != null and model.title != '' ">
 			and sl.title like CONCAT('%','${model.title}','%' )
 		</if>
+		<if test="model.status != null and model.status != '' ">
+			and sl.status = #{model.status}
+		</if>
 		<if test="model.category == 'law_magic'.toString() ">
 			<if test="model.categoryCode != null and model.categoryCode != '' ">
 				and category_code = #{model.categoryCode}

@@ -1,0 +1,49 @@
+@layout("/common/_container.html"){
+<article class="page-container">
+	<form class="form form-horizontal" id="bannerInfoForm">
+	<input type="hidden" id="id" name="id">
+	<div class="row cl">
+		<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>banner标题：</label>
+		<div class="formControls col-xs-8 col-sm-9">
+			<input type="text" class="input-text"  id="title" name="title">
+		</div>
+	</div>
+	<div class="row cl">
+		<label class="form-label col-xs-4 col-sm-3"><span class="c-red"></span>链接地址：</label>
+		<div class="formControls col-xs-8 col-sm-9">
+			<input type="text" class="input-text"  id="name" name="name" readonly="readonly">
+			<input type="hidden" class="input-text"  id="sourceId" name="sourceId">
+			<input type="hidden" class="input-text"  id="type" name="type">
+		</div>
+	</div>
+	<div class="row cl">
+		<label class="form-label col-xs-4 col-sm-3"><span class="c-red"></span>状态：</label>
+		<div class="formControls col-xs-8 col-sm-9">
+			<select id="status" name="status" class="input-text">
+				<option value="">未发布</option>
+				<option value="publish">上架</option>
+				<option value="no_publish">下架</option>
+			</select>
+		</div>
+	</div>
+	<div class="row cl">
+		<label class="form-label col-xs-4 col-sm-3"><span class="c-red"></span>图片：</label>
+		<div class="formControls col-xs-8 col-sm-9">
+			<input type="hidden" class="input-text"  id="bannerImg" name="bannerImg">
+			<input type="file" class="input-text"  id="file">
+		</div>
+	</div>
+	<div class="row cl">
+		<div class="formControls col-xs-8 col-sm-9">
+			<img src="" id="img" style="width: 400px;height: 160px;padding-left: 300px;">
+		</div>
+	</div>
+	<div class="row cl">
+		<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
+			<input class="btn btn-primary radius" type="submit" value="&nbsp;&nbsp;提交&nbsp;&nbsp;">
+		</div>
+	</div>
+	</form>
+</article>
+<script src="${ctxPath}/static/modular/fzsg/sg_banner/banner_info.js"></script>
+@}

@@ -1,0 +1,101 @@
+@layout("/common/_container.html"){
+<article class="cl pd-20">
+	<form action="" method="post" class="form form-horizontal" id="form-article-add">
+		<div id="tab-system" class="HuiTab">
+			<div class="tabBar cl"><span>法治动态</span><span>法治讲堂</span><span>问答详情</span><span>我是法官</span></div>
+			
+			<div class="tabCon">
+				<div class="page-container">
+					<div class="text-c">
+						标题：<input type="text" class="input-text" style="width:250px" id="" name="title">
+						<button type="button" class="btn btn-success" id="search" onclick="lawInfo.search()"  ><i class="Hui-iconfont">&#xe665;</i> 查询</button>
+					</div>
+					<table id="lawInfoTable" class="table table-border table-bordered table-bg">
+						<thead>
+							<tr>
+							
+							</tr>
+						</thead>
+					</table>
+					<div class="row cl">
+						<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
+							<input class="btn btn-primary radius" type="button" onclick="lawInfo.save()" value="&nbsp;&nbsp;提交&nbsp;&nbsp;">
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			
+			
+			<div class="tabCon">
+				<div class="page-container">
+					<div class="text-c">
+						标题：<input type="text" class="input-text" style="width:250px" id="" name="title">
+						<button type="button" class="btn btn-success" id="search" onclick="lawHall.search()"  ><i class="Hui-iconfont">&#xe665;</i> 查询</button>
+					</div>
+					<table id="lawHallTable" class="table table-border table-bordered table-bg">
+						<thead>
+							<tr>
+							
+							</tr>
+						</thead>
+					</table>
+					<div class="row cl">
+						<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
+							<input class="btn btn-primary radius" type="button" onclick="lawHall.save()" value="&nbsp;&nbsp;提交&nbsp;&nbsp;">
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			
+			<div class="tabCon">
+				<div class="page-container">
+					<div class="text-c">
+						标题：<input type="text" class="input-text" style="width:250px" id="" name="title">
+						<button type="button" class="btn btn-success" id="search" onclick="ask.search()"  ><i class="Hui-iconfont">&#xe665;</i> 查询</button>
+					</div>
+					<table id="askTable" class="table table-border table-bordered table-bg">
+						<thead>
+							<tr>
+							
+							</tr>
+						</thead>
+					</table>
+					<div class="row cl">
+						<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
+							<input class="btn btn-primary radius" type="button" onclick="ask.save()" value="&nbsp;&nbsp;提交&nbsp;&nbsp;">
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div class="tabCon">
+				<div class="page-container">
+					<div class="text-c">
+						标题：<input type="text" class="input-text" style="width:250px" id="" name="title">
+						<button type="button" class="btn btn-success" id="search" onclick="theme.search()"  ><i class="Hui-iconfont">&#xe665;</i> 查询</button>
+					</div>
+					<table id="themeTable" class="table table-border table-bordered table-bg">
+						<thead>
+							<tr>
+							
+							</tr>
+						</thead>
+					</table>
+					<div class="row cl">
+						<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
+							<input class="btn btn-primary radius" type="button" onclick="theme.save()" value="&nbsp;&nbsp;提交&nbsp;&nbsp;">
+						</div>
+					</div>
+				</div>
+			</div>
+			
+		</div>
+	</form>
+</article>
+<script src="${ctxPath}/static/modular/fzsg/sg_banner/lawInfo.js"></script>
+<script src="${ctxPath}/static/modular/fzsg/sg_banner/lawHall.js"></script>
+<script src="${ctxPath}/static/modular/fzsg/sg_banner/ask.js"></script>
+<script src="${ctxPath}/static/modular/fzsg/sg_banner/theme.js"></script>
+@}

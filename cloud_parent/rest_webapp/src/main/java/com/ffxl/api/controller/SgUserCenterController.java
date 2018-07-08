@@ -1,5 +1,6 @@
 package com.ffxl.api.controller;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,6 +61,9 @@ public class SgUserCenterController {
 		List<SgUser> list = sgUserService.selectByExample(example);
 		if(list != null && list.size() > 0){
 			SgUser user = list.get(0);
+			SgUser record = new SgUser();
+			record.setLastLoginDate(new Date());
+			sgUserService.updateByExampleSelective(record, example);
 			return new JsonResult(Message.M2000,user);
 		}else{
 			return new JsonResult(Message.M5000);

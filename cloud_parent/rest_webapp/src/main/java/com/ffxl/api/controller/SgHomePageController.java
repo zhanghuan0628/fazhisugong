@@ -10,11 +10,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.ffxl.cloud.model.SgBannerExample;
 import com.ffxl.cloud.model.SgLaw;
 import com.ffxl.cloud.model.SgLawExample;
 import com.ffxl.cloud.model.SgUserFavorite;
 import com.ffxl.cloud.model.SgUserFavoriteExample;
 import com.ffxl.cloud.model.base.BaseSgLawExample.Criteria;
+import com.ffxl.cloud.service.SgBannerService;
 import com.ffxl.cloud.service.SgLawService;
 import com.ffxl.cloud.service.SgUserFavoriteService;
 import com.ffxl.platform.constant.JsonResult;
@@ -35,6 +37,28 @@ public class SgHomePageController {
 	
 	@Autowired
 	private SgUserFavoriteService sgUserFavoriteService;
+	
+	@Autowired
+	private SgBannerService sgBannerService;
+	
+	/**
+	 * banner
+	 * @return
+	 */
+	@RequestMapping(value = "/queryBanner")
+    @ResponseBody
+	public JsonResult queryBanner(){
+		SgBannerExample example = new SgBannerExample();
+        com.ffxl.cloud.model.base.BaseSgBannerExample.Criteria c= example.createCriteria();
+        c.andStatusEqualTo("publish");
+        example.setOrderByClause(" sort_num desc ");
+		sgBannerService.selectByExample(example);
+		return null;
+		
+	}
+	
+	
+	
 	/**
 	 * 首页的法治动态和法律讲堂
 	 * @param category(law_information 法治动态)(law_lecture_room 法律讲堂)

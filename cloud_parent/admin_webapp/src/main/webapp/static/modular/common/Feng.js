@@ -169,7 +169,7 @@ var Feng = {
         return result.charAt(0).toUpperCase() + result.substring(1);
     },
     //table行单选
-	selectSingleRow : function(id) {
+	selectSingleRow : function(id,tab) {
 		
 	    $('#'+id).on('click', 'tr', function () {
 	    	
@@ -187,7 +187,7 @@ var Feng = {
 	        if ($(this).hasClass('selected') ) {
 	           $(this).removeClass('selected');
 	        } else {
-	        	SysUser.table.$('tr.selected').removeClass('selected');
+	        	tab.table.$('tr.selected').removeClass('selected');
 	            $(this).addClass('selected'); 
 	        }
 	    })

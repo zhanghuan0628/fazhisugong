@@ -1,6 +1,7 @@
 package com.ffxl.admin.controller.modular;
 
 import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +16,6 @@ import com.ffxl.admin.core.common.constant.dictmap.DictionaryDic;
 import com.ffxl.admin.core.log.LogObjectHolder;
 import com.ffxl.cloud.model.Dictionary;
 import com.ffxl.cloud.service.DictionaryService;
-import com.ffxl.cloud.service.impl.SysUserServiceImpl;
 import com.ffxl.platform.constant.JsonResult;
 import com.ffxl.platform.constant.Message;
 import com.ffxl.platform.core.DataTablesUtil;
@@ -25,33 +25,32 @@ import com.ffxl.platform.util.StringUtil;
 import com.ffxl.platform.util.UUIDUtil;
 
 /**
- * 专业管理
+ * 奖品设置
  * @author feifan
  *
  */
 @Controller
-@RequestMapping("/sg_major")
-public class SgMajorController extends BaseController{
-private static final Logger LOGGER = LoggerFactory.getLogger(SgMajorController.class);
-	
-	private static String PREFIX = "/fzsg/sg_major/";
+@RequestMapping("/sg_award_set")
+public class SgAwardSetController extends BaseController{
+	private static final Logger LOGGER = LoggerFactory.getLogger(SgAwardSetController.class);
+private static String PREFIX = "/fzsg/sg_award_set/";
 	
 	@Autowired
 	private DictionaryService dictionaryService;
 	/**
-     * 跳转到专业列表的页面
+     * 跳转到奖品列表的页面
      */
-    @RequestMapping("/major_list")
+    @RequestMapping("/award_set_list")
     public String index() {
-        return PREFIX + "major_list.html";
+        return PREFIX + "award_list.html";
     }
     /**
-     * 查询专业列表
+     * 查询奖品列表
      */
-    @RequestMapping("/major_pageList")
+    @RequestMapping("/award_pageList")
     @ResponseBody
     public JsonResult list(DataTablesUtil dataTables,Page page,Dictionary dictionary) {
-    	dictionary.setPid("4");
+    	dictionary.setPid("6");
     	page = this.getPageInfo(page,dataTables);
     	List<Dictionary> dataList = dictionaryService.queryPageList(dictionary,page);
         dataTables = this.getDataTables(page, dataTables, dataList);
@@ -59,24 +58,24 @@ private static final Logger LOGGER = LoggerFactory.getLogger(SgMajorController.c
         
     }
     /**
-     * 跳转到查看专业新增的页面
+     * 跳转到查看奖品新增的页面
      */
-    @RequestMapping("/add_major")
-    public String addMajor(Model model) {
-        return PREFIX + "add_major.html";
+    @RequestMapping("/add_award")
+    public String addaward(Model model) {
+        return PREFIX + "add_award.html";
     }
     /**
-     * 跳转到查看专业修改的页面
+     * 跳转到查看奖品修改的页面
      */
-    @RequestMapping("/edit_major")
-    public String editMajor(String id,Model model) {
+    @RequestMapping("/edit_award")
+    public String editaward(String id,Model model) {
     	if (StringUtil.isEmpty(id)) {
             throw new BusinessException(Message.M6002);
         }
     	Dictionary info = dictionaryService.selectByPrimaryKey(id);
         model.addAttribute("info", info);
         LogObjectHolder.me().set(info);
-        return PREFIX + "edit_major.html";
+        return PREFIX + "edit_award.html";
     }
     /**
      * 新增
@@ -85,7 +84,7 @@ private static final Logger LOGGER = LoggerFactory.getLogger(SgMajorController.c
      * @return
      */
     @ResponseBody
-    @BussinessLog(value = "新增专业", key = "id", dict = DictionaryDic.class)
+    @BussinessLog(value = "新增奖品", key = "id", dict = DictionaryDic.class)
     @RequestMapping("/add")
     public JsonResult add(Dictionary dictionary){
     	dictionary.setId(UUIDUtil.getUUID());
@@ -105,7 +104,7 @@ private static final Logger LOGGER = LoggerFactory.getLogger(SgMajorController.c
      * @return
      */
     @ResponseBody
-    @BussinessLog(value = "修改专业", key = "id", dict = DictionaryDic.class)
+    @BussinessLog(value = "修改奖品", key = "id", dict = DictionaryDic.class)
     @RequestMapping("/edit")
     public JsonResult edit(Dictionary dictionary){
     	int i = dictionaryService.updateByPrimaryKeySelective(dictionary);
@@ -121,7 +120,7 @@ private static final Logger LOGGER = LoggerFactory.getLogger(SgMajorController.c
      * @return
      */
    @RequestMapping("/del")
-   @BussinessLog(value = "删除专业", key = "id", dict = DictionaryDic.class)
+   @BussinessLog(value = "删除奖品", key = "id", dict = DictionaryDic.class)
    @ResponseBody
    public JsonResult del(String ids){
    	if (StringUtil.isEmpty(ids)) {
@@ -139,23 +138,6 @@ private static final Logger LOGGER = LoggerFactory.getLogger(SgMajorController.c
       }
    	
    }
-   /**
-    * 校验name是否存在
-    * @param loginName
-    * @return
-    */
-   @ResponseBody
-   @RequestMapping("/check")
-   public Boolean check(String name,String pid) {
-       // 判断账号是否重复
-	   Dictionary model = new Dictionary();
-       model.setName(name);
-       model.setPid(pid);
-       Dictionary theUser = dictionaryService.queryByModel(model);
-       if (theUser != null) {
-           return false;
-       }else{
-           return true;
-       }
-   }
+   
+
 }

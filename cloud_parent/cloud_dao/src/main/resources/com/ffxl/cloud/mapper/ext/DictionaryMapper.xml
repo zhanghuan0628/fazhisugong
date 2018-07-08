@@ -12,6 +12,7 @@
 		<if test="model.name != null and model.name != '' ">
 		   and name like CONCAT('%','${model.name}','%')
 		</if>
+		order by num desc
 	</select>
 	<select id="queryMaxNumByPid" parameterType="java.lang.String" resultType="int">
 		select max(num)as num from sys_dictionary where pid = #{pid}
