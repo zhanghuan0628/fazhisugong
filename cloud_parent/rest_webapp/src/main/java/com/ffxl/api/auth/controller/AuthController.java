@@ -53,6 +53,9 @@ public class AuthController {
         local.setDeviceToken(request.getHeader(HttpHeader.DEVICE_TOKEN));
         local.setAppType(request.getHeader(HttpHeader.APP_TYPE));
         local.setAppVersion(request.getHeader(HttpHeader.APP_VERSION));
+        if(authRequest.getUserName()==null){
+            return new JsonResult(Message.M3002);
+        }
         boolean validate = reqValidator.validate(authRequest);
         
         if (validate) {

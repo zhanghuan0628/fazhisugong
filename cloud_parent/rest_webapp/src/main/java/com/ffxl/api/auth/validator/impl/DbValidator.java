@@ -11,6 +11,7 @@ import com.ffxl.api.auth.validator.IReqValidator;
 import com.ffxl.api.auth.validator.dto.Credence;
 import com.ffxl.cloud.model.SgUser;
 import com.ffxl.cloud.service.SgUserService;
+import com.ffxl.platform.util.MD5Util;
 
 /**
  * 账号密码验证
@@ -30,7 +31,12 @@ public class DbValidator implements IReqValidator {
         user.setLoginName(credence.getCredenceName());
         SgUser quser = sgUserService.queryByModel(user);
         if (quser != null) {
-            return true;
+            String md5Code = MD5Util.encrypt(credence.getCredenceCode());
+            if(quser.getPassword().equals(md5Code)){
+                return true;
+            }else{
+                return false;
+            }
         } else {
             return false;
         }
