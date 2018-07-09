@@ -51,7 +51,7 @@ public class PostHeaderInterceptor extends HandlerInterceptorAdapter{
                 try {
                     boolean flag = jwtTokenUtil.isTokenExpired(authToken);
                     if (flag) {
-                        RenderUtil.renderJson(response, new JsonResult(Message.M5017));
+                        RenderUtil.renderJson(response, new JsonResult(Message.M3007));
                         return false;
                     }
                     String loginName = jwtTokenUtil.getUsernameFromToken(authToken);//获取用户id
