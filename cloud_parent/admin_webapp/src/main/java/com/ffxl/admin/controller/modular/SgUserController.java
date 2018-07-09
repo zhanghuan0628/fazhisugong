@@ -33,6 +33,7 @@ import com.ffxl.platform.constant.JsonResult;
 import com.ffxl.platform.constant.Message;
 import com.ffxl.platform.core.DataTablesUtil;
 import com.ffxl.platform.core.Page;
+import com.ffxl.platform.util.MD5Util;
 import com.ffxl.platform.util.StringUtil;
 import com.ffxl.platform.util.UUIDUtil;
 /**
@@ -111,7 +112,8 @@ public class SgUserController extends BaseController{
     	}
     	SgUser record = new SgUser();
     	record.setId(id);
-    	record.setPassword("123456");
+    	String md5Code = MD5Util.encrypt("123456");
+    	record.setPassword(md5Code);
     	sgUserService.updateByPrimaryKeySelective(record);
     	return new JsonResult(Message.M2000);
     	
@@ -248,7 +250,8 @@ public class SgUserController extends BaseController{
     @RequestMapping("/add_dummy")
     public JsonResult addDummy(SgUser SgUser){
     	SgUser.setId(UUIDUtil.getUUID());
-    	SgUser.setPassword("123456");
+    	String md5Code = MD5Util.encrypt("123456");
+    	SgUser.setPassword(md5Code);
     	SgUser.setDummy(true);
     	int i = sgUserService.insertSelective(SgUser);
     	if(i > 0){

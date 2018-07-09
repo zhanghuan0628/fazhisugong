@@ -79,10 +79,10 @@
 		<if test="category != null and category != '' ">
 			and category = #{category}
 		</if>
-		<if test="model.category == 'law_lecture_room'.toString()">
+		<if test="category == 'law_lecture_room'.toString()">
 			order by sortNum desc
 		</if>
-		<if test="model.category != 'law_lecture_room'.toString()">
+		<if test="category != 'law_lecture_room'.toString()">
 			order by create_date desc
 		</if>
 		
