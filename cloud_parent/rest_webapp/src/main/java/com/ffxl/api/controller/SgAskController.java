@@ -106,6 +106,9 @@ public class SgAskController {
 	@RequestMapping(value = "/queryCheckTheme")
     @ResponseBody
 	public JsonResult queryCheckTheme(String userId){
+		if(StringUtil.isEmpty(userId)){
+			return new JsonResult(Message.M4003);
+		}
 		Map map = sgSubjectService.queryCheckTheme(userId);
 		if(map != null && !map.isEmpty()){
 			return new JsonResult(Message.M2000,map);
