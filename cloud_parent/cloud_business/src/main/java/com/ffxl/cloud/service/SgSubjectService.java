@@ -29,7 +29,7 @@ public interface SgSubjectService extends GenericService<SgSubject, SgSubjectExa
 	 * 查询题库
 	 * @return
 	 */
-	Map queryCheckTheme();
+	Map queryCheckTheme(String userId);
 	/**
 	 * 根据活动找到题库
 	 * @param themeId

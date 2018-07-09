@@ -28,4 +28,7 @@
 		ORDER BY
 			num DESC
 	</select>
+	<select id="queryMaxDateById" resultMap="SgThemeAnswerLogMap" parameterType="java.lang.String">
+		select MAX(create_date) as createDate from sg_theme_answer_log where user_id = #{userId}
+	</select>
 </mapper>

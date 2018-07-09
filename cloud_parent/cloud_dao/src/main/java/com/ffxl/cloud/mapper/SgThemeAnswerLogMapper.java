@@ -25,4 +25,10 @@ public interface SgThemeAnswerLogMapper extends GenericMapper<SgThemeAnswerLog, 
 	 * @return
 	 */
 	List<SgThemeAnswerLog> queryMyTheme(@Param("userId")String userId);
+	/**
+	 * 查询最大时间
+	 * @param userId
+	 * @return
+	 */
+	SgThemeAnswerLog queryMaxDateById(@Param("userId")String userId);
 }

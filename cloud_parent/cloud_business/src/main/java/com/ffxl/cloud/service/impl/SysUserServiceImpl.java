@@ -84,7 +84,7 @@ public class SysUserServiceImpl extends GenericServiceImpl<SysUser, SysUserExamp
             user.setLoginPassword(user.getLoginPassword());
             user.setStatus(user.getStatus());
         }
-        int ret = sysUserMapper.updateByPrimaryKey(user);
+        int ret = sysUserMapper.updateByPrimaryKeySelective(user);
 		return ret;
 	}
 

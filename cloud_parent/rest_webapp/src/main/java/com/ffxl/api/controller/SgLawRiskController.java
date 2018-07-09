@@ -113,6 +113,8 @@ public class SgLawRiskController {
 	public JsonResult insertLawComment(SgLawComment record){
 		record.setId(UUIDUtil.getUUID());
 		record.setCreateDate(new Date());
+		record.setTopicType("law");
+		record.setFromUserType("sg");
 		int i = sgLawCommentService.insertSelective(record);
 		if(i > 0){
 			return new JsonResult(Message.M2000);

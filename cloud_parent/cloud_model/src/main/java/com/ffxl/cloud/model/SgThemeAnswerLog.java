@@ -7,6 +7,7 @@ public class SgThemeAnswerLog extends BaseSgThemeAnswerLog {
 	private String num;
 	private String stage;
 	private String userName;
+	private String getAward;
 	public String getTitle() {
 		return title;
 	}
@@ -30,5 +31,11 @@ public class SgThemeAnswerLog extends BaseSgThemeAnswerLog {
 	}
 	public void setUserName(String userName) {
 		this.userName = userName;
+	}
+	public String getGetAward() {
+		return getAward;
+	}
+	public void setGetAward(String getAward) {
+		this.getAward = getAward;
 	}
 }

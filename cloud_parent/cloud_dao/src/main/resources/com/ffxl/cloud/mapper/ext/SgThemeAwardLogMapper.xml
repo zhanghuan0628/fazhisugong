@@ -20,5 +20,6 @@
 		JOIN sg_theme_answer_log sg ON sl.answer_id = sg.id
 		JOIN sys_dictionary sd ON sl.award_code = sd.id
 		where sl.user_id = #{model.userId}
+		order by st.num desc
 	</select>
 </mapper>

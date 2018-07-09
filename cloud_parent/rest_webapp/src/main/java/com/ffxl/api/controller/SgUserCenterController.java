@@ -112,6 +112,10 @@ public class SgUserCenterController extends BaseController{
 			if(u.getModifyPassword()==true){
 				return new JsonResult(Message.M2000,"已修改过密码");
 			}else{
+				SgUser record = new SgUser();
+				record.setId(userId);
+				record.setModifyPassword(true);
+				sgUserService.updateByPrimaryKeySelective(record);
 				return new JsonResult("1","提醒用户修改密码");
 			}
 		}else{

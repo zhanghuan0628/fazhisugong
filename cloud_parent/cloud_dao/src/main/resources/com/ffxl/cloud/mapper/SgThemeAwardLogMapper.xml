@@ -6,7 +6,7 @@
     <result column="answer_id" property="answerId" jdbcType="VARCHAR" />
     <result column="theme_id" property="themeId" jdbcType="VARCHAR" />
     <result column="award_code" property="awardCode" jdbcType="VARCHAR" />
-    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="VARCHAR" />
     <result column="is_receive" property="receive" jdbcType="TINYINT" />
   </resultMap>
   <sql id="Example_Where_Clause" >
@@ -105,7 +105,7 @@
       award_code, user_id, is_receive
       )
     values (#{id,jdbcType=VARCHAR}, #{answerId,jdbcType=VARCHAR}, #{themeId,jdbcType=VARCHAR}, 
-      #{awardCode,jdbcType=VARCHAR}, #{userId,jdbcType=INTEGER}, #{receive,jdbcType=TINYINT}
+      #{awardCode,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{receive,jdbcType=TINYINT}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.ffxl.cloud.model.SgThemeAwardLog" >
@@ -144,7 +144,7 @@
         #{awardCode,jdbcType=VARCHAR},
       </if>
       <if test="userId != null" >
-        #{userId,jdbcType=INTEGER},
+        #{userId,jdbcType=VARCHAR},
       </if>
       <if test="receive != null" >
         #{receive,jdbcType=TINYINT},
@@ -173,7 +173,7 @@
         award_code = #{record.awardCode,jdbcType=VARCHAR},
       </if>
       <if test="record.userId != null" >
-        user_id = #{record.userId,jdbcType=INTEGER},
+        user_id = #{record.userId,jdbcType=VARCHAR},
       </if>
       <if test="record.receive != null" >
         is_receive = #{record.receive,jdbcType=TINYINT},
@@ -189,7 +189,7 @@
       answer_id = #{record.answerId,jdbcType=VARCHAR},
       theme_id = #{record.themeId,jdbcType=VARCHAR},
       award_code = #{record.awardCode,jdbcType=VARCHAR},
-      user_id = #{record.userId,jdbcType=INTEGER},
+      user_id = #{record.userId,jdbcType=VARCHAR},
       is_receive = #{record.receive,jdbcType=TINYINT}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -208,7 +208,7 @@
         award_code = #{awardCode,jdbcType=VARCHAR},
       </if>
       <if test="userId != null" >
-        user_id = #{userId,jdbcType=INTEGER},
+        user_id = #{userId,jdbcType=VARCHAR},
       </if>
       <if test="receive != null" >
         is_receive = #{receive,jdbcType=TINYINT},
@@ -221,7 +221,7 @@
     set answer_id = #{answerId,jdbcType=VARCHAR},
       theme_id = #{themeId,jdbcType=VARCHAR},
       award_code = #{awardCode,jdbcType=VARCHAR},
-      user_id = #{userId,jdbcType=INTEGER},
+      user_id = #{userId,jdbcType=VARCHAR},
       is_receive = #{receive,jdbcType=TINYINT}
     where id = #{id,jdbcType=VARCHAR}
   </update>

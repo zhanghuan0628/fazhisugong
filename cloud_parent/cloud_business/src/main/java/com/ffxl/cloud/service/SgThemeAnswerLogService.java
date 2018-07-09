@@ -29,4 +29,10 @@ public interface SgThemeAnswerLogService extends GenericService<SgThemeAnswerLog
 	 * @return
 	 */
 	List<SgThemeAnswerLog> queryMyTheme(String userId);
+	/**
+	 * 查询最大时间
+	 * @param userId
+	 * @return
+	 */
+	SgThemeAnswerLog queryMaxDateById(String userId);
 }

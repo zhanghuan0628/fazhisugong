@@ -105,12 +105,12 @@ public class SgAskController {
 	 */
 	@RequestMapping(value = "/queryCheckTheme")
     @ResponseBody
-	public JsonResult queryCheckTheme(){
-		Map map = sgSubjectService.queryCheckTheme();
+	public JsonResult queryCheckTheme(String userId){
+		Map map = sgSubjectService.queryCheckTheme(userId);
 		if(map != null && !map.isEmpty()){
 			return new JsonResult(Message.M2000,map);
 		}else{
-			return new JsonResult(Message.M5000,"活动未开始");
+			return new JsonResult(Message.M5000);
 		}
 		
 	}

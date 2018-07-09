@@ -3,8 +3,11 @@ package com.ffxl.cloud.service.impl;
 import com.ffxl.cloud.mapper.SgThemeAnswerLogMapper;
 import com.ffxl.cloud.model.SgThemeAnswerLog;
 import com.ffxl.cloud.model.SgThemeAnswerLogExample;
+import com.ffxl.cloud.model.SgThemeAwardLog;
+import com.ffxl.cloud.model.SgThemeAwardLogExample;
 import com.ffxl.cloud.model.base.BaseSgThemeAnswerLogExample.Criteria;
 import com.ffxl.cloud.service.SgThemeAnswerLogService;
+import com.ffxl.cloud.service.SgThemeAwardLogService;
 import com.ffxl.platform.core.GenericMapper;
 import com.ffxl.platform.core.GenericServiceImpl;
 import java.util.List;
@@ -22,6 +25,9 @@ public class SgThemeAnswerLogServiceImpl extends GenericServiceImpl<SgThemeAnswe
 
     @Autowired
     private SgThemeAnswerLogMapper sgThemeAnswerLogMapper;
+    
+    @Autowired
+    private SgThemeAwardLogService sgThemeAwardLogService;
 
     @Override
     public GenericMapper<SgThemeAnswerLog, SgThemeAnswerLogExample, String> getGenericMapper() {
@@ -42,6 +48,16 @@ public class SgThemeAnswerLogServiceImpl extends GenericServiceImpl<SgThemeAnswe
 	@Override
 	public SgThemeAnswerLog queryAnswerLogByUser(String userId, String themeId) {
 		SgThemeAnswerLog m = sgThemeAnswerLogMapper.queryAnswerLogByUser(userId,themeId);
+		SgThemeAwardLogExample example = new SgThemeAwardLogExample();
+        com.ffxl.cloud.model.base.BaseSgThemeAwardLogExample.Criteria c= example.createCriteria();
+        c.andThemeIdEqualTo(themeId);
+        c.andUserIdEqualTo(userId);
+		List<SgThemeAwardLog> list = sgThemeAwardLogService.selectByExample(example);
+		if(list != null && list.size() > 0){
+			m.setGetAward("1");//已抽过奖
+		}else{
+			m.setGetAward("0");//未抽过奖
+		}
 		String num = toChinese(m.getNum());
 		m.setStage("第"+num+"期");
 		return m;
@@ -76,5 +92,10 @@ public class SgThemeAnswerLogServiceImpl extends GenericServiceImpl<SgThemeAnswe
             }
         }
         return result;
+	}
+
+	@Override
+	public SgThemeAnswerLog queryMaxDateById(String userId) {
+		return sgThemeAnswerLogMapper.queryMaxDateById(userId);
 	}
 }

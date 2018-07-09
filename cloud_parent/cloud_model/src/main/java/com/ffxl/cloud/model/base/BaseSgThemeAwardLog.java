@@ -11,7 +11,7 @@ public class BaseSgThemeAwardLog implements Serializable {
 
     private String awardCode;
 
-    private Integer userId;
+    private String userId;
 
     private Boolean receive;
 
@@ -49,12 +49,12 @@ public class BaseSgThemeAwardLog implements Serializable {
         this.awardCode = awardCode == null ? null : awardCode.trim();
     }
 
-    public Integer getUserId() {
+    public String getUserId() {
         return userId;
     }
 
-    public void setUserId(Integer userId) {
-        this.userId = userId;
+    public void setUserId(String userId) {
+        this.userId = userId == null ? null : userId.trim();
     }
 
     public Boolean getReceive() {

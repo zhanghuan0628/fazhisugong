@@ -5,8 +5,11 @@ import com.ffxl.cloud.mapper.SgSubjectMapper;
 import com.ffxl.cloud.model.SgSubject;
 import com.ffxl.cloud.model.SgSubjectExample;
 import com.ffxl.cloud.model.SgTheme;
+import com.ffxl.cloud.model.SgThemeAnswerLog;
+import com.ffxl.cloud.model.SgThemeAnswerLogExample;
 import com.ffxl.cloud.model.base.BaseSgSubjectExample.Criteria;
 import com.ffxl.cloud.service.SgSubjectService;
+import com.ffxl.cloud.service.SgThemeAnswerLogService;
 import com.ffxl.cloud.service.SgThemeService;
 import com.ffxl.platform.core.GenericMapper;
 import com.ffxl.platform.core.GenericServiceImpl;
@@ -16,6 +19,7 @@ import com.ffxl.platform.util.StringUtil;
 import net.sf.json.JSONArray;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -37,6 +41,9 @@ public class SgSubjectServiceImpl extends GenericServiceImpl<SgSubject, SgSubjec
     
     @Autowired
     private SgThemeService sgThemeService;
+    
+    @Autowired
+    private SgThemeAnswerLogService sgThemeAnswerLogService;
 
     @Override
     public GenericMapper<SgSubject, SgSubjectExample, String> getGenericMapper() {
@@ -83,21 +90,73 @@ public class SgSubjectServiceImpl extends GenericServiceImpl<SgSubject, SgSubjec
 	}
 
 	@Override
-	public Map queryCheckTheme() {
-		List<SgTheme> list = sgThemeService.queryPageList(null,null);
+	public Map queryCheckTheme(String userId) {
+		boolean b = false;
+		SgTheme model = new SgTheme();
+		List<SgTheme> list = sgThemeService.queryPageList(model,null);
 		Map map = new HashMap();
 		for(SgTheme st:list){
-			if(st.getStage().equals("3")){
-				String id = st.getId();
-				int num  = st.getSubjectCounts();
-				int score = st.getSore();
-				map.put("themeId", id);
-				map.put("num", num);
-				map.put("score", score);
-				int n = st.getNum();
-				String s = st.getStage();
-				map.put("stage", s);
-				break;
+			if(st.getState().equals("3")){
+				SgThemeAnswerLogExample example = new SgThemeAnswerLogExample();
+		        com.ffxl.cloud.model.base.BaseSgThemeAnswerLogExample.Criteria c= example.createCriteria();
+		        c.andUserIdEqualTo(userId);
+		        List<SgThemeAnswerLog> l = sgThemeAnswerLogService.selectByExample(example);
+		        if(l != null && l.size() > 0){
+		        	for(SgThemeAnswerLog mod:l){
+		        		if(mod.getThemeId().equals(st.getId())){
+		        			String id = st.getId();
+		        			map.put("act", 4);//已完成答题
+		        			map.put("themeId", id);
+		        			return map;
+		        		}else{
+		        			String id = st.getId();
+							int num  = st.getSubjectCounts();
+							int score = st.getSore();
+							map.put("act", 1);//进行中
+							map.put("themeId", id);
+							map.put("num", num);
+							map.put("score", score);
+							int n = st.getNum();
+							String s = st.getStage();
+							map.put("stage", s);
+							b = true;
+		        		}
+		        	}
+		        }else{
+		        	String id = st.getId();
+					int num  = st.getSubjectCounts();
+					int score = st.getSore();
+					map.put("act", 1);//进行中
+					map.put("themeId", id);
+					map.put("num", num);
+					map.put("score", score);
+					int n = st.getNum();
+					String s = st.getStage();
+					map.put("stage", s);
+					return map;
+		        }
+				
+			}else{
+				if(b == false){
+					SgThemeAnswerLog sl = sgThemeAnswerLogService.queryMaxDateById(userId);
+					if(sl != null){
+						Date endTime = sl.getCreateDate();
+						SgThemeAnswerLogExample example = new SgThemeAnswerLogExample();
+				        com.ffxl.cloud.model.base.BaseSgThemeAnswerLogExample.Criteria c= example.createCriteria();
+				        c.andCreateDateEqualTo(endTime);
+				        c.andUserIdEqualTo(userId);
+						List<SgThemeAnswerLog> l = sgThemeAnswerLogService.selectByExample(example);
+						map.put("act", 3);//活动已结束
+						map.put("themeId", l.get(0).getThemeId());
+						return map;
+					}else{
+						map.put("act", 2);//此人没参加过活动
+						return map;
+					}
+				}else{
+					return map;
+				}
+				
 			}
 		}
 		return map;

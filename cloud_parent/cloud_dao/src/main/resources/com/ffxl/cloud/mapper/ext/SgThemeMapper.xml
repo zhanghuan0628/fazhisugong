@@ -11,7 +11,7 @@
 			sg_theme
 		WHERE
 			1 = 1
-		<if test="model.num != null and model.num !='' ">
+		<if test="model.num != null">
 			and num like CONCAT('%','${model.num}','%')
 		</if>
 		<if test="model.id != null and model.id !='' ">
