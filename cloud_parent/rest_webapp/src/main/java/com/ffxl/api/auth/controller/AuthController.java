@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -13,6 +14,7 @@ import com.ffxl.api.auth.util.JwtTokenUtil;
 import com.ffxl.api.auth.validator.IReqValidator;
 import com.ffxl.api.auth.validator.dto.AuthRequest;
 import com.ffxl.api.auth.validator.dto.AuthResponse;
+import com.ffxl.api.config.BaseController;
 import com.ffxl.platform.constant.JsonResult;
 import com.ffxl.platform.constant.Message;
 import com.ffxl.platform.util.HttpHeader;
@@ -24,7 +26,7 @@ import com.ffxl.platform.util.HttpHeader;
  * 2018年7月2日
  */
 @RestController
-public class AuthController {
+public class AuthController extends BaseController {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
     
     @Autowired
