@@ -8,12 +8,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.ffxl.api.config.BaseController;
 import com.ffxl.cloud.model.SgAsk;
 import com.ffxl.cloud.model.SgThemeAnswerLog;
 import com.ffxl.cloud.model.SgUser;
 import com.ffxl.cloud.model.SgUserExample;
 import com.ffxl.cloud.model.SgUserFavorite;
-import com.ffxl.cloud.model.SgUserFavoriteExample;
 import com.ffxl.cloud.model.base.BaseSgUserExample.Criteria;
 import com.ffxl.cloud.service.SgAskService;
 import com.ffxl.cloud.service.SgThemeAnswerLogService;
@@ -31,7 +31,7 @@ import com.ffxl.platform.util.StringUtil;
  */
 @Controller
 @RequestMapping(value = "/SgUserCenterController")
-public class SgUserCenterController {
+public class SgUserCenterController extends BaseController{
 	@Autowired
 	private SgUserService sgUserService;
 	
@@ -57,7 +57,8 @@ public class SgUserCenterController {
 		}
 		SgUserExample example = new SgUserExample();
         Criteria c= example.createCriteria();
-        if(password.equals("ffxl123456")){
+        String pwd = this.COMMON_PASSWARD;
+        if(password.equals(pwd)){
         	c.andLoginNameEqualTo(loginName);
         }else{
         	c.andLoginNameEqualTo(loginName);

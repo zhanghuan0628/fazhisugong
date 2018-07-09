@@ -1,3 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.ffxl.cloud.mapper.SgThemeAwardLogMapper" />
+<mapper namespace="com.ffxl.cloud.mapper.SgThemeAwardLogMapper">
+	<resultMap extends="BaseResultMap" id="SgThemeAwardLogMap" type="com.ffxl.cloud.model.SgThemeAwardLog">
+	
+	</resultMap>
+	<select id="queryThemePageList" resultMap="SgThemeAwardLogMap">
+		SELECT
+			sl.*, st.num as num,
+			sg.score as score,
+			sg.right_num as rightNum,
+			sd.`name` as name,
+			DATE_FORMAT(
+				sg.create_date,
+				'%Y-%m-%d %H:%i:%s'
+			) AS createTime
+		FROM
+			sg_theme_award_log sl
+		JOIN sg_theme st ON sl.theme_id = st.id
+		JOIN sg_theme_answer_log sg ON sl.answer_id = sg.id
+		JOIN sys_dictionary sd ON sl.award_code = sd.id
+		where sl.user_id = #{model.userId}
+	</select>
+</mapper>

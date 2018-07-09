@@ -52,27 +52,30 @@ public class SgThemeServiceImpl extends GenericServiceImpl<SgTheme, SgThemeExamp
 
 	@Override
 	public List<SgTheme> queryPageList(SgTheme sgTheme, Page page) {
-		if(!StringUtil.isEmpty(sgTheme.getStage())){
-			String str = sgTheme.getStage();
-			int begin = str.indexOf("第");
-			int end = str.indexOf("期");
-			if(begin > -1 && end > -1){
-				String num = str.substring(begin+1, end);
-				int n = chineseNumber2Int(num);
-				sgTheme.setNum(n);
-			}else if(begin > -1 && end == -1){
-				String num = str.substring(begin+1);
-				int n = chineseNumber2Int(num);
-				sgTheme.setNum(n);
-			}else if(begin == -1 && end > -1){
-				String num = str.substring(0, end);
-				int n = chineseNumber2Int(num);
-				sgTheme.setNum(n);
-			}else if(begin == -1 && end == -1){
-				int n = chineseNumber2Int(str);
-				sgTheme.setNum(n);
+		if(sgTheme != null){
+			if(!StringUtil.isEmpty(sgTheme.getStage())){
+				String str = sgTheme.getStage();
+				int begin = str.indexOf("第");
+				int end = str.indexOf("期");
+				if(begin > -1 && end > -1){
+					String num = str.substring(begin+1, end);
+					int n = chineseNumber2Int(num);
+					sgTheme.setNum(n);
+				}else if(begin > -1 && end == -1){
+					String num = str.substring(begin+1);
+					int n = chineseNumber2Int(num);
+					sgTheme.setNum(n);
+				}else if(begin == -1 && end > -1){
+					String num = str.substring(0, end);
+					int n = chineseNumber2Int(num);
+					sgTheme.setNum(n);
+				}else if(begin == -1 && end == -1){
+					int n = chineseNumber2Int(str);
+					sgTheme.setNum(n);
+				}
 			}
 		}
+		
 		List<SgTheme> list = sgThemeMapper.queryPageList(sgTheme,page);
 		for(SgTheme st:list){
 			SgThmemeAnswerLogExample example = new SgThmemeAnswerLogExample();

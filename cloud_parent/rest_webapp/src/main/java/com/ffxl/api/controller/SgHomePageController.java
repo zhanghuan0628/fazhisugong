@@ -104,11 +104,23 @@ public class SgHomePageController {
         	sl.setSortnum(sortnum);
         	SgLaw pre = sgLawService.queryNextLawRoom(sl);
         	Map<String,String> map = new HashMap<String,String>();
-        	map.put("preId", pre.getId());
-        	map.put("preTitle", pre.getTitle());
+        	
+        	if(pre != null){
+        		map.put("preId", pre.getId());
+            	map.put("preTitle", pre.getTitle());
+        	}else{
+        		map.put("nextId", null);
+            	map.put("nextTitle", null);
+        	}
+        	
         	SgLaw next = sgLawService.queryPreLawRoom(sl);
-        	map.put("nextId", next.getId());
-        	map.put("nextTitle", next.getTitle());
+        	if(next != null){
+        		map.put("nextId", next.getId());
+            	map.put("nextTitle", next.getTitle());
+        	}else{
+        		map.put("nextId", null);
+            	map.put("nextTitle", null);
+        	}
         	sgLaw.setMap(map);
         }
         return new JsonResult(Message.M2000, sgLaw);
@@ -217,24 +229,36 @@ public class SgHomePageController {
         int num = 0;
         int count = list.size();
         for(int i = 0;i<list.size();i++){
-        	Map map = (Map) list;
-        	if(map.get(id).equals(sgLaw.getId())){
+        	if(list.get(i).getId().equals(sgLaw.getId())){
         		num = i;
         		break;
         	}
         }
         sgLaw.setAllChapter(num+"/"+count);
         String stage = toChinese(sgLaw.getNum()+"");
-        sgLaw.setChapter(stage);
+        sgLaw.setChapter("第"+stage+"章");
         SgLaw sl = new SgLaw();
-    	sl.setSortnum(sgLaw.getNum());
+    	sl.setNum(sgLaw.getNum());
+    	sl.setCategoryCode(categoryCode);
         SgLaw next = sgLawService.queryNextLawMagic(sl);
     	Map<String,String> map = new HashMap<String,String>();
-    	map.put("nextId", next.getId());
-    	map.put("nextTitle", next.getTitle());
+    	if(next != null){
+    		map.put("nextId", next.getId());
+        	map.put("nextTitle", next.getTitle());
+    	}else{
+    		map.put("nextId", null);
+        	map.put("nextTitle", null);
+    	}
+    	
     	SgLaw pre = sgLawService.queryPreLawMagic(sl);
-    	map.put("preId", pre.getId());
-    	map.put("preTitle", pre.getTitle());
+    	
+    	if(pre != null){
+    		map.put("preId", pre.getId());
+        	map.put("preTitle", pre.getTitle());
+    	}else{
+    		map.put("preId", null);
+        	map.put("preTitle", null);
+    	}
     	sgLaw.setMap(map);
     	return new JsonResult(Message.M2000,sgLaw);
 		

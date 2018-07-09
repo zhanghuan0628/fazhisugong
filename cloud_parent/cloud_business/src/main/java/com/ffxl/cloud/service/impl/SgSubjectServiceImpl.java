@@ -89,11 +89,14 @@ public class SgSubjectServiceImpl extends GenericServiceImpl<SgSubject, SgSubjec
 		for(SgTheme st:list){
 			if(st.getStage().equals("3")){
 				String id = st.getId();
-				int num  = st.getNum();
+				int num  = st.getSubjectCounts();
 				int score = st.getSore();
 				map.put("themeId", id);
 				map.put("num", num);
 				map.put("score", score);
+				int n = st.getNum();
+				String s = st.getStage();
+				map.put("stage", s);
 				break;
 			}
 		}

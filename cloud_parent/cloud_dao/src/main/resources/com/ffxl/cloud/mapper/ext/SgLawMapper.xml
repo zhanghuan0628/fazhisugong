@@ -147,16 +147,16 @@
 				FROM
 					sg_law
 				WHERE
-					num &lt; 2
+					num &lt; #{model.num}
 				AND category = 'law_magic'
 				AND `status` = 'publish'
-				AND category_code = #{model.num}
+				AND category_code = #{model.categoryCode}
 				ORDER BY
 					num DESC
 			)
 		AND category = 'law_magic'
 		AND `status` = 'publish'
-		AND category_code = #{model.num}
+		AND category_code = #{model.categoryCode}
 	</select>
 	
 	<!-- 下一章-->
@@ -174,16 +174,16 @@
 				FROM
 					sg_law
 				WHERE
-					num &gt; 2
+					num &gt; #{model.num}
 				AND category = 'law_magic'
 				AND `status` = 'publish'
-				AND category_code = #{model.num}
+				AND category_code = #{model.categoryCode}
 				ORDER BY
 					num DESC
 			)
 		AND category = 'law_magic'
 		AND `status` = 'publish'
-		AND category_code = #{model.num}
+		AND category_code = #{model.categoryCode}
 	</select>
 	
 	

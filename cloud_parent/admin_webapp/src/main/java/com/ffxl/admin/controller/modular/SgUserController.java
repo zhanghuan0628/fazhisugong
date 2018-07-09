@@ -21,11 +21,13 @@ import com.ffxl.admin.core.shiro.ShiroUser;
 import com.ffxl.cloud.model.SgAsk;
 import com.ffxl.cloud.model.SgLawComment;
 import com.ffxl.cloud.model.SgLawCommentExample;
+import com.ffxl.cloud.model.SgThemeAwardLog;
 import com.ffxl.cloud.model.SgThmemeAnswerLog;
 import com.ffxl.cloud.model.SgUser;
 import com.ffxl.cloud.model.SysUser;
 import com.ffxl.cloud.service.SgAskService;
 import com.ffxl.cloud.service.SgLawCommentService;
+import com.ffxl.cloud.service.SgThemeAwardLogService;
 import com.ffxl.cloud.service.SgThmemeAnswerLogService;
 import com.ffxl.cloud.service.SgUserService;
 import com.ffxl.cloud.service.impl.SysUserServiceImpl;
@@ -59,6 +61,9 @@ public class SgUserController extends BaseController{
 	
 	@Autowired
 	private SgLawCommentService sgLawCommentService;
+	
+	@Autowired
+	private SgThemeAwardLogService sgThemeAwardLogService;
 	
 	/**
      * 跳转到用户列表的页面
@@ -279,5 +284,16 @@ public class SgUserController extends BaseController{
             return true;
         }
     }
-    
+    /**
+     * 查询用户答题列表
+     */
+    @RequestMapping("/user_theme_list")
+    @ResponseBody
+    public JsonResult user_theme_list(DataTablesUtil dataTables,Page page,SgThemeAwardLog model) {
+    	page = this.getPageInfo(page,dataTables);
+    	List<SgThemeAwardLog> dataList = sgThemeAwardLogService.queryThemePageList(model,page);
+        dataTables = this.getDataTables(page, dataTables, dataList);
+        return new JsonResult("2000", dataTables);
+        
+    }
 }
