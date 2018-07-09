@@ -30,7 +30,8 @@ public class AuthController {
     @Autowired
     private JwtTokenUtil jwtTokenUtil;
 
-    @Resource(name = "simpleValidator")
+//  @Resource(name = "simpleValidator")
+    @Resource(name = "dbValidator")
     private IReqValidator reqValidator;
 
     /**
