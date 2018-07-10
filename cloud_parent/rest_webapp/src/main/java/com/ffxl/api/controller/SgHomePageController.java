@@ -84,14 +84,18 @@ public class SgHomePageController {
 	 */
 	@RequestMapping(value = "/querySgLawDetail")
     @ResponseBody
-    public JsonResult querySgLawDetail(String id,String category,int sortnum) {
+    public JsonResult querySgLawDetail(String userId,String id,String category,int sortnum) {
 		if(StringUtil.isEmpty(id)){
+			return new JsonResult(Message.M4003);
+		}
+		if(StringUtil.isEmpty(userId)){
 			return new JsonResult(Message.M4003);
 		}
         SgLaw sgLaw = sgLawService.selectByPrimaryKey(id);
         SgUserFavoriteExample example = new SgUserFavoriteExample();
         com.ffxl.cloud.model.base.BaseSgUserFavoriteExample.Criteria c= example.createCriteria();
         c.andSourceIdEqualTo(id);
+        c.andUserIdEqualTo(userId);
         List<SgUserFavorite> list = sgUserFavoriteService.selectByExample(example);
         if(list != null && list.size() > 0){
         	sgLaw.setFavorite("1");//已收藏
@@ -158,7 +162,7 @@ public class SgHomePageController {
         int i = -1;
         List<SgUserFavorite> list = sgUserFavoriteService.selectByExample(example);
         if(list != null && list.size() > 0){
-        	sgUserFavoriteService.deleteByExample(example);
+        	i = sgUserFavoriteService.deleteByExample(example);
         }else{
         	i = sgUserFavoriteService.insertSelective(record);
         }

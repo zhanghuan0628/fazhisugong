@@ -24,7 +24,7 @@
 		</if>
 	</select>
 	
-	<select id="queryLawCommentDetail" resultMap="SgLawCommentMap" parameterType="java.lang.String">
+	<select id="queryLawCommentDetail" parameterType="java.lang.String" resultMap="SgLawCommentMap">
 		SELECT
 			sc.*, su.user_name AS userName,
 			su.head_url AS headUrl,

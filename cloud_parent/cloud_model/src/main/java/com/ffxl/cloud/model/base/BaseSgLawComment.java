@@ -26,6 +26,8 @@ public class BaseSgLawComment implements Serializable {
 
     private String state;
 
+    private Boolean read;
+
     private static final long serialVersionUID = 1L;
 
     public String getId() {
@@ -116,6 +118,14 @@ public class BaseSgLawComment implements Serializable {
         this.state = state == null ? null : state.trim();
     }
 
+    public Boolean getRead() {
+        return read;
+    }
+
+    public void setRead(Boolean read) {
+        this.read = read;
+    }
+
     @Override
     public boolean equals(Object that) {
         if (this == that) {
@@ -138,7 +148,8 @@ public class BaseSgLawComment implements Serializable {
             && (this.getReplyUserType() == null ? other.getReplyUserType() == null : this.getReplyUserType().equals(other.getReplyUserType()))
             && (this.getReplyUserId() == null ? other.getReplyUserId() == null : this.getReplyUserId().equals(other.getReplyUserId()))
             && (this.getCreateDate() == null ? other.getCreateDate() == null : this.getCreateDate().equals(other.getCreateDate()))
-            && (this.getState() == null ? other.getState() == null : this.getState().equals(other.getState()));
+            && (this.getState() == null ? other.getState() == null : this.getState().equals(other.getState()))
+            && (this.getRead() == null ? other.getRead() == null : this.getRead().equals(other.getRead()));
     }
 
     @Override
@@ -156,6 +167,7 @@ public class BaseSgLawComment implements Serializable {
         result = prime * result + ((getReplyUserId() == null) ? 0 : getReplyUserId().hashCode());
         result = prime * result + ((getCreateDate() == null) ? 0 : getCreateDate().hashCode());
         result = prime * result + ((getState() == null) ? 0 : getState().hashCode());
+        result = prime * result + ((getRead() == null) ? 0 : getRead().hashCode());
         return result;
     }
 }

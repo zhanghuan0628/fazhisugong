@@ -10,17 +10,21 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ffxl.api.config.BaseController;
 import com.ffxl.cloud.model.SgAsk;
+import com.ffxl.cloud.model.SgLawComment;
+import com.ffxl.cloud.model.SgLawCommentExample;
 import com.ffxl.cloud.model.SgThemeAnswerLog;
 import com.ffxl.cloud.model.SgUser;
 import com.ffxl.cloud.model.SgUserExample;
 import com.ffxl.cloud.model.SgUserFavorite;
 import com.ffxl.cloud.model.base.BaseSgUserExample.Criteria;
 import com.ffxl.cloud.service.SgAskService;
+import com.ffxl.cloud.service.SgLawCommentService;
 import com.ffxl.cloud.service.SgThemeAnswerLogService;
 import com.ffxl.cloud.service.SgUserFavoriteService;
 import com.ffxl.cloud.service.SgUserService;
 import com.ffxl.platform.constant.JsonResult;
 import com.ffxl.platform.constant.Message;
+import com.ffxl.platform.core.Page;
 import com.ffxl.platform.util.MD5Util;
 import com.ffxl.platform.util.StringUtil;
 
@@ -43,6 +47,9 @@ public class SgUserCenterController extends BaseController{
 	
 	@Autowired
 	private SgThemeAnswerLogService sgThemeAnswerLogService;
+	
+	@Autowired
+	private SgLawCommentService sgLawCommentService;
 	/**
 	 * 登陆
 	 * @param loginName
@@ -165,12 +172,13 @@ public class SgUserCenterController extends BaseController{
 	 */
 	@RequestMapping(value = "/queryMyAsk")
     @ResponseBody
-	public JsonResult queryMyAsk(String userId){
+	public JsonResult queryMyAsk(String userId,Page page){
 		if(StringUtil.isEmpty(userId)){
 			return new JsonResult(Message.M4003);
 		}
 		List<SgAsk> list = sgAskService.queryMyAsk(userId);
-		return new JsonResult(Message.M2000,list);
+		page.setDataList(list);
+        return new JsonResult(Message.M2000, page);
 	}
 	/**
 	 * 我的法官
@@ -178,12 +186,13 @@ public class SgUserCenterController extends BaseController{
 	 */
 	@RequestMapping(value = "/queryMyThemeLog")
     @ResponseBody
-	public JsonResult queryMyThemeLog(String userId){
+	public JsonResult queryMyThemeLog(String userId,Page page){
 		if(StringUtil.isEmpty(userId)){
 			return new JsonResult(Message.M4003);
 		}
 		List<SgThemeAnswerLog> list = sgThemeAnswerLogService.queryMyTheme(userId);
-		return new JsonResult(Message.M2000,list);
+		page.setDataList(list);
+        return new JsonResult(Message.M2000, page);
 		
 	}
 	/**
@@ -192,12 +201,50 @@ public class SgUserCenterController extends BaseController{
 	 */
 	@RequestMapping(value = "/queryMyFavorite")
     @ResponseBody
-	public JsonResult queryMyFavorite(String userId,String sourceType){
+	public JsonResult queryMyFavorite(String userId,String sourceType,Page page){
 		if(StringUtil.isEmpty(userId)||StringUtil.isEmpty(sourceType)){
 			return new JsonResult(Message.M4003);
 		}
 		List<SgUserFavorite> list = sgUserFavoriteService.queryMyFavorite(userId,sourceType);
-		return new JsonResult(Message.M2000,list);
+		page.setDataList(list);
+        return new JsonResult(Message.M2000, page);
+		
+	}
+	/**
+	 * 我的消息数量
+	 * @param userId
+	 * @return
+	 */
+	@RequestMapping(value = "/queryMyInfo")
+    @ResponseBody
+	public JsonResult queryMyInfo(String userId){
+		if(StringUtil.isEmpty(userId)){
+			return new JsonResult(Message.M4003);
+		}
+		int count = sgUserService.queryMyInfo(userId);
+		return new JsonResult(Message.M2000, count);
+		
+	}
+	/**
+	 * 我的消息列表
+	 * @param userId
+	 * @return
+	 */
+	@RequestMapping(value = "/queryMyInfoList")
+    @ResponseBody
+	public JsonResult queryMyInfoList(String userId){
+		if(StringUtil.isEmpty(userId)){
+			return new JsonResult(Message.M4003);
+		}
+		List<SgUser> list = sgUserService.queryMyInfoList(userId);
+		SgLawCommentExample example = new SgLawCommentExample();
+	    com.ffxl.cloud.model.base.BaseSgLawCommentExample.Criteria c= example.createCriteria();
+	    c.andFromUserIdEqualTo(userId);
+	    c.andReadIsNull();
+	    SgLawComment record = new SgLawComment();
+	    record.setRead(true);
+		sgLawCommentService.updateByExampleSelective(record, example);
+		return new JsonResult(Message.M2000, list);
 		
 	}
 	

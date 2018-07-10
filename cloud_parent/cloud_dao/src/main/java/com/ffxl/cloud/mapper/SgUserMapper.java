@@ -20,4 +20,16 @@ public interface SgUserMapper extends GenericMapper<SgUser, SgUserExample, Strin
 	 * @return
 	 */
 	List<SgUser> queryPageList(@Param("model")SgUser sgUser, @Param("page")Page page);
+	/**
+	 * 我的消息的数量
+	 * @param userId
+	 * @return
+	 */
+	int queryMyInfo(@Param("userId")String userId);
+	/**
+	 * 我的消息的列表
+	 * @param userId
+	 * @return
+	 */
+	List<SgUser> queryMyInfoList(@Param("userId")String userId);
 }

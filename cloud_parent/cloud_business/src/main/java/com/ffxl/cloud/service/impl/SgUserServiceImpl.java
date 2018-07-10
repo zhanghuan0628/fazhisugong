@@ -50,4 +50,14 @@ public class SgUserServiceImpl extends GenericServiceImpl<SgUser, SgUserExample,
 	public List<SgUser> queryPageList(SgUser sgUser, Page page) {
 		return sgUserMapper.queryPageList(sgUser, page);
 	}
+
+	@Override
+	public int queryMyInfo(String userId) {
+		return sgUserMapper.queryMyInfo(userId);
+	}
+
+	@Override
+	public List<SgUser> queryMyInfoList(String userId) {
+		return sgUserMapper.queryMyInfoList(userId);
+	}
 }

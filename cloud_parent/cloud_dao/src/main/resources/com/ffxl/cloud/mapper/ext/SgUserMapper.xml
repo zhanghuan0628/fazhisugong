@@ -21,4 +21,73 @@
 			and (is_dummy is null or is_dummy = '' or is_dummy = false)
 		</if>
 	</select>
+	<select id="queryMyInfo" resultType="int" parameterType="java.lang.String">
+		SELECT
+			count(id) AS count
+		FROM
+			(
+				SELECT
+					st.id
+				FROM
+					sg_law_comment st
+				WHERE
+					st.from_user_id = #{userId}
+				AND st.reply_user_id IS NOT NULL
+				AND st.reply_content IS NOT NULL
+				AND st.is_read IS NULL
+				AND st.state = 'pass'
+				UNION ALL
+					SELECT
+						sa.id
+					FROM
+						sg_ask sa
+					JOIN sg_law_comment sc ON sa.id = sc.topic_id
+					WHERE
+						sa.user_id = #{userId}
+					AND is_read IS NULL
+			) a
+	</select>
+	<select id="queryMyInfoList" parameterType="java.lang.String" resultMap="SgUserMap">
+		SELECT
+			*
+		FROM
+			(
+				SELECT
+					st.topic_type as type,
+					st.topic_id as topicId,
+					st.id,
+					su.user_name AS replyName,
+					su.head_img AS headImg,
+					st.create_date AS createDate,
+					st.content as fromContent,
+					st.reply_content as replyContent
+				FROM
+					sg_law_comment st
+				JOIN sys_user su ON st.reply_user_id = su.id
+				WHERE
+					st.from_user_id = #{userId}
+				AND st.reply_user_id IS NOT NULL
+				AND st.reply_content IS NOT NULL
+				AND st.is_read IS NULL
+				AND st.state = 'pass'
+				UNION ALL
+					SELECT
+						sc.topic_type as type,
+						sc.topic_id as topicId,
+						sa.id,
+						sr.user_name AS replyName,
+						sr.head_img AS headImg,
+						sc.create_date AS createDate,
+						sa.content as fromContent,
+						sc.reply_content as replyContent
+					FROM
+						sg_ask sa
+					JOIN sg_law_comment sc ON sa.id = sc.topic_id
+					JOIN sys_user sr ON sc.reply_user_id = sr.id
+					WHERE
+						sa.user_id = #{userId}
+					AND is_read IS NULL
+			) a
+		
+	</select>
 </mapper>

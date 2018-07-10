@@ -24,4 +24,16 @@ public interface SgUserService extends GenericService<SgUser, SgUserExample, Str
      * @return
      */
 	List<SgUser> queryPageList(SgUser sgUser, Page page);
+	/**
+	 * 我的消息的数量
+	 * @param userId
+	 * @return
+	 */
+	int queryMyInfo(String userId);
+	/**
+	 * 我的消息的列表
+	 * @param userId
+	 * @return
+	 */
+	List<SgUser> queryMyInfoList(String userId);
 }

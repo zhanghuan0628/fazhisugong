@@ -875,6 +875,66 @@ public class BaseSgLawCommentExample {
             addCriterion("state not between", value1, value2, "state");
             return (Criteria) this;
         }
+
+        public Criteria andReadIsNull() {
+            addCriterion("is_read is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andReadIsNotNull() {
+            addCriterion("is_read is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andReadEqualTo(Boolean value) {
+            addCriterion("is_read =", value, "read");
+            return (Criteria) this;
+        }
+
+        public Criteria andReadNotEqualTo(Boolean value) {
+            addCriterion("is_read <>", value, "read");
+            return (Criteria) this;
+        }
+
+        public Criteria andReadGreaterThan(Boolean value) {
+            addCriterion("is_read >", value, "read");
+            return (Criteria) this;
+        }
+
+        public Criteria andReadGreaterThanOrEqualTo(Boolean value) {
+            addCriterion("is_read >=", value, "read");
+            return (Criteria) this;
+        }
+
+        public Criteria andReadLessThan(Boolean value) {
+            addCriterion("is_read <", value, "read");
+            return (Criteria) this;
+        }
+
+        public Criteria andReadLessThanOrEqualTo(Boolean value) {
+            addCriterion("is_read <=", value, "read");
+            return (Criteria) this;
+        }
+
+        public Criteria andReadIn(List<Boolean> values) {
+            addCriterion("is_read in", values, "read");
+            return (Criteria) this;
+        }
+
+        public Criteria andReadNotIn(List<Boolean> values) {
+            addCriterion("is_read not in", values, "read");
+            return (Criteria) this;
+        }
+
+        public Criteria andReadBetween(Boolean value1, Boolean value2) {
+            addCriterion("is_read between", value1, value2, "read");
+            return (Criteria) this;
+        }
+
+        public Criteria andReadNotBetween(Boolean value1, Boolean value2) {
+            addCriterion("is_read not between", value1, value2, "read");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {
