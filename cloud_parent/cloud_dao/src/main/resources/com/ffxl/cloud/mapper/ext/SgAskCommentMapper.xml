@@ -18,7 +18,7 @@
 			1 = 1
 		AND topic_type = 'ask'
 		<if test="id != null and id != '' ">
-			sc.topic_id = #{id}
+			and sc.topic_id = #{id}
 		</if>
 	</select>
 </mapper>

@@ -2,6 +2,7 @@ package com.ffxl.cloud.service;
 
 import java.util.List;
 
+import com.ffxl.cloud.model.SgSubject;
 import com.ffxl.cloud.model.SgThemeAnswerLog;
 import com.ffxl.cloud.model.SgThemeAnswerLogExample;
 import com.ffxl.platform.core.GenericService;
@@ -35,4 +36,11 @@ public interface SgThemeAnswerLogService extends GenericService<SgThemeAnswerLog
 	 * @return
 	 */
 	SgThemeAnswerLog queryMaxDateById(String userId);
+	/**
+	 * 回顾考题
+	 * @param userId
+	 * @param themeId
+	 * @return
+	 */
+	List<SgSubject> queryUserBackTheme(String userId, String themeId);
 }

@@ -151,7 +151,7 @@ public class SgAskController {
 		
 	}
 	/**
-	 * 用户回答详情(回顾考题)
+	 * 用户回答详情
 	 * @param userId
 	 * @param themeId
 	 * @return
@@ -164,6 +164,22 @@ public class SgAskController {
 		}
 		SgThemeAnswerLog model = sgThemeAnswerLogService.queryAnswerLogByUser(userId,themeId);
 		return new JsonResult(Message.M2000,model);
+		
+	}
+	/**
+	 * 回顾考题
+	 * @param userId
+	 * @param themeId
+	 * @return
+	 */
+	@RequestMapping(value = "/queryUserBackTheme")
+    @ResponseBody
+	public JsonResult queryUserBackTheme(String userId,String themeId){
+		if(StringUtil.isEmpty(userId)||StringUtil.isEmpty(themeId)){
+			return new JsonResult(Message.M4003);
+		}
+		List<SgSubject> list = sgThemeAnswerLogService.queryUserBackTheme(userId,themeId);
+		return new JsonResult(Message.M2000,list);
 		
 	}
 	/**

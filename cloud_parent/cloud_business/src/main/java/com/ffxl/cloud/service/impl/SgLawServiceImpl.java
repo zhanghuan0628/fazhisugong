@@ -110,4 +110,14 @@ public class SgLawServiceImpl extends GenericServiceImpl<SgLaw, SgLawExample, St
 	public List<SgLaw> queryRandLawRisk(SgLaw sgLaw) {
 		return sgLawMapper.queryRandLawRisk(sgLaw);
 	}
+
+	@Override
+	public List<SgLaw> querySgMagic(SgLaw s) {
+		return sgLawMapper.querySgMagic(s);
+	}
+
+	@Override
+	public List<SgLaw> queryLawRiskByMajor(SgLaw s) {
+		return sgLawMapper.queryLawRiskByMajor(s);
+	}
 }

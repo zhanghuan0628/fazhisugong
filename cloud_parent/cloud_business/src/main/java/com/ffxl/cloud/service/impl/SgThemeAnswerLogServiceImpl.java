@@ -1,16 +1,26 @@
 package com.ffxl.cloud.service.impl;
 
+import com.alibaba.fastjson.JSONObject;
 import com.ffxl.cloud.mapper.SgThemeAnswerLogMapper;
+import com.ffxl.cloud.model.SgSubject;
 import com.ffxl.cloud.model.SgThemeAnswerLog;
 import com.ffxl.cloud.model.SgThemeAnswerLogExample;
 import com.ffxl.cloud.model.SgThemeAwardLog;
 import com.ffxl.cloud.model.SgThemeAwardLogExample;
 import com.ffxl.cloud.model.base.BaseSgThemeAnswerLogExample.Criteria;
+import com.ffxl.cloud.service.SgSubjectService;
 import com.ffxl.cloud.service.SgThemeAnswerLogService;
 import com.ffxl.cloud.service.SgThemeAwardLogService;
 import com.ffxl.platform.core.GenericMapper;
 import com.ffxl.platform.core.GenericServiceImpl;
+
+import net.sf.json.JSONArray;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +38,9 @@ public class SgThemeAnswerLogServiceImpl extends GenericServiceImpl<SgThemeAnswe
     
     @Autowired
     private SgThemeAwardLogService sgThemeAwardLogService;
+    
+    @Autowired
+    private SgSubjectService sgSubjectService;
 
     @Override
     public GenericMapper<SgThemeAnswerLog, SgThemeAnswerLogExample, String> getGenericMapper() {
@@ -60,6 +73,18 @@ public class SgThemeAnswerLogServiceImpl extends GenericServiceImpl<SgThemeAnswe
 		}
 		String num = toChinese(m.getNum());
 		m.setStage("第"+num+"期");
+		List sList = new ArrayList();
+		String json = m.getAnswerJson();
+        JSONObject jsStr = JSONObject.parseObject(json);
+        Map<String,Object> map = new HashMap<String,Object>();
+        map.put("qstn", jsStr.get("qstn"));
+        String optn = String.valueOf(jsStr.get("optn"));
+        JSONArray jsonArray = JSONArray.fromObject(optn);
+        List<SgSubject> l = JSONArray.toList(jsonArray, SgSubject.class);// 过时方法
+        map.put("list", l);
+        map.put("themeId", m.getThemeId());
+        sList.add(map);
+        m.setList(sList);
 		return m;
 	}
 
@@ -97,5 +122,35 @@ public class SgThemeAnswerLogServiceImpl extends GenericServiceImpl<SgThemeAnswe
 	@Override
 	public SgThemeAnswerLog queryMaxDateById(String userId) {
 		return sgThemeAnswerLogMapper.queryMaxDateById(userId);
+	}
+
+	@Override
+	public List<SgSubject> queryUserBackTheme(String userId, String themeId) {
+		SgThemeAnswerLog m = sgThemeAnswerLogMapper.queryAnswerLogByUser(userId,themeId);
+		String json = m.getAnswerJson();
+		JSONArray jsonArray = JSONArray.fromObject(json);
+        List<SgSubject> list = JSONArray.toList(jsonArray, SgSubject.class);// 过时方法
+        List ls = new ArrayList();
+        for(SgSubject s:list){
+        	SgSubject ss = sgSubjectService.selectByPrimaryKey(s.getQuestion_id());
+        	String js = ss.getQuestionJson();
+            JSONObject jsStr = JSONObject.parseObject(js);
+            String optn = String.valueOf(jsStr.get("optn"));
+            JSONArray jsonArrays = JSONArray.fromObject(optn);
+            Map map = new HashMap();
+            List<SgSubject> l = JSONArray.toList(jsonArrays, SgSubject.class);// 过时方法
+            for(int i = 0;i < l.size();i++){
+            	if(s.getChoose().equals(i+"")){
+            		l.get(i).setNum(1);
+            	}else{
+            		l.get(i).setNum(0);
+            	}
+            }
+            map.put("id", ss.getId());
+            map.put("qstn", jsStr.get("qstn"));
+            map.put("list", l);
+            ls.add(map);
+        }
+		return ls;
 	}
 }

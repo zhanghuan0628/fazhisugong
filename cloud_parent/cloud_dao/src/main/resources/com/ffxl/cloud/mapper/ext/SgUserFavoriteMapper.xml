@@ -9,7 +9,8 @@
 			sf.*,
 			sl.title as title,
 		    sl.content as content,
-			sl.img_url as imgUrl
+			sl.img_url as imgUrl,
+			sl.sortNum as sortNum
 		FROM
 			sg_user_favorite sf
 		JOIN sg_law sl ON sf.source_id = sl.id

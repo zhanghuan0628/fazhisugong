@@ -166,9 +166,21 @@ public class SgSubjectServiceImpl extends GenericServiceImpl<SgSubject, SgSubjec
 	@Override
 	public List<SgSubject> querySubjectByTheme(String themeId, int num) {
 		List<SgSubject> list = sgSubjectMapper.querySubjectByTheme(num+"");
+		List sList = new ArrayList();
 		for(SgSubject ss:list){
-			ss.setThemeId(themeId);
+			
+			String json = ss.getQuestionJson();
+            JSONObject jsStr = JSONObject.parseObject(json);
+            Map<String,Object> map = new HashMap<String,Object>();
+            map.put("qstn", jsStr.get("qstn"));
+            String optn = String.valueOf(jsStr.get("optn"));
+            JSONArray jsonArray = JSONArray.fromObject(optn);
+            List<SgSubject> l = JSONArray.toList(jsonArray, SgSubject.class);// 过时方法
+            map.put("list", l);
+            map.put("themeId", ss.getThemeId());
+            map.put("id", ss.getId());
+            sList.add(map);
 		}
-		return list;
+		return sList;
 	}
 }

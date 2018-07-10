@@ -64,15 +64,12 @@ public class SgLawRiskController {
 		if(StringUtil.isEmpty(id)){
 			return new JsonResult(Message.M4003);
 		}
-		SgLawExample example = new SgLawExample();
-        com.ffxl.cloud.model.base.BaseSgLawExample.Criteria c= example.createCriteria();
-        c.andCategoryCodeEqualTo(id);
-        c.andCategoryEqualTo("law_risk");
-        if(!StringUtil.isEmpty(title)){
-        	c.andTitleLike(title);
-        }
-        example.setOrderByClause(" num desc ");
-		List<SgLaw> list = sgLawService.selectByExample(example);
+        SgLaw s = new SgLaw();
+        s.setCategory("law_risk");
+        s.setCategoryCode(id);
+        s.setTitle(title);
+        s.setStatus("publish");
+		List<SgLaw> list = sgLawService.queryLawRiskByMajor(s);
 		return new JsonResult(Message.M2000,list);
 	}
 	/**

@@ -76,4 +76,16 @@ public interface SgLawMapper extends GenericMapper<SgLaw, SgLawExample, String> 
 	 * @return
 	 */
 	List<SgLaw> queryRandLawRisk(@Param("model")SgLaw sgLaw);
+	/**
+	 * 苏供法宝库
+	 * @param s
+	 * @return
+	 */
+	List<SgLaw> querySgMagic(@Param("model")SgLaw s);
+	/**
+	 * 法律风险
+	 * @param s
+	 * @return
+	 */
+	List<SgLaw> queryLawRiskByMajor(@Param("model")SgLaw s);
 }

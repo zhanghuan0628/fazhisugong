@@ -1,5 +1,7 @@
 package com.ffxl.cloud.model;
 
+import java.util.List;
+
 import com.ffxl.cloud.model.base.BaseSgThemeAnswerLog;
 
 public class SgThemeAnswerLog extends BaseSgThemeAnswerLog {
@@ -8,6 +10,7 @@ public class SgThemeAnswerLog extends BaseSgThemeAnswerLog {
 	private String stage;
 	private String userName;
 	private String getAward;
+	private List list;
 	public String getTitle() {
 		return title;
 	}
@@ -37,5 +40,11 @@ public class SgThemeAnswerLog extends BaseSgThemeAnswerLog {
 	}
 	public void setGetAward(String getAward) {
 		this.getAward = getAward;
+	}
+	public List getList() {
+		return list;
+	}
+	public void setList(List list) {
+		this.list = list;
 	}
 }

@@ -80,4 +80,16 @@ public interface SgLawService extends GenericService<SgLaw, SgLawExample, String
 	 * @return
 	 */
 	List<SgLaw> queryRandLawRisk(SgLaw sgLaw);
+	/**
+	 * 苏供法宝库
+	 * @param s
+	 * @return
+	 */
+	List<SgLaw> querySgMagic(SgLaw s);
+	/**
+	 * 法律风险
+	 * @param s
+	 * @return
+	 */
+	List<SgLaw> queryLawRiskByMajor(SgLaw s);
 }

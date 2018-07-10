@@ -190,4 +190,47 @@
 	<select id="queryRandLawRisk" resultMap="SgLawMap">
 		SELECT * FROM sg_law where category = #{model.category} ORDER BY RAND() LIMIT 3;
 	</select>
+	
+	<select id="querySgMagic" resultMap="SgLawMap">
+		SELECT * FROM sg_law
+		WHERE 1=1
+		<if test="model.title != null and model.title != '' ">
+			and title like CONCAT('%','${model.title}','%' )
+		</if>
+		<if test="model.status != null and model.status != '' ">
+			and status = #{model.status}
+		</if>
+		<if test="model.categoryCode != null and model.categoryCode != '' ">
+			and category_code = #{model.categoryCode}
+		</if>
+		<if test="model.categoryCode == null or model.categoryCode == '' ">
+			and (category_code is null or category_code = '' )
+		</if>
+		<if test="model.category != null and model.category != '' ">
+			and category = #{model.category}
+		</if>
+		<if test="model.categoryCode != null and model.categoryCode != '' ">
+			order by num asc 
+		</if>
+		<if test="model.categoryCode == null or model.categoryCode == '' ">
+			order by num desc 
+		</if>
+	</select>
+	<select id="queryLawRiskByMajor" resultMap="SgLawMap">
+		SELECT * FROM sg_law
+		WHERE 1=1
+		<if test="model.title != null and model.title != '' ">
+			and title like CONCAT('%','${model.title}','%' )
+		</if>
+		<if test="model.status != null and model.status != '' ">
+			and status = #{model.status}
+		</if>
+		<if test="model.categoryCode != null and model.categoryCode != '' ">
+			and category_code = #{model.categoryCode}
+		</if>
+		<if test="model.category != null and model.category != '' ">
+			and category = #{model.category}
+		</if>
+			order by num desc 
+	</select>
 </mapper>

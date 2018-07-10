@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ffxl.cloud.mapper.SysMenuMapper" >
+  <resultMap id="BaseResultMap" type="com.ffxl.cloud.model.SysMenu" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="code" property="code" jdbcType="VARCHAR" />
+    <result column="pcode" property="pcode" jdbcType="VARCHAR" />
+    <result column="pcodes" property="pcodes" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="icon" property="icon" jdbcType="VARCHAR" />
+    <result column="url" property="url" jdbcType="VARCHAR" />
+    <result column="num" property="num" jdbcType="VARCHAR" />
+    <result column="levels" property="levels" jdbcType="VARCHAR" />
+    <result column="is_menu" property="menu" jdbcType="TINYINT" />
+    <result column="tips" property="tips" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="is_open" property="open" jdbcType="TINYINT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, code, pcode, pcodes, name, icon, url, num, levels, is_menu, tips, status, is_open
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ffxl.cloud.model.SysMenuExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from sys_menu
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_menu
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from sys_menu
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ffxl.cloud.model.SysMenuExample" >
+    delete from sys_menu
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ffxl.cloud.model.SysMenu" >
+    insert into sys_menu (id, code, pcode, 
+      pcodes, name, icon, 
+      url, num, levels, is_menu, 
+      tips, status, is_open)
+    values (#{id,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, #{pcode,jdbcType=VARCHAR}, 
+      #{pcodes,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{icon,jdbcType=VARCHAR}, 
+      #{url,jdbcType=VARCHAR}, #{num,jdbcType=VARCHAR}, #{levels,jdbcType=VARCHAR}, #{menu,jdbcType=TINYINT}, 
+      #{tips,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{open,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ffxl.cloud.model.SysMenu" >
+    insert into sys_menu
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="code != null" >
+        code,
+      </if>
+      <if test="pcode != null" >
+        pcode,
+      </if>
+      <if test="pcodes != null" >
+        pcodes,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="icon != null" >
+        icon,
+      </if>
+      <if test="url != null" >
+        url,
+      </if>
+      <if test="num != null" >
+        num,
+      </if>
+      <if test="levels != null" >
+        levels,
+      </if>
+      <if test="menu != null" >
+        is_menu,
+      </if>
+      <if test="tips != null" >
+        tips,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="open != null" >
+        is_open,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null" >
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="pcode != null" >
+        #{pcode,jdbcType=VARCHAR},
+      </if>
+      <if test="pcodes != null" >
+        #{pcodes,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="icon != null" >
+        #{icon,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null" >
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="num != null" >
+        #{num,jdbcType=VARCHAR},
+      </if>
+      <if test="levels != null" >
+        #{levels,jdbcType=VARCHAR},
+      </if>
+      <if test="menu != null" >
+        #{menu,jdbcType=TINYINT},
+      </if>
+      <if test="tips != null" >
+        #{tips,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="open != null" >
+        #{open,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ffxl.cloud.model.SysMenuExample" resultType="java.lang.Integer" >
+    select count(*) from sys_menu
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update sys_menu
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.code != null" >
+        code = #{record.code,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pcode != null" >
+        pcode = #{record.pcode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pcodes != null" >
+        pcodes = #{record.pcodes,jdbcType=VARCHAR},
+      </if>
+      <if test="record.name != null" >
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.icon != null" >
+        icon = #{record.icon,jdbcType=VARCHAR},
+      </if>
+      <if test="record.url != null" >
+        url = #{record.url,jdbcType=VARCHAR},
+      </if>
+      <if test="record.num != null" >
+        num = #{record.num,jdbcType=VARCHAR},
+      </if>
+      <if test="record.levels != null" >
+        levels = #{record.levels,jdbcType=VARCHAR},
+      </if>
+      <if test="record.menu != null" >
+        is_menu = #{record.menu,jdbcType=TINYINT},
+      </if>
+      <if test="record.tips != null" >
+        tips = #{record.tips,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null" >
+        status = #{record.status,jdbcType=INTEGER},
+      </if>
+      <if test="record.open != null" >
+        is_open = #{record.open,jdbcType=TINYINT},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update sys_menu
+    set id = #{record.id,jdbcType=VARCHAR},
+      code = #{record.code,jdbcType=VARCHAR},
+      pcode = #{record.pcode,jdbcType=VARCHAR},
+      pcodes = #{record.pcodes,jdbcType=VARCHAR},
+      name = #{record.name,jdbcType=VARCHAR},
+      icon = #{record.icon,jdbcType=VARCHAR},
+      url = #{record.url,jdbcType=VARCHAR},
+      num = #{record.num,jdbcType=VARCHAR},
+      levels = #{record.levels,jdbcType=VARCHAR},
+      is_menu = #{record.menu,jdbcType=TINYINT},
+      tips = #{record.tips,jdbcType=VARCHAR},
+      status = #{record.status,jdbcType=INTEGER},
+      is_open = #{record.open,jdbcType=TINYINT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ffxl.cloud.model.SysMenu" >
+    update sys_menu
+    <set >
+      <if test="code != null" >
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="pcode != null" >
+        pcode = #{pcode,jdbcType=VARCHAR},
+      </if>
+      <if test="pcodes != null" >
+        pcodes = #{pcodes,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="icon != null" >
+        icon = #{icon,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null" >
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="num != null" >
+        num = #{num,jdbcType=VARCHAR},
+      </if>
+      <if test="levels != null" >
+        levels = #{levels,jdbcType=VARCHAR},
+      </if>
+      <if test="menu != null" >
+        is_menu = #{menu,jdbcType=TINYINT},
+      </if>
+      <if test="tips != null" >
+        tips = #{tips,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="open != null" >
+        is_open = #{open,jdbcType=TINYINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ffxl.cloud.model.SysMenu" >
+    update sys_menu
+    set code = #{code,jdbcType=VARCHAR},
+      pcode = #{pcode,jdbcType=VARCHAR},
+      pcodes = #{pcodes,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      icon = #{icon,jdbcType=VARCHAR},
+      url = #{url,jdbcType=VARCHAR},
+      num = #{num,jdbcType=VARCHAR},
+      levels = #{levels,jdbcType=VARCHAR},
+      is_menu = #{menu,jdbcType=TINYINT},
+      tips = #{tips,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      is_open = #{open,jdbcType=TINYINT}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -9,6 +9,8 @@ public class SgUserFavorite extends BaseSgUserFavorite {
 	
 	private String content;
 	
+	private int sortNum;
+	
 
 	public String getImgUrl() {
 		return imgUrl;
@@ -32,5 +34,13 @@ public class SgUserFavorite extends BaseSgUserFavorite {
 
 	public void setContent(String content) {
 		this.content = content;
+	}
+
+	public int getSortNum() {
+		return sortNum;
+	}
+
+	public void setSortNum(int sortNum) {
+		this.sortNum = sortNum;
 	}
 }

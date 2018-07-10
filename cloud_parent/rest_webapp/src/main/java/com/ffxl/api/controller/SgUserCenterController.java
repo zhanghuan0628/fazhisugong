@@ -116,8 +116,16 @@ public class SgUserCenterController extends BaseController{
 		}
 		SgUser u = sgUserService.selectByPrimaryKey(userId);
 		if(u!=null){
-			if(u.getModifyPassword()==true){
-				return new JsonResult(Message.M2000,"已修改过密码");
+			if(u.getModifyPassword()!=null){
+				if(u.getModifyPassword()==true){
+					return new JsonResult(Message.M2000,"已修改过密码");
+				}else{
+					SgUser record = new SgUser();
+					record.setId(userId);
+					record.setModifyPassword(true);
+					sgUserService.updateByPrimaryKeySelective(record);
+					return new JsonResult("1","提醒用户修改密码");
+				}
 			}else{
 				SgUser record = new SgUser();
 				record.setId(userId);
@@ -125,6 +133,7 @@ public class SgUserCenterController extends BaseController{
 				sgUserService.updateByPrimaryKeySelective(record);
 				return new JsonResult("1","提醒用户修改密码");
 			}
+			
 		}else{
 			return new JsonResult(Message.M5000,"没有从此用户");
 		}
@@ -232,19 +241,22 @@ public class SgUserCenterController extends BaseController{
 	 */
 	@RequestMapping(value = "/queryMyInfoList")
     @ResponseBody
-	public JsonResult queryMyInfoList(String userId){
+	public JsonResult queryMyInfoList(String userId,Page page){
 		if(StringUtil.isEmpty(userId)){
 			return new JsonResult(Message.M4003);
 		}
 		List<SgUser> list = sgUserService.queryMyInfoList(userId);
-		SgLawCommentExample example = new SgLawCommentExample();
-	    com.ffxl.cloud.model.base.BaseSgLawCommentExample.Criteria c= example.createCriteria();
-	    c.andFromUserIdEqualTo(userId);
-	    c.andReadIsNull();
-	    SgLawComment record = new SgLawComment();
-	    record.setRead(true);
-		sgLawCommentService.updateByExampleSelective(record, example);
-		return new JsonResult(Message.M2000, list);
+		for(SgUser s:list){
+			SgLawCommentExample example = new SgLawCommentExample();
+		    com.ffxl.cloud.model.base.BaseSgLawCommentExample.Criteria c= example.createCriteria();
+			SgLawComment record = new SgLawComment();
+			c.andIdEqualTo(s.getId());
+			c.andReadIsNull();
+		    record.setRead(true);
+			sgLawCommentService.updateByExampleSelective(record, example);
+		}
+		page.setDataList(list);
+        return new JsonResult(Message.M2000, page);
 		
 	}
 	

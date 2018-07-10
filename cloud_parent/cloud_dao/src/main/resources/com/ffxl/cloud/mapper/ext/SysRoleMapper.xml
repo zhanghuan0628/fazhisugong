@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ffxl.cloud.mapper.SysRoleMapper">
+	<resultMap extends="BaseResultMap" id="SysRoleMap" type="com.ffxl.cloud.model.SysRole">
+	
+	</resultMap>
+	<select id="queryPageList" resultMap="SysRoleMap">
+		SELECT
+			sr1.*, IFNULL(sr2.`name`, '--') AS fatherName
+		FROM
+			sys_role sr1
+		LEFT JOIN sys_role sr2 ON sr1.pid = sr2.id
+		where 1 = 1
+		<if test="model.name != null and model.name != '' ">
+		   and sr1.name like CONCAT('%','${model.name}','%')
+		</if>
+		
+		ORDER BY
+			num ASC
+	</select>
+</mapper>

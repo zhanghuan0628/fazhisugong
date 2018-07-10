@@ -112,18 +112,22 @@ public class SgHomePageController {
         	if(pre != null){
         		map.put("preId", pre.getId());
             	map.put("preTitle", pre.getTitle());
+            	map.put("preSortNum", pre.getSortnum()+"");
         	}else{
-        		map.put("nextId", null);
-            	map.put("nextTitle", null);
+        		map.put("preId", null);
+            	map.put("preTitle", null);
+            	map.put("preSortNum", null);
         	}
         	
         	SgLaw next = sgLawService.queryPreLawRoom(sl);
         	if(next != null){
         		map.put("nextId", next.getId());
             	map.put("nextTitle", next.getTitle());
+            	map.put("nextSortNum", next.getSortnum()+"");
         	}else{
         		map.put("nextId", null);
             	map.put("nextTitle", null);
+            	map.put("nextSortNum", null);
         	}
         	sgLaw.setMap(map);
         }
@@ -186,21 +190,12 @@ public class SgHomePageController {
 		if(StringUtil.isEmpty(category)){
 			return new JsonResult(Message.M4003);
 		}
-		SgLawExample example = new SgLawExample();
-        Criteria c= example.createCriteria();
-        c.andStatusEqualTo("publish");
-        c.andCategoryEqualTo(category);
-        if(StringUtil.isEmpty(categoryCode)){
-        	c.andCategoryCodeIsNull();
-        	example.setOrderByClause(" num desc ");
-        }else{
-        	c.andCategoryCodeEqualTo(categoryCode);
-        	example.setOrderByClause(" num asc ");
-        }
-        if(!StringUtil.isEmpty(title)){
-        	c.andTitleLike(title);
-        }
-		List<SgLaw> list = sgLawService.selectByExample(example);
+        SgLaw s = new SgLaw();
+        s.setCategory(category);
+        s.setCategoryCode(categoryCode);
+        s.setTitle(title);
+        s.setStatus("publish");
+		List<SgLaw> list = sgLawService.querySgMagic(s);
 		if(!StringUtil.isEmpty(categoryCode)){
 			for(SgLaw sl:list){
 				String stage = toChinese(sl.getNum()+"");
@@ -232,7 +227,7 @@ public class SgHomePageController {
         List<SgLaw> list = sgLawService.selectByExample(example);
         int num = 0;
         int count = list.size();
-        for(int i = 0;i<list.size();i++){
+        for(int i = 1;i<=list.size();i++){
         	if(list.get(i).getId().equals(sgLaw.getId())){
         		num = i;
         		break;
