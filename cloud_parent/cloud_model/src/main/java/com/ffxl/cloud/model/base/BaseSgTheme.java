@@ -22,6 +22,14 @@ public class BaseSgTheme implements Serializable {
 
     private Integer sore;
 
+    private String pass;
+
+    private String noPass;
+
+    private String good;
+
+    private String fine;
+
     private static final long serialVersionUID = 1L;
 
     public String getId() {
@@ -96,6 +104,38 @@ public class BaseSgTheme implements Serializable {
         this.sore = sore;
     }
 
+    public String getPass() {
+        return pass;
+    }
+
+    public void setPass(String pass) {
+        this.pass = pass == null ? null : pass.trim();
+    }
+
+    public String getNoPass() {
+        return noPass;
+    }
+
+    public void setNoPass(String noPass) {
+        this.noPass = noPass == null ? null : noPass.trim();
+    }
+
+    public String getGood() {
+        return good;
+    }
+
+    public void setGood(String good) {
+        this.good = good == null ? null : good.trim();
+    }
+
+    public String getFine() {
+        return fine;
+    }
+
+    public void setFine(String fine) {
+        this.fine = fine == null ? null : fine.trim();
+    }
+
     @Override
     public boolean equals(Object that) {
         if (this == that) {
@@ -116,7 +156,11 @@ public class BaseSgTheme implements Serializable {
             && (this.getEndTime() == null ? other.getEndTime() == null : this.getEndTime().equals(other.getEndTime()))
             && (this.getSubjectCounts() == null ? other.getSubjectCounts() == null : this.getSubjectCounts().equals(other.getSubjectCounts()))
             && (this.getCreateTime() == null ? other.getCreateTime() == null : this.getCreateTime().equals(other.getCreateTime()))
-            && (this.getSore() == null ? other.getSore() == null : this.getSore().equals(other.getSore()));
+            && (this.getSore() == null ? other.getSore() == null : this.getSore().equals(other.getSore()))
+            && (this.getPass() == null ? other.getPass() == null : this.getPass().equals(other.getPass()))
+            && (this.getNoPass() == null ? other.getNoPass() == null : this.getNoPass().equals(other.getNoPass()))
+            && (this.getGood() == null ? other.getGood() == null : this.getGood().equals(other.getGood()))
+            && (this.getFine() == null ? other.getFine() == null : this.getFine().equals(other.getFine()));
     }
 
     @Override
@@ -132,6 +176,10 @@ public class BaseSgTheme implements Serializable {
         result = prime * result + ((getSubjectCounts() == null) ? 0 : getSubjectCounts().hashCode());
         result = prime * result + ((getCreateTime() == null) ? 0 : getCreateTime().hashCode());
         result = prime * result + ((getSore() == null) ? 0 : getSore().hashCode());
+        result = prime * result + ((getPass() == null) ? 0 : getPass().hashCode());
+        result = prime * result + ((getNoPass() == null) ? 0 : getNoPass().hashCode());
+        result = prime * result + ((getGood() == null) ? 0 : getGood().hashCode());
+        result = prime * result + ((getFine() == null) ? 0 : getFine().hashCode());
         return result;
     }
 }

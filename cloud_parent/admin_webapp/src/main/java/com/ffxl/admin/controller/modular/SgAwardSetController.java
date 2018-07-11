@@ -90,6 +90,16 @@ private static String PREFIX = "/fzsg/sg_award_set/";
     	dictionary.setId(UUIDUtil.getUUID());
     	int num = dictionaryService.queryMaxNumByPid(dictionary.getPid());
     	dictionary.setNum(num+1);
+    	String g = dictionary.getTips();
+    	int end = g.indexOf("%");
+    	double d = 0;
+    	if(end > -1){
+    		String sg = g.substring(0, end);
+    		d = Double.parseDouble(sg);
+    	}else{
+    		d = Double.parseDouble(g);
+    	}
+    	dictionary.setChance(d);
     	int i = dictionaryService.insertSelective(dictionary);
     	if(i > 0){
     		return new JsonResult(true);
@@ -107,6 +117,16 @@ private static String PREFIX = "/fzsg/sg_award_set/";
     @BussinessLog(value = "修改奖品", key = "id", dict = DictionaryDic.class)
     @RequestMapping("/edit")
     public JsonResult edit(Dictionary dictionary){
+    	String g = dictionary.getTips();
+    	int end = g.indexOf("%");
+    	double d = 0;
+    	if(end > -1){
+    		String sg = g.substring(0, end);
+    		d = Double.parseDouble(sg);
+    	}else{
+    		d = Double.parseDouble(g);
+    	}
+    	dictionary.setChance(d);
     	int i = dictionaryService.updateByPrimaryKeySelective(dictionary);
     	if(i > 0){
     		return new JsonResult(true);

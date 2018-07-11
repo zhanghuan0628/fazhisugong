@@ -11,6 +11,10 @@
     <result column="subject_counts" property="subjectCounts" jdbcType="INTEGER" />
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
     <result column="sore" property="sore" jdbcType="INTEGER" />
+    <result column="pass" property="pass" jdbcType="VARCHAR" />
+    <result column="no_pass" property="noPass" jdbcType="VARCHAR" />
+    <result column="good" property="good" jdbcType="VARCHAR" />
+    <result column="fine" property="fine" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -71,7 +75,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, title, content, num, start_time, end_time, subject_counts, create_time, sore
+    id, title, content, num, start_time, end_time, subject_counts, create_time, sore, 
+    pass, no_pass, good, fine
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ffxl.cloud.model.SgThemeExample" >
     select
@@ -106,12 +111,14 @@
   <insert id="insert" parameterType="com.ffxl.cloud.model.SgTheme" >
     insert into sg_theme (id, title, content, 
       num, start_time, end_time, 
-      subject_counts, create_time, sore
-      )
+      subject_counts, create_time, sore, 
+      pass, no_pass, good, 
+      fine)
     values (#{id,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, 
       #{num,jdbcType=INTEGER}, #{startTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}, 
-      #{subjectCounts,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{sore,jdbcType=INTEGER}
-      )
+      #{subjectCounts,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{sore,jdbcType=INTEGER}, 
+      #{pass,jdbcType=VARCHAR}, #{noPass,jdbcType=VARCHAR}, #{good,jdbcType=VARCHAR}, 
+      #{fine,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.ffxl.cloud.model.SgTheme" >
     insert into sg_theme
@@ -143,6 +150,18 @@
       <if test="sore != null" >
         sore,
       </if>
+      <if test="pass != null" >
+        pass,
+      </if>
+      <if test="noPass != null" >
+        no_pass,
+      </if>
+      <if test="good != null" >
+        good,
+      </if>
+      <if test="fine != null" >
+        fine,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -171,6 +190,18 @@
       </if>
       <if test="sore != null" >
         #{sore,jdbcType=INTEGER},
+      </if>
+      <if test="pass != null" >
+        #{pass,jdbcType=VARCHAR},
+      </if>
+      <if test="noPass != null" >
+        #{noPass,jdbcType=VARCHAR},
+      </if>
+      <if test="good != null" >
+        #{good,jdbcType=VARCHAR},
+      </if>
+      <if test="fine != null" >
+        #{fine,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -210,6 +241,18 @@
       <if test="record.sore != null" >
         sore = #{record.sore,jdbcType=INTEGER},
       </if>
+      <if test="record.pass != null" >
+        pass = #{record.pass,jdbcType=VARCHAR},
+      </if>
+      <if test="record.noPass != null" >
+        no_pass = #{record.noPass,jdbcType=VARCHAR},
+      </if>
+      <if test="record.good != null" >
+        good = #{record.good,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fine != null" >
+        fine = #{record.fine,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -225,7 +268,11 @@
       end_time = #{record.endTime,jdbcType=TIMESTAMP},
       subject_counts = #{record.subjectCounts,jdbcType=INTEGER},
       create_time = #{record.createTime,jdbcType=TIMESTAMP},
-      sore = #{record.sore,jdbcType=INTEGER}
+      sore = #{record.sore,jdbcType=INTEGER},
+      pass = #{record.pass,jdbcType=VARCHAR},
+      no_pass = #{record.noPass,jdbcType=VARCHAR},
+      good = #{record.good,jdbcType=VARCHAR},
+      fine = #{record.fine,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -257,6 +304,18 @@
       <if test="sore != null" >
         sore = #{sore,jdbcType=INTEGER},
       </if>
+      <if test="pass != null" >
+        pass = #{pass,jdbcType=VARCHAR},
+      </if>
+      <if test="noPass != null" >
+        no_pass = #{noPass,jdbcType=VARCHAR},
+      </if>
+      <if test="good != null" >
+        good = #{good,jdbcType=VARCHAR},
+      </if>
+      <if test="fine != null" >
+        fine = #{fine,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=VARCHAR}
   </update>
@@ -269,7 +328,11 @@
       end_time = #{endTime,jdbcType=TIMESTAMP},
       subject_counts = #{subjectCounts,jdbcType=INTEGER},
       create_time = #{createTime,jdbcType=TIMESTAMP},
-      sore = #{sore,jdbcType=INTEGER}
+      sore = #{sore,jdbcType=INTEGER},
+      pass = #{pass,jdbcType=VARCHAR},
+      no_pass = #{noPass,jdbcType=VARCHAR},
+      good = #{good,jdbcType=VARCHAR},
+      fine = #{fine,jdbcType=VARCHAR}
     where id = #{id,jdbcType=VARCHAR}
   </update>
 </mapper>

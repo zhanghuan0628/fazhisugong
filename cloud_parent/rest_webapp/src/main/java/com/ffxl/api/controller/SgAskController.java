@@ -188,12 +188,15 @@ public class SgAskController {
 	 */
 	@RequestMapping(value = "/queryAllAward")
     @ResponseBody
-	public JsonResult queryAllAward(){
-		DictionaryExample example = new DictionaryExample();
-        Criteria c= example.createCriteria();
-        c.andPidEqualTo("6");
-		List<Dictionary> list = dictionaryService.selectByExample(example);
-		return new JsonResult(Message.M2000,list);
+	public JsonResult queryAllAward(SgThemeAwardLog model){
+		if(StringUtil.isEmpty(model.getUserId())||StringUtil.isEmpty(model.getAnswerId())||StringUtil.isEmpty(model.getThemeId())){
+			return new JsonResult(Message.M4003);
+		}
+		Dictionary m = dictionaryService.queryAllAward();
+		model.setId(UUIDUtil.getUUID());
+		model.setAwardCode(m.getId());
+		this.insertUserAwardLog(model);
+		return new JsonResult(Message.M2000,m);
 	}
 	/**
 	 * 记录用户抽奖记录
