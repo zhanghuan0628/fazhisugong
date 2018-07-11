@@ -1,5 +1,8 @@
 package com.ffxl.api.config;
 
+import java.util.Arrays;
+import java.util.HashSet;
+
 import org.springframework.context.annotation.Configuration;
 
 /**
@@ -22,6 +25,14 @@ public class JwtProperties {
     private String authPath = "auth";
 
     private String md5Key = "randomKey";
+    
+    private static final HashSet<String> no_auth = new HashSet<String>(Arrays.asList(new String[]{
+            "/SgHomePageController/queryBanner",
+            "/SgHomePageController/querySgLaw",
+            "/SgHomePageController/querySgLawDetail",
+            "/SgHomePageController/querySgMagic",
+            "/SgHomePageController/querySgMagicDetail"
+    }));
 
     public static String getJwtPrefix() {
         return JWT_PREFIX;
@@ -66,4 +77,9 @@ public class JwtProperties {
     public void setMd5Key(String md5Key) {
         this.md5Key = md5Key;
     }
+
+    public static HashSet<String> getNoAuth() {
+        return no_auth;
+    }
+    
 }
