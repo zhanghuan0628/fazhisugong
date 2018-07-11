@@ -36,6 +36,10 @@ public class PostHeaderInterceptor extends HandlerInterceptorAdapter{
         @Override
         public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
             logger.info("开始执行Token拦截器------------------------");
+            
+          response.setHeader("Access-Control-Allow-Origin", "*");
+          response.setHeader("Access-Control-Allow-Headers", "Content-Type, Accept, Authorization");
+          response.setHeader("Access-Control-Allow-Methods", "PUT,POST,GET,DELETE,OPTIONS");
             HttpHeader header = new HttpHeader();
             if (request.getServletPath().equals("/" + jwtProperties.getAuthPath())) {
                 // TODO 可在此处验证头参数
