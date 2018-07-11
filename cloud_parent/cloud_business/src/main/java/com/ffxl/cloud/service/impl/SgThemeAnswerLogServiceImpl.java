@@ -61,30 +61,29 @@ public class SgThemeAnswerLogServiceImpl extends GenericServiceImpl<SgThemeAnswe
 	@Override
 	public SgThemeAnswerLog queryAnswerLogByUser(String userId, String themeId) {
 		SgThemeAnswerLog m = sgThemeAnswerLogMapper.queryAnswerLogByUser(userId,themeId);
-		SgThemeAwardLogExample example = new SgThemeAwardLogExample();
-        com.ffxl.cloud.model.base.BaseSgThemeAwardLogExample.Criteria c= example.createCriteria();
-        c.andThemeIdEqualTo(themeId);
-        c.andUserIdEqualTo(userId);
-		List<SgThemeAwardLog> list = sgThemeAwardLogService.selectByExample(example);
-		if(list != null && list.size() > 0){
-			m.setGetAward("1");//已抽过奖
-		}else{
-			m.setGetAward("0");//未抽过奖
+		if(m != null){
+			SgThemeAwardLogExample example = new SgThemeAwardLogExample();
+	        com.ffxl.cloud.model.base.BaseSgThemeAwardLogExample.Criteria c= example.createCriteria();
+	        c.andThemeIdEqualTo(themeId);
+	        c.andUserIdEqualTo(userId);
+			List<SgThemeAwardLog> list = sgThemeAwardLogService.selectByExample(example);
+			if(list != null && list.size() > 0){
+				m.setGetAward("1");//已抽过奖
+			}else{
+				m.setGetAward("0");//未抽过奖
+			}
+			String num = toChinese(m.getNum());
+			m.setStage("第"+num+"期");
+			if(m.getRightNum()>=m.getFine()){
+				m.setState("1");//优秀
+			}else if(m.getRightNum()>=m.getGood()){
+				m.setState("2");//良好
+			}else if(m.getRightNum()>=m.getPass()){
+				m.setState("3");//及格
+			}else{
+				m.setState("4");//不及格
+			}
 		}
-		String num = toChinese(m.getNum());
-		m.setStage("第"+num+"期");
-		List sList = new ArrayList();
-		String json = m.getAnswerJson();
-        JSONObject jsStr = JSONObject.parseObject(json);
-        Map<String,Object> map = new HashMap<String,Object>();
-        map.put("qstn", jsStr.get("qstn"));
-        String optn = String.valueOf(jsStr.get("optn"));
-        JSONArray jsonArray = JSONArray.fromObject(optn);
-        List<SgSubject> l = JSONArray.toList(jsonArray, SgSubject.class);// 过时方法
-        map.put("list", l);
-        map.put("themeId", m.getThemeId());
-        sList.add(map);
-        m.setList(sList);
 		return m;
 	}
 

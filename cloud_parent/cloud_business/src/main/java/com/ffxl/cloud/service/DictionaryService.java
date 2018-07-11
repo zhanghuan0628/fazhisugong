@@ -39,4 +39,9 @@ public interface DictionaryService extends GenericService<Dictionary, Dictionary
 	 * @return
 	 */
 	int queryMaxNumByPid(String pid);
+	/**
+	 * 抽奖
+	 * @return
+	 */
+	Dictionary queryAllAward();
 }

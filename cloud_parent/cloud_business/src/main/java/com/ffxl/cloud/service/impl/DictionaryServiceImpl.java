@@ -10,6 +10,8 @@ import com.ffxl.platform.core.GenericServiceImpl;
 import com.ffxl.platform.core.Page;
 import com.ffxl.platform.util.ToolUtil;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -71,4 +73,78 @@ public class DictionaryServiceImpl extends GenericServiceImpl<Dictionary, Dictio
 	public int queryMaxNumByPid(String pid) {
 		return dictionaryMapper.queryMaxNumByPid(pid);
 	}
+
+	@Override
+	public Dictionary queryAllAward() {
+		DictionaryExample example = new DictionaryExample();
+        Criteria c= example.createCriteria();
+        c.andPidEqualTo("6");
+        example.setOrderByClause(" chance asc ");
+        List<Dictionary> list = dictionaryMapper.selectByExample(example);
+        int n = drawGift(list);
+        Dictionary d = new Dictionary();
+        for(int i = 0;i<list.size();i++){
+        	if(i==n){
+        		d.setCode(i+"");
+        		d.setId(list.get(i).getId());
+        		d.setName(list.get(i).getName());
+        	}
+        }
+		return d;
+	}
+	public static int drawGift(List<Dictionary> giftList){
+		 
+        if(null != giftList && giftList.size()>0){
+            List orgProbList = new ArrayList(giftList.size());
+            for(Dictionary gift:giftList){
+                //按顺序将概率添加到集合中
+            	String g = gift.getTips();
+            	int end = g.indexOf("%");
+            	double d = 0;
+            	if(end > -1){
+            		String sg = g.substring(0, end);
+            		d = Double.parseDouble(sg);
+            	}else{
+            		d = Double.parseDouble(g);
+            	}
+            	double dd = d/100;
+                orgProbList.add(dd);
+            }
+ 
+            return draw(orgProbList);
+ 
+        }
+        return -1;
+    }
+
+	private static int draw(List giftProbList) {
+		List sortRateList = new ArrayList();
+		 
+        // 计算概率总和
+        Double sumRate = 0D;
+        for(Object prob : giftProbList){
+        	double d = Double.parseDouble(prob.toString());
+            sumRate += d;
+        }
+ 
+        if(sumRate != 0){
+            double rate = 0D;   //概率所占比例
+            for(Object prob : giftProbList){
+            	double d = Double.parseDouble(prob.toString());
+                rate += d;   
+                // 构建一个比例区段组成的集合(避免概率和不为1)
+                sortRateList.add(rate / sumRate);
+            }
+ 
+            // 随机生成一个随机数，并排序
+            double random = Math.random();
+            sortRateList.add(random);
+            Collections.sort(sortRateList);
+ 
+            // 返回该随机数在比例集合中的索引
+            return sortRateList.indexOf(random);
+        }
+        return -1;
+	}
+	
 }

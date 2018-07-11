@@ -6,11 +6,16 @@
 	</resultMap>
 	
 	<select id="queryAnswerLogByUser" resultMap="SgThemeAnswerLogMap" parameterType="java.lang.String">
+		
 		SELECT
-			sl.*, su.user_name AS userName
+			sl.*, su.user_name AS userName,
+			st.num AS num,
+			st.pass AS pass,
+			st.good AS good,
+			st.fine AS fine
 		FROM
 			sg_theme_answer_log sl
-		JOIN sg_user su ON sl.user_id = su.id
+		JOIN sg_user su ON sl.user_id = su.id JOIN sg_theme st on sl.theme_id = st.id
 		WHERE
 			user_id = #{userId}
 		AND theme_id = #{themeId}

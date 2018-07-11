@@ -11,6 +11,36 @@ public class SgThemeAnswerLog extends BaseSgThemeAnswerLog {
 	private String userName;
 	private String getAward;
 	private List list;
+	private int pass;
+	private int good;
+	private int fine;
+	private String state;
+
+	public int getPass() {
+		return pass;
+	}
+	public void setPass(int pass) {
+		this.pass = pass;
+	}
+	public int getGood() {
+		return good;
+	}
+	public void setGood(int good) {
+		this.good = good;
+	}
+	public int getFine() {
+		return fine;
+	}
+	public void setFine(int fine) {
+		this.fine = fine;
+	}
+	public String getState() {
+		return state;
+	}
+	public void setState(String state) {
+		this.state = state;
+	}
+	
 	public String getTitle() {
 		return title;
 	}

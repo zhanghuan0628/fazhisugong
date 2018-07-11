@@ -17,6 +17,21 @@ var themeInfoDlg = {
 				minlength:1,
 				maxlength:16,
 			},
+			pass:{
+				required:true,
+				minlength:1,
+				maxlength:16,
+			},
+			good:{
+				required:true,
+				minlength:1,
+				maxlength:16,
+			},
+			fine:{
+				required:true,
+				minlength:1,
+				maxlength:16,
+			},
 			startDate:{
 				required:true,
 			},

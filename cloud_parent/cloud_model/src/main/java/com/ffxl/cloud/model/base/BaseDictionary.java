@@ -15,6 +15,8 @@ public class BaseDictionary implements Serializable {
 
     private String img;
 
+    private Double chance;
+
     private static final long serialVersionUID = 1L;
 
     public String getId() {
@@ -65,6 +67,14 @@ public class BaseDictionary implements Serializable {
         this.img = img == null ? null : img.trim();
     }
 
+    public Double getChance() {
+        return chance;
+    }
+
+    public void setChance(Double chance) {
+        this.chance = chance;
+    }
+
     @Override
     public boolean equals(Object that) {
         if (this == that) {
@@ -82,7 +92,8 @@ public class BaseDictionary implements Serializable {
             && (this.getPid() == null ? other.getPid() == null : this.getPid().equals(other.getPid()))
             && (this.getName() == null ? other.getName() == null : this.getName().equals(other.getName()))
             && (this.getTips() == null ? other.getTips() == null : this.getTips().equals(other.getTips()))
-            && (this.getImg() == null ? other.getImg() == null : this.getImg().equals(other.getImg()));
+            && (this.getImg() == null ? other.getImg() == null : this.getImg().equals(other.getImg()))
+            && (this.getChance() == null ? other.getChance() == null : this.getChance().equals(other.getChance()));
     }
 
     @Override
@@ -95,6 +106,7 @@ public class BaseDictionary implements Serializable {
         result = prime * result + ((getName() == null) ? 0 : getName().hashCode());
         result = prime * result + ((getTips() == null) ? 0 : getTips().hashCode());
         result = prime * result + ((getImg() == null) ? 0 : getImg().hashCode());
+        result = prime * result + ((getChance() == null) ? 0 : getChance().hashCode());
         return result;
     }
 }

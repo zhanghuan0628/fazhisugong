@@ -524,6 +524,66 @@ public class BaseDictionaryExample {
             addCriterion("img not between", value1, value2, "img");
             return (Criteria) this;
         }
+
+        public Criteria andChanceIsNull() {
+            addCriterion("chance is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andChanceIsNotNull() {
+            addCriterion("chance is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andChanceEqualTo(Double value) {
+            addCriterion("chance =", value, "chance");
+            return (Criteria) this;
+        }
+
+        public Criteria andChanceNotEqualTo(Double value) {
+            addCriterion("chance <>", value, "chance");
+            return (Criteria) this;
+        }
+
+        public Criteria andChanceGreaterThan(Double value) {
+            addCriterion("chance >", value, "chance");
+            return (Criteria) this;
+        }
+
+        public Criteria andChanceGreaterThanOrEqualTo(Double value) {
+            addCriterion("chance >=", value, "chance");
+            return (Criteria) this;
+        }
+
+        public Criteria andChanceLessThan(Double value) {
+            addCriterion("chance <", value, "chance");
+            return (Criteria) this;
+        }
+
+        public Criteria andChanceLessThanOrEqualTo(Double value) {
+            addCriterion("chance <=", value, "chance");
+            return (Criteria) this;
+        }
+
+        public Criteria andChanceIn(List<Double> values) {
+            addCriterion("chance in", values, "chance");
+            return (Criteria) this;
+        }
+
+        public Criteria andChanceNotIn(List<Double> values) {
+            addCriterion("chance not in", values, "chance");
+            return (Criteria) this;
+        }
+
+        public Criteria andChanceBetween(Double value1, Double value2) {
+            addCriterion("chance between", value1, value2, "chance");
+            return (Criteria) this;
+        }
+
+        public Criteria andChanceNotBetween(Double value1, Double value2) {
+            addCriterion("chance not between", value1, value2, "chance");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

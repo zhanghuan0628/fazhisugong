@@ -685,6 +685,286 @@ public class BaseSgThemeExample {
             addCriterion("sore not between", value1, value2, "sore");
             return (Criteria) this;
         }
+
+        public Criteria andPassIsNull() {
+            addCriterion("pass is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPassIsNotNull() {
+            addCriterion("pass is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPassEqualTo(String value) {
+            addCriterion("pass =", value, "pass");
+            return (Criteria) this;
+        }
+
+        public Criteria andPassNotEqualTo(String value) {
+            addCriterion("pass <>", value, "pass");
+            return (Criteria) this;
+        }
+
+        public Criteria andPassGreaterThan(String value) {
+            addCriterion("pass >", value, "pass");
+            return (Criteria) this;
+        }
+
+        public Criteria andPassGreaterThanOrEqualTo(String value) {
+            addCriterion("pass >=", value, "pass");
+            return (Criteria) this;
+        }
+
+        public Criteria andPassLessThan(String value) {
+            addCriterion("pass <", value, "pass");
+            return (Criteria) this;
+        }
+
+        public Criteria andPassLessThanOrEqualTo(String value) {
+            addCriterion("pass <=", value, "pass");
+            return (Criteria) this;
+        }
+
+        public Criteria andPassLike(String value) {
+            addCriterion("pass like", value, "pass");
+            return (Criteria) this;
+        }
+
+        public Criteria andPassNotLike(String value) {
+            addCriterion("pass not like", value, "pass");
+            return (Criteria) this;
+        }
+
+        public Criteria andPassIn(List<String> values) {
+            addCriterion("pass in", values, "pass");
+            return (Criteria) this;
+        }
+
+        public Criteria andPassNotIn(List<String> values) {
+            addCriterion("pass not in", values, "pass");
+            return (Criteria) this;
+        }
+
+        public Criteria andPassBetween(String value1, String value2) {
+            addCriterion("pass between", value1, value2, "pass");
+            return (Criteria) this;
+        }
+
+        public Criteria andPassNotBetween(String value1, String value2) {
+            addCriterion("pass not between", value1, value2, "pass");
+            return (Criteria) this;
+        }
+
+        public Criteria andNoPassIsNull() {
+            addCriterion("no_pass is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andNoPassIsNotNull() {
+            addCriterion("no_pass is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andNoPassEqualTo(String value) {
+            addCriterion("no_pass =", value, "noPass");
+            return (Criteria) this;
+        }
+
+        public Criteria andNoPassNotEqualTo(String value) {
+            addCriterion("no_pass <>", value, "noPass");
+            return (Criteria) this;
+        }
+
+        public Criteria andNoPassGreaterThan(String value) {
+            addCriterion("no_pass >", value, "noPass");
+            return (Criteria) this;
+        }
+
+        public Criteria andNoPassGreaterThanOrEqualTo(String value) {
+            addCriterion("no_pass >=", value, "noPass");
+            return (Criteria) this;
+        }
+
+        public Criteria andNoPassLessThan(String value) {
+            addCriterion("no_pass <", value, "noPass");
+            return (Criteria) this;
+        }
+
+        public Criteria andNoPassLessThanOrEqualTo(String value) {
+            addCriterion("no_pass <=", value, "noPass");
+            return (Criteria) this;
+        }
+
+        public Criteria andNoPassLike(String value) {
+            addCriterion("no_pass like", value, "noPass");
+            return (Criteria) this;
+        }
+
+        public Criteria andNoPassNotLike(String value) {
+            addCriterion("no_pass not like", value, "noPass");
+            return (Criteria) this;
+        }
+
+        public Criteria andNoPassIn(List<String> values) {
+            addCriterion("no_pass in", values, "noPass");
+            return (Criteria) this;
+        }
+
+        public Criteria andNoPassNotIn(List<String> values) {
+            addCriterion("no_pass not in", values, "noPass");
+            return (Criteria) this;
+        }
+
+        public Criteria andNoPassBetween(String value1, String value2) {
+            addCriterion("no_pass between", value1, value2, "noPass");
+            return (Criteria) this;
+        }
+
+        public Criteria andNoPassNotBetween(String value1, String value2) {
+            addCriterion("no_pass not between", value1, value2, "noPass");
+            return (Criteria) this;
+        }
+
+        public Criteria andGoodIsNull() {
+            addCriterion("good is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andGoodIsNotNull() {
+            addCriterion("good is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andGoodEqualTo(String value) {
+            addCriterion("good =", value, "good");
+            return (Criteria) this;
+        }
+
+        public Criteria andGoodNotEqualTo(String value) {
+            addCriterion("good <>", value, "good");
+            return (Criteria) this;
+        }
+
+        public Criteria andGoodGreaterThan(String value) {
+            addCriterion("good >", value, "good");
+            return (Criteria) this;
+        }
+
+        public Criteria andGoodGreaterThanOrEqualTo(String value) {
+            addCriterion("good >=", value, "good");
+            return (Criteria) this;
+        }
+
+        public Criteria andGoodLessThan(String value) {
+            addCriterion("good <", value, "good");
+            return (Criteria) this;
+        }
+
+        public Criteria andGoodLessThanOrEqualTo(String value) {
+            addCriterion("good <=", value, "good");
+            return (Criteria) this;
+        }
+
+        public Criteria andGoodLike(String value) {
+            addCriterion("good like", value, "good");
+            return (Criteria) this;
+        }
+
+        public Criteria andGoodNotLike(String value) {
+            addCriterion("good not like", value, "good");
+            return (Criteria) this;
+        }
+
+        public Criteria andGoodIn(List<String> values) {
+            addCriterion("good in", values, "good");
+            return (Criteria) this;
+        }
+
+        public Criteria andGoodNotIn(List<String> values) {
+            addCriterion("good not in", values, "good");
+            return (Criteria) this;
+        }
+
+        public Criteria andGoodBetween(String value1, String value2) {
+            addCriterion("good between", value1, value2, "good");
+            return (Criteria) this;
+        }
+
+        public Criteria andGoodNotBetween(String value1, String value2) {
+            addCriterion("good not between", value1, value2, "good");
+            return (Criteria) this;
+        }
+
+        public Criteria andFineIsNull() {
+            addCriterion("fine is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andFineIsNotNull() {
+            addCriterion("fine is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andFineEqualTo(String value) {
+            addCriterion("fine =", value, "fine");
+            return (Criteria) this;
+        }
+
+        public Criteria andFineNotEqualTo(String value) {
+            addCriterion("fine <>", value, "fine");
+            return (Criteria) this;
+        }
+
+        public Criteria andFineGreaterThan(String value) {
+            addCriterion("fine >", value, "fine");
+            return (Criteria) this;
+        }
+
+        public Criteria andFineGreaterThanOrEqualTo(String value) {
+            addCriterion("fine >=", value, "fine");
+            return (Criteria) this;
+        }
+
+        public Criteria andFineLessThan(String value) {
+            addCriterion("fine <", value, "fine");
+            return (Criteria) this;
+        }
+
+        public Criteria andFineLessThanOrEqualTo(String value) {
+            addCriterion("fine <=", value, "fine");
+            return (Criteria) this;
+        }
+
+        public Criteria andFineLike(String value) {
+            addCriterion("fine like", value, "fine");
+            return (Criteria) this;
+        }
+
+        public Criteria andFineNotLike(String value) {
+            addCriterion("fine not like", value, "fine");
+            return (Criteria) this;
+        }
+
+        public Criteria andFineIn(List<String> values) {
+            addCriterion("fine in", values, "fine");
+            return (Criteria) this;
+        }
+
+        public Criteria andFineNotIn(List<String> values) {
+            addCriterion("fine not in", values, "fine");
+            return (Criteria) this;
+        }
+
+        public Criteria andFineBetween(String value1, String value2) {
+            addCriterion("fine between", value1, value2, "fine");
+            return (Criteria) this;
+        }
+
+        public Criteria andFineNotBetween(String value1, String value2) {
+            addCriterion("fine not between", value1, value2, "fine");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

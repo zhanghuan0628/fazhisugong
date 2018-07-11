@@ -1,9 +1,11 @@
 package com.ffxl.admin.controller.modular;
 
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -78,26 +80,30 @@ public class SgThemeController extends BaseController{
     }
     /**
      * 跳转到新增我是法官的页面
+     * @throws ParseException 
      */
     @RequestMapping("/add_theme")
-    public String addTheme(Model modle) {
+    public String addTheme(Model modle) throws ParseException {
     	SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
     	int num = sgThemeService.selectMaxNum();
     	modle.addAttribute("num", num+1);
     	SgTheme sgTheme = sgThemeService.selectMaxEndDate(null);
     	String enddate = "";
+    	DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
     	if(sgTheme != null){
     		String endDate = sgTheme.getEndDate();
-        	Calendar ca = Calendar.getInstance();
-        	ca.add(Calendar.DATE, 2);// num为增加的天数，可以改变的
-        	Date currdate;
-    		try {
-    			currdate = format.parse(endDate);
-    		} catch (ParseException e) {
-    			e.printStackTrace();
+    		Date  currdate = format.parse(endDate);
+    		Date dt1 = df.parse(endDate);
+            Date dt2 = df.parse(format.format(new Date()));
+    		if(dt1.getTime()<dt2.getTime()){
+    			enddate = format.format(new Date());
+    		}else{
+    			Calendar  calendar = new GregorianCalendar();
+    			calendar.setTime(dt1); 
+    			calendar.add(calendar.DATE,1);
+            	currdate = calendar.getTime();
+            	enddate = format.format(currdate);
     		}
-        	currdate = ca.getTime();
-        	enddate = format.format(currdate);
     	}else{
     		enddate = format.format(new Date());
     	}
@@ -106,9 +112,10 @@ public class SgThemeController extends BaseController{
     }
     /**
      * 跳转到编辑我是法官的页面
+     * @throws ParseException 
      */
     @RequestMapping("/edit_theme")
-    public String editTheme(String id,String type,Model modle) {
+    public String editTheme(String id,String type,Model modle) throws ParseException {
     	SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
     	SgTheme sgTheme = new SgTheme();
     	sgTheme.setId(id);
@@ -119,18 +126,22 @@ public class SgThemeController extends BaseController{
     	modle.addAttribute("info", st);
     	modle.addAttribute("type", type);
     	String enddate = "";
+    	DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
     	if(type.equals("edit")){
     		String endDate = sg.getEndDate();
-        	Calendar ca = Calendar.getInstance();
-        	ca.add(Calendar.DATE, 2);// num为增加的天数，可以改变的
-        	Date currdate;
-    		try {
-    			currdate = format.parse(endDate);
-    		} catch (ParseException e) {
-    			e.printStackTrace();
+    		Date  currdate = format.parse(endDate);
+    		Date dt1 = df.parse(endDate);
+            Date dt2 = df.parse(format.format(new Date()));
+    		if(dt1.getTime()<dt2.getTime()){
+    			enddate = format.format(new Date());
+    		}else{
+    			Calendar  calendar = new GregorianCalendar();
+    			calendar.setTime(dt1); 
+    			calendar.add(calendar.DATE,1);
+            	currdate = calendar.getTime();
+            	enddate = format.format(currdate);
     		}
-        	currdate = ca.getTime();
-        	enddate = format.format(currdate);
+        	
     	}
     	modle.addAttribute("endDate", enddate);
         return PREFIX + "edit_theme.html";
