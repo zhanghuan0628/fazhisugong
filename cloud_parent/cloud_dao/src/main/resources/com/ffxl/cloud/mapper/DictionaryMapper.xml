@@ -8,6 +8,7 @@
     <result column="name" property="name" jdbcType="VARCHAR" />
     <result column="tips" property="tips" jdbcType="VARCHAR" />
     <result column="img" property="img" jdbcType="VARCHAR" />
+    <result column="chance" property="chance" jdbcType="DOUBLE" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -68,7 +69,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, num, pid, name, tips, img
+    id, num, pid, name, tips, img, chance
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ffxl.cloud.model.DictionaryExample" >
     select
@@ -102,9 +103,11 @@
   </delete>
   <insert id="insert" parameterType="com.ffxl.cloud.model.Dictionary" >
     insert into sys_dictionary (id, num, pid, 
-      name, tips, img)
+      name, tips, img, chance
+      )
     values (#{id,jdbcType=VARCHAR}, #{num,jdbcType=INTEGER}, #{pid,jdbcType=VARCHAR}, 
-      #{name,jdbcType=VARCHAR}, #{tips,jdbcType=VARCHAR}, #{img,jdbcType=VARCHAR})
+      #{name,jdbcType=VARCHAR}, #{tips,jdbcType=VARCHAR}, #{img,jdbcType=VARCHAR}, #{chance,jdbcType=DOUBLE}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.ffxl.cloud.model.Dictionary" >
     insert into sys_dictionary
@@ -127,6 +130,9 @@
       <if test="img != null" >
         img,
       </if>
+      <if test="chance != null" >
+        chance,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -146,6 +152,9 @@
       </if>
       <if test="img != null" >
         #{img,jdbcType=VARCHAR},
+      </if>
+      <if test="chance != null" >
+        #{chance,jdbcType=DOUBLE},
       </if>
     </trim>
   </insert>
@@ -176,6 +185,9 @@
       <if test="record.img != null" >
         img = #{record.img,jdbcType=VARCHAR},
       </if>
+      <if test="record.chance != null" >
+        chance = #{record.chance,jdbcType=DOUBLE},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -188,7 +200,8 @@
       pid = #{record.pid,jdbcType=VARCHAR},
       name = #{record.name,jdbcType=VARCHAR},
       tips = #{record.tips,jdbcType=VARCHAR},
-      img = #{record.img,jdbcType=VARCHAR}
+      img = #{record.img,jdbcType=VARCHAR},
+      chance = #{record.chance,jdbcType=DOUBLE}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -211,6 +224,9 @@
       <if test="img != null" >
         img = #{img,jdbcType=VARCHAR},
       </if>
+      <if test="chance != null" >
+        chance = #{chance,jdbcType=DOUBLE},
+      </if>
     </set>
     where id = #{id,jdbcType=VARCHAR}
   </update>
@@ -220,7 +236,8 @@
       pid = #{pid,jdbcType=VARCHAR},
       name = #{name,jdbcType=VARCHAR},
       tips = #{tips,jdbcType=VARCHAR},
-      img = #{img,jdbcType=VARCHAR}
+      img = #{img,jdbcType=VARCHAR},
+      chance = #{chance,jdbcType=DOUBLE}
     where id = #{id,jdbcType=VARCHAR}
   </update>
 </mapper>
