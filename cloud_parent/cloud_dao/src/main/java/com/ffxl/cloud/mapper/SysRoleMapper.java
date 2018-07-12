@@ -8,6 +8,7 @@ import com.ffxl.cloud.model.SysRole;
 import com.ffxl.cloud.model.SysRoleExample;
 import com.ffxl.platform.core.GenericMapper;
 import com.ffxl.platform.core.Page;
+import com.ffxl.platform.core.node.ZTreeNode;
 
  /**
  * Generate By MBG 
@@ -20,4 +21,14 @@ public interface SysRoleMapper extends GenericMapper<SysRole, SysRoleExample, St
 	 * @return
 	 */
 	List<SysRole> queryPageList(@Param("model")SysRole sysRole, @Param("page")Page page);
+	/**
+	 * 获取角色列表
+	 * @return
+	 */
+	List<ZTreeNode> roleTreeList();
+	/**
+	 * 查询最大num
+	 * @return
+	 */
+	int selectMaxNum();
 }

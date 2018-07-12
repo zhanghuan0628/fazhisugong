@@ -43,10 +43,14 @@ public class PostHeaderInterceptor extends HandlerInterceptorAdapter{
                 return true;
             }
             //无需鉴权
+            logger.info("-------------------请求地址"+request.getServletPath());
             if(JwtProperties.getNoAuth().contains(request.getServletPath())){
                 HttpHeader.set(header);
                 return true;
+           }else{
+        	   logger.info("-------------------被拦截"+request.getServletPath());
            }
+            
             final String requestHeader = request.getHeader(jwtProperties.getHeader());
             String sign = request.getHeader(HttpHeader.SIGN); //加密串，可自行规定是否使用
             String authToken = null;

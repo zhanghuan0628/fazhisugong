@@ -92,7 +92,7 @@ public class SgUserController extends BaseController{
         
     }
     /**
-     * 查询用户列表
+     * 查询虚拟用户列表
      */
     @RequestMapping("/dummy_user_list")
     @ResponseBody

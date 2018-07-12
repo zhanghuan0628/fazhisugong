@@ -8,6 +8,8 @@ import com.ffxl.cloud.service.SysRoleService;
 import com.ffxl.platform.core.GenericMapper;
 import com.ffxl.platform.core.GenericServiceImpl;
 import com.ffxl.platform.core.Page;
+import com.ffxl.platform.core.node.ZTreeNode;
+import com.ffxl.platform.util.StringUtil;
 
 import java.util.List;
 import org.slf4j.Logger;
@@ -33,6 +35,9 @@ public class SysRoleServiceImpl extends GenericServiceImpl<SysRole, SysRoleExamp
     public SysRole queryByModel(SysRole sysRole) {
         SysRoleExample example = new SysRoleExample();
         Criteria c= example.createCriteria();
+        if(!StringUtil.isEmpty(sysRole.getName())){
+        	c.andNameEqualTo(sysRole.getName());
+        }
         List<SysRole> modelList =  sysRoleMapper.selectByExample(example);
         if(modelList.size() > 0){
             return modelList.get(0);
@@ -44,5 +49,15 @@ public class SysRoleServiceImpl extends GenericServiceImpl<SysRole, SysRoleExamp
 	@Override
 	public List<SysRole> queryPageList(SysRole sysRole, Page page) {
 		return sysRoleMapper.queryPageList(sysRole,page);
+	}
+
+	@Override
+	public List<ZTreeNode> roleTreeList() {
+		return sysRoleMapper.roleTreeList();
+	}
+
+	@Override
+	public int selectMaxNum() {
+		return sysRoleMapper.selectMaxNum();
 	}
 }

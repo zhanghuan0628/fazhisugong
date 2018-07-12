@@ -15,6 +15,8 @@ public class BaseSgThemeAwardLog implements Serializable {
 
     private Boolean receive;
 
+    private String code;
+
     private static final long serialVersionUID = 1L;
 
     public String getId() {
@@ -65,6 +67,14 @@ public class BaseSgThemeAwardLog implements Serializable {
         this.receive = receive;
     }
 
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code == null ? null : code.trim();
+    }
+
     @Override
     public boolean equals(Object that) {
         if (this == that) {
@@ -82,7 +92,8 @@ public class BaseSgThemeAwardLog implements Serializable {
             && (this.getThemeId() == null ? other.getThemeId() == null : this.getThemeId().equals(other.getThemeId()))
             && (this.getAwardCode() == null ? other.getAwardCode() == null : this.getAwardCode().equals(other.getAwardCode()))
             && (this.getUserId() == null ? other.getUserId() == null : this.getUserId().equals(other.getUserId()))
-            && (this.getReceive() == null ? other.getReceive() == null : this.getReceive().equals(other.getReceive()));
+            && (this.getReceive() == null ? other.getReceive() == null : this.getReceive().equals(other.getReceive()))
+            && (this.getCode() == null ? other.getCode() == null : this.getCode().equals(other.getCode()));
     }
 
     @Override
@@ -95,6 +106,7 @@ public class BaseSgThemeAwardLog implements Serializable {
         result = prime * result + ((getAwardCode() == null) ? 0 : getAwardCode().hashCode());
         result = prime * result + ((getUserId() == null) ? 0 : getUserId().hashCode());
         result = prime * result + ((getReceive() == null) ? 0 : getReceive().hashCode());
+        result = prime * result + ((getCode() == null) ? 0 : getCode().hashCode());
         return result;
     }
 }
