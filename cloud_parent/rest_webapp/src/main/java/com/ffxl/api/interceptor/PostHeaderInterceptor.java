@@ -42,11 +42,6 @@ public class PostHeaderInterceptor extends HandlerInterceptorAdapter{
                 HttpHeader.set(header);
                 return true;
             }
-            //无需鉴权
-            if(JwtProperties.getNoAuth().contains(request.getServletPath())){
-                HttpHeader.set(header);
-                return true;
-           }
             final String requestHeader = request.getHeader(jwtProperties.getHeader());
             String sign = request.getHeader(HttpHeader.SIGN); //加密串，可自行规定是否使用
             String authToken = null;
@@ -80,12 +75,17 @@ public class PostHeaderInterceptor extends HandlerInterceptorAdapter{
                     RenderUtil.renderJson(response,new JsonResult(Message.M3008));
                     return false;
                 }
+                return true;
             } else {
+                //无需鉴权
+                  if(JwtProperties.getNoAuth().contains(request.getServletPath())){
+                      return true;
+                 }
                 //header没有带Bearer字段
                 RenderUtil.renderJson(response,new JsonResult(Message.M3010));
                 return false;
             }
-            return true;
+            
     }
 
     /**
