@@ -69,6 +69,8 @@ public class SgThemeAnswerLogServiceImpl extends GenericServiceImpl<SgThemeAnswe
 			List<SgThemeAwardLog> list = sgThemeAwardLogService.selectByExample(example);
 			if(list != null && list.size() > 0){
 				m.setGetAward("1");//已抽过奖
+				SgThemeAwardLog sl = list.get(0);
+				m.setCode(sl.getCode());
 			}else{
 				m.setGetAward("0");//未抽过奖
 			}

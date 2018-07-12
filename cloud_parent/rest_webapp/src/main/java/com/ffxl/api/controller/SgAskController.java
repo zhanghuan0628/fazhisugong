@@ -195,6 +195,7 @@ public class SgAskController {
 		Dictionary m = dictionaryService.queryAllAward();
 		model.setId(UUIDUtil.getUUID());
 		model.setAwardCode(m.getId());
+		model.setCode(m.getCode());
 		this.insertUserAwardLog(model);
 		return new JsonResult(Message.M2000,m);
 	}

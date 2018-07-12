@@ -78,9 +78,11 @@ public class PostHeaderInterceptor extends HandlerInterceptorAdapter{
                 return true;
             } else {
                 //无需鉴权
-                  if(JwtProperties.getNoAuth().contains(request.getServletPath())){
-                      return true;
-                 }
+                if(JwtProperties.getNoAuth().contains(request.getServletPath())){
+                    return true;
+                }else{
+                   logger.info("-------------------被拦截"+request.getServletPath());
+                }
                 //header没有带Bearer字段
                 RenderUtil.renderJson(response,new JsonResult(Message.M3010));
                 return false;

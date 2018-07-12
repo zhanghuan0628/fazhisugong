@@ -15,7 +15,7 @@ public class SgThemeAnswerLog extends BaseSgThemeAnswerLog {
 	private int good;
 	private int fine;
 	private String state;
-
+	private String code;
 	public int getPass() {
 		return pass;
 	}
@@ -76,5 +76,11 @@ public class SgThemeAnswerLog extends BaseSgThemeAnswerLog {
 	}
 	public void setList(List list) {
 		this.list = list;
+	}
+	public String getCode() {
+		return code;
+	}
+	public void setCode(String code) {
+		this.code = code;
 	}
 }
