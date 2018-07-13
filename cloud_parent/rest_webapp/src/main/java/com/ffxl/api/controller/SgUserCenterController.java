@@ -64,7 +64,7 @@ public class SgUserCenterController extends BaseController{
 	 */
 	@RequestMapping(value = "/userLogin")
     @ResponseBody
-	public JsonResult userLogin(String loginName,String password,String Authorization){
+	public JsonResult userLogin(String loginName,String password){
 		if(StringUtil.isEmpty(loginName)||StringUtil.isEmpty(password)){
 			return new JsonResult(Message.M4003);
 		}
@@ -82,8 +82,6 @@ public class SgUserCenterController extends BaseController{
 		if(list != null && list.size() > 0){
 			SgUser user = list.get(0);
 			SgUser record = new SgUser();
-	        String token = Authorization.substring(6).trim();
-	        record.setToken(token);
 			record.setLastLoginDate(new Date());
 			sgUserService.updateByExampleSelective(record, example);
 			return new JsonResult(Message.M2000,user);
