@@ -5,11 +5,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.ffxl.api.interceptor.PostHeaderInterceptor;
 import com.ffxl.cloud.model.SgBanner;
 import com.ffxl.cloud.model.SgBannerExample;
 import com.ffxl.cloud.model.SgLaw;
@@ -25,6 +28,7 @@ import com.ffxl.platform.constant.Message;
 import com.ffxl.platform.core.Page;
 import com.ffxl.platform.util.HttpHeader;
 import com.ffxl.platform.util.StringUtil;
+import com.ffxl.platform.util.ToolUtil;
 import com.ffxl.platform.util.UUIDUtil;
 /**
  * 首页
@@ -34,6 +38,7 @@ import com.ffxl.platform.util.UUIDUtil;
 @Controller
 @RequestMapping(value = "/SgHomePageController")
 public class SgHomePageController {
+	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 	@Autowired
 	private SgLawService sgLawService;
 	
@@ -88,7 +93,8 @@ public class SgHomePageController {
     public JsonResult querySgLawDetail(String id,String category,int sortnum) {
 		HttpHeader local= HttpHeader.get();
 		String userId = "";
-		if(local != null){
+		if(local != null && ToolUtil.isNotEmpty(local.getUserId())){
+			logger.debug(local.toString());
 			userId = local.getUserId();
 		}
 		if(StringUtil.isEmpty(id)){

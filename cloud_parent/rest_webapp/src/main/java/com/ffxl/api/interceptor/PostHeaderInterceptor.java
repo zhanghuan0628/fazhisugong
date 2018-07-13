@@ -45,6 +45,7 @@ public class PostHeaderInterceptor extends HandlerInterceptorAdapter{
                     return true;
                 }   
                 if (request.getMethod().equals("OPTIONS")) {
+                	HttpHeader.set(header);
                     logger.info("复杂跨域的试探OPTIONS请求》》》》》》》》》》");
                     return false;
                 }
@@ -52,6 +53,9 @@ public class PostHeaderInterceptor extends HandlerInterceptorAdapter{
                 String sign = request.getHeader(HttpHeader.SIGN); //加密串，可自行规定是否使用
                 String authToken = null;
                 logger.info("输出-------------------"+requestHeader);
+                if (requestHeader != null){
+                	System.out.println("判断头值是否包含Bearer ："+requestHeader.startsWith("Bearer "));
+                }
                 if (requestHeader != null && requestHeader.startsWith("Bearer ")) {
                     authToken = requestHeader.substring(7);
                     //验证token是否过期,包含了验证jwt是否正确
@@ -95,6 +99,7 @@ public class PostHeaderInterceptor extends HandlerInterceptorAdapter{
                 } else {
                     //无需鉴权
                     if(JwtProperties.getNoAuth().contains(request.getServletPath())){
+                    	HttpHeader.set(header);
                         logger.info("未被拦截-----------333333》》》》》》》》》》"+request.getServletPath());
                         return true;
                     }else{
