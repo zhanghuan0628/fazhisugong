@@ -32,4 +32,46 @@
 	<delete id="deleteRolesById" parameterType="java.lang.String">
 		delete from sys_role_menu_rel where role_id = #{roleId}
 	</delete>
+	
+	<select id="roleTreeListByRoleId" resultType="com.ffxl.platform.core.node.ZTreeNode">
+		SELECT
+		r.id "id",
+		pId "pId",
+		NAME AS "name",
+		(
+		CASE
+		WHEN (pId = 0 OR pId IS NULL) THEN
+		'true'
+		ELSE
+		'false'
+		END
+		) "open",
+		(
+		CASE
+		WHEN (r1.ID = 0 OR r1.ID IS NULL) THEN
+		'false'
+		ELSE
+		'true'
+		END
+		) "checked"
+		FROM
+		sys_role r
+		LEFT JOIN (
+		SELECT
+		ID
+		FROM
+		sys_role
+		WHERE
+		ID IN
+
+		<foreach collection="strArray" index="index" item="i" open="(" separator="," close=")">
+			#{i}
+		</foreach>
+
+		) r1 ON r.ID = r1.ID
+		ORDER BY
+		pId,
+		num ASC
+	</select>
+	
 </mapper>

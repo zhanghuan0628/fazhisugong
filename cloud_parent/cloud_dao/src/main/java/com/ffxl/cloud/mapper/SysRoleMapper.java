@@ -37,4 +37,10 @@ public interface SysRoleMapper extends GenericMapper<SysRole, SysRoleExample, St
 	 * @return 
 	 */
 	int deleteRolesById(@Param("roleId")String roleId);
+	/**
+	 * 用户角色
+	 * @param strArray
+	 * @return
+	 */
+	List<ZTreeNode> roleTreeListByRoleId(@Param("strArray")String[] strArray);
 }

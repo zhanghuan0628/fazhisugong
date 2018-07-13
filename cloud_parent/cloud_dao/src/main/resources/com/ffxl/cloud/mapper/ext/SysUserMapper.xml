@@ -34,5 +34,9 @@
                 where id = #{item}
          </foreach>
 	</update>
-
+	
+	<update id="updateUserRole" parameterType="java.lang.String">
+		update sys_user set role_id = #{roleIds} where id =
+		#{userId}
+	</update>
 </mapper>

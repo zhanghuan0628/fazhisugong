@@ -88,4 +88,9 @@ public class SysUserServiceImpl extends GenericServiceImpl<SysUser, SysUserExamp
 		return ret;
 	}
 
+	@Override
+	public int updateUserRole(String userId, String roleIds) {
+		return sysUserMapper.updateUserRole(userId,roleIds);
+	}
+
 }

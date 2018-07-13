@@ -11,6 +11,8 @@ var SysUser = {
 SysUser.admin_add=function (title,url,w,h){
 	layer_show(title,url,w,h);
 }
+
+
 SysUser.operation = function(url,tip,opt){
     var ajax = new $ax(Feng.ctxPath + url, function (data) {
     	if(data.code ==2000){
@@ -89,6 +91,16 @@ SysUser.multi_del=function (obj,id){
 SysUser.admin_edit=function (title,url,id,w,h){
 	layer_show(title,Feng.ctxPath +url+"?id="+id,w,h);
 }
+
+/*角色-增加*/
+SysUser.role_add=function (title,url,w,h){
+	if(SysUser.getSelIds()){
+    	var selIds = SysUser.seItem; 
+    	layer_show(title,Feng.ctxPath +url+"?id="+selIds,w,h);
+    }
+	
+}
+
 /*管理员-停用*/
 SysUser.admin_stop=function (obj,id){
 	var operation = function(){
@@ -231,6 +243,6 @@ $(function () {
     var options = SysUser.dataTables(defaultColunms);    
     SysUser.table = defDataTables(options);
     
-    Feng.selectSingleRow(SysUser.id);
+    Feng.selectSingleRow(SysUser.id,SysUser);
     /*Feng.selectMultiRow(SysUser.id,SysUser);*/
 });

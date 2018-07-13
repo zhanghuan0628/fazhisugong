@@ -19,4 +19,11 @@ public interface SysUserMapper extends GenericMapper<SysUser, SysUserExample, St
 	int updateStatus(@Param("idList")List<String> idList, @Param("status")int status);
 
 	int deleteByIds(@Param("idList")List<String> idList);
+	/**
+	 * 分配角色
+	 * @param userId
+	 * @param roleIds
+	 * @return
+	 */
+	int updateUserRole(@Param("userId")String userId, @Param("roleIds")String roleIds);
 }

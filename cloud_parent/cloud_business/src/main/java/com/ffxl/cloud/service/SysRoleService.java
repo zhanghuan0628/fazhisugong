@@ -42,4 +42,10 @@ public interface SysRoleService extends GenericService<SysRole, SysRoleExample, 
 	 * @return
 	 */
 	int setAuthority(String roleId, String ids);
+	/**
+	 * 用户角色
+	 * @param strArray
+	 * @return
+	 */
+	List<ZTreeNode> roleTreeListByRoleId(String[] strArray);
 }

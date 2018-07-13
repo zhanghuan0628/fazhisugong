@@ -30,6 +30,7 @@ import com.ffxl.platform.core.Page;
 import com.ffxl.platform.core.exception.BusinessException;
 import com.ffxl.platform.util.Convert;
 import com.ffxl.platform.util.StringUtil;
+import com.ffxl.platform.util.ToolUtil;
 import com.ffxl.platform.util.UUIDUtil;
 
 /**
@@ -63,22 +64,16 @@ public class SysUserController extends BaseController {
         return PREFIX + "user_add.html";
     }
 
-    // /**
-    // * 跳转到角色分配页面
-    // */
-    // //@RequiresPermissions("/mgr/role_assign") //利用shiro自带的权限检查
-    // @Permission
-    // @RequestMapping("/role_assign/{userId}")
-    // public String roleAssign(@PathVariable Integer userId, Model model) {
-    // if (ToolUtil.isEmpty(userId)) {
-    // throw new GunsException(BizExceptionEnum.REQUEST_NULL);
-    // }
-    // User user = (User) Db.create(UserMapper.class).selectOneByCon("id",
-    // userId);
-    // model.addAttribute("userId", userId);
-    // model.addAttribute("userAccount", user.getAccount());
-    // return PREFIX + "user_roleassign.html";
-    // }
+    /**
+    * 跳转到角色分配页面
+    */
+    @RequestMapping("/role_add")
+    public String roleAssign(String id, Model model) {
+    	SysUser user = userService.selectByPrimaryKey(id);
+		model.addAttribute("userId", id);
+		model.addAttribute("userAccount", user.getUserName());
+		return PREFIX + "role_add.html";
+    }
     
      /**
      * 跳转到编辑管理员页面
@@ -351,29 +346,28 @@ public class SysUserController extends BaseController {
             return new JsonResult(false);
         }
     }
-    //
-    // /**
-    // * 分配角色
-    // */
-    // @RequestMapping("/setRole")
-    // @BussinessLog(value = "分配角色", key = "userId,roleIds", dict =
-    // UserDict.class)
-    // @Permission(Const.ADMIN_NAME)
-    // @ResponseBody
-    // public Tip setRole(@RequestParam("userId") Integer userId,
-    // @RequestParam("roleIds") String roleIds) {
-    // if (ToolUtil.isOneEmpty(userId, roleIds)) {
-    // throw new GunsException(BizExceptionEnum.REQUEST_NULL);
-    // }
-    // //不能修改超级管理员
-    // if (userId.equals(Const.ADMIN_ID)) {
-    // throw new GunsException(BizExceptionEnum.CANT_CHANGE_ADMIN);
-    // }
-    // assertAuth(userId);
-    // this.userService.setRoles(userId, roleIds);
-    // return SUCCESS_TIP;
-    // }
-    //
+    
+    /**
+    * 分配角色
+    */
+    @RequestMapping("/setRole")
+    @ResponseBody
+    public JsonResult setRole(@RequestParam("userId") String userId,@RequestParam("roleIds") String roleIds) {
+    //不能修改超级管理员
+    if (userId.equals(Const.ADMIN_ID)) {
+    	JsonResult js = new JsonResult();
+    	js.setCode("1");
+    	js.setMessage("不能修改超级管理员");
+    	return js;
+    }
+    int i = userService.updateUserRole(userId, roleIds);
+    if (i > 0) {
+        return new JsonResult(true);
+    } else {
+        return new JsonResult(false);
+    }
+    }
+    
     // /**
     // * 上传图片(上传到项目的webapp/static/img)
     // */

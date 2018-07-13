@@ -47,4 +47,11 @@ public interface SysUserService extends GenericService<SysUser, SysUserExample, 
 	 * @return
 	 */
 	int update(SysUser user);
+	/**
+	 * 分配角色
+	 * @param userId
+	 * @param roleIds
+	 * @return
+	 */
+	int updateUserRole(String userId, String roleIds);
 }

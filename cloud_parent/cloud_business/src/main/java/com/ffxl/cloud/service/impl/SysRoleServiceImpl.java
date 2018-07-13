@@ -87,4 +87,9 @@ public class SysRoleServiceImpl extends GenericServiceImpl<SysRole, SysRoleExamp
 		return i;
         
 	}
+
+	@Override
+	public List<ZTreeNode> roleTreeListByRoleId(String[] strArray) {
+		return sysRoleMapper.roleTreeListByRoleId(strArray);
+	}
 }

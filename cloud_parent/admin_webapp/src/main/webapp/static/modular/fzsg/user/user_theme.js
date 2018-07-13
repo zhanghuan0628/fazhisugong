@@ -18,7 +18,13 @@ userTheme.initColumn = function () {
 	               {title: '期数',width:'300px', data: 'stage'},
 	               {title: '答对题数',width:'300px', data: 'rightNum'},
 	               {title: '分数',width:'300px', data: 'score'},
-	               {title: '中奖情况',width:'300px', data: 'name'},
+	               {title: '中奖情况',width:'300px', data: 'name',render: function(data, type, row, meta){
+	            	   if(data != null){
+	            		   return data;
+	            	   }else{
+	            		   return "--";
+	            	   }
+	               }},
 	               {title: '答题时间',width:'300px', data: 'createTime'}/*,
 	               {title: '领奖情况',width:'300px', data: 'receive',render: function(data, type, row, meta){
 	            	   if(data == true){

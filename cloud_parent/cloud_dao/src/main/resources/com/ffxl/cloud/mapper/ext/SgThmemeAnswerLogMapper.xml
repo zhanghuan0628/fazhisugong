@@ -7,33 +7,51 @@
 	
 	<select id="queryThemeAnswerUser" resultMap="SgThmemeAnswerLogMap" parameterType="java.lang.String">
 		SELECT DISTINCT
-		(
-			SELECT
-				count(*)
-			FROM
-				sg_theme_answer_log
-			WHERE
-				user_id = #{id}
-			AND score >= 60
-		) AS num,
-		(
-			SELECT
-				FORMAT(AVG(score), 2) AS score
-			FROM
-				sg_theme_answer_log
-			WHERE
-				user_id = #{id}
-		) AS avgScore,
-		(
-			SELECT
-				IFNULL(MAX(score), 0) AS maxScore
-			FROM
-				sg_theme_answer_log
-			WHERE
-				user_id = #{id}
-		) AS maxScore
-	FROM
-		sg_theme_answer_log
+	(
+		SELECT
+			count(*)
+		FROM
+			(
+				SELECT
+					*
+				FROM
+					(
+						SELECT
+							CASE sl.right_num
+						AND st.pass
+						WHEN sl.right_num >= st.pass THEN
+							1
+						ELSE
+							0
+						END AS s
+						FROM
+							sg_theme_answer_log sl
+						JOIN sg_theme st ON sl.theme_id = st.id
+						WHERE
+							sl.user_id = '1'
+					) a
+				WHERE
+					a.s = 1
+			) b
+	) AS num,
+	(
+		SELECT
+			FORMAT(AVG(score), 2) AS score
+		FROM
+			sg_theme_answer_log
+		WHERE
+			user_id = '1'
+	) AS avgScore,
+	(
+		SELECT
+			IFNULL(MAX(score), 0) AS maxScore
+		FROM
+			sg_theme_answer_log
+		WHERE
+			user_id = '1'
+	) AS maxScore
+FROM
+	sg_theme_answer_log
 	</select>
 
 </mapper>

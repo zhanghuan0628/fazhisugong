@@ -15,11 +15,12 @@
 				'%Y-%m-%d %H:%i:%s'
 			) AS createTime
 		FROM
-			sg_theme_award_log sl
-		JOIN sg_theme st ON sl.theme_id = st.id
-		JOIN sg_theme_answer_log sg ON sl.answer_id = sg.id
-		JOIN sys_dictionary sd ON sl.award_code = sd.id
-		where sl.user_id = #{model.userId}
+			sg_theme_answer_log sg
+			
+		LEFT JOIN sg_theme st ON sg.theme_id = st.id
+		LEFT JOIN sg_theme_award_log sl ON sl.answer_id = sg.id
+		LEFT JOIN sys_dictionary sd ON sl.award_code = sd.id
+		where sg.user_id = #{model.userId}
 		order by st.num desc
 	</select>
 </mapper>

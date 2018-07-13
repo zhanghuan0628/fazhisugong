@@ -18,13 +18,17 @@ import com.ffxl.admin.core.common.constant.factory.ConstantFactory;
 import com.ffxl.admin.core.log.LogObjectHolder;
 import com.ffxl.cloud.mapper.SysRoleMapper;
 import com.ffxl.cloud.model.SysRole;
+import com.ffxl.cloud.model.SysUser;
 import com.ffxl.cloud.service.SysRoleService;
+import com.ffxl.cloud.service.SysUserService;
 import com.ffxl.platform.constant.JsonResult;
 import com.ffxl.platform.constant.Message;
 import com.ffxl.platform.core.DataTablesUtil;
 import com.ffxl.platform.core.Page;
 import com.ffxl.platform.core.node.ZTreeNode;
+import com.ffxl.platform.util.Convert;
 import com.ffxl.platform.util.StringUtil;
+import com.ffxl.platform.util.ToolUtil;
 import com.ffxl.platform.util.UUIDUtil;
 
 /**
@@ -44,6 +48,9 @@ public class SysRoleController extends BaseController{
 	 
 	 @Autowired
 	 private SysRoleMapper sysRoleMapper;
+	 
+	 @Autowired
+	 private SysUserService sysUserService;
 	 
 	 /**
      * 跳转到查看角色列表的页面
@@ -202,5 +209,22 @@ public class SysRoleController extends BaseController{
       	}else{
       		return new JsonResult(Message.M5000);
       	}
+     }
+     /**
+      * 获取角色列表
+      */
+     @RequestMapping(value = "/roleTreeListByUserId")
+     @ResponseBody
+     public List<ZTreeNode> roleTreeListByUserId(String userId) {
+         SysUser theUser = sysUserService.selectByPrimaryKey(userId);
+         String roleid = theUser.getRoleId();
+         if (ToolUtil.isEmpty(roleid)) {
+             List<ZTreeNode> roleTreeList = this.sysRoleService.roleTreeList();
+             return roleTreeList;
+         } else {
+             String[] strArray = Convert.toStrArray(",", roleid);
+             List<ZTreeNode> roleTreeListByUserId = this.sysRoleService.roleTreeListByRoleId(strArray);
+             return roleTreeListByUserId;
+         }
      }
 }
