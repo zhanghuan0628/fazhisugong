@@ -27,6 +27,7 @@ public class HttpHeader {
     public static final String SIGN = "sign"; 
     
     public static final String USER_ID = "userId"; 
+    public static final String LOGIN_NAME = "loginName";
     public static final String MD5_KEY = "md5_key"; 
 
     /**
@@ -48,6 +49,7 @@ public class HttpHeader {
    
     
     private String userId;
+    private String loginName;
     private String md5key;
 
     public static void set(HttpHeader header) {
@@ -182,6 +184,16 @@ public class HttpHeader {
 
     public void setMd5key(String md5key) {
         this.md5key = md5key;
+    }
+
+
+    public String getLoginName() {
+        return loginName;
+    }
+
+
+    public void setLoginName(String loginName) {
+        this.loginName = loginName;
     }
 
 

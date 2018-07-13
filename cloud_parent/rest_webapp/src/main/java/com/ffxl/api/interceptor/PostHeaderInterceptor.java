@@ -17,6 +17,7 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import com.ffxl.api.auth.util.JwtTokenUtil;
 import com.ffxl.api.config.JwtProperties;
+import com.ffxl.cloud.model.SgUser;
 import com.ffxl.platform.constant.JsonResult;
 import com.ffxl.platform.constant.Message;
 import com.ffxl.platform.core.support.HttpKit;
@@ -62,7 +63,8 @@ public class PostHeaderInterceptor extends HandlerInterceptorAdapter{
                             logger.info("被拦截-----------1111-------------"+request.getServletPath());
                             return false;
                         }
-                        String loginName = jwtTokenUtil.getUsernameFromToken(authToken);//获取用户id
+                        String loginName = jwtTokenUtil.getUsernameFromToken(authToken);//获取用户loginName
+                        SgUser user = jwtTokenUtil.getUserFromToken(authToken);
                         Date date = jwtTokenUtil.getIssuedAtDateFromToken(authToken);//获取jwt发布时间
                         String md5key = jwtTokenUtil.getMd5KeyFromToken(authToken);//获取jwt发布时间
                         //解析token中的其他头参数
@@ -70,7 +72,10 @@ public class PostHeaderInterceptor extends HandlerInterceptorAdapter{
                         //TODO 在此获取头参数
                         
                         //封装登陆用户
-                        header.setUserId(loginName);
+                        if(user !=null){
+                            header.setUserId(user.getId()); 
+                        }
+                        header.setLoginName(loginName);
                         header.setMd5key(md5key);
                         header.setSign(sign);
                         HttpHeader.set(header);

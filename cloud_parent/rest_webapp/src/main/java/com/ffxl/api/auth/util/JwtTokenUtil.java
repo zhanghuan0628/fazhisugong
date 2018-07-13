@@ -14,6 +14,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.ffxl.api.config.JwtProperties;
+import com.ffxl.cloud.model.SgUser;
+import com.ffxl.cloud.service.SgUserService;
 import com.ffxl.platform.core.exception.BusinessException;
 import com.ffxl.platform.core.support.HttpKit;
 import com.ffxl.platform.util.HttpHeader;
@@ -40,12 +42,22 @@ public class JwtTokenUtil {
 
     @Autowired
     private JwtProperties jwtProperties;
+    
+    @Autowired
+    private SgUserService sgUserService;
 
     /**
      * 获取用户名从token中
      */
     public String getUsernameFromToken(String token) {
         return getClaimFromToken(token).getSubject();
+    }
+    public SgUser getUserFromToken(String token){
+        String loginName = getClaimFromToken(token).getSubject();
+        SgUser sgUser = new SgUser();
+        sgUser.setLoginName(loginName);
+        SgUser quser = sgUserService.queryByModel(sgUser);
+        return quser;
     }
 
     /**
