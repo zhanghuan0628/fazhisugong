@@ -36,11 +36,6 @@ public class PostHeaderInterceptor extends HandlerInterceptorAdapter{
         
         @Override
         public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-            if (request.getMethod().equals("OPTIONS")) {
-              //首次请求，放行
-              logger.info("复杂跨域的试探OPTIONS请求放行》》》》》》》》》》");
-              return true;
-            }else{
                 logger.info("开始执行Token拦截器------------------------");
                 HttpHeader header = new HttpHeader();
                 if (request.getServletPath().equals("/" + jwtProperties.getAuthPath())) {
@@ -49,6 +44,10 @@ public class PostHeaderInterceptor extends HandlerInterceptorAdapter{
                     logger.info("未被拦截-----------1111》》》》》》》》》》"+request.getServletPath());
                     return true;
                 }   
+                if (request.getMethod().equals("OPTIONS")) {
+                    logger.info("复杂跨域的试探OPTIONS请求》》》》》》》》》》");
+                    return false;
+                }
                 final String requestHeader = request.getHeader(jwtProperties.getHeader());
                 String sign = request.getHeader(HttpHeader.SIGN); //加密串，可自行规定是否使用
                 String authToken = null;
@@ -106,7 +105,7 @@ public class PostHeaderInterceptor extends HandlerInterceptorAdapter{
                     logger.info("被拦截------------33333------------"+request.getServletPath());
                     return false;
                 }
-            }
+            
     }
 
     /**
