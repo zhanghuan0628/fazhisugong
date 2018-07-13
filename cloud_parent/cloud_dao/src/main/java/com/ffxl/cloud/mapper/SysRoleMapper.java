@@ -31,4 +31,10 @@ public interface SysRoleMapper extends GenericMapper<SysRole, SysRoleExample, St
 	 * @return
 	 */
 	int selectMaxNum();
+	/**
+	 * 删除该角色所有的权限
+	 * @param roleId
+	 * @return 
+	 */
+	int deleteRolesById(@Param("roleId")String roleId);
 }

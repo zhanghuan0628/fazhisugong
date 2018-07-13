@@ -7,6 +7,10 @@ import com.ffxl.cloud.model.base.BaseSysMenuExample.Criteria;
 import com.ffxl.cloud.service.SysMenuService;
 import com.ffxl.platform.core.GenericMapper;
 import com.ffxl.platform.core.GenericServiceImpl;
+import com.ffxl.platform.core.Page;
+import com.ffxl.platform.core.node.ZTreeNode;
+import com.ffxl.platform.util.StringUtil;
+
 import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,6 +35,12 @@ public class SysMenuServiceImpl extends GenericServiceImpl<SysMenu, SysMenuExamp
     public SysMenu queryByModel(SysMenu sysMenu) {
         SysMenuExample example = new SysMenuExample();
         Criteria c= example.createCriteria();
+        if(!StringUtil.isEmpty(sysMenu.getCode())){
+        	c.andCodeEqualTo(sysMenu.getCode());
+        }
+        if(!StringUtil.isEmpty(sysMenu.getUrl())){
+        	c.andUrlEqualTo(sysMenu.getUrl());
+        }
         List<SysMenu> modelList =  sysMenuMapper.selectByExample(example);
         if(modelList.size() > 0){
             return modelList.get(0);
@@ -38,4 +48,29 @@ public class SysMenuServiceImpl extends GenericServiceImpl<SysMenu, SysMenuExamp
             return null;
         }
     }
+
+	@Override
+	public List<SysMenu> getMenuIdsByRoleId(String roleId) {
+		return sysMenuMapper.getMenuIdsByRoleId(roleId);
+	}
+
+	@Override
+	public List<ZTreeNode> menuTreeList() {
+		return sysMenuMapper.menuTreeList();
+	}
+
+	@Override
+	public List<ZTreeNode> menuTreeListByMenuIds(List<SysMenu> menuIds) {
+		return sysMenuMapper.menuTreeListByMenuIds(menuIds);
+	}
+
+	@Override
+	public List<SysMenu> queryPageList(SysMenu sysMenu, Page page) {
+		return sysMenuMapper.queryPageList(sysMenu,page);
+	}
+
+	@Override
+	public int selectMaxNum() {
+		return sysMenuMapper.selectMaxNum();
+	}
 }

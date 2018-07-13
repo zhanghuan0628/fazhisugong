@@ -1,0 +1,70 @@
+@layout("/common/_container.html"){
+<article class="page-container">
+	<form class="form form-horizontal" id=menuInfoForm>
+	<input type="hidden" value="${menu.id}" id="id" name="id">
+	<div class="row cl">
+		<label class="form-label col-xs-2 col-sm-2"><span class="c-red">*</span>菜单名称：</label>
+		<div class="formControls col-xs-3 col-sm-3">
+			<input type="text" class="input-text" value="${menu.name}" id="name" name="name">
+		</div>
+		<label class="form-label col-xs-2 col-sm-2"><span class="c-red">*</span>菜单编号：</label>
+		<div class="formControls col-xs-3 col-sm-3">
+			<input type="text" class="input-text" value="${menu.code}" id="code" name="code">
+		</div>
+	</div>
+	<div class="row cl">
+		<label class="form-label col-xs-2 col-sm-2"><span class="c-red">*</span>父级编号：</label>
+		<input type="hidden" class="input-text" id="pcode" value="${menu.pcode}" name="pcode">
+		<div class="formControls col-xs-3 col-sm-3">
+			<input type="text" class="input-text" id="pcodeName" name="pcodeName" value="${menu.pname}"
+			readonly="readonly"
+			onclick="MenuInfoDlg.showMenuSelectTree(); return false;"
+			style="background-color: #ffffff !important;"
+			>
+		</div>
+		<label class="form-label col-xs-2 col-sm-2"><span class="c-red">*</span>是否菜单：</label>
+		<div class="formControls col-xs-3 col-sm-3">
+			<select class="input-text" id="menu" name="menu">
+				<option 
+					@if(menu.menu==true||menu.menu==1){
+		        		selected="selected"
+		        	@}
+				value="1">是</option>
+				<option 
+					@if(menu.menu==false||menu.menu==0){
+		        		selected="selected"
+		        	@}
+				value="0">不是</option>
+			</select>
+		</div>
+	</div>
+	<div class="row cl">
+		<label class="form-label col-xs-2 col-sm-2"><span class="c-red">*</span>请求地址：</label>
+		<div class="formControls col-xs-3 col-sm-3">
+			<input type="text" class="input-text" value="${menu.url}" id="url" name="url">
+		</div>
+		<label class="form-label col-xs-2 col-sm-2"><span class="c-red">*</span>图标：</label>
+		<div class="formControls col-xs-3 col-sm-3">
+			<input type="text" class="input-text" value="${menu.icon}" id="icon" name="icon">
+		</div>
+	</div>
+	<div class="row cl">
+		<label class="form-label col-xs-2 col-sm-2"><span class="c-red"></span>备注：</label>
+		<div class="formControls col-xs-3 col-sm-3">
+			<input type="text" class="input-text" value="${menu.tips}" id="tips" name="tips">
+		</div>
+	</div>
+	<!-- 这是父级菜单下拉框 -->
+	<div id="pNameContent" class="menuContent"
+		style="display: none; position: absolute; z-index: 200;">
+		<ul id="pNameTree" class="ztree tree-box" style="width: 250px !important;background-color: #ffffff "></ul>
+	</div>
+	<div class="row cl">
+		<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
+			<input class="btn btn-primary radius" type="submit" value="&nbsp;&nbsp;提交&nbsp;&nbsp;">
+		</div>
+	</div>
+	</form>
+</article>
+<script src="${ctxPath}/static/modular/system/sys_menu/menu_info.js"></script>
+@}

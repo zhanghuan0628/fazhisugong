@@ -28,4 +28,8 @@
 	<select id="selectMaxNum" resultType="int" parameterType="java.lang.String">
 		select IFNULL(max(num),0)as num from sys_role
 	</select>
+	
+	<delete id="deleteRolesById" parameterType="java.lang.String">
+		delete from sys_role_menu_rel where role_id = #{roleId}
+	</delete>
 </mapper>
