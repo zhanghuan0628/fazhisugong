@@ -27,6 +27,7 @@ import com.ffxl.cloud.service.SgUserService;
 import com.ffxl.platform.constant.JsonResult;
 import com.ffxl.platform.constant.Message;
 import com.ffxl.platform.core.Page;
+import com.ffxl.platform.core.support.HttpKit;
 import com.ffxl.platform.util.HttpHeader;
 import com.ffxl.platform.util.MD5Util;
 import com.ffxl.platform.util.StringUtil;
@@ -83,6 +84,9 @@ public class SgUserCenterController extends BaseController{
 			SgUser user = list.get(0);
 			SgUser record = new SgUser();
 			record.setLastLoginDate(new Date());
+			HttpHeader local= HttpHeader.get();
+			String token = local.getToken();
+			record.setToken(token);
 			sgUserService.updateByExampleSelective(record, example);
 			return new JsonResult(Message.M2000,user);
 		}else{

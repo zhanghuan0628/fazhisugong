@@ -75,6 +75,7 @@ public class PostHeaderInterceptor extends HandlerInterceptorAdapter{
                         if(user !=null){
                             header.setUserId(user.getId()); 
                         }
+                        header.setToken(authToken);
                         header.setLoginName(loginName);
                         header.setMd5key(md5key);
                         header.setSign(sign);
