@@ -1,9 +1,6 @@
 package com.ffxl.admin.controller.system;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,10 +11,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ffxl.admin.controller.base.BaseController;
 import com.ffxl.admin.core.common.constant.factory.ConstantFactory;
-import com.ffxl.admin.core.log.LogObjectHolder;
 import com.ffxl.cloud.model.SysMenu;
 import com.ffxl.cloud.model.SysMenuExample;
-import com.ffxl.cloud.model.SysRole;
 import com.ffxl.cloud.model.base.BaseSysMenuExample.Criteria;
 import com.ffxl.cloud.service.SysMenuService;
 import com.ffxl.platform.constant.JsonResult;
