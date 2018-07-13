@@ -32,4 +32,10 @@ public interface SgUserMapper extends GenericMapper<SgUser, SgUserExample, Strin
 	 * @return
 	 */
 	List<SgUser> queryMyInfoList(@Param("userId")String userId);
+	/**
+	 * token清空
+	 * @param userId
+	 * @return
+	 */
+	int updateTokenNull(@Param("userId")String userId);
 }

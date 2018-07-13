@@ -23,6 +23,7 @@ import com.ffxl.cloud.service.SgUserFavoriteService;
 import com.ffxl.platform.constant.JsonResult;
 import com.ffxl.platform.constant.Message;
 import com.ffxl.platform.core.Page;
+import com.ffxl.platform.util.HttpHeader;
 import com.ffxl.platform.util.StringUtil;
 import com.ffxl.platform.util.UUIDUtil;
 /**
@@ -84,7 +85,12 @@ public class SgHomePageController {
 	 */
 	@RequestMapping(value = "/querySgLawDetail")
     @ResponseBody
-    public JsonResult querySgLawDetail(String userId,String id,String category,int sortnum) {
+    public JsonResult querySgLawDetail(String id,String category,int sortnum) {
+		HttpHeader local= HttpHeader.get();
+		String userId = "";
+		if(local != null){
+			userId = local.getUserId();
+		}
 		if(StringUtil.isEmpty(id)){
 			return new JsonResult(Message.M4003);
 		}
@@ -141,7 +147,9 @@ public class SgHomePageController {
 	 */
 	@RequestMapping(value = "/insertUserFavorite")
     @ResponseBody
-	public JsonResult insertUserFavorite(String sourceType,String sourceId,String userId){
+	public JsonResult insertUserFavorite(String sourceType,String sourceId){
+		HttpHeader local= HttpHeader.get();
+        String userId = local.getUserId();
 		if(StringUtil.isEmpty(sourceType)){
 			return new JsonResult(Message.M4003);
 		}

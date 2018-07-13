@@ -60,4 +60,9 @@ public class SgUserServiceImpl extends GenericServiceImpl<SgUser, SgUserExample,
 	public List<SgUser> queryMyInfoList(String userId) {
 		return sgUserMapper.queryMyInfoList(userId);
 	}
+
+	@Override
+	public int updateTokenNull(String userId) {
+		return sgUserMapper.updateTokenNull(userId);
+	}
 }

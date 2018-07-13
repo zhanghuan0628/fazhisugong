@@ -28,6 +28,7 @@ import com.ffxl.cloud.service.SgThemeAwardLogService;
 import com.ffxl.platform.constant.JsonResult;
 import com.ffxl.platform.constant.Message;
 import com.ffxl.platform.core.Page;
+import com.ffxl.platform.util.HttpHeader;
 import com.ffxl.platform.util.StringUtil;
 import com.ffxl.platform.util.UUIDUtil;
 /**
@@ -105,7 +106,9 @@ public class SgAskController {
 	 */
 	@RequestMapping(value = "/queryCheckTheme")
     @ResponseBody
-	public JsonResult queryCheckTheme(String userId){
+	public JsonResult queryCheckTheme(){
+		HttpHeader local= HttpHeader.get();
+        String userId = local.getUserId();
 		if(StringUtil.isEmpty(userId)){
 			return new JsonResult(Message.M4003);
 		}
@@ -158,7 +161,9 @@ public class SgAskController {
 	 */
 	@RequestMapping(value = "/queryAnswerLogByUser")
     @ResponseBody
-	public JsonResult queryAnswerLogByUser(String userId,String themeId){
+	public JsonResult queryAnswerLogByUser(String themeId){
+		HttpHeader local= HttpHeader.get();
+        String userId = local.getUserId();
 		if(StringUtil.isEmpty(userId)||StringUtil.isEmpty(themeId)){
 			return new JsonResult(Message.M4003);
 		}
@@ -174,7 +179,9 @@ public class SgAskController {
 	 */
 	@RequestMapping(value = "/queryUserBackTheme")
     @ResponseBody
-	public JsonResult queryUserBackTheme(String userId,String themeId){
+	public JsonResult queryUserBackTheme(String themeId){
+		HttpHeader local= HttpHeader.get();
+        String userId = local.getUserId();
 		if(StringUtil.isEmpty(userId)||StringUtil.isEmpty(themeId)){
 			return new JsonResult(Message.M4003);
 		}
@@ -189,13 +196,16 @@ public class SgAskController {
 	@RequestMapping(value = "/queryAllAward")
     @ResponseBody
 	public JsonResult queryAllAward(SgThemeAwardLog model){
-		if(StringUtil.isEmpty(model.getUserId())||StringUtil.isEmpty(model.getAnswerId())||StringUtil.isEmpty(model.getThemeId())){
+		HttpHeader local= HttpHeader.get();
+        String userId = local.getUserId();
+		if(StringUtil.isEmpty(userId)||StringUtil.isEmpty(model.getAnswerId())||StringUtil.isEmpty(model.getThemeId())){
 			return new JsonResult(Message.M4003);
 		}
 		Dictionary m = dictionaryService.queryAllAward();
 		model.setId(UUIDUtil.getUUID());
 		model.setAwardCode(m.getId());
 		model.setCode(m.getCode());
+		model.setUserId(userId);
 		this.insertUserAwardLog(model);
 		return new JsonResult(Message.M2000,m);
 	}
@@ -207,6 +217,9 @@ public class SgAskController {
 	@RequestMapping(value = "/insertUserAwardLog")
     @ResponseBody
 	public JsonResult insertUserAwardLog(SgThemeAwardLog model){
+		HttpHeader local= HttpHeader.get();
+        String userId = local.getUserId();
+        model.setUserId(userId);
 		int i = sgThemeAwardLogService.insertSelective(model);
 		if(i > 0){
 			return new JsonResult(Message.M2000);

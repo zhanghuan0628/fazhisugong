@@ -10,6 +10,7 @@
     <result column="head_url" property="headUrl" jdbcType="VARCHAR" />
     <result column="last_login_date" property="lastLoginDate" jdbcType="TIMESTAMP" />
     <result column="is_dummy" property="dummy" jdbcType="TINYINT" />
+    <result column="token" property="token" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -71,7 +72,7 @@
   </sql>
   <sql id="Base_Column_List" >
     id, login_name, password, is_modify_password, user_name, head_url, last_login_date, 
-    is_dummy
+    is_dummy, token
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ffxl.cloud.model.SgUserExample" >
     select
@@ -106,10 +107,12 @@
   <insert id="insert" parameterType="com.ffxl.cloud.model.SgUser" >
     insert into sg_user (id, login_name, password, 
       is_modify_password, user_name, head_url, 
-      last_login_date, is_dummy)
+      last_login_date, is_dummy, token
+      )
     values (#{id,jdbcType=VARCHAR}, #{loginName,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
       #{modifyPassword,jdbcType=TINYINT}, #{userName,jdbcType=VARCHAR}, #{headUrl,jdbcType=VARCHAR}, 
-      #{lastLoginDate,jdbcType=TIMESTAMP}, #{dummy,jdbcType=TINYINT})
+      #{lastLoginDate,jdbcType=TIMESTAMP}, #{dummy,jdbcType=TINYINT}, #{token,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.ffxl.cloud.model.SgUser" >
     insert into sg_user
@@ -138,6 +141,9 @@
       <if test="dummy != null" >
         is_dummy,
       </if>
+      <if test="token != null" >
+        token,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -163,6 +169,9 @@
       </if>
       <if test="dummy != null" >
         #{dummy,jdbcType=TINYINT},
+      </if>
+      <if test="token != null" >
+        #{token,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -199,6 +208,9 @@
       <if test="record.dummy != null" >
         is_dummy = #{record.dummy,jdbcType=TINYINT},
       </if>
+      <if test="record.token != null" >
+        token = #{record.token,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -213,7 +225,8 @@
       user_name = #{record.userName,jdbcType=VARCHAR},
       head_url = #{record.headUrl,jdbcType=VARCHAR},
       last_login_date = #{record.lastLoginDate,jdbcType=TIMESTAMP},
-      is_dummy = #{record.dummy,jdbcType=TINYINT}
+      is_dummy = #{record.dummy,jdbcType=TINYINT},
+      token = #{record.token,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -242,6 +255,9 @@
       <if test="dummy != null" >
         is_dummy = #{dummy,jdbcType=TINYINT},
       </if>
+      <if test="token != null" >
+        token = #{token,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=VARCHAR}
   </update>
@@ -253,7 +269,8 @@
       user_name = #{userName,jdbcType=VARCHAR},
       head_url = #{headUrl,jdbcType=VARCHAR},
       last_login_date = #{lastLoginDate,jdbcType=TIMESTAMP},
-      is_dummy = #{dummy,jdbcType=TINYINT}
+      is_dummy = #{dummy,jdbcType=TINYINT},
+      token = #{token,jdbcType=VARCHAR}
     where id = #{id,jdbcType=VARCHAR}
   </update>
 </mapper>

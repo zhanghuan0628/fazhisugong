@@ -21,7 +21,7 @@
 			and (is_dummy is null or is_dummy = '' or is_dummy = false)
 		</if>
 	</select>
-	<select id="queryMyInfo" resultType="int" parameterType="java.lang.String">
+	<select id="queryMyInfo" parameterType="java.lang.String" resultType="int">
 		SELECT
 			count(id) AS count
 		FROM
@@ -103,4 +103,8 @@
 			createDate DESC
 		
 	</select>
+	
+	<update id="updateTokenNull" parameterType="java.lang.String">
+		update sg_user set token = NULL where id=#{userId}
+	</update>
 </mapper>

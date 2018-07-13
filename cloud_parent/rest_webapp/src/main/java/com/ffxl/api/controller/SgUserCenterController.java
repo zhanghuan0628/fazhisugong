@@ -8,6 +8,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.ffxl.api.auth.controller.AuthController;
+import com.ffxl.api.auth.util.JwtTokenUtil;
 import com.ffxl.api.config.BaseController;
 import com.ffxl.cloud.model.SgAsk;
 import com.ffxl.cloud.model.SgLawComment;
@@ -25,6 +27,7 @@ import com.ffxl.cloud.service.SgUserService;
 import com.ffxl.platform.constant.JsonResult;
 import com.ffxl.platform.constant.Message;
 import com.ffxl.platform.core.Page;
+import com.ffxl.platform.util.HttpHeader;
 import com.ffxl.platform.util.MD5Util;
 import com.ffxl.platform.util.StringUtil;
 
@@ -50,6 +53,9 @@ public class SgUserCenterController extends BaseController{
 	
 	@Autowired
 	private SgLawCommentService sgLawCommentService;
+	
+	@Autowired
+    private JwtTokenUtil jwtTokenUtil;
 	/**
 	 * 登陆
 	 * @param loginName
@@ -58,7 +64,7 @@ public class SgUserCenterController extends BaseController{
 	 */
 	@RequestMapping(value = "/userLogin")
     @ResponseBody
-	public JsonResult userLogin(String loginName,String password){
+	public JsonResult userLogin(String loginName,String password,String Authorization){
 		if(StringUtil.isEmpty(loginName)||StringUtil.isEmpty(password)){
 			return new JsonResult(Message.M4003);
 		}
@@ -76,6 +82,8 @@ public class SgUserCenterController extends BaseController{
 		if(list != null && list.size() > 0){
 			SgUser user = list.get(0);
 			SgUser record = new SgUser();
+	        String token = Authorization.substring(6).trim();
+	        record.setToken(token);
 			record.setLastLoginDate(new Date());
 			sgUserService.updateByExampleSelective(record, example);
 			return new JsonResult(Message.M2000,user);
@@ -92,7 +100,10 @@ public class SgUserCenterController extends BaseController{
 	@RequestMapping(value = "/updateUserInfo")
     @ResponseBody
 	public JsonResult updateUserInfo(SgUser user){
-		if(StringUtil.isEmpty(user.getId())){
+		HttpHeader local= HttpHeader.get();
+        String userId = local.getUserId();
+        user.setId(userId);
+		if(StringUtil.isEmpty(userId)){
 			return new JsonResult(Message.M4003);
 		}
 		int i = sgUserService.updateByPrimaryKeySelective(user);
@@ -110,7 +121,9 @@ public class SgUserCenterController extends BaseController{
 	 */
 	@RequestMapping(value = "/queryUserModifyPwd")
     @ResponseBody
-	public JsonResult queryUserModifyPwd(String userId){
+	public JsonResult queryUserModifyPwd(){
+		HttpHeader local= HttpHeader.get();
+        String userId = local.getUserId();
 		if(StringUtil.isEmpty(userId)){
 			return new JsonResult(Message.M4003);
 		}
@@ -125,6 +138,7 @@ public class SgUserCenterController extends BaseController{
 					record.setModifyPassword(true);
 					sgUserService.updateByPrimaryKeySelective(record);
 					return new JsonResult("1","提醒用户修改密码");
+					
 				}
 			}else{
 				SgUser record = new SgUser();
@@ -146,12 +160,15 @@ public class SgUserCenterController extends BaseController{
 	 */
 	@RequestMapping(value = "/updateUserPassword")
     @ResponseBody
-	public JsonResult updateUserPassword(String userId,String newPwd,String oldPwd){
+	public JsonResult updateUserPassword(String newPwd,String oldPwd){
+		HttpHeader local= HttpHeader.get();
+        String userId = local.getUserId();
 		if(StringUtil.isEmpty(userId)){
 			return new JsonResult(Message.M4003);
 		}
 		SgUser u = sgUserService.selectByPrimaryKey(userId);
 		String opwd = MD5Util.encrypt(oldPwd);
+		String token = "";
 		int i = -1;
 		if(u!=null){
 			if(u.getPassword().equals(opwd)){
@@ -160,6 +177,9 @@ public class SgUserCenterController extends BaseController{
 				String md5Code = MD5Util.encrypt(newPwd);
 				user.setPassword(md5Code);
 				user.setModifyPassword(true);
+				String randomKey = jwtTokenUtil.getRandomKey();
+				token = jwtTokenUtil.generateToken(u.getUserName(), randomKey);
+				user.setToken(token);
 				i = sgUserService.updateByPrimaryKeySelective(user);
 			}else{
 				return new JsonResult("1","密码输入错误");
@@ -168,11 +188,30 @@ public class SgUserCenterController extends BaseController{
 			return new JsonResult(Message.M5000,"没有从此用户");
 		}
 		if(i > 0){
-			return new JsonResult(Message.M2000);
+			return new JsonResult(Message.M2000,token);
 		}else{
 			return new JsonResult(Message.M5000);
 		}
 		
+	}
+	/**
+	 * 注销
+	 * @return
+	 */
+	@RequestMapping(value = "/cancel")
+    @ResponseBody
+	public JsonResult cancel(){
+		HttpHeader local= HttpHeader.get();
+        String userId = local.getUserId();
+		if(StringUtil.isEmpty(userId)){
+			return new JsonResult(Message.M4003);
+		}
+		int i = sgUserService.updateTokenNull(userId);
+		if(i > 0){
+			return new JsonResult(Message.M2000);
+		}else{
+			return new JsonResult(Message.M5000);
+		}
 	}
 	/**
 	 * 我的咨询
@@ -181,7 +220,9 @@ public class SgUserCenterController extends BaseController{
 	 */
 	@RequestMapping(value = "/queryMyAsk")
     @ResponseBody
-	public JsonResult queryMyAsk(String userId,Page page){
+	public JsonResult queryMyAsk(Page page){
+		HttpHeader local= HttpHeader.get();
+        String userId = local.getUserId();
 		if(StringUtil.isEmpty(userId)){
 			return new JsonResult(Message.M4003);
 		}
@@ -195,7 +236,9 @@ public class SgUserCenterController extends BaseController{
 	 */
 	@RequestMapping(value = "/queryMyThemeLog")
     @ResponseBody
-	public JsonResult queryMyThemeLog(String userId,Page page){
+	public JsonResult queryMyThemeLog(Page page){
+		HttpHeader local= HttpHeader.get();
+        String userId = local.getUserId();
 		if(StringUtil.isEmpty(userId)){
 			return new JsonResult(Message.M4003);
 		}
@@ -210,7 +253,9 @@ public class SgUserCenterController extends BaseController{
 	 */
 	@RequestMapping(value = "/queryMyFavorite")
     @ResponseBody
-	public JsonResult queryMyFavorite(String userId,String sourceType,Page page){
+	public JsonResult queryMyFavorite(String sourceType,Page page){
+		HttpHeader local= HttpHeader.get();
+        String userId = local.getUserId();
 		if(StringUtil.isEmpty(userId)||StringUtil.isEmpty(sourceType)){
 			return new JsonResult(Message.M4003);
 		}
@@ -226,7 +271,9 @@ public class SgUserCenterController extends BaseController{
 	 */
 	@RequestMapping(value = "/queryMyInfo")
     @ResponseBody
-	public JsonResult queryMyInfo(String userId){
+	public JsonResult queryMyInfo(){
+		HttpHeader local= HttpHeader.get();
+        String userId = local.getUserId();
 		if(StringUtil.isEmpty(userId)){
 			return new JsonResult(Message.M4003);
 		}
@@ -241,7 +288,9 @@ public class SgUserCenterController extends BaseController{
 	 */
 	@RequestMapping(value = "/queryMyInfoList")
     @ResponseBody
-	public JsonResult queryMyInfoList(String userId,Page page){
+	public JsonResult queryMyInfoList(Page page){
+		HttpHeader local= HttpHeader.get();
+        String userId = local.getUserId();
 		if(StringUtil.isEmpty(userId)){
 			return new JsonResult(Message.M4003);
 		}

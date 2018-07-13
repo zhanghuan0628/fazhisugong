@@ -231,6 +231,6 @@ $(function () {
     var options = SysUser.dataTables(defaultColunms);    
     SysUser.table = defDataTables(options);
     
-    //Feng.selectSingleRow(SysUser.id);
-    Feng.selectMultiRow(SysUser.id,SysUser);
+    Feng.selectSingleRow(SysUser.id);
+    /*Feng.selectMultiRow(SysUser.id,SysUser);*/
 });
