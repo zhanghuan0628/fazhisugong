@@ -3,13 +3,17 @@ package com.ffxl.cloud.service.impl;
 import com.ffxl.cloud.mapper.SysRoleMapper;
 import com.ffxl.cloud.model.SysRole;
 import com.ffxl.cloud.model.SysRoleExample;
+import com.ffxl.cloud.model.SysRoleMenuRel;
 import com.ffxl.cloud.model.base.BaseSysRoleExample.Criteria;
+import com.ffxl.cloud.service.SysRoleMenuRelService;
 import com.ffxl.cloud.service.SysRoleService;
 import com.ffxl.platform.core.GenericMapper;
 import com.ffxl.platform.core.GenericServiceImpl;
 import com.ffxl.platform.core.Page;
 import com.ffxl.platform.core.node.ZTreeNode;
+import com.ffxl.platform.util.Convert;
 import com.ffxl.platform.util.StringUtil;
+import com.ffxl.platform.util.UUIDUtil;
 
 import java.util.List;
 import org.slf4j.Logger;
@@ -26,6 +30,9 @@ public class SysRoleServiceImpl extends GenericServiceImpl<SysRole, SysRoleExamp
 
     @Autowired
     private SysRoleMapper sysRoleMapper;
+    
+    @Autowired
+    private SysRoleMenuRelService sysRoleMenuRelService;
 
     @Override
     public GenericMapper<SysRole, SysRoleExample, String> getGenericMapper() {
@@ -59,5 +66,25 @@ public class SysRoleServiceImpl extends GenericServiceImpl<SysRole, SysRoleExamp
 	@Override
 	public int selectMaxNum() {
 		return sysRoleMapper.selectMaxNum();
+	}
+
+	@Override
+	public int setAuthority(String roleId, String ids) {
+		// 删除该角色所有的权限
+		int i = -1;
+        i = sysRoleMapper.deleteRolesById(roleId);
+        if(!StringUtil.isEmpty(ids)){
+        	String[] idss = ids.split(",");
+        	for(String id:idss){
+            	SysRoleMenuRel record = new SysRoleMenuRel();
+            	record.setId(UUIDUtil.getUUID());
+            	record.setRoleId(roleId);
+            	record.setMenuId(id);
+            	i = sysRoleMenuRelService.insertSelective(record);
+            }
+       
+        }
+		return i;
+        
 	}
 }

@@ -35,4 +35,11 @@ public interface SysRoleService extends GenericService<SysRole, SysRoleExample, 
 	 * @return
 	 */
 	int selectMaxNum();
+	/**
+	 * 配置权限
+	 * @param roleId
+	 * @param ids
+	 * @return
+	 */
+	int setAuthority(String roleId, String ids);
 }

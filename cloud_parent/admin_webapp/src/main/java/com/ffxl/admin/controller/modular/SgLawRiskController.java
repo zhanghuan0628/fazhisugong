@@ -80,7 +80,10 @@ public class SgLawRiskController extends BaseController{
     	List<SgLaw> dataList = sgLawService.queryPageList(sgLaw,page);
     	for(SgLaw sl:dataList){
     		Dictionary dictionary = dictionaryService.selectByPrimaryKey(sl.getCategoryCode());
-    		sl.setName(dictionary.getName());
+    		if(dictionary != null){
+    			sl.setName(dictionary.getName());
+    		}
+    		
     	}
         dataTables = this.getDataTables(page, dataTables, dataList);
         return new JsonResult("2000", dataTables);
@@ -114,7 +117,7 @@ public class SgLawRiskController extends BaseController{
     /**
      * 删除
      */
-    @RequestMapping("/delLawrisk")
+    @RequestMapping("/delLawRisk")
     @BussinessLog(value = "删除法律风险", key = "id", dict = SgLawDic.class)
     @ResponseBody
     public JsonResult delLawrisk(String ids){

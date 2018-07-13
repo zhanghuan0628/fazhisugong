@@ -19,6 +19,7 @@ import com.ffxl.cloud.service.SgLawCommentService;
 import com.ffxl.cloud.service.SgLawService;
 import com.ffxl.platform.constant.JsonResult;
 import com.ffxl.platform.constant.Message;
+import com.ffxl.platform.core.Page;
 import com.ffxl.platform.util.StringUtil;
 import com.ffxl.platform.util.UUIDUtil;
 
@@ -60,7 +61,7 @@ public class SgLawRiskController {
 	 */
 	@RequestMapping(value = "/queryLawRiskByMajor")
     @ResponseBody
-	public JsonResult queryLawRiskByMajor(String id,String title){
+	public JsonResult queryLawRiskByMajor(String id,String title,Page page){
 		if(StringUtil.isEmpty(id)){
 			return new JsonResult(Message.M4003);
 		}
@@ -70,7 +71,8 @@ public class SgLawRiskController {
         s.setTitle(title);
         s.setStatus("publish");
 		List<SgLaw> list = sgLawService.queryLawRiskByMajor(s);
-		return new JsonResult(Message.M2000,list);
+		page.setDataList(list);
+        return new JsonResult(Message.M2000, page);
 	}
 	/**
 	 * 推荐阅读

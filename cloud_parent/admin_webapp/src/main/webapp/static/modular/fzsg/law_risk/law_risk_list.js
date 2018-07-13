@@ -36,7 +36,7 @@ lawRisk.getSelIds = function(){
 /*法律风险-删除(批量)*/
 lawRisk.del_lawRisk=function (){
 	var operation = function(){
-        var ajax = new $ax(Feng.ctxPath +"/sg_law_risk/dellawRisk?ids="+selIds, function (data) {
+        var ajax = new $ax(Feng.ctxPath +"/sg_law_risk/delLawRisk?ids="+selIds, function (data) {
         	if(data.code ==2000){
         		lawRisk.table.draw();
 				Feng.success("已删除!");

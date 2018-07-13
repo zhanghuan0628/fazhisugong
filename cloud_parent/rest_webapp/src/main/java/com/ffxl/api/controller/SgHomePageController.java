@@ -88,17 +88,16 @@ public class SgHomePageController {
 		if(StringUtil.isEmpty(id)){
 			return new JsonResult(Message.M4003);
 		}
-		if(StringUtil.isEmpty(userId)){
-			return new JsonResult(Message.M4003);
-		}
         SgLaw sgLaw = sgLawService.selectByPrimaryKey(id);
-        SgUserFavoriteExample example = new SgUserFavoriteExample();
-        com.ffxl.cloud.model.base.BaseSgUserFavoriteExample.Criteria c= example.createCriteria();
-        c.andSourceIdEqualTo(id);
-        c.andUserIdEqualTo(userId);
-        List<SgUserFavorite> list = sgUserFavoriteService.selectByExample(example);
-        if(list != null && list.size() > 0){
-        	sgLaw.setFavorite("1");//已收藏
+        if(!StringUtil.isEmpty(userId)){
+        	SgUserFavoriteExample example = new SgUserFavoriteExample();
+            com.ffxl.cloud.model.base.BaseSgUserFavoriteExample.Criteria c= example.createCriteria();
+            c.andSourceIdEqualTo(id);
+            c.andUserIdEqualTo(userId);
+            List<SgUserFavorite> list = sgUserFavoriteService.selectByExample(example);
+            if(list != null && list.size() > 0){
+            	sgLaw.setFavorite("1");//已收藏
+            }
         }
         if(category.equals("law_lecture_room")){
         	if(StringUtil.isEmpty(sortnum+"")){
@@ -224,16 +223,17 @@ public class SgHomePageController {
         c.andStatusEqualTo("publish");
         c.andCategoryEqualTo(category);
         c.andCategoryCodeEqualTo(categoryCode);
+        example.setOrderByClause(" num asc ");
         List<SgLaw> list = sgLawService.selectByExample(example);
         int num = 0;
         int count = list.size();
-        for(int i = 1;i<=list.size();i++){
+        for(int i = 0;i<list.size();i++){
         	if(list.get(i).getId().equals(sgLaw.getId())){
         		num = i;
         		break;
         	}
         }
-        sgLaw.setAllChapter(num+"/"+count);
+        sgLaw.setAllChapter((num+1)+"/"+count);
         String stage = toChinese(sgLaw.getNum()+"");
         sgLaw.setChapter("第"+stage+"章");
         SgLaw sl = new SgLaw();

@@ -1,3 +1,107 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.ffxl.cloud.mapper.SysMenuMapper" />
+<mapper namespace="com.ffxl.cloud.mapper.SysMenuMapper">
+	<resultMap extends="BaseResultMap" id="SysMenuMap" type="com.ffxl.cloud.model.SysMenu">
+	
+	</resultMap>
+	
+	<select id="getMenuIdsByRoleId" resultMap="SysMenuMap" parameterType="java.lang.String">
+        select menu_id  as menuId from
+        sys_role_menu_rel where role_id = #{roleId}
+    </select>
+    
+    <select id="menuTreeList" resultType="com.ffxl.platform.core.node.ZTreeNode">
+        SELECT
+        m1.id AS id,
+        (
+        CASE
+        WHEN (m2.id = 0 OR m2.id IS NULL) THEN
+        0
+        ELSE
+        m2.id
+        END
+        ) AS pId,
+        m1. NAME
+        AS NAME,
+        (
+        CASE
+        WHEN (m2.id = 0 OR m2.id IS NULL) THEN
+        'true'
+        ELSE
+        'false'
+        END
+        ) as isOpen
+        FROM
+        sys_menu m1
+        LEFT join sys_menu m2 ON m1.pcode = m2. CODE
+        ORDER BY
+        m1.id ASC
+    </select>
+    
+    <select id="menuTreeListByMenuIds" resultType="com.ffxl.platform.core.node.ZTreeNode">
+        SELECT
+        m1.id AS id,
+        (
+        CASE
+        WHEN (m2.id = 0 OR m2.id IS NULL) THEN
+        0
+        ELSE
+        m2.id
+        END
+        ) AS pId,
+        m1. NAME AS NAME,
+        (
+        CASE
+        WHEN (m2.id = 0 OR m2.id IS
+        NULL) THEN
+        'true'
+        ELSE
+        'false'
+        END
+        ) as isOpen,
+        (
+        CASE
+        WHEN (m3.ID = 0 OR m3.ID
+        IS NULL) THEN
+        'false'
+        ELSE
+        'true'
+        END
+        ) "checked"
+        FROM
+        sys_menu m1
+        LEFT JOIN
+        sys_menu m2
+        ON m1.pcode = m2. CODE
+        left join (
+        SELECT
+        ID
+        FROM
+        sys_menu
+        WHERE
+        ID IN
+        <foreach collection="list" index="index" item="i" open="("
+                 separator="," close=")">
+            #{i.menuId}
+        </foreach>
+        ) m3 on m1.id = m3.id
+        ORDER BY
+        m1.id ASC
+    </select>
+    
+    <select id="queryPageList" resultMap="SysMenuMap">
+        select
+        *
+        from sys_menu
+        where 1 = 1
+        <if test="model.name != null and model.name != '' ">
+            and (name like CONCAT('%',#{model.name},'%') or code like CONCAT('%',#{model.name},'%'))
+        </if>
+        <if test="model.levels != null and model.levels != ''">
+            and levels = #{model.levels}
+        </if>
+    </select>
+    <select id="selectMaxNum" resultType="int">
+    	select IFNULL(max(num),0)as num from sys_menu
+    </select>
+</mapper>

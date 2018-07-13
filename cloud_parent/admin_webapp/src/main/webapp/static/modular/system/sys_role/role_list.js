@@ -89,6 +89,10 @@ sysRole.multi_del=function (obj,id){
 sysRole.role_edit=function (title,url,id,w,h){
 	layer_show(title,Feng.ctxPath +url+"?id="+id,w,h);
 }
+/*角色-授权*/
+sysRole.power_add=function (title,url,id,w,h){
+	layer_show(title,Feng.ctxPath +url+"?id="+id,w,h);
+}
 /*角色-停用*/
 sysRole.role_stop=function (obj,id){
 	var operation = function(){
@@ -149,11 +153,11 @@ sysRole.initColumn = function () {
 			+row.id
 			+ "'"
 			+',\'800\',\'500\')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i>'
-			+'</a> <a title="删除" href="javascript:;" onclick="sysRole.single_del(this,'
+			+'</a> <a title="授权" href="javascript:;" onclick="sysRole.power_add(\'角色授权\',\'/sys_role/power_add\','
 			+ "'"
 			+row.id
 			+ "'"
-			+')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a>'
+			+',\'300\',\'500\')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe607;</i>'
 			+'</td>';
         	return msg;
         }}];

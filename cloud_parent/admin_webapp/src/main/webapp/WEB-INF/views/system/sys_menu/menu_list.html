@@ -1,7 +1,7 @@
 @layout("/common/_container.html"){
 <nav class="breadcrumb">
 	<i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span>
-	管理员管理 <span class="c-gray en">&gt;</span> 角色管理 <a
+	管理员管理 <span class="c-gray en">&gt;</span>菜单管理 <a
 		class="btn btn-success radius r"
 		style="line-height: 1.6em; margin-top: 3px"
 		href="javascript:location.replace(location.href);" title="刷新"><i
@@ -9,27 +9,31 @@
 </nav>
 <div class="page-container">
 	<div class="text-c">
-		角色名称：<input type="text" class="input-text" style="width: 250px" id="" name="name">
+		菜单名称：<input type="text" class="input-text" style="width: 250px" id="name" name="name">
+		层级：<input type="text" class="input-text" style="width: 250px" id="levels" name="levels">
 		<button type="button" class="btn btn-success" id="search"
-			onclick="sysRole.search()">
+			onclick="Menu.search()">
 			<i class="Hui-iconfont">&#xe665;</i> 查询
 		</button>
 	</div>
 	<div class="cl pd-5 bg-1 bk-gray mt-20">
 		<span class="l">
-			<a href="javascript:;" onclick="sysRole.multi_del()" class="btn btn-danger radius"><i
-				class="Hui-iconfont">&#xe6e2;</i> 批量删除</a> 
-			<a href="javascript:;" onclick="sysRole.role_add('添加角色','${ctxPath}/sys_role/role_add','800','500')"
+			<a href="javascript:;" onclick="Menu.multi_del()" class="btn btn-danger radius"><i
+				class="Hui-iconfont">&#xe6e2;</i> 删除</a> 
+			<a href="javascript:;" onclick="Menu.openAddMenu()"
 			    class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i>
-				添加角色</a>
+				添加菜单</a>
+			<a href="javascript:;" onclick="Menu.openChangeMenu()"
+			    class="btn btn-primary radius"><i class="Hui-iconfont">&#xe6df;</i>
+				修改菜单</a>
 		</span>
 	</div>
-	<table id="sysRoleTable"
+	<table id="menuTable"
 		class="table table-border table-bordered table-bg table-hover table-sort table-responsive">
 	</table>
 </div>
 <!--底侧部分开始-->
 @include("/common/_footer.html"){}
 <!--底侧部分结束-->
-<script src="${ctxPath}/static/modular/system/sys_role/role_list.js"></script>
+<script src="${ctxPath}/static/modular/system/sys_menu/menu_list.js"></script>
 @}
