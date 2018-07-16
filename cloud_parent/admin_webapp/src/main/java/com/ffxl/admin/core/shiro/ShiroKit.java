@@ -15,6 +15,8 @@
  */
 package com.ffxl.admin.core.shiro;
 
+import java.util.List;
+
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.crypto.hash.Md5Hash;
 import org.apache.shiro.crypto.hash.SimpleHash;
@@ -22,6 +24,7 @@ import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
 import org.apache.shiro.util.ByteSource;
 
+import com.ffxl.admin.core.common.constant.factory.ConstantFactory;
 import com.ffxl.platform.util.ToolUtil;
 
 /**
@@ -259,7 +262,7 @@ public class ShiroKit {
         }
         return "";
     }
-
+    
     /**
      * 获取当前用户的部门数据范围的集合
      */

@@ -21,6 +21,7 @@ import com.ffxl.cloud.service.RoleService;
 import com.ffxl.cloud.service.SysUserService;
 import com.ffxl.platform.constant.status.MenuStatus;
 import com.ffxl.platform.constant.status.SysUserStatus;
+import com.ffxl.platform.core.node.MenuNode;
 import com.ffxl.platform.core.support.StrKit;
 import com.ffxl.platform.util.Convert;
 import com.ffxl.platform.util.ToolUtil;
@@ -45,24 +46,6 @@ public class ConstantFactory implements IConstantFactory {
     public static IConstantFactory me() {
         return ApplicationContextUtils.getBean(IConstantFactory.class);
     }
-    
-//    /**
-//     * 为模板使用时初始化
-//     */
-//    public ConstantFactory(){
-//       if(roleService ==null){
-//           roleService = ApplicationContextUtils.getBean(RoleService.class);
-//       }
-//       if(userService ==null){
-//           userService = ApplicationContextUtils.getBean(SysUserService.class);
-//       } 
-//       if(menuService ==null){
-//           menuService = ApplicationContextUtils.getBean(MenuService.class);
-//       } 
-//       if(dictionaryService ==null){
-//           dictionaryService = ApplicationContextUtils.getBean(DictionaryService.class);
-//       } 
-//    }
 
     /**
      * 根据用户id获取用户名称
@@ -168,6 +151,16 @@ public class ConstantFactory implements IConstantFactory {
             return roleObj.getTips();
         }
         return "";
+    }
+    
+    /**
+     * 通过角色ids获取菜单
+     */
+    @Override
+    public List<MenuNode> getUserMenus(List<String> roleIds) {
+        List<MenuNode> menus = menuService.getMenusByRoleIds(roleIds);
+        List<MenuNode> titles = MenuNode.buildTitle(menus);
+        return titles;
     }
 
     /**
