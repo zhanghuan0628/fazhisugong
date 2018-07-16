@@ -46,8 +46,10 @@ sgUser.updatePassword=function (obj,id){
 				if(data.code =='2000'){
 					sgUser.table.draw();
 					Feng.success("已初始化密码!");
+					layer.close(index);
 				}else{
 					Feng.error('初始化密码失败!');
+					layer.close(index);
 				}
 			},
 			error:function(data) {
