@@ -58,14 +58,16 @@ public class SysUserServiceImpl extends GenericServiceImpl<SysUser, SysUserExamp
 	@Override
 	public List<SysUser> queryPageList(SysUser sysUser, Page page) {
 		List<SysUser> list = sysUserMapper.queryPageList(sysUser,page);
-		String rs = "";
 		for(SysUser s:list){
 			String roles = s.getRoleId();
-			String[] roleStr = roles.split(",");
-			for(int i = 0;i < roleStr.length;i++){
-				SysRole sr = sysRoleService.selectByPrimaryKey(roleStr[i]);
-				String name = sr.getName();
-				rs = rs+name+",";
+			String rs = "";
+			if(!StringUtil.isEmpty(roles)){
+				String[] roleStr = roles.split(",");
+				for(int i = 0;i < roleStr.length;i++){
+					SysRole sr = sysRoleService.selectByPrimaryKey(roleStr[i]);
+					String name = sr.getName();
+					rs = rs+name+",";
+				}
 			}
 			s.setRoles(rs);
 		}

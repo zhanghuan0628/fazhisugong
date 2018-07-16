@@ -265,9 +265,9 @@ public class SysUserController extends BaseController {
         }
         // assertAuth(userId);
         SysUser user = userService.selectByPrimaryKey(id);
-        // user.setSalt(ShiroKit.getRandomSalt(5));
-        // user.setPassword(ShiroKit.md5(Const.DEFAULT_PWD, user.getSalt()));
-        int ret = userService.updateByPrimaryKey(user);
+        user.setSalt(ShiroKit.getRandomSalt(5));
+        user.setLoginPassword(ShiroKit.md5(Const.DEFAULT_PWD, user.getSalt()));
+        int ret = userService.updateByPrimaryKeySelective(user);
         if (ret > 0) {
             return new JsonResult(true);
         } else {

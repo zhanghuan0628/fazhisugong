@@ -10,6 +10,7 @@ $(function () {
             var ids = Feng.zTreeCheckedNodes("zTree");
             var ajax = new $ax(Feng.ctxPath + "/sys_user/setRole", function (data) {
                 Feng.success("分配角色成功!");
+                parent.SysUser.table.draw();
                 parent.layer.close(index);
             }, function (data) {
                 Feng.error("分配角色失败!" + data.responseJSON.message + "!");

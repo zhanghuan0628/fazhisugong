@@ -161,7 +161,27 @@ SysUser.admin_start = function(obj,id){
     };
 	Feng.confirm('确认要启用吗？',operation);
 }
-
+/*初始化密码*/
+SysUser.update_pwd=function (obj,id){
+	layer.confirm('确认要初始化密码吗？',function(index){
+		$.ajax({
+			type: 'POST',
+			url: Feng.ctxPath +"/sys_user/reset?id="+id,
+			dataType: 'json',
+			success: function(data){
+				if(data.code =='2000'){
+					sgUser.table.draw();
+					Feng.success("已初始化密码!");
+				}else{
+					Feng.error('初始化密码失败!');
+				}
+			},
+			error:function(data) {
+				console.log(data.msg);
+			},
+		});		
+	});
+}
 /**
  * 初始化表格的列
  * 
@@ -205,7 +225,11 @@ SysUser.initColumn = function () {
 			+ "'"
 			+row.id
 			+ "'"
-			+')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a>'
+			+')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a> <a title="初始化密码" href="javascript:;" onclick="SysUser.update_pwd(this,'
+			+ "'"
+			+row.id
+			+ "'"
+			+')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a>'
 			+'</td>';
         	return msg;
         }}];
