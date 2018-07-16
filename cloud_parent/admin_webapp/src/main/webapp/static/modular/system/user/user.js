@@ -172,7 +172,7 @@ SysUser.initColumn = function () {
         {title: '账号', data: 'loginName'},
         {title: '姓名', data: 'userName'},
         {title: '性别', data: 'sex'},
-        {title: '角色', data: 'roleId'},
+        {title: '角色', data: 'roles'},
         {title: '邮箱', data: 'email'},
         {title: '电话', data: 'cellphone'},
         {title: '状态', data: 'status',render: function(data, type, row, meta){

@@ -9,9 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ffxl.cloud.mapper.SysUserMapper;
+import com.ffxl.cloud.model.SysRole;
 import com.ffxl.cloud.model.SysUser;
 import com.ffxl.cloud.model.SysUserExample;
 import com.ffxl.cloud.model.base.BaseSysUserExample.Criteria;
+import com.ffxl.cloud.service.SysRoleService;
 import com.ffxl.cloud.service.SysUserService;
 import com.ffxl.platform.constant.Message;
 import com.ffxl.platform.core.GenericMapper;
@@ -29,6 +31,9 @@ public class SysUserServiceImpl extends GenericServiceImpl<SysUser, SysUserExamp
 
     @Autowired
     private SysUserMapper sysUserMapper;
+    
+    @Autowired
+    private SysRoleService sysRoleService;
 
     @Override
     public GenericMapper<SysUser, SysUserExample, String> getGenericMapper() {
@@ -52,6 +57,18 @@ public class SysUserServiceImpl extends GenericServiceImpl<SysUser, SysUserExamp
 
 	@Override
 	public List<SysUser> queryPageList(SysUser sysUser, Page page) {
+		List<SysUser> list = sysUserMapper.queryPageList(sysUser,page);
+		String rs = "";
+		for(SysUser s:list){
+			String roles = s.getRoleId();
+			String[] roleStr = roles.split(",");
+			for(int i = 0;i < roleStr.length;i++){
+				SysRole sr = sysRoleService.selectByPrimaryKey(roleStr[i]);
+				String name = sr.getName();
+				rs = rs+name+",";
+			}
+			s.setRoles(rs);
+		}
 		return sysUserMapper.queryPageList(sysUser,page);
 	}
 
