@@ -17,8 +17,13 @@
 <link rel="stylesheet" type="text/css" href="${ctxPath}/static/h-ui/css/H-ui.min.css" />
 <link rel="stylesheet" type="text/css" href="${ctxPath}/lib/Hui-iconfont/1.0.8/iconfont.css" />
 <link rel="stylesheet" type="text/css" href="${ctxPath}/static/h-ui.admin/css/H-ui.admin.css" />
-<link rel="stylesheet" type="text/css" href="${ctxPath}/static/skin/default/skin.css" id="skin" />
+<link rel="stylesheet" type="text/css" href="${ctxPath}/static/h-ui.admin/skin/default/skin.css" id="skin" />
 <link rel="stylesheet" type="text/css" href="${ctxPath}/static/h-ui.admin/css/style.css" />
+
+<style>
+.cur{ background:#D96C00; font-weight:bold;}
+</style>
+
 <!--[if IE 6]>
 <script type="text/javascript" src="${ctxPath}/lib/DD_belatedPNG_0.0.8a-min.js" ></script>
 <script>DD_belatedPNG.fix('*');</script>
@@ -47,21 +52,31 @@
 <!--请在下方写此页面业务相关的脚本-->
 <script type="text/javascript" src="${ctxPath}/lib/jquery.contextmenu/jquery.contextmenu.r2.js"></script>
 <script type="text/javascript">
+/**
 $(function(){
-	/*$("#min_title_list li").contextMenu('Huiadminmenu', {
-		bindings: {
-			'closethis': function(t) {
-				console.log(t);
-				if(t.find("i")){
-					t.find("i").trigger("click");
-				}		
-			},
-			'closeall': function(t) {
-				alert('Trigger was '+t.id+'\nAction was Email');
-			},
+	var selectedMenu = getCookie("selectedMenu");
+	var a = document.getElementsByClassName("bk_2")[0].getElementsByTagName("a");
+	for(var i=0;i<a.length;i++){
+		a[i].className="";
+	}
+	for(var i=0;i<a.length;i++){
+		if(selectedMenu==i){
+			a[i].className="current";
+			return;
 		}
-	});*/
-});
+	}
+})
+*/
+
+function getCookie(cname){
+    var name = cname + "=";
+    var ca = document.cookie.split(';');
+    for(var i=0; i<ca.length; i++) {
+        var c = ca[i].trim();
+        if (c.indexOf(name)==0) { return c.substring(name.length,c.length); }
+    }
+    return "";
+}
 /*个人信息*/
 function myselfinfo(){
 	layer.open({

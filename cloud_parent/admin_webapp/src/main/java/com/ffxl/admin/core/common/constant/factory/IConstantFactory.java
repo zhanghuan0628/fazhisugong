@@ -3,6 +3,7 @@ package com.ffxl.admin.core.common.constant.factory;
 import java.util.List;
 
 import com.ffxl.cloud.model.Dictionary;
+import com.ffxl.platform.core.node.MenuNode;
 
 /**
  * 常量生产工厂的接口
@@ -45,7 +46,7 @@ public interface IConstantFactory {
      * 通过角色ids获取角色名称
      */
     String getRoleName(String roleIds);
-
+    
     /**
      * 通过角色id获取角色名称
      */
@@ -55,6 +56,15 @@ public interface IConstantFactory {
      * 通过角色id获取角色英文名称
      */
     String getSingleRoleTip(String roleId);
+    
+    /**
+     * 
+     * jaiwei
+     * 2018年7月16日下午4:27:16
+     * @param roleIds
+     * @return
+     */
+    List<MenuNode> getUserMenus(List<String> roleIds);
 
     /**
      * 获取菜单的名称们(多个)
