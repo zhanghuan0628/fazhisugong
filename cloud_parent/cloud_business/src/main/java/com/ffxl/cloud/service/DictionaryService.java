@@ -44,4 +44,23 @@ public interface DictionaryService extends GenericService<Dictionary, Dictionary
 	 * @return
 	 */
 	Dictionary queryAllAward();
+	/**
+	 * 查询字典列表
+	 */
+	List<Dictionary> queryDictPageList(Dictionary dictionary, Page page);
+	/**
+	 * 新增字典
+	 * @param dictName
+	 * @param dictValues
+	 * @return
+	 */
+	int addDict(String dictName, String dictValues,String tips);
+	/**
+	 * 修改字典
+	 * @param dictId
+	 * @param dictName
+	 * @param dictValues
+	 * @return
+	 */
+	int editDict(String dictId, String dictName, String dictValues,String tips);
 }

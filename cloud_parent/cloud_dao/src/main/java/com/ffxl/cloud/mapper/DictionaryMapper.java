@@ -26,4 +26,11 @@ public interface DictionaryMapper extends GenericMapper<Dictionary, DictionaryEx
 	 * @return
 	 */
 	int queryMaxNumByPid(@Param("pid")String pid);
+	/**
+	 * 查询字典列表
+	 * @param dictionary
+	 * @param page
+	 * @return
+	 */
+	List<Dictionary> queryDictPageList(@Param("model")Dictionary dictionary, @Param("page")Page page);
 }

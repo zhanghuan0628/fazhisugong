@@ -1,0 +1,55 @@
+@layout("/common/_container.html"){
+<div class="page-container">
+    <div class="ibox-content">
+        <div class="form-horizontal">
+
+            <input type="hidden" id="id" value="">
+
+            <div class="row cl">
+                <div class="col-sm-12" id="itemsArea">
+                    <div class="form-group">
+                        <label class="form-label col-xs-4 col-sm-3">字典名称</label>
+                        <div class="formControls col-xs-5 col-sm-5">
+                            <input class="form-control" id="dictName" type="text" name="dictName">
+                        </div>
+                        <div class="formControls col-xs-4 col-sm-3">
+                            <button class="btn btn-primary radius" onclick="DictInfoDlg.addItem()">增加</button>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label col-xs-4 col-sm-3">备注</label>
+                        <div class="formControls col-xs-8 col-sm-9">
+                            <input class="form-control" id="tips" type="text" name="tips">
+                        </div>
+                    </div>
+                    <div class="hr-line-dashed"></div>
+
+                </div>
+            </div>
+            <div class="row btn-group-m-t">
+                <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
+                    <button class="btn btn-primary radius"  id="ensure"  onclick="DictInfoDlg.addSubmit()">提交</button>
+                    <button class="btn btn-primary radius"  id="cancel" onclick="DictInfoDlg.close()">取消</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    <script type="text/template" id="itemTemplate">
+        <div class="form-group" name="dictItem" id="dictItem">
+            <label class="form-label col-xs-2 col-sm-2">值</label>
+            <div class="formControls col-xs-3 col-sm-3">
+                <input class="form-control" type="text" name="itemNum">
+            </div>
+            <label class="form-label col-xs-2 col-sm-2">名称</label>
+            <div class="formControls col-xs-3 col-sm-3">
+                <input class="form-control" type="text" name="itemName">
+            </div>
+            <div class="formControls col-xs-2 col-sm-2">
+                <button class="btn btn-primary radius" id="cancel" onclick="DictInfoDlg.deleteItem(event)">删除</button>
+            </div>
+        </div>
+    </script>
+
+    <script src="${ctxPath}/static/modular/system/sys_dict/dict_info.js"></script>
+@}

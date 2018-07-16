@@ -17,4 +17,21 @@
 	<select id="queryMaxNumByPid" parameterType="java.lang.String" resultType="int">
 		select ifnull(max(num),0)as num from sys_dictionary where pid = #{pid}
 	</select>
+	
+	<select id="queryDictPageList" resultMap="DictionaryMap">
+		SELECT
+			*
+		FROM
+			sys_dictionary
+		WHERE
+			img IS NULL
+		AND chance IS NULL
+		AND id != '4'
+		AND id != '6'
+		AND pid = '0'
+		<if test="model.name != null and model.name != '' ">
+		   and name like CONCAT('%','${model.name}','%')
+		</if>
+		order by num desc
+	</select>
 </mapper>
