@@ -181,13 +181,19 @@ public class SysMenuController extends BaseController{
         	return js;
         }
         SysMenu s = sysMenuService.selectByPrimaryKey(menu.getPcode());
-    	menu.setPcode(s.getCode());
-    	String l = s.getLevels();
-    	if(StringUtil.isEmpty(l)){
-    		l = "0";
-    	}
-    	int le = Integer.parseInt(l);
-    	menu.setLevels((le+1)+"");
+        String l = "";
+        if(s!=null){
+        	menu.setPcode(s.getCode());
+        	l = s.getLevels();
+        	if(StringUtil.isEmpty(l)){
+        		l = "0";
+        	}
+        	int le = Integer.parseInt(l);
+        	menu.setLevels((le+1)+"");
+        }else{
+        	menu.setPcode(0+"");
+        	menu.setLevels(1+"");
+        }
         menu.setId(UUIDUtil.getUUID());
         menu.setStatus(1);
         int num = sysMenuService.selectMaxNum();
