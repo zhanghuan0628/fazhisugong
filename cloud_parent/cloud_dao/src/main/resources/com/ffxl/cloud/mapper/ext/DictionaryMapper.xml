@@ -34,4 +34,14 @@
 		</if>
 		order by num desc
 	</select>
+	<select id="selectByMajor" resultMap="DictionaryMap">
+		select * from sys_dictionary where 1 = 1
+		<if test="model.pid != null and model.pid != '' ">
+			and pid = #{model.pid}
+		</if>
+		<if test="model.name != null and model.name != '' ">
+		   and name like CONCAT('%','${model.name}','%')
+		</if>
+		order by num desc
+	</select>
 </mapper>

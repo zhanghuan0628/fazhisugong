@@ -47,4 +47,9 @@ public interface SysMenuService extends GenericService<SysMenu, SysMenuExample, 
 	 * @return
 	 */
 	int selectMaxNum();
+	/**
+	 * 
+	 * @return
+	 */
+	int selectMaxId();
 }

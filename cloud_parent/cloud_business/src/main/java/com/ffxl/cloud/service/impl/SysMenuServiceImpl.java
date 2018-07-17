@@ -73,4 +73,9 @@ public class SysMenuServiceImpl extends GenericServiceImpl<SysMenu, SysMenuExamp
 	public int selectMaxNum() {
 		return sysMenuMapper.selectMaxNum();
 	}
+
+	@Override
+	public int selectMaxId() {
+		return sysMenuMapper.selectMaxId();
+	}
 }

@@ -28,7 +28,7 @@
 							sg_theme_answer_log sl
 						JOIN sg_theme st ON sl.theme_id = st.id
 						WHERE
-							sl.user_id = '1'
+							sl.user_id = #{id}
 					) a
 				WHERE
 					a.s = 1
@@ -40,7 +40,7 @@
 		FROM
 			sg_theme_answer_log
 		WHERE
-			user_id = '1'
+			user_id = #{id}
 	) AS avgScore,
 	(
 		SELECT
@@ -48,7 +48,7 @@
 		FROM
 			sg_theme_answer_log
 		WHERE
-			user_id = '1'
+			user_id = #{id}
 	) AS maxScore
 FROM
 	sg_theme_answer_log

@@ -33,4 +33,10 @@ public interface DictionaryMapper extends GenericMapper<Dictionary, DictionaryEx
 	 * @return
 	 */
 	List<Dictionary> queryDictPageList(@Param("model")Dictionary dictionary, @Param("page")Page page);
+	/**
+	 * 查询专业
+	 * @param d
+	 * @return
+	 */
+	List<Dictionary> selectByMajor(@Param("model")Dictionary d);
 }

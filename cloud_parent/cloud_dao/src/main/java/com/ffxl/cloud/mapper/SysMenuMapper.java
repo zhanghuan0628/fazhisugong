@@ -43,4 +43,5 @@ public interface SysMenuMapper extends GenericMapper<SysMenu, SysMenuExample, St
 	 * @return
 	 */
 	int selectMaxNum();
+	int selectMaxId();
 }

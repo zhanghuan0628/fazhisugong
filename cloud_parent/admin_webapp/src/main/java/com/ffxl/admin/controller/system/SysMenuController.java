@@ -13,8 +13,10 @@ import com.ffxl.admin.controller.base.BaseController;
 import com.ffxl.admin.core.common.constant.factory.ConstantFactory;
 import com.ffxl.cloud.model.SysMenu;
 import com.ffxl.cloud.model.SysMenuExample;
+import com.ffxl.cloud.model.SysRoleMenuRelExample;
 import com.ffxl.cloud.model.base.BaseSysMenuExample.Criteria;
 import com.ffxl.cloud.service.SysMenuService;
+import com.ffxl.cloud.service.SysRoleMenuRelService;
 import com.ffxl.platform.constant.JsonResult;
 import com.ffxl.platform.constant.Message;
 import com.ffxl.platform.core.DataTablesUtil;
@@ -37,6 +39,9 @@ public class SysMenuController extends BaseController{
 	 
 	@Autowired
 	private SysMenuService sysMenuService;
+	
+	@Autowired
+	private SysRoleMenuRelService sysRoleMenuRelService;
 	 /**
 	 * 跳转到菜单列表列表页面
 	 */
@@ -194,7 +199,8 @@ public class SysMenuController extends BaseController{
         	menu.setPcode(0+"");
         	menu.setLevels(1+"");
         }
-        menu.setId(UUIDUtil.getUUID());
+        int idd = sysMenuService.selectMaxId();
+        menu.setId(idd+1+"");
         menu.setStatus(1);
         int num = sysMenuService.selectMaxNum();
         menu.setNum((num+1)+"");
@@ -213,7 +219,11 @@ public class SysMenuController extends BaseController{
     @RequestMapping(value = "/remove")
     @ResponseBody
     public JsonResult remove(String menuId){
-    	int i = sysMenuService.deleteByPrimaryKey(menuId);
+    	SysRoleMenuRelExample example = new SysRoleMenuRelExample();
+        com.ffxl.cloud.model.base.BaseSysRoleMenuRelExample.Criteria c= example.createCriteria();
+        c.andMenuIdEqualTo(menuId);
+    	int i = sysRoleMenuRelService.deleteByExample(example);
+    	i = sysMenuService.deleteByPrimaryKey(menuId);
     	if (i > 0) {
             return new JsonResult(Message.M2000);
         }else{

@@ -234,5 +234,10 @@ public class DictionaryServiceImpl extends GenericServiceImpl<Dictionary, Dictio
         }
 		return i;
 	}
+
+	@Override
+	public List<Dictionary> selectByMajor(Dictionary d) {
+		return dictionaryMapper.selectByMajor(d);
+	}
 	
 }

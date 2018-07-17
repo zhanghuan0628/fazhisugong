@@ -102,6 +102,10 @@
         </if>
     </select>
     <select id="selectMaxNum" resultType="int">
-    	select IFNULL(max(num),0)as num from sys_menu
+    	select IFNULL(MAX(cast(num as SIGNED INTEGER)),0)as num  from sys_menu
+    </select>
+    
+    <select id="selectMaxId" resultType="int">
+    	select IFNULL(MAX(cast(id as SIGNED INTEGER)),0)as num  from sys_menu
     </select>
 </mapper>

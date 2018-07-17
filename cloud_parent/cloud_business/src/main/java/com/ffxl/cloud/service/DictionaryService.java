@@ -63,4 +63,10 @@ public interface DictionaryService extends GenericService<Dictionary, Dictionary
 	 * @return
 	 */
 	int editDict(String dictId, String dictName, String dictValues,String tips);
+	/**
+	 * 查询专业
+	 * @param d
+	 * @return
+	 */
+	List<Dictionary> selectByMajor(Dictionary d);
 }

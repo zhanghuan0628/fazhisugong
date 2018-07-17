@@ -9,11 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ffxl.cloud.model.Dictionary;
-import com.ffxl.cloud.model.DictionaryExample;
 import com.ffxl.cloud.model.SgLaw;
 import com.ffxl.cloud.model.SgLawComment;
-import com.ffxl.cloud.model.SgLawExample;
-import com.ffxl.cloud.model.base.BaseDictionaryExample.Criteria;
 import com.ffxl.cloud.service.DictionaryService;
 import com.ffxl.cloud.service.SgLawCommentService;
 import com.ffxl.cloud.service.SgLawService;
@@ -47,12 +44,11 @@ public class SgLawRiskController {
 	 */
 	@RequestMapping(value = "/queryAllRiskMajor")
     @ResponseBody
-	public JsonResult queryAllRiskMajor(){
-		DictionaryExample example = new DictionaryExample();
-        Criteria c= example.createCriteria();
-        c.andPidEqualTo("4");
-        example.setOrderByClause(" num asc ");
-		List<Dictionary> list = dictionaryService.selectByExample(example);
+	public JsonResult queryAllRiskMajor(String name){
+		Dictionary d = new Dictionary();
+		d.setName(name);
+		d.setPid("4");
+		List<Dictionary> list = dictionaryService.selectByMajor(d);
 		return new JsonResult(Message.M2000,list);
 	}
 	/**
