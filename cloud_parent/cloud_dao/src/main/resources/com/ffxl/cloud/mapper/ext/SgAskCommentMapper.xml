@@ -20,5 +20,6 @@
 		<if test="id != null and id != '' ">
 			and sc.topic_id = #{id}
 		</if>
+		ORDER BY create_date DESC
 	</select>
 </mapper>

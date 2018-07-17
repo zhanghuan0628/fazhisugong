@@ -188,7 +188,7 @@
 	
 	
 	<select id="queryRandLawRisk" resultMap="SgLawMap">
-		SELECT * FROM sg_law where category = #{model.category} ORDER BY RAND() LIMIT 3;
+		SELECT * FROM sg_law where category = 'law_risk' ORDER BY num DESC LIMIT 4
 	</select>
 	
 	<select id="querySgMagic" resultMap="SgLawMap">

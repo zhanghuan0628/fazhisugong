@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Param;
 import com.ffxl.cloud.model.SgUserFavorite;
 import com.ffxl.cloud.model.SgUserFavoriteExample;
 import com.ffxl.platform.core.GenericMapper;
+import com.ffxl.platform.core.Page;
 
  /**
  * Generate By MBG 
@@ -18,5 +19,5 @@ public interface SgUserFavoriteMapper extends GenericMapper<SgUserFavorite, SgUs
 	 * @param sourceType
 	 * @return
 	 */
-	List<SgUserFavorite> queryMyFavorite(@Param("userId")String userId, @Param("sourceType")String sourceType);
+	List<SgUserFavorite> queryMyFavorite(@Param("userId")String userId, @Param("sourceType")String sourceType,@Param("page")Page page);
 }

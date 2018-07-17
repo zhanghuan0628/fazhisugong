@@ -5,6 +5,7 @@ import java.util.List;
 import com.ffxl.cloud.model.SgUserFavorite;
 import com.ffxl.cloud.model.SgUserFavoriteExample;
 import com.ffxl.platform.core.GenericService;
+import com.ffxl.platform.core.Page;
 
  /**
  * Generate By MBG 
@@ -21,5 +22,5 @@ public interface SgUserFavoriteService extends GenericService<SgUserFavorite, Sg
      * @param userId
      * @return
      */
-	List<SgUserFavorite> queryMyFavorite(String userId, String sourceType);
+	List<SgUserFavorite> queryMyFavorite(String userId, String sourceType,Page page);
 }

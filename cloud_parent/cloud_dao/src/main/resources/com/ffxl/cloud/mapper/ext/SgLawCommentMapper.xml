@@ -39,5 +39,6 @@
 		AND topic_type = 'law'
 		AND sc.topic_id = #{string}
 		AND state = 'pass'
+		ORDER BY create_date DESC
 	</select>
 </mapper>

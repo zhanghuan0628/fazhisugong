@@ -91,5 +91,5 @@ public interface SgLawService extends GenericService<SgLaw, SgLawExample, String
 	 * @param s
 	 * @return
 	 */
-	List<SgLaw> queryLawRiskByMajor(SgLaw s);
+	List<SgLaw> queryLawRiskByMajor(SgLaw s,Page page);
 }

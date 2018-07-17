@@ -71,7 +71,7 @@ public class SgLawRiskController {
         s.setCategoryCode(id);
         s.setTitle(title);
         s.setStatus("publish");
-		List<SgLaw> list = sgLawService.queryLawRiskByMajor(s);
+		List<SgLaw> list = sgLawService.queryLawRiskByMajor(s,page);
 		page.setDataList(list);
         return new JsonResult(Message.M2000, page);
 	}

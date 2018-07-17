@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Param;
 import com.ffxl.cloud.model.SgThemeAnswerLog;
 import com.ffxl.cloud.model.SgThemeAnswerLogExample;
 import com.ffxl.platform.core.GenericMapper;
+import com.ffxl.platform.core.Page;
 
  /**
  * Generate By MBG 
@@ -24,7 +25,7 @@ public interface SgThemeAnswerLogMapper extends GenericMapper<SgThemeAnswerLog, 
 	 * @param userId
 	 * @return
 	 */
-	List<SgThemeAnswerLog> queryMyTheme(@Param("userId")String userId);
+	List<SgThemeAnswerLog> queryMyTheme(@Param("userId")String userId,@Param("page")Page page);
 	/**
 	 * 查询最大时间
 	 * @param userId

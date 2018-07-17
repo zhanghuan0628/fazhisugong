@@ -6,6 +6,7 @@ import com.ffxl.cloud.model.SgSubject;
 import com.ffxl.cloud.model.SgThemeAnswerLog;
 import com.ffxl.cloud.model.SgThemeAnswerLogExample;
 import com.ffxl.platform.core.GenericService;
+import com.ffxl.platform.core.Page;
 
  /**
  * Generate By MBG 
@@ -29,7 +30,7 @@ public interface SgThemeAnswerLogService extends GenericService<SgThemeAnswerLog
 	 * @param userId
 	 * @return
 	 */
-	List<SgThemeAnswerLog> queryMyTheme(String userId);
+	List<SgThemeAnswerLog> queryMyTheme(String userId,Page page);
 	/**
 	 * 查询最大时间
 	 * @param userId

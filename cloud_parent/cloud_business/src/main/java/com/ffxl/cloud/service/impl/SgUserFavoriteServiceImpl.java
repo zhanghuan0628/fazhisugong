@@ -7,6 +7,8 @@ import com.ffxl.cloud.model.base.BaseSgUserFavoriteExample.Criteria;
 import com.ffxl.cloud.service.SgUserFavoriteService;
 import com.ffxl.platform.core.GenericMapper;
 import com.ffxl.platform.core.GenericServiceImpl;
+import com.ffxl.platform.core.Page;
+
 import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -40,7 +42,7 @@ public class SgUserFavoriteServiceImpl extends GenericServiceImpl<SgUserFavorite
     }
 
 	@Override
-	public List<SgUserFavorite> queryMyFavorite(String userId, String sourceType) {
-		return sgUserFavoriteMapper.queryMyFavorite(userId,sourceType);
+	public List<SgUserFavorite> queryMyFavorite(String userId, String sourceType,Page page) {
+		return sgUserFavoriteMapper.queryMyFavorite(userId,sourceType,page);
 	}
 }

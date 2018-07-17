@@ -13,6 +13,7 @@ import com.ffxl.cloud.service.SgThemeAnswerLogService;
 import com.ffxl.cloud.service.SgThemeAwardLogService;
 import com.ffxl.platform.core.GenericMapper;
 import com.ffxl.platform.core.GenericServiceImpl;
+import com.ffxl.platform.core.Page;
 
 import net.sf.json.JSONArray;
 
@@ -90,8 +91,8 @@ public class SgThemeAnswerLogServiceImpl extends GenericServiceImpl<SgThemeAnswe
 	}
 
 	@Override
-	public List<SgThemeAnswerLog> queryMyTheme(String userId) {
-		List<SgThemeAnswerLog> list = sgThemeAnswerLogMapper.queryMyTheme(userId);
+	public List<SgThemeAnswerLog> queryMyTheme(String userId,Page page) {
+		List<SgThemeAnswerLog> list = sgThemeAnswerLogMapper.queryMyTheme(userId,page);
 		for(SgThemeAnswerLog sl:list){
 			String num = toChinese(sl.getNum());
 			sl.setStage("第"+num+"期");

@@ -41,5 +41,5 @@ public interface SgAskService extends GenericService<SgAsk, SgAskExample, String
 	 * @param userId
 	 * @return
 	 */
-	List<SgAsk> queryMyAsk(String userId);
+	List<SgAsk> queryMyAsk(String userId,Page page);
 }

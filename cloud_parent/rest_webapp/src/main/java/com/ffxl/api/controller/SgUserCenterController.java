@@ -228,7 +228,7 @@ public class SgUserCenterController extends BaseController{
 		if(StringUtil.isEmpty(userId)){
 			return new JsonResult(Message.M4003);
 		}
-		List<SgAsk> list = sgAskService.queryMyAsk(userId);
+		List<SgAsk> list = sgAskService.queryMyAsk(userId,page);
 		page.setDataList(list);
         return new JsonResult(Message.M2000, page);
 	}
@@ -244,7 +244,7 @@ public class SgUserCenterController extends BaseController{
 		if(StringUtil.isEmpty(userId)){
 			return new JsonResult(Message.M4003);
 		}
-		List<SgThemeAnswerLog> list = sgThemeAnswerLogService.queryMyTheme(userId);
+		List<SgThemeAnswerLog> list = sgThemeAnswerLogService.queryMyTheme(userId,page);
 		page.setDataList(list);
         return new JsonResult(Message.M2000, page);
 		
@@ -261,7 +261,7 @@ public class SgUserCenterController extends BaseController{
 		if(StringUtil.isEmpty(userId)||StringUtil.isEmpty(sourceType)){
 			return new JsonResult(Message.M4003);
 		}
-		List<SgUserFavorite> list = sgUserFavoriteService.queryMyFavorite(userId,sourceType);
+		List<SgUserFavorite> list = sgUserFavoriteService.queryMyFavorite(userId,sourceType,page);
 		page.setDataList(list);
         return new JsonResult(Message.M2000, page);
 		
@@ -296,12 +296,12 @@ public class SgUserCenterController extends BaseController{
 		if(StringUtil.isEmpty(userId)){
 			return new JsonResult(Message.M4003);
 		}
-		List<SgUser> list = sgUserService.queryMyInfoList(userId);
+		List<SgUser> list = sgUserService.queryMyInfoList(userId,page);
 		for(SgUser s:list){
 			SgLawCommentExample example = new SgLawCommentExample();
 		    com.ffxl.cloud.model.base.BaseSgLawCommentExample.Criteria c= example.createCriteria();
 			SgLawComment record = new SgLawComment();
-			c.andIdEqualTo(s.getId());
+			c.andTopicIdEqualTo(s.getId());
 			c.andReadIsNull();
 		    record.setRead(true);
 			sgLawCommentService.updateByExampleSelective(record, example);

@@ -117,7 +117,7 @@ public class SgLawServiceImpl extends GenericServiceImpl<SgLaw, SgLawExample, St
 	}
 
 	@Override
-	public List<SgLaw> queryLawRiskByMajor(SgLaw s) {
-		return sgLawMapper.queryLawRiskByMajor(s);
+	public List<SgLaw> queryLawRiskByMajor(SgLaw s,Page page) {
+		return sgLawMapper.queryLawRiskByMajor(s,page);
 	}
 }

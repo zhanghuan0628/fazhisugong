@@ -68,18 +68,17 @@ public class SgAskServiceImpl extends GenericServiceImpl<SgAsk, SgAskExample, St
 		List list = sgAskCommentService.queryAllAskComment(topicId,null);
 		if(list != null && list.size() > 0){
 			sgAsk.setBackList(list);
-		}else{
-			sgAsk.setBackList(new ArrayList());
 		}
 		return sgAsk;
 	}
 
 	@Override
-	public List<SgAsk> queryMyAsk(String userId) {
+	public List<SgAsk> queryMyAsk(String userId,Page page) {
 		SgAskExample example = new SgAskExample();
         Criteria c= example.createCriteria();
         c.andUserIdEqualTo(userId);
         example.setOrderByClause(" create_date desc ");
+        example.setPage(page);
 		List<SgAsk> list = sgAskMapper.selectByExample(example);
 		for(SgAsk sa:list){
 			SgLawCommentExample e = new SgLawCommentExample();

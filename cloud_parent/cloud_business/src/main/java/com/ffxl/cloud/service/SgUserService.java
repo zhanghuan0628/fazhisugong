@@ -35,7 +35,7 @@ public interface SgUserService extends GenericService<SgUser, SgUserExample, Str
 	 * @param userId
 	 * @return
 	 */
-	List<SgUser> queryMyInfoList(String userId);
+	List<SgUser> queryMyInfoList(String userId,Page page);
 	/**
 	 * token清空
 	 * @param userId

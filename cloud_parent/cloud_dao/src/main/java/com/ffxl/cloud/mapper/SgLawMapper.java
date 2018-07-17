@@ -87,5 +87,5 @@ public interface SgLawMapper extends GenericMapper<SgLaw, SgLawExample, String> 
 	 * @param s
 	 * @return
 	 */
-	List<SgLaw> queryLawRiskByMajor(@Param("model")SgLaw s);
+	List<SgLaw> queryLawRiskByMajor(@Param("model")SgLaw s,@Param("page")Page page);
 }
