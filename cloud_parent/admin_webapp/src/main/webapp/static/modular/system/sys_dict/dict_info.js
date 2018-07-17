@@ -24,7 +24,8 @@ DictInfoDlg.newId = function () {
  * 关闭此对话框
  */
 DictInfoDlg.close = function () {
-    parent.layer.close(window.parent.Dict.layerIndex);
+	var index = parent.layer.getFrameIndex(window.name);
+	parent.layer.close(index);
 };
 
 /**
@@ -77,48 +78,64 @@ function getJson(){
  * 提交添加字典
  */
 DictInfoDlg.addSubmit = function () {
-	var j = getJson();
-    $.ajax({
-        url:Feng.ctxPath + "/sys_dict/add",
-        data:{
-        	"dictName":$("#dictName").val(),
-        	"tips":$("#tips").val(),
-        	"dictValues":JSON.stringify(j),
-        	},
-        type:"post",
-        dataType:"json",
-        success:function(data){
-            if (data.code == true) {
-            	Feng.success("添加成功!");
-            	parent.Dict.table.draw();
-            	var index = parent.layer.getFrameIndex(window.name);
-          	    parent.layer.close(index);
-            } else{
-                Feng.info("操作失败");
-            }                           
-        }
-    }) 
+	if($("#dictName").val() != null && $("#dictName").val() != ''){
+		var j = getJson();
+	    $.ajax({
+	        url:Feng.ctxPath + "/sys_dict/add",
+	        data:{
+	        	"dictName":$("#dictName").val(),
+	        	"tips":$("#tips").val(),
+	        	"dictValues":JSON.stringify(j),
+	        	},
+	        type:"post",
+	        dataType:"json",
+	        success:function(data){
+	            if (data.code == true) {
+	            	Feng.success("添加成功!");
+	            	parent.Dict.table.draw();
+	            	var index = parent.layer.getFrameIndex(window.name);
+	          	    parent.layer.close(index);
+	            } else{
+	                Feng.info("操作失败");
+	            }                           
+	        }
+	    })
+	}else{
+		Feng.info("不可为空");
+	}
+	 
 };
 
 /**
  * 提交修改
  */
 DictInfoDlg.editSubmit = function () {
-    var j = getJson();
-    $.ajax({
-        url:Feng.ctxPath + "/sys_dict/update",
-        data:{"dictId":$("#dictId").val(),"dictName":$("#dictName").val(),"dictValues":JSON.stringify(j)},
-        type:"post",
-        dataType:"json",
-        success:function(data){
-            if (data == true) {
-            	Feng.success("修改成功!");
-            	parent.Dict.table.draw();
-            	var index = parent.layer.getFrameIndex(window.name);
-          	    parent.layer.close(index);
-            } else{
-                Feng.info("操作失败");
-            }                           
-        }
-    }) 
+	if($("#dictName").val() != null && $("#dictName").val() != ''){
+		var j = getJson();
+	    console.log("aaaaaaaaaaaaaaaaaaa:"+$("#tips").val());
+	    $.ajax({
+	        url:Feng.ctxPath + "/sys_dict/update",
+	        data:{
+	        	"dictId":$("#dictId").val(),
+	        	"tips":$("#tips").val(),
+	        	"dictName":$("#dictName").val(),
+	        	"dictValues":JSON.stringify(j)
+	        	},
+	        type:"post",
+	        dataType:"json",
+	        success:function(data){
+	            if (data == true) {
+	            	Feng.success("修改成功!");
+	            	parent.Dict.table.draw();
+	            	var index = parent.layer.getFrameIndex(window.name);
+	          	    parent.layer.close(index);
+	            } else{
+	                Feng.info("操作失败");
+	            }                           
+	        }
+	    }) 
+	}else{
+		Feng.info("不可为空");
+	}
+    
 };

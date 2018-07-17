@@ -64,8 +64,14 @@ public class SgAskController {
 	@RequestMapping(value = "/insertUserAsk")
     @ResponseBody
 	public JsonResult insertUserAsk(SgAsk ask){
+		HttpHeader local= HttpHeader.get();
+        String userId = local.getUserId();
+        if(StringUtil.isEmpty(userId)){
+			return new JsonResult(Message.M4003);
+		}
 		ask.setId(UUIDUtil.getUUID());
 		ask.setCreateDate(new Date());
+		ask.setUserId(userId);
 		int i = sgAskService.insertSelective(ask);
 		if(i > 0){
 			return new JsonResult(Message.M2000);
@@ -145,6 +151,12 @@ public class SgAskController {
 	public JsonResult insertAnswerLog(SgThemeAnswerLog sgThemeAnswerLog){
 		sgThemeAnswerLog.setId(UUIDUtil.getUUID());
 		sgThemeAnswerLog.setCreateDate(new Date());
+		HttpHeader local= HttpHeader.get();
+        String userId = local.getUserId();
+        if(StringUtil.isEmpty(userId)){
+			return new JsonResult(Message.M4003);
+		}
+        sgThemeAnswerLog.setUserId(userId);
 		int i = sgThemeAnswerLogService.insertSelective(sgThemeAnswerLog);
 		if(i > 0){
 			return new JsonResult(Message.M2000);

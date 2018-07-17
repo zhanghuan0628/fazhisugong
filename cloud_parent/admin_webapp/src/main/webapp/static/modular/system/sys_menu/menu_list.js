@@ -1,7 +1,7 @@
 /**
  * 角色管理的单例
  */
-var Menu = {
+var sysMenu = {
     id: "menuTable",	//表格id
     seItem: null,		//选中的条目
     table: null,
@@ -11,7 +11,7 @@ var Menu = {
 /**
  * 初始化表格的列
  */
-Menu.initColumn = function () {
+sysMenu.initColumn = function () {
     var columns = [
         {field: 'selectItem', radio: true},
         {title: '菜单名称', field: 'name', align: 'center', valign: 'middle', sortable: true, width: '17%'},
@@ -29,13 +29,13 @@ Menu.initColumn = function () {
 /**
  * 检查是否选中
  */
-Menu.check = function () {
+sysMenu.check = function () {
     var selected = $('#' + this.id).bootstrapTreeTable('getSelections');
     if (selected.length == 0) {
         Feng.info("请先选中表格中的某一记录！");
         return false;
     } else {
-        Menu.seItem = selected[0];
+    	sysMenu.seItem = selected[0];
         return true;
     }
 };
@@ -43,7 +43,7 @@ Menu.check = function () {
 /**
  * 点击添加菜单
  */
-Menu.openAddMenu = function () {
+sysMenu.openAddMenu = function () {
     var index = layer.open({
         type: 2,
         title: '添加菜单',
@@ -58,7 +58,7 @@ Menu.openAddMenu = function () {
 /**
  * 点击修改
  */
-Menu.openChangeMenu = function () {
+sysMenu.openChangeMenu = function () {
     if (this.check()) {
         var index = layer.open({
             type: 2,
@@ -75,17 +75,17 @@ Menu.openChangeMenu = function () {
 /**
  * 删除
  */
-Menu.delMenu = function () {
+sysMenu.delMenu = function () {
     if (this.check()) {
 
         var operation = function () {
             var ajax = new $ax(Feng.ctxPath + "/sys_menu/remove", function (data) {
                 Feng.success("删除成功!");
-                Menu.table.refresh();
+                sysMenu.table.refresh();
             }, function (data) {
                 Feng.error("删除失败!" + data.responseJSON.message + "!");
             });
-            ajax.set("menuId", Menu.seItem.id);
+            ajax.set("menuId", sysMenu.seItem.id);
             ajax.start();
         };
 
@@ -96,23 +96,23 @@ Menu.delMenu = function () {
 /**
  * 搜索
  */
-Menu.search = function () {
+sysMenu.search = function () {
     var queryData = {};
 
     queryData['name'] = $("#menuName").val();
     queryData['levels'] = $("#levels").val();
 
-    Menu.table.refresh({query: queryData});
+    sysMenu.table.refresh({query: queryData});
 }
 
 $(function () {
-    var defaultColunms = Menu.initColumn();
-    var table = new BSTreeTable(Menu.id, "/sys_menu/menu_pageList", defaultColunms);
+    var defaultColunms = sysMenu.initColumn();
+    var table = new BSTreeTable(sysMenu.id, "/sys_menu/menu_pageList", defaultColunms);
     table.setExpandColumn(2);
     table.setIdField("id");
     table.setCodeField("code");
     table.setParentCodeField("pcode");
     table.setExpandAll(true);
     table.init();
-    Menu.table = table;
+    sysMenu.table = table;
 });

@@ -176,6 +176,7 @@ public class SgLawInformationController extends BaseController{
     	String userId = shiroUser.getId();
     	sl.setCreateBy(userId);
     	sl.setModifyBy(userId);
+    	sl.setAuthor(sgLaw.getAuthor());
     	if(sgLaw.getType().equals("text")){
     		sl.setContent(sgLaw.getContent());
     		sl.setType("text");
@@ -213,6 +214,7 @@ public class SgLawInformationController extends BaseController{
     	sl.setTitle(sgLaw.getTitle());
     	sl.setImgUrl(sgLaw.getImgUrl());
     	ShiroUser shiroUser = ShiroKit.getUser();
+    	sl.setAuthor(sgLaw.getAuthor());
     	String userId = shiroUser.getId();
     	sl.setModifyBy(userId);
     	if(sgLaw.getType().equals("text")){

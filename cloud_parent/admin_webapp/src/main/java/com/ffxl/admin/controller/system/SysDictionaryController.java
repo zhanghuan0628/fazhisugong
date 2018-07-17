@@ -17,6 +17,7 @@ import com.ffxl.cloud.model.DictionaryExample;
 import com.ffxl.cloud.model.base.BaseDictionaryExample.Criteria;
 import com.ffxl.cloud.service.DictionaryService;
 import com.ffxl.platform.constant.JsonResult;
+import com.ffxl.platform.constant.Message;
 import com.ffxl.platform.core.DataTablesUtil;
 import com.ffxl.platform.core.Page;
 import com.ffxl.platform.util.ToolUtil;
@@ -113,5 +114,29 @@ public class SysDictionaryController extends BaseController{
         }else{
         	return false;
         }
+    }
+    /**
+     * 删除
+     * @param ids
+     * @return
+     */
+    @RequestMapping(value = "/del")
+    @ResponseBody
+    public JsonResult del(String ids){
+    	String[] idss = ids.split(",");
+    	int i = 0;
+    	for(String id:idss){
+    		i = dictionaryService.deleteByPrimaryKey(id);
+    		DictionaryExample example = new DictionaryExample();
+            Criteria c= example.createCriteria();
+            c.andPidEqualTo(id);
+    		i = dictionaryService.deleteByExample(example);
+    	}
+    	if(i > 0){
+        	return new JsonResult(Message.M2000);
+        }else{
+        	return new JsonResult(Message.M5000);
+        }
+    	
     }
 }

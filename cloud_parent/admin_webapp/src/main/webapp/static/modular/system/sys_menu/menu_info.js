@@ -3,7 +3,7 @@
  */
 var MenuInfoDlg = {
 	formId : "menuInfoForm", //form表单id
-	table : parent.Menu.table,
+	table : parent.sysMenu.table,
 	pNameZtree: null,
     infoData: {
     	id: $("#id").val(),

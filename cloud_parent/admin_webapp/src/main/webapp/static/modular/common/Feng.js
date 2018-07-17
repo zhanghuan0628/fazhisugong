@@ -146,7 +146,12 @@ var Feng = {
     						if (data.code == 2000) {
     							Feng.success("添加成功!");
     							var index = parent.layer.getFrameIndex(window.name);
-    							table.draw();
+    							console.log("fffffffffffffffffffffff:"+formId);
+    							if(formId=='menuInfoForm'){
+    								table.refresh();
+    							}else{
+    								table.draw();
+    							}
     							parent.layer.close(index);
     						} else if(data.code ==6002){
     							Feng.error(data.message);

@@ -146,11 +146,11 @@ public class SysMenuController extends BaseController{
         }
     }
     /**
-     * 修该菜单
+     * 修改菜单
      */
     @RequestMapping(value = "/edit")
     @ResponseBody
-    public Boolean edit(SysMenu menu) {
+    public JsonResult edit(SysMenu menu) {
     	SysMenu s = sysMenuService.selectByPrimaryKey(menu.getPcode());
     	String l = s.getLevels();
     	if(StringUtil.isEmpty(l)){
@@ -161,9 +161,9 @@ public class SysMenuController extends BaseController{
     	menu.setPcode(s.getCode());
         int i = sysMenuService.updateByPrimaryKeySelective(menu);
         if (i > 0) {
-            return true;
+            return new JsonResult(Message.M2000);
         }else{
-            return false;
+        	return new JsonResult(Message.M5000);
         }
     }
     /**

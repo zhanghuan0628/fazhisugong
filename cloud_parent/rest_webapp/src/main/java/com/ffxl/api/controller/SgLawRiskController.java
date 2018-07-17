@@ -20,6 +20,7 @@ import com.ffxl.cloud.service.SgLawService;
 import com.ffxl.platform.constant.JsonResult;
 import com.ffxl.platform.constant.Message;
 import com.ffxl.platform.core.Page;
+import com.ffxl.platform.util.HttpHeader;
 import com.ffxl.platform.util.StringUtil;
 import com.ffxl.platform.util.UUIDUtil;
 
@@ -114,6 +115,12 @@ public class SgLawRiskController {
 		record.setCreateDate(new Date());
 		record.setTopicType("law");
 		record.setFromUserType("sg");
+		HttpHeader local= HttpHeader.get();
+        String userId = local.getUserId();
+        if(StringUtil.isEmpty(userId)){
+			return new JsonResult(Message.M4003);
+		}
+        record.setFromUserId(userId);
 		int i = sgLawCommentService.insertSelective(record);
 		if(i > 0){
 			return new JsonResult(Message.M2000);
