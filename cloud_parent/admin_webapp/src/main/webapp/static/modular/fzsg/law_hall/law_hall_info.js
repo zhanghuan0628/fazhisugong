@@ -28,7 +28,7 @@ var editor = new wangEditor('editor');
  editor.config.pasteFilter = false;
 
  // 上传图片（举例）
- /*editor.config.uploadImgUrl = '${base}/yy_wechat/common/img_upload';*/
+ editor.config.uploadImgUrl = Feng.ctxPath + '/common/img_upload';
 
  // 配置自定义参数（举例）
  editor.config.uploadParams = {
