@@ -24,8 +24,8 @@ var editor = new wangEditor('editor');
  // 取消粘贴过滤,方便直接拷贝样式
  editor.config.pasteFilter = false;
 
- // 上传图片（举例）
- editor.config.uploadImgUrl = Feng.ctxPath + '/common/img_upload';
+//上传图片（举例）
+ editor.config.uploadImgUrl = Feng.ctxPath+'/common/img_upload';
 
  // 配置自定义参数（举例）
  editor.config.uploadParams = {
