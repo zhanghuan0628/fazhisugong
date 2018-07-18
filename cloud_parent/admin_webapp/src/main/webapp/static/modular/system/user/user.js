@@ -193,7 +193,13 @@ SysUser.initColumn = function () {
         {title: '', data:"id",  render: function(data, type, row, meta) { return '<input type="checkbox" name="checklist" value="'+data+'" class="iCheck">';}},
         {title: '账号', data: 'loginName'},
         {title: '姓名', data: 'userName'},
-        {title: '性别', data: 'sex'},
+        {title: '性别', data: 'sex',render: function(data, type, row, meta){
+        	if(data=='M'){
+        		return "男";
+        	}else{
+        		return "女";
+        	}
+        }},
         {title: '角色', data: 'roles'},
         {title: '邮箱', data: 'email'},
         {title: '电话', data: 'cellphone'},

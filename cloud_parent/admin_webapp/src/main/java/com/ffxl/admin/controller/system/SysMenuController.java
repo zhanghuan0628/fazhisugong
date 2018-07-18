@@ -159,13 +159,15 @@ public class SysMenuController extends BaseController{
     @ResponseBody
     public JsonResult edit(SysMenu menu) {
     	SysMenu s = sysMenuService.selectByPrimaryKey(menu.getPcode());
-    	String l = s.getLevels();
-    	if(StringUtil.isEmpty(l)){
-    		l = "0";
+    	if(s != null){
+    		String l = s.getLevels();
+        	if(StringUtil.isEmpty(l)){
+        		l = "0";
+        	}
+        	int le = Integer.parseInt(l);
+        	menu.setLevels((le+1)+"");
+        	menu.setPcode(s.getCode());
     	}
-    	int le = Integer.parseInt(l);
-    	menu.setLevels((le+1)+"");
-    	menu.setPcode(s.getCode());
         int i = sysMenuService.updateByPrimaryKeySelective(menu);
         if (i > 0) {
             return new JsonResult(Message.M2000);
