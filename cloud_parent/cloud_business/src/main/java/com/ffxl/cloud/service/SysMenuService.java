@@ -41,7 +41,7 @@ public interface SysMenuService extends GenericService<SysMenu, SysMenuExample, 
 	 * @param page
 	 * @return
 	 */
-	List<SysMenu> queryPageList(SysMenu sysMenu, Page page);
+	List<SysMenu> queryPageList(SysMenu sysMenu);
 	/**
 	 * 查询最大num
 	 * @return

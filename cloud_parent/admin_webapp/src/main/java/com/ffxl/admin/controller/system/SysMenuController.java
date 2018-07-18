@@ -55,9 +55,8 @@ public class SysMenuController extends BaseController{
      */
     @RequestMapping("/menu_pageList")
     @ResponseBody
-    public  List<SysMenu> list(DataTablesUtil dataTables, Page page, SysMenu sysMenu) {
-        page = this.getPageInfo(page, dataTables);
-        List<SysMenu> dataList = sysMenuService.queryPageList(sysMenu, page);
+    public  List<SysMenu> list(SysMenu sysMenu) {
+        List<SysMenu> dataList = sysMenuService.queryPageList(sysMenu);
         for(SysMenu s:dataList){
         	if(s.getMenu()==true){
         		s.setMenuName("是");
@@ -70,8 +69,6 @@ public class SysMenuController extends BaseController{
         		s.setState("禁用");
         	}
         }
-        dataTables = this.getDataTables(page, dataTables, dataList);
-        
         return dataList;
 
     }

@@ -65,8 +65,8 @@ public class SysMenuServiceImpl extends GenericServiceImpl<SysMenu, SysMenuExamp
 	}
 
 	@Override
-	public List<SysMenu> queryPageList(SysMenu sysMenu, Page page) {
-		return sysMenuMapper.queryPageList(sysMenu,page);
+	public List<SysMenu> queryPageList(SysMenu sysMenu) {
+		return sysMenuMapper.queryPageList(sysMenu);
 	}
 
 	@Override

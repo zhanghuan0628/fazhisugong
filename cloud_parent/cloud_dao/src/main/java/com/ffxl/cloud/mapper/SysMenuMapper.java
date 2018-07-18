@@ -37,7 +37,7 @@ public interface SysMenuMapper extends GenericMapper<SysMenu, SysMenuExample, St
 	 * @param page
 	 * @return
 	 */
-	List<SysMenu> queryPageList(@Param("model")SysMenu sysMenu, @Param("page")Page page);
+	List<SysMenu> queryPageList(@Param("model")SysMenu sysMenu);
 	/**
 	 * 查询最大num
 	 * @return
