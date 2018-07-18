@@ -7,6 +7,8 @@ import com.ffxl.cloud.model.base.BaseSysLoginLogExample.Criteria;
 import com.ffxl.cloud.service.SysLoginLogService;
 import com.ffxl.platform.core.GenericMapper;
 import com.ffxl.platform.core.GenericServiceImpl;
+import com.ffxl.platform.core.Page;
+
 import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -38,4 +40,9 @@ public class SysLoginLogServiceImpl extends GenericServiceImpl<SysLoginLog, SysL
             return null;
         }
     }
+
+	@Override
+	public List<SysLoginLog> queryPageList(SysLoginLog sysLoginLog, Page page) {
+		return sysLoginLogMapper.queryPageList(sysLoginLog,page);
+	}
 }

@@ -175,6 +175,7 @@ public class SysRoleController extends BaseController{
       * 删除角色
       */
      @RequestMapping(value = "/del")
+     @BussinessLog(value = "删除角色", key = "id", dict = SysRoleDic.class)
      @ResponseBody
      public JsonResult remove(String ids) {
     	 int i = -1;

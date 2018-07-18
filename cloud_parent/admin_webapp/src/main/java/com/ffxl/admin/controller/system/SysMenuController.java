@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ffxl.admin.controller.base.BaseController;
+import com.ffxl.admin.core.common.annotion.BussinessLog;
+import com.ffxl.admin.core.common.constant.dictmap.SysMenuDic;
 import com.ffxl.admin.core.common.constant.factory.ConstantFactory;
 import com.ffxl.cloud.model.SysMenu;
 import com.ffxl.cloud.model.SysMenuExample;
@@ -23,7 +25,6 @@ import com.ffxl.platform.core.DataTablesUtil;
 import com.ffxl.platform.core.Page;
 import com.ffxl.platform.core.node.ZTreeNode;
 import com.ffxl.platform.util.StringUtil;
-import com.ffxl.platform.util.UUIDUtil;
 
 /**
  * 菜单
@@ -154,6 +155,7 @@ public class SysMenuController extends BaseController{
      * 修改菜单
      */
     @RequestMapping(value = "/edit")
+    @BussinessLog(value = "修改菜单", key = "id", dict = SysMenuDic.class)
     @ResponseBody
     public JsonResult edit(SysMenu menu) {
     	SysMenu s = sysMenuService.selectByPrimaryKey(menu.getPcode());
@@ -175,6 +177,7 @@ public class SysMenuController extends BaseController{
      * 新增菜单
      */
     @RequestMapping(value = "/add")
+    @BussinessLog(value = "新增菜单", key = "id", dict = SysMenuDic.class)
     @ResponseBody
     public JsonResult add(SysMenu menu) {
         //判断是否存在该编号
@@ -217,6 +220,7 @@ public class SysMenuController extends BaseController{
      * @return
      */
     @RequestMapping(value = "/remove")
+    @BussinessLog(value = "删除菜单", key = "id", dict = SysMenuDic.class)
     @ResponseBody
     public JsonResult remove(String menuId){
     	SysRoleMenuRelExample example = new SysRoleMenuRelExample();

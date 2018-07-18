@@ -1,3 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.ffxl.cloud.mapper.SysOperationLogMapper" />
+<mapper namespace="com.ffxl.cloud.mapper.SysOperationLogMapper">
+	<resultMap extends="BaseResultMap" id="SysOperationLogMap" type="com.ffxl.cloud.model.SysOperationLog">
+	
+	</resultMap>
+	<select id="queryPageList" resultMap="SysOperationLogMap">
+		SELECT
+			*,
+			DATE_FORMAT(create_time,'%Y-%m-%d %H:%i:%s')as createDate
+		FROM
+			sys_operation_log
+		WHERE 1 = 1
+		<if test="model.logName != null and model.logName != '' ">
+		   and log_name like CONCAT('%','${model.logName}','%')
+		</if>
+		<if test="model.datemax != null and model.datemax != '' and model.datemin != null and model.datemin != ''">
+		   AND DATE_FORMAT(create_time, '%Y-%m-%d') &gt;= DATE_FORMAT(#{model.datemin}, '%Y-%m-%d')
+           AND DATE_FORMAT(create_time, '%Y-%m-%d') &lt;= DATE_FORMAT(#{model.datemax}, '%Y-%m-%d')
+		</if>
+		ORDER BY create_time DESC
+	</select>
+</mapper>

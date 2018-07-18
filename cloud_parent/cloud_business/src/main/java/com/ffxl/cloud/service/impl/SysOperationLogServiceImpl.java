@@ -7,6 +7,8 @@ import com.ffxl.cloud.model.base.BaseSysOperationLogExample.Criteria;
 import com.ffxl.cloud.service.SysOperationLogService;
 import com.ffxl.platform.core.GenericMapper;
 import com.ffxl.platform.core.GenericServiceImpl;
+import com.ffxl.platform.core.Page;
+
 import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -38,4 +40,9 @@ public class SysOperationLogServiceImpl extends GenericServiceImpl<SysOperationL
             return null;
         }
     }
+
+	@Override
+	public List<SysOperationLog> queryPageList(SysOperationLog sysOperationLog, Page page) {
+		return sysOperationLogMapper.queryPageList(sysOperationLog,page);
+	}
 }

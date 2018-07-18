@@ -1,3 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.ffxl.cloud.mapper.SysLoginLogMapper" />
+<mapper namespace="com.ffxl.cloud.mapper.SysLoginLogMapper">
+	<resultMap extends="BaseResultMap" id="SysLoginLogMap" type="com.ffxl.cloud.model.SysLoginLog">
+	
+	</resultMap>
+	<select id="queryPageList" resultMap="SysLoginLogMap">
+		SELECT
+			sl.*, su.login_name AS lname,
+			su.user_name AS name,
+			DATE_FORMAT(create_time,'%Y-%m-%d %H:%i:%s')as createDate
+		FROM
+			sys_login_log sl
+		LEFT JOIN sys_user su ON sl.login_name = su.id WHERE 1 = 1
+		<if test="model.logName != null and model.logName != '' ">
+		   and log_name like CONCAT('%','${model.logName}','%')
+		</if>
+		<if test="model.datemax != null and model.datemax != '' and model.datemin != null and model.datemin != ''">
+		   AND DATE_FORMAT(create_time, '%Y-%m-%d') &gt;= DATE_FORMAT(#{model.datemin}, '%Y-%m-%d')
+           AND DATE_FORMAT(create_time, '%Y-%m-%d') &lt;= DATE_FORMAT(#{model.datemax}, '%Y-%m-%d')
+		</if>
+		ORDER BY create_time DESC
+	</select>
+</mapper>

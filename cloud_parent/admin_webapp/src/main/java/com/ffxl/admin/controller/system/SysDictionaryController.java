@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ffxl.admin.controller.base.BaseController;
+import com.ffxl.admin.core.common.annotion.BussinessLog;
+import com.ffxl.admin.core.common.constant.dictmap.DictionaryDic;
+import com.ffxl.admin.core.common.constant.dictmap.SysMenuDic;
 import com.ffxl.admin.core.log.LogObjectHolder;
 import com.ffxl.cloud.model.Dictionary;
 import com.ffxl.cloud.model.DictionaryExample;
@@ -86,6 +89,7 @@ public class SysDictionaryController extends BaseController{
      * @param dictValues 格式例如   "1:启用;2:禁用;3:冻结"
      */
     @RequestMapping(value = "/add")
+    @BussinessLog(value = "新增字典项", key = "id", dict = DictionaryDic.class)
     @ResponseBody
     public Boolean add(String dictName, String dictValues,String tips) {
         if (ToolUtil.isOneEmpty(dictName, dictValues)) {
@@ -103,6 +107,7 @@ public class SysDictionaryController extends BaseController{
      * 修改字典
      */
     @RequestMapping(value = "/update")
+    @BussinessLog(value = "修改字典项", key = "id", dict = DictionaryDic.class)
     @ResponseBody
     public Boolean update(String dictId, String dictName, String dictValues,String tips) {
         if (ToolUtil.isOneEmpty(dictId, dictName, dictValues)) {
@@ -121,6 +126,7 @@ public class SysDictionaryController extends BaseController{
      * @return
      */
     @RequestMapping(value = "/del")
+    @BussinessLog(value = "删除字典项", key = "id", dict = DictionaryDic.class)
     @ResponseBody
     public JsonResult del(String ids){
     	String[] idss = ids.split(",");
