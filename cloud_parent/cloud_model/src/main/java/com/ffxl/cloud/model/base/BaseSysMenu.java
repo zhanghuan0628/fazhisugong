@@ -17,7 +17,7 @@ public class BaseSysMenu implements Serializable {
 
     private String url;
 
-    private String num;
+    private Integer num;
 
     private String levels;
 
@@ -87,12 +87,12 @@ public class BaseSysMenu implements Serializable {
         this.url = url == null ? null : url.trim();
     }
 
-    public String getNum() {
+    public Integer getNum() {
         return num;
     }
 
-    public void setNum(String num) {
-        this.num = num == null ? null : num.trim();
+    public void setNum(Integer num) {
+        this.num = num;
     }
 
     public String getLevels() {

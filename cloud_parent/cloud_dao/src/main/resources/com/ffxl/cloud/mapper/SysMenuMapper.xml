@@ -9,7 +9,7 @@
     <result column="name" property="name" jdbcType="VARCHAR" />
     <result column="icon" property="icon" jdbcType="VARCHAR" />
     <result column="url" property="url" jdbcType="VARCHAR" />
-    <result column="num" property="num" jdbcType="VARCHAR" />
+    <result column="num" property="num" jdbcType="INTEGER" />
     <result column="levels" property="levels" jdbcType="VARCHAR" />
     <result column="is_menu" property="menu" jdbcType="TINYINT" />
     <result column="tips" property="tips" jdbcType="VARCHAR" />
@@ -114,7 +114,7 @@
       tips, status, is_open)
     values (#{id,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, #{pcode,jdbcType=VARCHAR}, 
       #{pcodes,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{icon,jdbcType=VARCHAR}, 
-      #{url,jdbcType=VARCHAR}, #{num,jdbcType=VARCHAR}, #{levels,jdbcType=VARCHAR}, #{menu,jdbcType=TINYINT}, 
+      #{url,jdbcType=VARCHAR}, #{num,jdbcType=INTEGER}, #{levels,jdbcType=VARCHAR}, #{menu,jdbcType=TINYINT}, 
       #{tips,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{open,jdbcType=TINYINT})
   </insert>
   <insert id="insertSelective" parameterType="com.ffxl.cloud.model.SysMenu" >
@@ -183,7 +183,7 @@
         #{url,jdbcType=VARCHAR},
       </if>
       <if test="num != null" >
-        #{num,jdbcType=VARCHAR},
+        #{num,jdbcType=INTEGER},
       </if>
       <if test="levels != null" >
         #{levels,jdbcType=VARCHAR},
@@ -233,7 +233,7 @@
         url = #{record.url,jdbcType=VARCHAR},
       </if>
       <if test="record.num != null" >
-        num = #{record.num,jdbcType=VARCHAR},
+        num = #{record.num,jdbcType=INTEGER},
       </if>
       <if test="record.levels != null" >
         levels = #{record.levels,jdbcType=VARCHAR},
@@ -264,7 +264,7 @@
       name = #{record.name,jdbcType=VARCHAR},
       icon = #{record.icon,jdbcType=VARCHAR},
       url = #{record.url,jdbcType=VARCHAR},
-      num = #{record.num,jdbcType=VARCHAR},
+      num = #{record.num,jdbcType=INTEGER},
       levels = #{record.levels,jdbcType=VARCHAR},
       is_menu = #{record.menu,jdbcType=TINYINT},
       tips = #{record.tips,jdbcType=VARCHAR},
@@ -296,7 +296,7 @@
         url = #{url,jdbcType=VARCHAR},
       </if>
       <if test="num != null" >
-        num = #{num,jdbcType=VARCHAR},
+        num = #{num,jdbcType=INTEGER},
       </if>
       <if test="levels != null" >
         levels = #{levels,jdbcType=VARCHAR},
@@ -324,7 +324,7 @@
       name = #{name,jdbcType=VARCHAR},
       icon = #{icon,jdbcType=VARCHAR},
       url = #{url,jdbcType=VARCHAR},
-      num = #{num,jdbcType=VARCHAR},
+      num = #{num,jdbcType=INTEGER},
       levels = #{levels,jdbcType=VARCHAR},
       is_menu = #{menu,jdbcType=TINYINT},
       tips = #{tips,jdbcType=VARCHAR},

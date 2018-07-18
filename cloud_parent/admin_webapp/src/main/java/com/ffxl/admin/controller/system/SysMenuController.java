@@ -207,8 +207,8 @@ public class SysMenuController extends BaseController{
         int idd = sysMenuService.selectMaxId();
         menu.setId(idd+1+"");
         menu.setStatus(1);
-        int num = sysMenuService.selectMaxNum();
-        menu.setNum((num+1)+"");
+        /*int num = sysMenuService.selectMaxNum();
+        menu.setNum(num+1);*/
         int i = sysMenuService.insertSelective(menu);
         if (i > 0) {
             return new JsonResult(Message.M2000);

@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ffxl.cloud.mapper.SysMenuMapper">
 	<resultMap extends="BaseResultMap" id="SysMenuMap" type="com.ffxl.cloud.model.SysMenu">
 	
 	</resultMap>
 	
-	<select id="getMenuIdsByRoleId" resultMap="SysMenuMap" parameterType="java.lang.String">
+	<select id="getMenuIdsByRoleId" parameterType="java.lang.String" resultMap="SysMenuMap">
         select menu_id  as menuId from
         sys_role_menu_rel where role_id = #{roleId}
     </select>
@@ -80,8 +80,7 @@
         sys_menu
         WHERE
         ID IN
-        <foreach collection="list" index="index" item="i" open="("
-                 separator="," close=")">
+        <foreach close=")" collection="list" index="index" item="i" open="(" separator=",">
             #{i.menuId}
         </foreach>
         ) m3 on m1.id = m3.id
@@ -100,6 +99,7 @@
         <if test="model.levels != null and model.levels != ''">
             and levels = #{model.levels}
         </if>
+        order by num asc
     </select>
     <select id="selectMaxNum" resultType="int">
     	select IFNULL(MAX(cast(num as SIGNED INTEGER)),0)as num  from sys_menu

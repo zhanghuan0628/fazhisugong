@@ -38,6 +38,9 @@ var MenuInfoDlg = {
 				minlength:1,
 				maxlength:16
 			},
+			num:{
+				required:true,
+			},
 			tips:{
 				maxlength:200
 			}
