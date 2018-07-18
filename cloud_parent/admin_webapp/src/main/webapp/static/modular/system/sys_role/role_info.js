@@ -90,6 +90,7 @@ RolInfoDlg.close = function () {
 RolInfoDlg.onClickPName = function (e, treeId, treeNode) {
     $("#fName").attr("value", RolInfoDlg.pNameZtree.getSelectedVal());
     $("#pid").attr("value", treeNode.id);
+    $("#pNameContent").hide();
 };
 /**
  * 显示父级菜单的树

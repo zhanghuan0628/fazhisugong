@@ -18,14 +18,20 @@
 	</div>
 	<div class="cl pd-5 bg-1 bk-gray mt-20">
 		<span class="l">
+			@if(shiro.hasPermission("/sys_menu/del_menu")){
 			<a href="javascript:;" onclick="sysMenu.delMenu()" class="btn btn-danger radius"><i
-				class="Hui-iconfont">&#xe6e2;</i> 删除</a> 
+				class="Hui-iconfont">&#xe6e2;</i> 删除菜单</a> 
+			@}
+			@if(shiro.hasPermission("/sys_menu/add_menu")){
 			<a href="javascript:;" onclick="sysMenu.openAddMenu()"
 			    class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i>
 				添加菜单</a>
+			@}
+			@if(shiro.hasPermission("/sys_menu/edit_menu")){
 			<a href="javascript:;" onclick="sysMenu.openChangeMenu()"
 			    class="btn btn-primary radius"><i class="Hui-iconfont">&#xe6df;</i>
 				修改菜单</a>
+			@}
 		</span>
 	</div>
 	<table id="menuTable"

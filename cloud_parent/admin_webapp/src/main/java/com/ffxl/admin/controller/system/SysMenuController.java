@@ -117,6 +117,11 @@ public class SysMenuController extends BaseController{
         } else {
         	menu.setPcode("0");
         }
+        if(!StringUtil.isEmpty(menu.getIcon())){
+        	String ic = menu.getIcon();
+            String icon = ic.substring(1) ;
+            menu.setIcon(icon);
+    	}
         model.addAttribute("menu", menu);
         return PREFIX + "menu_edit.html";
     }
@@ -155,6 +160,9 @@ public class SysMenuController extends BaseController{
     @BussinessLog(value = "修改菜单", key = "id", dict = SysMenuDic.class)
     @ResponseBody
     public JsonResult edit(SysMenu menu) {
+    	if(!StringUtil.isEmpty(menu.getIcon())){
+    		menu.setIcon("&"+menu.getIcon());
+    	}
     	SysMenu s = sysMenuService.selectByPrimaryKey(menu.getPcode());
     	if(s != null){
     		String l = s.getLevels();
@@ -187,6 +195,9 @@ public class SysMenuController extends BaseController{
         	js.setMessage("菜单编号已经存在");
         	return js;
         }
+        if(!StringUtil.isEmpty(menu.getIcon())){
+    		menu.setIcon("&"+menu.getIcon());
+    	}
         SysMenu s = sysMenuService.selectByPrimaryKey(menu.getPcode());
         String l = "";
         if(s!=null){
@@ -233,5 +244,12 @@ public class SysMenuController extends BaseController{
         	return new JsonResult(Message.M5000);
         }
     	
+    }
+    /**
+     * 跳转到菜单列表列表页面
+     */
+    @RequestMapping(value = "/add_icon")
+    public String addIcon() {
+        return PREFIX + "add_icon.html";
     }
 }

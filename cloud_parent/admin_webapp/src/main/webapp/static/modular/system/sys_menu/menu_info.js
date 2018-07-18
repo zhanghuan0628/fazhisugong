@@ -98,7 +98,24 @@ MenuInfoDlg.close = function () {
 MenuInfoDlg.onClickPName = function (e, treeId, treeNode) {
     $("#pcodeName").attr("value", MenuInfoDlg.pNameZtree.getSelectedVal());
     $("#pcode").attr("value", treeNode.id);
+    $("#pNameContent").hide();
+    
 };
+//显示ICON
+function showIcon() {
+	var index = layer.open({
+        type: 2,
+        title: '添加图标',
+        area: ['620px', '300px'], //宽高
+        fix: false, //不固定
+        maxmin: true,
+        content: Feng.ctxPath + '/sys_menu/add_icon'
+    });
+    this.layerIndex = index;
+}
+function getValue(val){
+	$('#icon').val(val);
+}
 /**
  * 显示父级菜单的树
  *
@@ -107,6 +124,7 @@ MenuInfoDlg.onClickPName = function (e, treeId, treeNode) {
 MenuInfoDlg.showMenuSelectTree = function () {
 	Feng.showInputTree("pcodeName", "pNameContent");
 };
+
 $(function(){
 	$('.skin-minimal input').iCheck({
 		checkboxClass: 'icheckbox-blue',
