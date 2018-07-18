@@ -16,6 +16,7 @@ import com.ffxl.cloud.model.SgAskComment;
 import com.ffxl.cloud.model.SgLaw;
 import com.ffxl.cloud.model.SgSubject;
 import com.ffxl.cloud.model.SgThemeAnswerLog;
+import com.ffxl.cloud.model.SgThemeAnswerLogExample;
 import com.ffxl.cloud.model.SgThemeAwardLog;
 import com.ffxl.cloud.model.SgUserFavoriteExample;
 import com.ffxl.cloud.model.base.BaseDictionaryExample.Criteria;
@@ -149,15 +150,25 @@ public class SgAskController {
 	@RequestMapping(value = "/insertAnswerLog")
     @ResponseBody
 	public JsonResult insertAnswerLog(SgThemeAnswerLog sgThemeAnswerLog){
-		sgThemeAnswerLog.setId(UUIDUtil.getUUID());
-		sgThemeAnswerLog.setCreateDate(new Date());
 		HttpHeader local= HttpHeader.get();
         String userId = local.getUserId();
         if(StringUtil.isEmpty(userId)){
 			return new JsonResult(Message.M4003);
 		}
-        sgThemeAnswerLog.setUserId(userId);
-		int i = sgThemeAnswerLogService.insertSelective(sgThemeAnswerLog);
+		SgThemeAnswerLogExample example = new SgThemeAnswerLogExample();
+        com.ffxl.cloud.model.base.BaseSgThemeAnswerLogExample.Criteria c= example.createCriteria();
+        c.andUserIdEqualTo(userId);
+        c.andThemeIdEqualTo(sgThemeAnswerLog.getThemeId());
+        List<SgThemeAnswerLog> list = sgThemeAnswerLogService.selectByExample(example);
+        int i = 0;
+        if(list != null && list.size() > 0){
+        	return new JsonResult("4","已完成答题，不可重复答题");
+        }else{
+        	sgThemeAnswerLog.setId(UUIDUtil.getUUID());
+    		sgThemeAnswerLog.setCreateDate(new Date());
+            sgThemeAnswerLog.setUserId(userId);
+    		i = sgThemeAnswerLogService.insertSelective(sgThemeAnswerLog);
+        }
 		if(i > 0){
 			return new JsonResult(Message.M2000);
 		}else{
