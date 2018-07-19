@@ -29,6 +29,9 @@
 
 		<div v-else>
 			<swiper :options = "classifySwiper" id="classifyTitle">
+				<swiper-slide>
+					<div @click = "switchClassify('')">全部<em v-if = "classifyId == ''"></em></div>
+				</swiper-slide>
 				<swiper-slide v-for = "todo in classifyList" :key = "todo.id">
 					<div @click = "switchClassify(todo.id)">{{ todo.name }}<em v-if = "classifyId == todo.id"></em></div>
 				</swiper-slide>
@@ -85,7 +88,6 @@ export default {
 			let data = res.data;
 			if (data.code == "2000") {
 				this.classifyList = data.data;
-				this.classifyId = data.data[0].id;
 			} else if (data.code == "3007") {
 				this.$store.commit('logout');
 				this.$router.push({name:'login'})
@@ -156,7 +158,7 @@ export default {
 				this.searching = true;
 			} else {
 				this.searching = false;
-				this.classifyId = this.classifyList[0].id;
+				this.classifyId = "";
 			}
 		},
 		searchClassify:function(id){
