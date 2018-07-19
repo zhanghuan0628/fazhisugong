@@ -112,4 +112,5 @@ $(function () {
     var defaultColunms = sgUser.initColumn();
     var options = sgUser.dataTables(defaultColunms);    
     sgUser.table = defDataTables(options);
+    Feng.selectMultiRow(sgUser.id,sgUser);
 });

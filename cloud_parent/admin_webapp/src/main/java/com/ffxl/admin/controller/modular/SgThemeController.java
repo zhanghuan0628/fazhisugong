@@ -21,6 +21,10 @@ import com.ffxl.admin.core.common.annotion.BussinessLog;
 import com.ffxl.admin.core.common.constant.dictmap.SgLawDic;
 import com.ffxl.cloud.model.SgLaw;
 import com.ffxl.cloud.model.SgTheme;
+import com.ffxl.cloud.model.SgThemeAnswerLog;
+import com.ffxl.cloud.model.SgThemeAwardLog;
+import com.ffxl.cloud.service.SgThemeAnswerLogService;
+import com.ffxl.cloud.service.SgThemeAwardLogService;
 import com.ffxl.cloud.service.SgThemeService;
 import com.ffxl.platform.constant.JsonResult;
 import com.ffxl.platform.core.DataTablesUtil;
@@ -38,6 +42,9 @@ import com.ffxl.platform.util.UUIDUtil;
 public class SgThemeController extends BaseController{
 	@Autowired
 	private SgThemeService sgThemeService;
+	
+	@Autowired
+	private SgThemeAnswerLogService sgThemeAnswerLogService;
 	
 	private static String PREFIX = "/fzsg/sg_theme/";
 	/**
@@ -196,5 +203,25 @@ public class SgThemeController extends BaseController{
         	return new JsonResult(false);
         }
     	
+    }
+    /**
+     * 查看答题人数管理的页面
+     */
+    @RequestMapping("/answer_num_edit")
+    public String answerNumEdit(String themeId ,Model m) {
+    	m.addAttribute("themeId", themeId);
+        return PREFIX + "answer_num_edit.html";
+    } 
+    /**
+     * 查询答题人数获奖列表
+     */
+    @RequestMapping("/answerPerson_awardList")
+    @ResponseBody
+    public JsonResult awardList(DataTablesUtil dataTables,Page page,SgThemeAnswerLog model) {
+    	page = this.getPageInfo(page,dataTables);
+    	List<SgThemeAnswerLog> dataList = sgThemeAnswerLogService.queryThemeList(model,page);
+        dataTables = this.getDataTables(page, dataTables, dataList);
+        return new JsonResult("2000", dataTables);
+        
     }
 }

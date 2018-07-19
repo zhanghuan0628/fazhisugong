@@ -117,4 +117,5 @@ $(function () {
     var defaultColunms = subject.initColumn();
     var options = subject.dataTables(defaultColunms);    
     subject.table = defDataTables(options);
+    Feng.selectMultiRow(subject.id,subject);
 });

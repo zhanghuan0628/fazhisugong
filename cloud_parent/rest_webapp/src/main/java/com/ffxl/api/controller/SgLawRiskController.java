@@ -59,12 +59,11 @@ public class SgLawRiskController {
 	@RequestMapping(value = "/queryLawRiskByMajor")
     @ResponseBody
 	public JsonResult queryLawRiskByMajor(String id,String title,Page page){
-		if(StringUtil.isEmpty(id)){
-			return new JsonResult(Message.M4003);
-		}
         SgLaw s = new SgLaw();
         s.setCategory("law_risk");
-        s.setCategoryCode(id);
+        if(!StringUtil.isEmpty(id)){
+        	s.setCategoryCode(id);
+		}
         s.setTitle(title);
         s.setStatus("publish");
 		List<SgLaw> list = sgLawService.queryLawRiskByMajor(s,page);

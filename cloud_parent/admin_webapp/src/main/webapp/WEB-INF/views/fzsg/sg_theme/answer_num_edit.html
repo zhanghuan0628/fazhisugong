@@ -1,0 +1,26 @@
+@layout("/common/_container.html"){
+<div class="page-container">
+	<div class="text-c">
+		姓名：<input type="text" class="input-text" style="width:250px" id="userName" name="userName">
+		<input type="hidden" class="input-text" style="width:250px" value="${themeId}" id="themeId" name="themeId">
+		<button type="button" class="btn btn-success" id="search" onclick="answerNum.search()"  ><i class="Hui-iconfont">&#xe665;</i> 查询</button>
+	</div>
+	<div class="cl pd-5 bg-1 bk-gray mt-20"> 
+		<span class="l">
+		</span> 
+	</div>
+	<table id="answerNumTable" class="table table-border table-bordered table-bg">
+		<thead>
+			<tr>
+			
+			</tr>
+		</thead>
+	</table>
+	
+	
+</div>
+<!--底侧部分开始-->
+		@include("/common/_footer.html"){}	
+<!--底侧部分结束-->
+<script src="${ctxPath}/static/modular/fzsg/sg_theme/answer_num_edit.js"></script>
+@}

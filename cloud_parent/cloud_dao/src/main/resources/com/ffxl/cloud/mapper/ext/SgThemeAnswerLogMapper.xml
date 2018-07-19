@@ -33,6 +33,20 @@
 		ORDER BY
 			num DESC
 	</select>
+	
+	<select id="queryThemeList" resultMap="SgThemeAnswerLogMap">
+		SELECT
+			sg.*, su.user_name as userName
+		FROM
+			sg_theme_answer_log sg
+		LEFT JOIN sg_user su ON sg.user_id = su.id
+		WHERE
+			theme_id = #{model.themeId}
+		<if test="model.userName != null and model.userName != '' ">
+		   and user_name like CONCAT('%','${model.userName}','%')
+		</if>
+	</select>
+	
 	<select id="queryMaxDateById" resultMap="SgThemeAnswerLogMap" parameterType="java.lang.String">
 		select MAX(create_date) as createDate from sg_theme_answer_log where user_id = #{userId}
 	</select>

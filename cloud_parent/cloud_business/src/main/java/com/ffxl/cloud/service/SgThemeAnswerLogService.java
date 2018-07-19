@@ -44,4 +44,11 @@ public interface SgThemeAnswerLogService extends GenericService<SgThemeAnswerLog
 	 * @return
 	 */
 	List<SgSubject> queryUserBackTheme(String userId, String themeId);
+	/**
+	 * 
+	 * @param model
+	 * @param page
+	 * @return
+	 */
+	List<SgThemeAnswerLog> queryThemeList(SgThemeAnswerLog model, Page page);
 }

@@ -3,6 +3,7 @@ package com.ffxl.cloud.service.impl;
 import com.alibaba.fastjson.JSONObject;
 import com.ffxl.cloud.mapper.SgThemeAnswerLogMapper;
 import com.ffxl.cloud.model.SgSubject;
+import com.ffxl.cloud.model.SgTheme;
 import com.ffxl.cloud.model.SgThemeAnswerLog;
 import com.ffxl.cloud.model.SgThemeAnswerLogExample;
 import com.ffxl.cloud.model.SgThemeAwardLog;
@@ -11,6 +12,7 @@ import com.ffxl.cloud.model.base.BaseSgThemeAnswerLogExample.Criteria;
 import com.ffxl.cloud.service.SgSubjectService;
 import com.ffxl.cloud.service.SgThemeAnswerLogService;
 import com.ffxl.cloud.service.SgThemeAwardLogService;
+import com.ffxl.cloud.service.SgThemeService;
 import com.ffxl.platform.core.GenericMapper;
 import com.ffxl.platform.core.GenericServiceImpl;
 import com.ffxl.platform.core.Page;
@@ -42,6 +44,9 @@ public class SgThemeAnswerLogServiceImpl extends GenericServiceImpl<SgThemeAnswe
     
     @Autowired
     private SgSubjectService sgSubjectService;
+    
+    @Autowired
+    private SgThemeService sgThemeService;
 
     @Override
     public GenericMapper<SgThemeAnswerLog, SgThemeAnswerLogExample, String> getGenericMapper() {
@@ -154,5 +159,42 @@ public class SgThemeAnswerLogServiceImpl extends GenericServiceImpl<SgThemeAnswe
             ls.add(map);
         }
 		return ls;
+	}
+
+	@Override
+	public List<SgThemeAnswerLog> queryThemeList(SgThemeAnswerLog model, Page page) {
+		List<SgThemeAnswerLog> list = sgThemeAnswerLogMapper.queryThemeList(model,page);
+		for(SgThemeAnswerLog sl:list){
+			String themeId = model.getThemeId();
+			int rightNum = sl.getRightNum();
+			SgTheme st = sgThemeService.selectByPrimaryKey(themeId);
+			int sc = st.getSubjectCounts();
+			double rn = Double.parseDouble(rightNum+"");
+			double s = Double.parseDouble(sc+"");
+			double d = rn/s;
+			sl.setNum(d*100+"%");
+			SgThemeAwardLogExample example = new SgThemeAwardLogExample();
+	        com.ffxl.cloud.model.base.BaseSgThemeAwardLogExample.Criteria c= example.createCriteria();
+	        c.andThemeIdEqualTo(themeId);
+	        c.andUserIdEqualTo(sl.getUserId());
+			List<SgThemeAwardLog> l = sgThemeAwardLogService.selectByExample(example);
+			if(l != null && l.size() > 0){
+				SgThemeAwardLog sg = l.get(0);
+				if(sg.getCode().equals("0")){
+					sl.setCode("一等奖");
+				}else if(sg.getCode().equals("1")){
+					sl.setCode("二等奖");
+				}else if(sg.getCode().equals("2")){
+					sl.setCode("三等奖");
+				}else if(sg.getCode().equals("3")){
+					sl.setCode("谢谢参与");
+				}else{
+					sl.setCode("--");
+				}
+			}else{
+				sl.setCode("--");
+			}
+		}
+		return list;
 	}
 }

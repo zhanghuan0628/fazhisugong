@@ -113,4 +113,5 @@ $(function () {
     var defaultColunms = ask.initColumn();
     var options = ask.dataTables(defaultColunms);    
     ask.table = defDataTables(options);
+    Feng.selectMultiRow(ask.id,ask);
 });

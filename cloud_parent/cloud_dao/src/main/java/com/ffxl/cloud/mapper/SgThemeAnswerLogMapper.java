@@ -32,4 +32,11 @@ public interface SgThemeAnswerLogMapper extends GenericMapper<SgThemeAnswerLog, 
 	 * @return
 	 */
 	SgThemeAnswerLog queryMaxDateById(@Param("userId")String userId);
+	/**
+	 * 
+	 * @param model
+	 * @param page
+	 * @return
+	 */
+	List<SgThemeAnswerLog> queryThemeList(@Param("model")SgThemeAnswerLog model, @Param("page")Page page);
 }

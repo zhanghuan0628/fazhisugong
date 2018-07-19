@@ -104,7 +104,7 @@ theme.dataTables = function (columns) {
 	    		others : {
 	    			selector : '#'+theme.id,
 	    			url : Feng.ctxPath +"/sg_theme/theme_list_pageList",
-	    			param : ["stage"]
+	    			param : ["title"]
 	    		}	
 	    }
 	    return options;
@@ -122,4 +122,5 @@ $(function () {
     var defaultColunms = theme.initColumn();
     var options = theme.dataTables(defaultColunms);    
     theme.table = defDataTables(options);
+    Feng.selectMultiRow(theme.id,theme);
 });

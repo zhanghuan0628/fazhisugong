@@ -23,4 +23,5 @@
 		where sg.user_id = #{model.userId}
 		order by st.num desc
 	</select>
+	
 </mapper>
