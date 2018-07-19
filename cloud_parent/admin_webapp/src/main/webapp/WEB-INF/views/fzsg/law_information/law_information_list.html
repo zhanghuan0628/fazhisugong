@@ -8,10 +8,18 @@
 	</div>
 	<div class="cl pd-5 bg-1 bk-gray mt-20"> 
 		<span class="l">
+			@if(shiro.hasPermission("/sg_law_info/del_info")){
 			<a href="javascript:;" onclick="lawInformation.del_lawInformation()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a>
+			@}
+			@if(shiro.hasPermission("/sg_law_info/add_info")){
 			<a href="javascript:;" onclick="lawInformation.add_lawInformation('新增法治动态','${ctxPath}/sg_law_information/law_information_add','1000','500')" class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i> 新增</a>
+			@}
+			@if(shiro.hasPermission("/sg_law_info/top_info")){
 			<a href="javascript:;" onclick="lawInformation.push_lawInformation('publish')" class="btn btn-primary radius"><i class="Hui-iconfont">&#xe6e1;</i> 上架</a>
+			@}
+			@if(shiro.hasPermission("/sg_law_info/down_info")){
 			<a href="javascript:;" onclick="lawInformation.push_lawInformation('no_publish')" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe706;</i> 下架</a>
+			@}
 		</span> 
 	</div>
 	<table id="lawInformationTable" class="table table-border table-bordered table-bg">

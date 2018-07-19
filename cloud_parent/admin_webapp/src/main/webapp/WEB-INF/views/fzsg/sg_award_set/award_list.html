@@ -8,8 +8,12 @@
 	</div>
 	<div class="cl pd-5 bg-1 bk-gray mt-20"> 
 		<span class="l">
+			@if(shiro.hasPermission("/set_award/del_award")){
 			<a href="javascript:;" onclick="award.del_award()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a>
+			@}
+			@if(shiro.hasPermission("/set_award/add_award")){
 			<a href="javascript:;" onclick="award.add_award('新增奖品设置','${ctxPath}/sg_award_set/add_award','200','600')" class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i> 新增</a>
+			@}
 		</span> 
 		
 	</div>

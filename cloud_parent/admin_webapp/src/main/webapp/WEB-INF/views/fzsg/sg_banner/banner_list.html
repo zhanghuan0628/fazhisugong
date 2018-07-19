@@ -8,9 +8,15 @@
 	</div>
 	<div class="cl pd-5 bg-1 bk-gray mt-20"> 
 		<span class="l">
+			@if(shiro.hasPermission("/sg_banner/add_banner")){
 			<a href="javascript:;" onclick="banner.add_banner('新增','/sg_banner/add_banner')" class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i> 新增</a>
+			@}
+			@if(shiro.hasPermission("/sg_banner/top_banner")){
 			<a href="javascript:;" onclick="banner.push_banner('publish')" class="btn btn-primary radius"><i class="Hui-iconfont">&#xe6e1;</i> 上架</a>
+			@}
+			@if(shiro.hasPermission("/sg_banner/down_banner")){
 			<a href="javascript:;" onclick="banner.push_banner('no_publish')" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe706;</i> 下架</a>
+			@}
 		</span> 
 	</div>
 	<table id="bannerTable" class="table table-border table-bordered table-bg">

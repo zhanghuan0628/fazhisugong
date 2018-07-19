@@ -18,8 +18,12 @@
 	</div>
 	<div class="cl pd-5 bg-1 bk-gray mt-20"> 
 		<span class="l">
+			@if(shiro.hasPermission("/sg_ask/del_ask")){
 			<a href="javascript:;" onclick="ask.del_ask()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a>
+			@}
+			@if(shiro.hasPermission("/sg_ask/add_ask")){
 			<a href="javascript:;" onclick="ask.ask_add('新增虚拟咨询','${ctxPath}/sg_ask/ask_add','1000','800')" class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i> 新增虚拟咨询</a>
+			@}
 		</span> 
 	</div>
 	<table id="askTable" class="table table-border table-bordered table-bg">
