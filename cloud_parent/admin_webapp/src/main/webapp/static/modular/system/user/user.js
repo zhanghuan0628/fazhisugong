@@ -204,10 +204,10 @@ SysUser.initColumn = function () {
         {title: '邮箱', data: 'email'},
         {title: '电话', data: 'cellphone'},
         {title: '状态', data: 'status',render: function(data, type, row, meta){
-        	if(data==1)return '<span class="label label-success radius">已启用</span>';	
-        	if(data==2)return '<span class="label label-default radius">已停用</span>';
-        	if(data==3)return '<span class="label label-default radius">已删除</span>';
-        	else return '<span class="label label-default radius">未知状态</span>';
+        	if(data==1)return '<span class="labels labels-success radius">已启用</span>';	
+        	if(data==2)return '<span class="labels labels-default radius">已停用</span>';
+        	if(data==3)return '<span class="labels labels-default radius">已删除</span>';
+        	else return '<span class="labels labels-default radius">未知状态</span>';
         }},
         {title:'操作',data:'loginName', render: function(data, type, row, meta){
         	var msg = "";
@@ -237,7 +237,7 @@ SysUser.initColumn = function () {
 			+ "'"
 			+row.id
 			+ "'"
-			+')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a>'
+			+')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe605;</i></a>'
 			+'</td>';
         	return msg;
         }}];

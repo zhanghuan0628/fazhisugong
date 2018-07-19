@@ -88,7 +88,7 @@ sgUser.check=function(){
  */
 sgUser.initColumn = function () {
     var columns = [
-        {title: '', data:"id",width:'10px',  render: function(data, type, row, meta) { return '<input type="checkbox" name="checklists" value="'+data+'" class="iCheck" onclick="sgUser.check()">';}},
+        {title: '', data:"id",width:'10px',  render: function(data, type, row, meta) { return '<input type="radio" name="checklists" value="'+data+'" class="iCheck" onclick="sgUser.check()">';}},
         {title: '协同账号', data: 'loginName'},
         {title: '账户名称', data: 'userName'},
         {title:'操作',data:'loginName', render: function(data, type, row, meta){
@@ -97,12 +97,12 @@ sgUser.initColumn = function () {
 			+ "'"
 			+row.id
 			+ "'"
-			+',\'800\',\'500\')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe60c;</i>'
+			+',\'800\',\'500\')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe695;</i>'
 			+'</a> <a title="初始化密码" href="javascript:;" onclick="sgUser.updatePassword(this,'
 			+ "'"
 			+row.id
 			+ "'"
-			+')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a>'
+			+')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe605;</i></a>'
 			+'</td>';
         	return msg;
         }}];
@@ -162,4 +162,5 @@ $(function () {
     var defaultColunms = sgUser.initColumn();
     var options = sgUser.dataTables(defaultColunms);    
     sgUser.table = defDataTables(options);
+    Feng.selectSingleRow(sgUser.id,sgUser);
 });

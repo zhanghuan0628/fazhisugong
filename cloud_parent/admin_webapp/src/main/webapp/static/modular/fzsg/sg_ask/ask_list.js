@@ -69,7 +69,7 @@ ask.initColumn = function () {
 			+ "'"
 			+row.id
 			+ "'"
-			+',\'800\',\'500\')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe60c;</i>'
+			+',\'800\',\'500\')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe695;</i>'
 			+'</a> <a title="回复" href="javascript:;" onclick="ask.back(\'回复\',\'/sg_ask/counselor_back\','
 			+ "'"
 			+row.id

@@ -12,7 +12,7 @@
 	<div class="row cl">
 		<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>专业：：</label>
 		<div class="formControls col-xs-8 col-sm-9">
-			<select id="categoryCode" name="categoryCode" class="input-text" style="width:250px">
+			<select id="categoryCode" name="categoryCode" class="input-text">
 				@for(dic in list){
 	        	<option value="${dic.id}">
 	        	${dic.name}
@@ -24,7 +24,7 @@
 	<div class="row cl">
 		<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>创建时间：</label>
 		<div class="formControls col-xs-8 col-sm-9">
-			<input type="text" class="input-text" value="${dateString}" disabled="disabled">
+			<input type="text" class="input-text Wdate" value="${dateString}" disabled="disabled">
 		</div>
 	</div>
 	<div class="row cl">

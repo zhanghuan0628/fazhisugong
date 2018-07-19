@@ -33,7 +33,7 @@ ask.getSelIds = function(){
  */
 ask.initColumn = function () {
 	var columns = [
-	               {title: '', data:"id",width:'10px',  render: function(data, type, row, meta) { return '<input type="checkbox" name="checklist" value="'+data+'" class="iCheck">';}},
+	               {title: '', data:"id",width:'10px',  render: function(data, type, row, meta) { return '<input type="radio" name="checklist" value="'+data+'" class="iCheck">';}},
 	               {title: '咨询标题', data: 'title'},
 	               {title: '发布时间', data: 'createTime'},
 	               {title: '提问者昵称', data: 'userName'},

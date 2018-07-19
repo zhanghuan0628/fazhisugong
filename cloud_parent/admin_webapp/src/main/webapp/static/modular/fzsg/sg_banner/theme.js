@@ -33,7 +33,7 @@ theme.getSelIds = function(){
  */
 theme.initColumn = function () {
 	var columns = [
-	               {title: '', data:"id",width:'10px',  render: function(data, type, row, meta) { return '<input type="checkbox" name="checklist" value="'+data+'" class="iCheck">';}},
+	               {title: '', data:"id",width:'10px',  render: function(data, type, row, meta) { return '<input type="radio" name="checklist" value="'+data+'" class="iCheck">';}},
 	               {title: '题目',width:'300px', data: 'stage'},
 	               {title: '主题',width:'300px', data: 'title'},
 	               {title: '开始时间',width:'300px', data: 'startDate'},

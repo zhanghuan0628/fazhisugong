@@ -104,4 +104,5 @@ $(function () {
     var defaultColunms = award.initColumn();
     var options = award.dataTables(defaultColunms);    
     award.table = defDataTables(options);
+    Feng.selectMultiRow(award.id,award);
 });

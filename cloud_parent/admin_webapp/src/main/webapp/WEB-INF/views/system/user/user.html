@@ -11,9 +11,9 @@
 	<div class="text-c">
 		管理员名称：<input type="text" class="input-text" style="width: 250px"
 			placeholder="输入管理员名称" id="" name="userName">
-		<button type="button" class="btn btn-success" id="search"
+		<button type="button" class="btn buttons" id="search"
 			onclick="SysUser.search()">
-			<i class="Hui-iconfont">&#xe665;</i> 搜用户
+			<i class="Hui-iconfont">&#xe665;</i> 查询
 		</button>
 	</div>
 	<div class="cl pd-5 bg-1 bk-gray mt-20">
@@ -25,7 +25,7 @@
 			@if(shiro.hasPermission("/sys_user/add_manger")){
 			<a href="javascript:;" onclick="SysUser.admin_add('添加管理员','${ctxPath}/sys_user/user_add','800','500')"
 			    class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i>
-				添加管理员</a>
+				新增管理员</a>
 			@}
 			@if(shiro.hasPermission("/sys_user/add_role")){
 			<a href="javascript:;" onclick="SysUser.role_add('添加角色','/sys_user/role_add','300','500')"

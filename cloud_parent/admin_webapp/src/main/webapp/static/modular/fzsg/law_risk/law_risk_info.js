@@ -248,7 +248,7 @@ sgRisk.dataTables = function (columns) {
 	    		columns : columns,
 	    		others : {
 	    			selector : '#'+sgRisk.id,
-	    			url : Feng.ctxPath +"/sg_law_risk/law_risk_comment",
+	    			url : Feng.ctxPath +"/sg_law_risk/law_risk_comment?topicId="+$("#topicId").val(),
 	    			param : ["userName"]
 	    		}	
 	    }
@@ -268,4 +268,5 @@ $(function () {
     var defaultColunms = sgRisk.initColumn();
     var options = sgRisk.dataTables(defaultColunms);    
     sgRisk.table = defDataTables(options);
+    Feng.selectMultiRow(sgRisk.id,sgRisk);
 });

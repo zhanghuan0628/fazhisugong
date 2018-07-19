@@ -10,7 +10,7 @@
 <div class="page-container">
 	<div class="text-c">
 		字典项名称：<input type="text" class="input-text" style="width: 250px" id="name" name="name">
-		<button type="button" class="btn btn-success" id="search"
+		<button type="button" class="btn buttons" id="search"
 			onclick="Dict.search()">
 			<i class="Hui-iconfont">&#xe665;</i> 查询
 		</button>
@@ -24,7 +24,7 @@
 			@if(shiro.hasPermission("/sys_dict/dict_add")){
 			<a href="javascript:;" onclick="Dict.openAddDict()"
 			    class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i>
-				添加</a>
+				新增</a>
 			@}
 		</span>
 	</div>

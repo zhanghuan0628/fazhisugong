@@ -86,4 +86,5 @@ $(function () {
     var defaultColunms = sgMajor.initColumn();
     var options = sgMajor.dataTables(defaultColunms);    
     sgMajor.table = defDataTables(options);
+    Feng.selectMultiRow(sgMajor.id,sgMajor);
 });

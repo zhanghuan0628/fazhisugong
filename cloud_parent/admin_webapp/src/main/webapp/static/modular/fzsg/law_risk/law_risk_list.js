@@ -132,14 +132,14 @@ lawRisk.pushDown = function(obj,id,sort){
 lawRisk.initColumn = function () {
     var columns = [
         {title: '', data:"id",width:'10px',  render: function(data, type, row, meta) { return '<input type="checkbox" name="checklist" value="'+data+'" class="iCheck">';}},
-        {title: '序号',width:'50px', data: 'num'},
         {title: '标题',width:'300px', data: 'title'},
         {title: '专业',width:'300px', data: 'name'},
         {title: '状态',width:'300px', data: 'status',render: function(data, type, row, meta){
-        	if(data=='publish')return '<span class="label label-success radius">上架</span>';	
-        	else if(data=='no_publish')return '<span class="label label-default radius">下架</span>';
-        	else return '<span class="label label-default radius">未发布</span>';
+        	if(data=='publish')return '<span class="labels labels-success radius">上架</span>';	
+        	else if(data=='no_publish')return '<span class="labels labels-default radius">下架</span>';
+        	else return '<span class="labels labels-default radius">未发布</span>';
         }},
+        {title: '排序',width:'50px', data: 'num'},
         {title:'操作',width:'300px', render: function(data, type, row, meta){
         	var msg = "";
         	msg+='<a title="编辑" href="javascript:;" onclick="lawRisk.edit_lawRisk(\'编辑法律风险\',\'/sg_law_risk/law_risk_edit\','
@@ -195,4 +195,5 @@ $(function () {
     var defaultColunms = lawRisk.initColumn();
     var options = lawRisk.dataTables(defaultColunms);    
     lawRisk.table = defDataTables(options);
+    Feng.selectMultiRow(lawRisk.id,lawRisk);
 });

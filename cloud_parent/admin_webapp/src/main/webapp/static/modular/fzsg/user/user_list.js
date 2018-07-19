@@ -73,12 +73,12 @@ sgUser.initColumn = function () {
 			+ "'"
 			+row.id
 			+ "'"
-			+',\'800\',\'500\')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe60c;</i>'
+			+',\'800\',\'500\')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe695;</i>'
 			+'</a> <a title="初始化密码" href="javascript:;" onclick="sgUser.updatePassword(this,'
 			+ "'"
 			+row.id
 			+ "'"
-			+')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a>'
+			+')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe605;</i></a>'
 			+'</td>';
         	return msg;
         }}];

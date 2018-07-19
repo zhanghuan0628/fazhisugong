@@ -157,7 +157,7 @@ sysRole.initColumn = function () {
 			+ "'"
 			+row.id
 			+ "'"
-			+',\'300\',\'500\')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe607;</i>'
+			+',\'300\',\'500\')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe60d;</i>'
 			+'</td>';
         	return msg;
         }}];

@@ -137,13 +137,13 @@ lawMagic.pushDown = function(obj,id,sort){
 lawMagic.initColumn = function () {
     var columns = [
         {title: '', data:"id",width:'10px',  render: function(data, type, row, meta) { return '<input type="checkbox" name="checklist" value="'+data+'" class="iCheck">';}},
-        {title: '序号',width:'50px', data: 'num'},
         {title: '标题',width:'300px', data: 'title'},
         {title: '状态',width:'300px', data: 'status',render: function(data, type, row, meta){
-        	if(data=='publish')return '<span class="label label-success radius">上架</span>';	
-        	else if(data=='no_publish')return '<span class="label label-default radius">下架</span>';
-        	else return '<span class="label label-default radius">未发布</span>';
+        	if(data=='publish')return '<span class="labels labels-success radius">上架</span>';	
+        	else if(data=='no_publish')return '<span class="labels labels-default radius">下架</span>';
+        	else return '<span class="labels labels-default radius">未发布</span>';
         }},
+        {title: '排序',width:'50px', data: 'num'},
         {title:'操作',width:'300px', render: function(data, type, row, meta){
         	var msg = "";
         	msg+='<a title="编辑" href="javascript:;" onclick="lawMagic.edit_lawMagic(\'编辑法宝\',\'/sg_law_magic/law_magic_edit\','
@@ -158,21 +158,21 @@ lawMagic.initColumn = function () {
 			+ ",'"
 			+row.title
 			+ "'"
-			+',\'10001\')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6f9;</i></a> <a title="下移" href="javascript:;" onclick="lawMagic.pushUp(this,'
+			+',\'10001\')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe695;</i></a> <a title="下移" href="javascript:;" onclick="lawMagic.pushUp(this,'
 			+ "'"
 			+row.id
 			+ "'"
 			+ ",'"
 			+row.num
 			+ "'"
-			+')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe679;</i></a> <a title="上移" href="javascript:;" onclick="lawMagic.pushDown(this,'
+			+')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe674;</i></a> <a title="上移" href="javascript:;" onclick="lawMagic.pushDown(this,'
 			+ "'"
 			+row.id
 			+ "'"
 			+ ",'"
 			+row.num
 			+ "'"
-			+')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe674;</i></a>'
+			+')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe679;</i></a>'
 			+'</td>';
         	return msg;
         }}];
@@ -184,6 +184,9 @@ lawMagic.initColumn = function () {
  */
 lawMagic.dataTables = function (columns) {
 	    var options ={
+	    		option:{
+					
+				},
 	    		columns : columns,
 	    		others : {
 	    			selector : '#'+lawMagic.id,
@@ -206,4 +209,5 @@ $(function () {
     var defaultColunms = lawMagic.initColumn();
     var options = lawMagic.dataTables(defaultColunms);    
     lawMagic.table = defDataTables(options);
+    Feng.selectMultiRow(lawMagic.id,lawMagic);
 });

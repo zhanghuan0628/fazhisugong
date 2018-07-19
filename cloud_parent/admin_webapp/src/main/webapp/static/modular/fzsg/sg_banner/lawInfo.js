@@ -33,13 +33,13 @@ lawInfo.getSelIds = function(){
  */
 lawInfo.initColumn = function () {
 	var columns = [
-	               {title: '', data:"id",width:'10px',  render: function(data, type, row, meta) { return '<input type="checkbox" name="checklist" value="'+data+'" class="iCheck">';}},
+	               {title: '', data:"id",width:'10px',  render: function(data, type, row, meta) { return '<input type="radio" name="checklist" value="'+data+'" class="iCheck">';}},
 	               {title: '标题',width:'300px', data: 'title'},
 	               {title: '发布时间',width:'300px', data: 'createTime'},
 	               {title: '状态',width:'300px', data: 'status',render: function(data, type, row, meta){
-	               	if(data=='publish')return '<span class="label label-success radius">上架</span>';	
-	               	else if(data=='no_publish')return '<span class="label label-default radius">下架</span>';
-	               	else return '<span class="label label-default radius">未发布</span>';
+	               	if(data=='publish')return '<span class="labels labels-success radius">上架</span>';	
+	               	else if(data=='no_publish')return '<span class="labels labels-default radius">下架</span>';
+	               	else return '<span class="labels labels-default radius">未发布</span>';
 	               }}];
     return columns;
 };

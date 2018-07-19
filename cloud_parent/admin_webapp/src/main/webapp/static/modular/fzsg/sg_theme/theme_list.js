@@ -68,7 +68,7 @@ theme.initColumn = function () {
         			+ "'"
         			+row.id
         			+ "'"
-        			+',\'1000\',\'500\')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6f9;</i>'
+        			+',\'1000\',\'500\')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe695;</i>'
         			+'</a>'
         			+'</td>';
         	}
@@ -85,7 +85,7 @@ theme.initColumn = function () {
         			+ "'"
         			+row.id
         			+ "'"
-        			+',\'1000\',\'500\')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6f9;</i>'
+        			+',\'1000\',\'500\')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe695;</i>'
         			+'</a>'
         			+'</td>';
         	}

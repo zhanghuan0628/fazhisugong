@@ -132,13 +132,13 @@ lawMagic.pushDown = function(obj,id,sort,code){
 lawMagic.initColumn = function () {
     var columns = [
         {title: '', data:"id",width:'10px',  render: function(data, type, row, meta) { return '<input type="checkbox" name="checklist" value="'+data+'" class="iCheck">';}},
-        {title: '序号',width:'50px', data: 'num'},
         {title: '标题',width:'300px', data: 'title'},
         {title: '状态',width:'300px', data: 'status',render: function(data, type, row, meta){
         	if(data=='publish')return '<span class="label label-success radius">上架</span>';	
         	else if(data=='no_publish')return '<span class="label label-default radius">下架</span>';
         	else return '<span class="label label-default radius">未发布</span>';
         }},
+        {title: '排序',width:'50px', data: 'num'},
         {title:'操作',width:'300px', render: function(data, type, row, meta){
         	var msg = "";
         	msg+='<a title="编辑" href="javascript:;" onclick="lawMagic.edit_lawMagic(\'编辑法宝二级目录\',\'/sg_law_magic/law_magic_detail_edit\','
@@ -200,4 +200,5 @@ $(function () {
     var defaultColunms = lawMagic.initColumn();
     var options = lawMagic.dataTables(defaultColunms);    
     lawMagic.table = defDataTables(options);
+    Feng.selectMultiRow(lawMagic.id,lawMagic);
 });

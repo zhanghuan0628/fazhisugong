@@ -10,7 +10,7 @@
 <div class="page-container">
 	<div class="text-c">
 		角色名称：<input type="text" class="input-text" style="width: 250px" id="" name="name">
-		<button type="button" class="btn btn-success" id="search"
+		<button type="button" class="btn buttons" id="search"
 			onclick="sysRole.search()">
 			<i class="Hui-iconfont">&#xe665;</i> 查询
 		</button>
@@ -24,7 +24,7 @@
 			@if(shiro.hasPermission("/sys_role/role_add")){
 			<a href="javascript:;" onclick="sysRole.role_add('添加角色','${ctxPath}/sys_role/role_add','800','500')"
 			    class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i>
-				添加角色</a>
+				新增</a>
 			@}
 		</span>
 	</div>

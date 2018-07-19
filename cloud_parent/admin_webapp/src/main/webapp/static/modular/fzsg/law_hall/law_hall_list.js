@@ -143,9 +143,9 @@ lawHall.initColumn = function () {
         	}
         }},
         {title: '状态',width:'300px', data: 'status',render: function(data, type, row, meta){
-        	if(data=='publish')return '<span class="label label-success radius">上架</span>';	
-        	else if(data=='no_publish')return '<span class="label label-default radius">下架</span>';
-        	else return '<span class="label label-default radius">未发布</span>';
+        	if(data=='publish')return '<span class="labels labels-success radius">上架</span>';	
+        	else if(data=='no_publish')return '<span class="labels labels-default radius">下架</span>';
+        	else return '<span class="labels labels-default radius">未发布</span>';
         }},
         {title: '收藏人数',width:'300px', data: 'count'},
         {title:'操作',width:'300px', render: function(data, type, row, meta){
@@ -189,4 +189,5 @@ $(function () {
     var defaultColunms = lawHall.initColumn();
     var options = lawHall.dataTables(defaultColunms);    
     lawHall.table = defDataTables(options);
+    Feng.selectMultiRow(lawHall.id,lawHall);
 });

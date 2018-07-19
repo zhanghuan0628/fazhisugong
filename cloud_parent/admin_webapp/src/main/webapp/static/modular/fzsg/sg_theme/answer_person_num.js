@@ -63,4 +63,5 @@ $(function () {
     var defaultColunms = answerNum.initColumn();
     var options = answerNum.dataTables(defaultColunms);    
     answerNum.table = defDataTables(options);
+    Feng.selectMultiRow(answerNum.id,answerNum);
 });

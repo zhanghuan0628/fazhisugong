@@ -123,6 +123,7 @@ banner.push_banner=function (state){
     	Feng.confirm('确认要操作吗？',operation);
     }
 }
+
 /**
  * 初始化表格的列
  * 
@@ -130,22 +131,18 @@ banner.push_banner=function (state){
 banner.initColumn = function () {
     var columns = [
         {title: '', data:"id",width:'10px',  render: function(data, type, row, meta) { return '<input type="checkbox" name="checklist" value="'+data+'" class="iCheck">';}},           
-        {title: '排序',width:'300px', data: 'sortNum'},
         {title: '图片',width:'300px', data: 'bannerImg',render: function(data, type, row, meta){
         	var msg = "";
-        	msg = '<img src="'+data+'" style="height:30px;"/>';
+        	msg = "<img src='"+data+"' height='30px' onclick='clickThisImg(\""+data+"\")'>";
         	return msg;
         }},
         {title: '标题',width:'300px', data: 'title'},
-        {title: '状态',width:'300px', data: 'status',render: function(data, type, row, meta){
-        	if(data=="publish"){
-        		return "上架";
-        	}else if(data=="no_publish"){
-        		return "下架";
-        	}else{
-        		return "未发布";
-        	}
+        {title: '状态',width:'100px', data: 'status',render: function(data, type, row, meta){
+        	if(data=='publish')return '<span class="labels labels-success radius">上架</span>';	
+        	else if(data=='no_publish')return '<span class="labels labels-default radius">下架</span>';
+        	else return '<span class="labels labels-default radius">未发布</span>';
         }},
+        {title: '排序',width:'50px', data: 'sortNum'},
         {title:'操作',width:'300px',render: function(data, type, row, meta){
         	var msg = "";
     		msg+='<a title="编辑" href="javascript:;" onclick="banner.edit_banner(\'编辑详情\',\'/sg_banner/edit_banner\','
@@ -160,20 +157,26 @@ banner.initColumn = function () {
     			+ ",'"
     			+row.sortNum
     			+ "'"
-    			+')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe679;</i></a> <a title="上移" href="javascript:;" onclick="banner.pushDown(this,'
+    			+')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe674;</i></a> <a title="上移" href="javascript:;" onclick="banner.pushDown(this,'
     			+ "'"
     			+row.id
     			+ "'"
     			+ ",'"
     			+row.sortNum
     			+ "'"
-    			+')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe674;</i></a>'
+    			+')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe679;</i></a>'
     			+'</td>';
             	return msg;
         }}];
     return columns;
 };
-
+function clickThisImg(img) {
+	$(".img-popup-img").attr("src",img)
+	$(".img-popup").removeClass("active")
+}
+$(document).on("click", ".img-popup", function(){
+	$(".img-popup").addClass("active")
+})
 /**
  * 初始化表格参数
  */
@@ -201,4 +204,5 @@ $(function () {
     var defaultColunms = banner.initColumn();
     var options = banner.dataTables(defaultColunms);    
     banner.table = defDataTables(options);
+    Feng.selectMultiRow(banner.id,banner);
 });
