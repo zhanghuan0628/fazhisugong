@@ -29,11 +29,19 @@
 		<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>性别：</label>
 		<div class="formControls col-xs-8 col-sm-9 skin-minimal">
 			<div class="radio-box">
-				<input name="sex" type="radio" value="M" checked>
+				<input name="sex" type="radio" value="M"
+					@if(info.sex=='M'){
+		        		checked="checked"
+		        	@}
+				>
 				<label for="sex-1">男</label>
 			</div>
 			<div class="radio-box">
-				<input name="sex" type="radio" value="F">
+				<input name="sex" type="radio" value="F"
+					@if(info.sex=='F'){
+		        		checked="checked"
+		        	@}
+				>
 				<label for="sex-2">女</label>
 			</div>
 		</div>
