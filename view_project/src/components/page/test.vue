@@ -104,25 +104,27 @@ export default {
 	},
 	methods: {
 		nextQuestion:function(result,index){
-			this.optInd = index;
-			this.isChoose = true;
-			if (result == "1") {
-				this.rightNum++;
-			}
-			
-			this.testData.push({"question_id":this.qList[this.curInd].id,"correct":result,"choose":index});
-
-			let _this = this;
-			setTimeout(() => {
-				if (_this.curNum == _this.qNum) {
-					this.submitAnswer();
-					return false;
+			if (!this.isChoose) {
+				this.optInd = index;
+				this.isChoose = true;
+				if (result == "1") {
+					this.rightNum++;
 				}
-				_this.curInd++;
-				_this.curNum++;
-				_this.optInd = "";
-				this.isChoose = false;
-			}, 600);
+				
+				this.testData.push({"question_id":this.qList[this.curInd].id,"correct":result,"choose":index});
+
+				let _this = this;
+				setTimeout(() => {
+					if (_this.curNum == _this.qNum) {
+						this.submitAnswer();
+						return false;
+					}
+					_this.curInd++;
+					_this.curNum++;
+					_this.optInd = "";
+					this.isChoose = false;
+				}, 600);
+			}
 		},
 		submitAnswer:function(){
 			if (!this.hasSubmit) {

@@ -158,6 +158,10 @@ export default new Router({
 			path: '/changePassword',
 			name: 'changePassword',
 			component: changePassword
+		},
+		{
+			path:'*',
+			redirect:{name:'index'}
 		}
   	]
 })

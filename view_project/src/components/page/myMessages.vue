@@ -3,7 +3,7 @@
 		<div class="myMessagesList mescroll" id="list">
 			<ul id="listItem">
 				<template v-for = "todo in myMessagesList">
-					<li :key = "todo.id">
+					<li :key = "todo.id" @click = "$router.push({name:'consultOnlineDetail',params:{topicId:todo.id}})">
 						<div class="mm-top">
 							<img :src = "todo.headImg" alt="">
 							<p>{{ todo.replyName }}<i>回答了</i></p>
