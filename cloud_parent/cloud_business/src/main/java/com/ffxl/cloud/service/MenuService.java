@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Param;
 
 import com.ffxl.cloud.model.Menu;
 import com.ffxl.cloud.model.MenuExample;
+import com.ffxl.cloud.model.warpper.MenuWarpper;
 import com.ffxl.platform.core.GenericService;
 import com.ffxl.platform.core.node.MenuNode;
 
@@ -39,5 +40,14 @@ public interface MenuService extends GenericService<Menu, MenuExample, String> {
      * @return
      */
     List<MenuNode> getMenusByRoleIds(List<String> roleIds);
+
+    /**
+     * 查询父菜单名及菜单名
+     * jaiwei
+     * 2018年7月20日上午11:43:15
+     * @param code
+     * @return
+     */
+    MenuWarpper queryMenuByCode(String code);
     
 }

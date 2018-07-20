@@ -4,6 +4,7 @@ import com.ffxl.cloud.mapper.MenuMapper;
 import com.ffxl.cloud.model.Menu;
 import com.ffxl.cloud.model.MenuExample;
 import com.ffxl.cloud.model.base.BaseMenuExample.Criteria;
+import com.ffxl.cloud.model.warpper.MenuWarpper;
 import com.ffxl.cloud.service.MenuService;
 import com.ffxl.platform.core.GenericMapper;
 import com.ffxl.platform.core.GenericServiceImpl;
@@ -54,5 +55,10 @@ public class MenuServiceImpl extends GenericServiceImpl<Menu, MenuExample, Strin
     @Override
     public List<MenuNode> getMenusByRoleIds(List<String> roleIds) {
         return menuMapper.getMenusByRoleIds(roleIds);
+    }
+
+    @Override
+    public MenuWarpper queryMenuByCode(String code) {
+        return menuMapper.queryMenuByCode(code);
     }
 }
