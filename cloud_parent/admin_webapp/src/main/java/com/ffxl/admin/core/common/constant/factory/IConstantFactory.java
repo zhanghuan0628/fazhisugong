@@ -3,6 +3,8 @@ package com.ffxl.admin.core.common.constant.factory;
 import java.util.List;
 
 import com.ffxl.cloud.model.Dictionary;
+import com.ffxl.cloud.model.Menu;
+import com.ffxl.cloud.model.warpper.MenuWarpper;
 import com.ffxl.platform.core.node.MenuNode;
 
 /**
@@ -80,6 +82,11 @@ public interface IConstantFactory {
      * 获取菜单名称通过编号
      */
     String getMenuNameByCode(String code);
+    
+    /**
+     * 获取菜单及父菜单通过编号
+     */
+    MenuWarpper getMenuByCode(String code);
     
     /**
      * 获取菜单状态

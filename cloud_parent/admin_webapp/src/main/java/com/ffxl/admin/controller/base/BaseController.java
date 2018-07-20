@@ -8,7 +8,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 
+import com.ffxl.admin.core.common.constant.factory.ConstantFactory;
+import com.ffxl.admin.core.util.MenuKit;
 import com.ffxl.platform.core.DataTablesUtil;
 import com.ffxl.platform.core.Page;
 import com.ffxl.platform.core.support.HttpKit;
@@ -16,6 +19,8 @@ import com.ffxl.platform.core.support.HttpKit;
 public class BaseController {
     @Autowired
     private HttpSession session;
+    
+    private Model model;
     
     protected static String REDIRECT = "redirect:";
     protected static String FORWARD = "forward:";

@@ -54,7 +54,6 @@ public class LoginController extends BaseController {
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String list(Model model,HttpServletRequest request, HttpServletResponse response) {
         HttpSession session = request.getSession();
-        session.setAttribute("a", "金花或");
         if (!ShiroKit.isAuthenticated() || ShiroKit.getUser() == null) {
             return PREFIX+"login.html"; //跳转登录
         } 
@@ -65,13 +64,13 @@ public class LoginController extends BaseController {
             model.addAttribute("tips", "该用户没有角色，无法登陆");
             return PREFIX+"login.html";
         }
-        List<MenuNode> menus = menuService.getMenusByRoleIds(roleList);
-        List<MenuNode> titles = MenuNode.buildTitle(menus);
-//        titles = ApiMenuFilter.build(titles);
-        model.addAttribute("titles", titles);
-        //用户信息
-        ShiroUser user = ShiroKit.getUser();
-        model.addAttribute("user", user);
+//        List<MenuNode> menus = menuService.getMenusByRoleIds(roleList);
+//        List<MenuNode> titles = MenuNode.buildTitle(menus);
+////        titles = ApiMenuFilter.build(titles);
+//        model.addAttribute("titles", titles);
+//        //用户信息
+//        ShiroUser user = ShiroKit.getUser();
+//        model.addAttribute("user", user);
         
         return PREFIX + "index.html";
     }

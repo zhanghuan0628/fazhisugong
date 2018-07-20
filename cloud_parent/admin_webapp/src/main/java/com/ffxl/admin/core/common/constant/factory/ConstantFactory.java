@@ -15,6 +15,7 @@ import com.ffxl.cloud.model.Dictionary;
 import com.ffxl.cloud.model.Menu;
 import com.ffxl.cloud.model.Role;
 import com.ffxl.cloud.model.SysUser;
+import com.ffxl.cloud.model.warpper.MenuWarpper;
 import com.ffxl.cloud.service.DictionaryService;
 import com.ffxl.cloud.service.MenuService;
 import com.ffxl.cloud.service.RoleService;
@@ -215,6 +216,16 @@ public class ConstantFactory implements IConstantFactory {
         }
     }
     
+    @Override
+    public MenuWarpper getMenuByCode(String code) {
+        if (ToolUtil.isEmpty(code)) {
+            return null;
+        } else {
+            MenuWarpper menuWarpper = menuService.queryMenuByCode(code);
+            return menuWarpper;
+        }
+    }
+    
     /**
      * 获取菜单状态
      */
@@ -347,5 +358,7 @@ public class ConstantFactory implements IConstantFactory {
 //        }
         return "未完待续";
     }
+
+   
 
 }
