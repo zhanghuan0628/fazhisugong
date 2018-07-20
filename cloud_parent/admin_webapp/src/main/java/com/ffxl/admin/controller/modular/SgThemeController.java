@@ -30,6 +30,7 @@ import com.ffxl.platform.constant.JsonResult;
 import com.ffxl.platform.core.DataTablesUtil;
 import com.ffxl.platform.core.Page;
 import com.ffxl.platform.util.DateUtil;
+import com.ffxl.platform.util.StringUtil;
 import com.ffxl.platform.util.UUIDUtil;
 
 /**
@@ -79,6 +80,9 @@ public class SgThemeController extends BaseController{
     @RequestMapping("/theme_list_pageList")
     @ResponseBody
     public JsonResult pageList(DataTablesUtil dataTables,Page page,SgTheme sgTheme) {
+    	if(!StringUtil.isEmpty(sgTheme.getTitle4())){
+    		sgTheme.setTitle(sgTheme.getTitle4());
+    	}
     	page = this.getPageInfo(page,dataTables);
     	List<SgTheme> dataList = sgThemeService.queryPageList(sgTheme,page);
         dataTables = this.getDataTables(page, dataTables, dataList);

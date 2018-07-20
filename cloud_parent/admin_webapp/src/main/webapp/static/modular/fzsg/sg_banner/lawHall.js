@@ -61,7 +61,7 @@ lawHall.dataTables = function (columns) {
 	    		others : {
 	    			selector : '#'+lawHall.id,
 	    			url : Feng.ctxPath +"/sg_law_hall/law_hall_List?status=publish",
-	    			param : ["title"]
+	    			param : ["title2"]
 	    		}	
 	    }
 	    return options;
@@ -71,7 +71,10 @@ lawHall.dataTables = function (columns) {
  * 搜索
  */
 lawHall.search = function () {
-	lawHall.table.draw();
+	lawHall.table.destroy();
+	var defaultColunms = lawHall.initColumn();
+    var options = lawHall.dataTables(defaultColunms);    
+    lawHall.table = defDataTables(options);
 }
 /**
  * 保存

@@ -56,7 +56,7 @@ userTheme.dataTables = function (columns) {
  * 搜索
  */
 userTheme.search = function () {
-	userTheme.table.draw();
+	
 }
 
 $(function () {
@@ -65,10 +65,4 @@ $(function () {
     var options = userTheme.dataTables(defaultColunms);    
     userTheme.table = defDataTables(options);
     
-    $('.enter').bind('keypress',function(event){//监听sim卡回车事件
-        if(event.keyCode == "13")    
-        {  
-        	userTheme.search();
-        }
-    });
 });

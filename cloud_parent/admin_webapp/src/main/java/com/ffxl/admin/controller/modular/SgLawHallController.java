@@ -57,6 +57,9 @@ public class SgLawHallController extends BaseController{
     @RequestMapping("/law_hall_List")
     @ResponseBody
     public JsonResult list(DataTablesUtil dataTables,Page page,SgLaw sgLaw) {
+    	if(!StringUtil.isEmpty(sgLaw.getTitle2())){
+    		sgLaw.setTitle(sgLaw.getTitle2());
+    	}
     	sgLaw.setCategory("law_lecture_room");
     	page = this.getPageInfo(page,dataTables);
     	List<SgLaw> dataList = sgLawService.queryPageList(sgLaw,page);

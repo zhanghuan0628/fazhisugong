@@ -22,6 +22,8 @@ public class SgAsk extends BaseSgAsk {
 	private String isAnswer;
 	
 	private String headUrl;
+	
+	private String title1;
 
 	public String getCreateTime() {
 		return createTime;
@@ -93,5 +95,13 @@ public class SgAsk extends BaseSgAsk {
 
 	public void setHeadUrl(String headUrl) {
 		this.headUrl = headUrl;
+	}
+
+	public String getTitle1() {
+		return title1;
+	}
+
+	public void setTitle1(String title1) {
+		this.title1 = title1;
 	}
 }
