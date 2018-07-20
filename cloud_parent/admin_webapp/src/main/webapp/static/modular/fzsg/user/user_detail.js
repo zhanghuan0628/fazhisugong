@@ -66,7 +66,7 @@ sgUserAsk.initColumn = function () {
  * 初始化表格参数
  */
 sgUserAsk.dataTables = function (columns) {
-	    var options ={
+	    var userOptions ={
 	    		columns : columns,
 	    		others : {
 	    			selector : '#'+sgUserAsk.id,
@@ -74,7 +74,7 @@ sgUserAsk.dataTables = function (columns) {
 	    			param : ["title","userId"]
 	    		}	
 	    }
-	    return options;
+	    return userOptions;
 	};
 
 /**
@@ -86,14 +86,13 @@ sgUserAsk.search = function () {
     var options = sgUserAsk.dataTables(defaultColunms);    
     sgUserAsk.table = defDataTables(options);
 	sgUserAsk.table.draw();
-   
 }
 
 $(function () {
 	$("#tab-system").Huitab("#tab-system .tabBar span","#tab-system .tabCon","current","click","0");
-    var defaultColunms = sgUserAsk.initColumn();
-    var options = sgUserAsk.dataTables(defaultColunms);    
-    sgUserAsk.table = defDataTables(options);
+    var userDetailColunms = sgUserAsk.initColumn();
+    var userDetailOptions = sgUserAsk.dataTables(userDetailColunms);    
+    sgUserAsk.table = defDataTables(userDetailOptions);
     
     $('.enter').bind('keypress',function(event){//监听sim卡回车事件
         if(event.keyCode == "13")    
