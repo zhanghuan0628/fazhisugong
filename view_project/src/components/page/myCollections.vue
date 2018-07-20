@@ -165,7 +165,12 @@ export default {
 		} else {
 			next("/login");
 		}
-  	},
+	},
+	beforeRouteLeave (to, from, next) {
+		this.trendsMescroll.destroy();
+		this.classMescroll.destroy();
+		next()
+	},
 	store
 }
 </script>

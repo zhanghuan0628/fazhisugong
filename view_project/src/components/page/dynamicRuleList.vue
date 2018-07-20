@@ -81,6 +81,10 @@ export default {
 			return cont.replace(reg,"")
 		}
 	},
+	beforeRouteLeave (to, from, next) {
+		this.dynamicMescroll.destroy();
+		next()
+	},
 	store
 }
 </script>

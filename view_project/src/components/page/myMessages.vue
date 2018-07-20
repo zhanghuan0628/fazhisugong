@@ -93,7 +93,11 @@ export default {
 		} else {
 			next("/login");
 		}
-  	},
+	},
+	beforeRouteLeave (to, from, next) {
+		this.myMessagesMescroll.destroy();
+		next()
+	},
 	store
 }
 </script>

@@ -78,6 +78,10 @@ export default {
 			return cont.replace(reg,"")
 		}
 	},
+	beforeRouteLeave (to, from, next) {
+		this.legalMescroll.destroy();
+		next()
+	},
 	store
 }
 </script>

@@ -198,7 +198,11 @@ export default {
 		} else {
 			next("/login");
 		}
-  	},
+	},
+	beforeRouteLeave (to, from, next) {
+		this.riskMescroll.destroy();
+		next()
+	},
 	store
 }
 </script>

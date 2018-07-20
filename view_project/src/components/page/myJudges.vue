@@ -88,7 +88,11 @@ export default {
 		} else {
 			next("/login");
 		}
-  	},
+	},
+	beforeRouteLeave (to, from, next) {
+		this.judgesMescroll.destroy();
+		next()
+	},
 	store
 }
 </script>

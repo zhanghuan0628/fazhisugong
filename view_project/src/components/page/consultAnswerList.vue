@@ -97,7 +97,11 @@ export default {
 		} else {
 			next("/login");
 		}
-  	},
+	},
+	beforeRouteLeave (to, from, next) {
+		this.consultAnswerMescroll.destroy();
+		next()
+	},
 	store
 }
 </script>
