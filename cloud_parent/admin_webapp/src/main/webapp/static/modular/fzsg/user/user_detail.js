@@ -81,6 +81,10 @@ sgUserAsk.dataTables = function (columns) {
  * 搜索
  */
 sgUserAsk.search = function () {
+	sgUserAsk.table.destroy();
+	var defaultColunms = sgUserAsk.initColumn();
+    var options = sgUserAsk.dataTables(defaultColunms);    
+    sgUserAsk.table = defDataTables(options);
 	sgUserAsk.table.draw();
    
 }
