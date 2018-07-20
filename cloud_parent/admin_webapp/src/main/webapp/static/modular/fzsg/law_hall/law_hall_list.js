@@ -190,4 +190,11 @@ $(function () {
     var options = lawHall.dataTables(defaultColunms);    
     lawHall.table = defDataTables(options);
     Feng.selectMultiRow(lawHall.id,lawHall);
+    
+    $('.enter').bind('keypress',function(event){//监听sim卡回车事件
+        if(event.keyCode == "13")    
+        {  
+        	lawHall.search();
+        }
+    });
 });

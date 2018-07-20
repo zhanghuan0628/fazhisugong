@@ -86,12 +86,19 @@ sysRole.multi_del=function (obj,id){
 }
 
 /*角色-编辑*/
-sysRole.role_edit=function (title,url,id,w,h){
-	layer_show(title,Feng.ctxPath +url+"?id="+id,w,h);
+sysRole.role_edit=function (title,url,w,h){
+	if(sysRole.getSelIds()){
+    	var selIds = sysRole.seItem; 
+    	layer_show(title,Feng.ctxPath +url+"?id="+selIds,w,h);
+    }
 }
 /*角色-授权*/
-sysRole.power_add=function (title,url,id,w,h){
-	layer_show(title,Feng.ctxPath +url+"?id="+id,w,h);
+sysRole.power_add=function (title,url,w,h){
+	if(sysRole.getSelIds()){
+    	var selIds = sysRole.seItem; 
+    	layer_show(title,Feng.ctxPath +url+"?id="+selIds,w,h);
+    }
+	
 }
 /*角色-停用*/
 sysRole.role_stop=function (obj,id){
@@ -142,25 +149,10 @@ sysRole.role_start = function(obj,id){
  */
 sysRole.initColumn = function () {
     var columns = [
-        {title: '', data:"id",width:"10px",render: function(data, type, row, meta) { return '<input type="checkbox" name="checklist" value="'+data+'" class="iCheck">';}},
+        {title: '', data:"id",width:"10px",render: function(data, type, row, meta) { return '<input type="radio" name="checklist" value="'+data+'" class="iCheck">';}},
         {title: '角色名称', data: 'name'},
         {title: '上级角色', data: 'fatherName'},
-        {title: '备注', data: 'tips'},
-        {title:'操作',data:'loginName', render: function(data, type, row, meta){
-        	var msg = "";
-        	msg+='<a title="编辑" href="javascript:;" onclick="sysRole.role_edit(\'角色编辑\',\'/sys_role/role_edit\','
-			+ "'"
-			+row.id
-			+ "'"
-			+',\'800\',\'500\')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i>'
-			+'</a> <a title="授权" href="javascript:;" onclick="sysRole.power_add(\'角色授权\',\'/sys_role/power_add\','
-			+ "'"
-			+row.id
-			+ "'"
-			+',\'300\',\'500\')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe60d;</i>'
-			+'</td>';
-        	return msg;
-        }}];
+        {title: '备注', data: 'tips'}];
     return columns;
 };
 
@@ -194,5 +186,11 @@ $(function () {
     var defaultColunms = sysRole.initColumn();
     var options = sysRole.dataTables(defaultColunms);    
     sysRole.table = defDataTables(options);
-    Feng.selectMultiRow(sysRole.id,sysRole);
+    Feng.selectSingleRow(sysRole.id,sysRole);
+    $('.enter').bind('keypress',function(event){//监听sim卡回车事件
+        if(event.keyCode == "13")    
+        {  
+        	sysRole.search();
+        }
+    });
 });

@@ -116,4 +116,11 @@ $(function () {
     table.setExpandAll(true);
     table.init();
     sysMenu.table = table;
+    
+    $('.enter').bind('keypress',function(event){//监听sim卡回车事件
+        if(event.keyCode == "13")    
+        {  
+        	sysMenu.search();
+        }
+    });
 });

@@ -95,4 +95,11 @@ $(function () {
     var options = lawInfo.dataTables(defaultColunms);    
     lawInfo.table = defDataTables(options);
     Feng.selectSingleRow(lawInfo.id,lawInfo);
+    
+    $('.enter').bind('keypress',function(event){//监听sim卡回车事件
+        if(event.keyCode == "13")    
+        {  
+        	lawInfo.search();
+        }
+    });
 });

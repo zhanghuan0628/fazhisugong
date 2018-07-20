@@ -74,7 +74,23 @@ public class SysUserController extends BaseController {
 		model.addAttribute("userAccount", user.getUserName());
 		return PREFIX + "role_add.html";
     }
-    
+    /**
+     * 跳转到编辑个人信息页面
+     */
+//     @Permission
+     @RequestMapping("/edit_info")
+     public String editInfo(String id, Model model) {
+     if (StringUtil.isEmpty(id)) {
+         throw new BusinessException(Message.M6002);
+     }
+//     assertAuth(id);
+     SysUser user = userService.selectByPrimaryKey(id);
+     model.addAttribute("info", user);
+//     model.addAttribute("roleName",ConstantFactory.me().getRoleName(user.getRoleid()));
+//     model.addAttribute("deptName",ConstantFactory.me().getDeptName(user.getDeptid()));
+     LogObjectHolder.me().set(user);
+     return PREFIX + "edit_info.html";
+     }
      /**
      * 跳转到编辑管理员页面
      */

@@ -163,4 +163,10 @@ $(function () {
     var options = sgUser.dataTables(defaultColunms);    
     sgUser.table = defDataTables(options);
     Feng.selectSingleRow(sgUser.id,sgUser);
+    $('.enter').bind('keypress',function(event){//监听sim卡回车事件
+        if(event.keyCode == "13")    
+        {  
+        	sgUser.search();
+        }
+    });
 });

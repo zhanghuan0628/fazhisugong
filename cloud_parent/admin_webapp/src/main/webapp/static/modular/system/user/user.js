@@ -277,4 +277,11 @@ $(function () {
     
     Feng.selectSingleRow(SysUser.id,SysUser);
     /*Feng.selectMultiRow(SysUser.id,SysUser);*/
+    
+    $('.enter').bind('keypress',function(event){//监听sim卡回车事件
+        if(event.keyCode == "13")    
+        {  
+        	SysUser.search();
+        }
+    });
 });

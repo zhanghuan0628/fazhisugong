@@ -124,4 +124,11 @@ $(function () {
     var options = loginLog.dataTables(defaultColunms);    
     loginLog.table = defDataTables(options);
     Feng.selectMultiRow(loginLog.id,loginLog);
+    
+    $('.enter').bind('keypress',function(event){//监听sim卡回车事件
+        if(event.keyCode == "13")    
+        {  
+        	loginLog.search();
+        }
+    });
 });

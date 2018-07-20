@@ -1,8 +1,19 @@
 @layout("/common/_container.html"){
-<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 内容管理 <span class="c-gray en">&gt;</span> 法治讲堂 <a class="btn buttons radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
+<nav class="breadcrumb">
+<i class="Hui-iconfont">&#xe67f;</i> 
+	首页 <span class="c-gray en">&gt;</span>
+	@var menuWarpper = menukit.getMenuByCode("law_hall");
+	@if(menuWarpper !=null){
+		${menuWarpper.pname} <span class="c-gray en">&gt;</span> 
+		${menuWarpper.name}
+	@}
+<a class="btn buttons radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" >
+	<i class="Hui-iconfont">&#xe68f;</i>
+</a>
+</nav>
 <div class="page-container">
 	<div class="text-c">
-		标题：<input type="text" class="input-text" style="width:250px" id="" name="title">
+		标题：<input type="text" class="input-text enter" style="width:250px" id="" name="title">
 		<input type="hidden" class="input-text" style="width:250px" name="categoryCode">
 		<button type="button" class="btn buttons" id="search" onclick="lawHall.search()"  ><i class="Hui-iconfont">&#xe665;</i> 查询</button>
 	</div>

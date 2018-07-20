@@ -205,4 +205,11 @@ $(function () {
     var options = banner.dataTables(defaultColunms);    
     banner.table = defDataTables(options);
     Feng.selectMultiRow(banner.id,banner);
+    
+    $('.enter').bind('keypress',function(event){//监听sim卡回车事件
+        if(event.keyCode == "13")    
+        {  
+        	banner.search();
+        }
+    });
 });

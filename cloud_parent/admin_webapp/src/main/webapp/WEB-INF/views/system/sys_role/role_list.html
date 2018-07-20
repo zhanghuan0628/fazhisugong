@@ -1,15 +1,19 @@
 @layout("/common/_container.html"){
 <nav class="breadcrumb">
-	<i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span>
-	管理员管理 <span class="c-gray en">&gt;</span> 角色管理 <a
-		class="btn buttons radius r"
-		style="line-height: 1.6em; margin-top: 3px"
-		href="javascript:location.replace(location.href);" title="刷新"><i
-		class="Hui-iconfont">&#xe68f;</i></a>
+<i class="Hui-iconfont">&#xe67f;</i> 
+	首页 <span class="c-gray en">&gt;</span>
+	@var menuWarpper = menukit.getMenuByCode("role_manger");
+	@if(menuWarpper !=null){
+		${menuWarpper.pname} <span class="c-gray en">&gt;</span> 
+		${menuWarpper.name}
+	@}
+<a class="btn buttons radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" >
+	<i class="Hui-iconfont">&#xe68f;</i>
+</a>
 </nav>
 <div class="page-container">
 	<div class="text-c">
-		角色名称：<input type="text" class="input-text" style="width: 250px" id="" name="name">
+		角色名称：<input type="text" class="input-text enter" style="width: 250px" id="" name="name">
 		<button type="button" class="btn buttons" id="search"
 			onclick="sysRole.search()">
 			<i class="Hui-iconfont">&#xe665;</i> 查询
@@ -19,12 +23,22 @@
 		<span class="l">
 			@if(shiro.hasPermission("/sys_role/del_role")){
 			<a href="javascript:;" onclick="sysRole.multi_del()" class="btn btn-danger radius"><i
-				class="Hui-iconfont">&#xe6e2;</i> 批量删除</a>
+				class="Hui-iconfont">&#xe6e2;</i> 删除</a>
 			@} 
 			@if(shiro.hasPermission("/sys_role/role_add")){
 			<a href="javascript:;" onclick="sysRole.role_add('添加角色','${ctxPath}/sys_role/role_add','800','500')"
 			    class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i>
 				新增</a>
+			@}
+			@if(shiro.hasPermission("/sys_role/edit_role")){
+			<a href="javascript:;" onclick="sysRole.role_edit('编辑角色','/sys_role/role_edit','800','500')"
+			    class="btn btn-primary radius"><i class="Hui-iconfont">&#xe6df;</i>
+				编辑</a>
+			@}
+			@if(shiro.hasPermission("/sys_role/set_role")){
+			<a href="javascript:;" onclick="sysRole.power_add('添加权限','/sys_role/power_add','300','500')"
+			    class="btn btn-primary radius"><i class="Hui-iconfont">&#xe60d;</i>
+				授权</a>
 			@}
 		</span>
 	</div>

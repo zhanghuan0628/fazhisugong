@@ -102,4 +102,11 @@ $(function () {
     var options = theme.dataTables(defaultColunms);    
     theme.table = defDataTables(options);
     Feng.selectSingleRow(theme.id,theme);
+    
+    $('.enter').bind('keypress',function(event){//监听sim卡回车事件
+        if(event.keyCode == "13")    
+        {  
+        	theme.search();
+        }
+    });
 });
