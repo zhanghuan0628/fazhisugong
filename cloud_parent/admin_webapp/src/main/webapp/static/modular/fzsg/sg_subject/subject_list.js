@@ -99,7 +99,7 @@ subject.dataTables = function (columns) {
 	    		others : {
 	    			selector : '#'+subject.id,
 	    			url : Feng.ctxPath +"/sg_subject/subject_pageList",
-	    			param : ["title"]
+	    			param : ["qstn"]
 	    		}	
 	    }
 	    return options;
@@ -118,4 +118,11 @@ $(function () {
     var options = subject.dataTables(defaultColunms);    
     subject.table = defDataTables(options);
     Feng.selectMultiRow(subject.id,subject);
+    
+    $('.enter').bind('keypress',function(event){//监听sim卡回车事件
+        if(event.keyCode == "13")    
+        {  
+        	subject.search();
+        }
+    });
 });

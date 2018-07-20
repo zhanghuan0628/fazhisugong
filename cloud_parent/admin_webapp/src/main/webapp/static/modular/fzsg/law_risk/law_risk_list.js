@@ -196,4 +196,11 @@ $(function () {
     var options = lawRisk.dataTables(defaultColunms);    
     lawRisk.table = defDataTables(options);
     Feng.selectMultiRow(lawRisk.id,lawRisk);
+    
+    $('.enter').bind('keypress',function(event){//监听sim卡回车事件
+        if(event.keyCode == "13")    
+        {  
+        	lawRisk.search();
+        }
+    });
 });

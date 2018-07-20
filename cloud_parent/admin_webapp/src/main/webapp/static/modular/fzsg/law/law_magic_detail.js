@@ -201,4 +201,11 @@ $(function () {
     var options = lawMagic.dataTables(defaultColunms);    
     lawMagic.table = defDataTables(options);
     Feng.selectMultiRow(lawMagic.id,lawMagic);
+    
+    $('.enter').bind('keypress',function(event){//监听sim卡回车事件
+        if(event.keyCode == "13")    
+        {  
+        	lawMagic.search();
+        }
+    });
 });

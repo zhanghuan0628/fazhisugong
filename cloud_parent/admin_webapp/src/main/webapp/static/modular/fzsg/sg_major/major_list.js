@@ -87,4 +87,11 @@ $(function () {
     var options = sgMajor.dataTables(defaultColunms);    
     sgMajor.table = defDataTables(options);
     Feng.selectMultiRow(sgMajor.id,sgMajor);
+    
+    $('.enter').bind('keypress',function(event){//监听sim卡回车事件
+        if(event.keyCode == "13")    
+        {  
+        	sgMajor.search();
+        }
+    });
 });

@@ -64,4 +64,11 @@ $(function () {
     var options = answerNum.dataTables(defaultColunms);    
     answerNum.table = defDataTables(options);
     Feng.selectMultiRow(answerNum.id,answerNum);
+    
+    $('.enter').bind('keypress',function(event){//监听sim卡回车事件
+        if(event.keyCode == "13")    
+        {  
+        	answerNum.search();
+        }
+    });
 });

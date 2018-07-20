@@ -90,4 +90,11 @@ $(function () {
     var defaultColunms = sgUserAsk.initColumn();
     var options = sgUserAsk.dataTables(defaultColunms);    
     sgUserAsk.table = defDataTables(options);
+    
+    $('.enter').bind('keypress',function(event){//监听sim卡回车事件
+        if(event.keyCode == "13")    
+        {  
+        	sgUserAsk.search();
+        }
+    });
 });

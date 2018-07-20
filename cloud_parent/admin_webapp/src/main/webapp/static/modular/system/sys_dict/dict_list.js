@@ -161,4 +161,11 @@ $(function () {
     var options = Dict.dataTables(defaultColunms);    
     Dict.table = defDataTables(options);
     Feng.selectMultiRow(Dict.id,Dict);
+    
+    $('.enter').bind('keypress',function(event){//监听sim卡回车事件
+        if(event.keyCode == "13")    
+        {  
+        	Dict.search();
+        }
+    });
 });

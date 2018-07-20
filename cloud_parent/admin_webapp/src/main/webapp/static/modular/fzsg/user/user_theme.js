@@ -64,5 +64,11 @@ $(function () {
     var defaultColunms = userTheme.initColumn();
     var options = userTheme.dataTables(defaultColunms);    
     userTheme.table = defDataTables(options);
-   
+    
+    $('.enter').bind('keypress',function(event){//监听sim卡回车事件
+        if(event.keyCode == "13")    
+        {  
+        	userTheme.search();
+        }
+    });
 });
