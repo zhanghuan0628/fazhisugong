@@ -1,5 +1,16 @@
 @layout("/common/_container.html"){
-<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 内容管理 <span class="c-gray en">&gt;</span> 法治动态 <a class="btn buttons radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
+<nav class="breadcrumb">
+<i class="Hui-iconfont">&#xe67f;</i> 
+	首页 <span class="c-gray en">&gt;</span>
+	@var menuWarpper = menukit.getMenuByCode("answer_num");
+	@if(menuWarpper !=null){
+		${menuWarpper.pname} <span class="c-gray en">&gt;</span> 
+		${menuWarpper.name}
+	@}
+<a class="btn buttons radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" >
+	<i class="Hui-iconfont">&#xe68f;</i>
+</a>
+</nav>
 <div class="page-container">
 	<div class="text-c">
 		期数：<input type="text" class="input-text enter" style="width:250px" id="stage" name="stage">
