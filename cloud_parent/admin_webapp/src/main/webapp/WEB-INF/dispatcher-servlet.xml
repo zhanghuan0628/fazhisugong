@@ -132,8 +132,8 @@
 				<constructor-arg>
 					<props>
 						<prop key="kaptcha.border">yes</prop>
-						<prop key="kaptcha.border.color">105,179,90</prop>
-						<prop key="kaptcha.textproducer.font.color">blue</prop>
+						<prop key="kaptcha.border.color">66,156,132</prop>
+						<prop key="kaptcha.textproducer.font.color">66,156,132</prop>
 						<prop key="kaptcha.image.width">125</prop>
 						<prop key="kaptcha.image.height">45</prop>
 						<prop key="kaptcha.textproducer.font.size">40</prop>
