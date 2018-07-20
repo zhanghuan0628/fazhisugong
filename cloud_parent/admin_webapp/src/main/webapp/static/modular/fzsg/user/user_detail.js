@@ -4,7 +4,7 @@
 var sgUserAsk = {
     id: "sgUserAskTable",//表格id
     seItem: [],		//选中的条目
-    table: null,        //table
+    table1: null,        //table
     layerIndex: -1
 };
 
@@ -20,7 +20,7 @@ sgUserAsk.del=function (obj,id){
 	var operation = function(){
         var ajax = new $ax(Feng.ctxPath + "/sg_user/del?id="+id, function (data) {
         	if(data.code ==2000){
-        		sgUserAsk.table.draw();
+        		sgUserAsk.table1.draw();
 				Feng.success("删除成功!");
 			}else{
 				Feng.error(data.message);
@@ -66,7 +66,7 @@ sgUserAsk.initColumn = function () {
  * 初始化表格参数
  */
 sgUserAsk.dataTables = function (columns) {
-	    var options ={
+	    var userOptions ={
 	    		columns : columns,
 	    		others : {
 	    			selector : '#'+sgUserAsk.id,
@@ -74,22 +74,22 @@ sgUserAsk.dataTables = function (columns) {
 	    			param : ["title","userId"]
 	    		}	
 	    }
-	    return options;
+	    return userOptions;
 	};
 
 /**
  * 搜索
  */
 sgUserAsk.search = function () {
-	sgUserAsk.table.draw();
-   
+//	console.log(JSON.stringify(sgUserAsk.table1));
+	sgUserAsk.table1.draw();
 }
 
 $(function () {
 	$("#tab-system").Huitab("#tab-system .tabBar span","#tab-system .tabCon","current","click","0");
-    var defaultColunms = sgUserAsk.initColumn();
-    var options = sgUserAsk.dataTables(defaultColunms);    
-    sgUserAsk.table = defDataTables(options);
+    var userDetailColunms = sgUserAsk.initColumn();
+    var userDetailOptions = sgUserAsk.dataTables(userDetailColunms);    
+    sgUserAsk.table1 = defDataTables(userDetailOptions);
     
     $('.enter').bind('keypress',function(event){//监听sim卡回车事件
         if(event.keyCode == "13")    
