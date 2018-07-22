@@ -18,15 +18,22 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ffxl.admin.controller.base.BaseController;
 import com.ffxl.admin.core.common.annotion.BussinessLog;
+import com.ffxl.admin.core.common.constant.dictmap.DictionaryDic;
 import com.ffxl.admin.core.common.constant.dictmap.SgLawDic;
+import com.ffxl.admin.core.common.constant.dictmap.SgThemeDic;
 import com.ffxl.cloud.model.SgLaw;
 import com.ffxl.cloud.model.SgTheme;
 import com.ffxl.cloud.model.SgThemeAnswerLog;
+import com.ffxl.cloud.model.SgThemeAnswerLogExample;
 import com.ffxl.cloud.model.SgThemeAwardLog;
+import com.ffxl.cloud.model.SgThemeAwardLogExample;
+import com.ffxl.cloud.model.SgThemeExample;
+import com.ffxl.cloud.model.base.BaseSgThemeExample.Criteria;
 import com.ffxl.cloud.service.SgThemeAnswerLogService;
 import com.ffxl.cloud.service.SgThemeAwardLogService;
 import com.ffxl.cloud.service.SgThemeService;
 import com.ffxl.platform.constant.JsonResult;
+import com.ffxl.platform.constant.Message;
 import com.ffxl.platform.core.DataTablesUtil;
 import com.ffxl.platform.core.Page;
 import com.ffxl.platform.util.DateUtil;
@@ -46,6 +53,9 @@ public class SgThemeController extends BaseController{
 	
 	@Autowired
 	private SgThemeAnswerLogService sgThemeAnswerLogService;
+	
+	@Autowired
+	private SgThemeAwardLogService sgThemeAwardLogService;
 	
 	private static String PREFIX = "/fzsg/sg_theme/";
 	/**
@@ -162,7 +172,7 @@ public class SgThemeController extends BaseController{
      * @return
      */
     @ResponseBody
-    @BussinessLog(value = "新增我是法官", key = "id", dict = SgLawDic.class)
+    @BussinessLog(value = "新增我是法官", key = "id", dict = SgThemeDic.class)
     @RequestMapping("/add")
     public JsonResult add(SgTheme sgTheme){
     	String startDate = sgTheme.getStartDate();
@@ -190,7 +200,7 @@ public class SgThemeController extends BaseController{
      * @return
      */
     @ResponseBody
-    @BussinessLog(value = "修改我是法官", key = "id", dict = SgLawDic.class)
+    @BussinessLog(value = "修改我是法官", key = "id", dict = SgThemeDic.class)
     @RequestMapping("/edit")
     public JsonResult edit(SgTheme sgTheme){
     	String startDate = sgTheme.getStartDate();
@@ -228,4 +238,36 @@ public class SgThemeController extends BaseController{
         return new JsonResult("2000", dataTables);
         
     }
+    /**
+     * 删除
+     * @param ids
+     * @return
+     */
+   @RequestMapping("/del")
+   @BussinessLog(value = "删除我是法官", key = "id", dict = SgThemeDic.class)
+   @ResponseBody
+   public JsonResult del(String ids){
+   	if (StringUtil.isEmpty(ids)) {
+   		return new JsonResult(Message.M4002);
+       }
+   	int ret = -1;
+   	String[] idArray = ids.split(",");
+   	for(String id:idArray ){
+   		SgThemeAwardLogExample e = new SgThemeAwardLogExample();
+   	 	com.ffxl.cloud.model.base.BaseSgThemeAwardLogExample.Criteria cc= e.createCriteria();
+   	 	cc.andThemeIdEqualTo(id);
+   		sgThemeAwardLogService.deleteByExample(e);
+   		SgThemeAnswerLogExample example = new SgThemeAnswerLogExample();
+   	 	com.ffxl.cloud.model.base.BaseSgThemeAnswerLogExample.Criteria c= example.createCriteria();
+   	 	c.andThemeIdEqualTo(id);
+   		sgThemeAnswerLogService.deleteByExample(example);
+   		ret = sgThemeService.deleteByPrimaryKey(id);
+   	}
+   	if(ret >0){
+      	 return new JsonResult(Message.M2000);
+      }else{
+      	 return new JsonResult(Message.M5000);
+      }
+   	
+   }
 }

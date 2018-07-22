@@ -7,7 +7,24 @@ var theme = {
     table: null,        //table
     layerIndex: -1
 };
+/**
+ * 获取选中数据
+ */
+theme.getSelIds = function(){
+	var  isCheck =false;
+	theme.seItem=[];
+	$('.iCheck').each(function () {
+        if($(this).is(':checked')){
+        	isCheck = true;
+        	theme.seItem.push($(this).val());
+        }
+    });
 
+    if(!isCheck) {
+    	Feng.error("请至少选择一条数据!");
+    }
+    return isCheck;
+}
 /*我是法官-编辑*/
 theme.edit_theme=function (title,url,id,w,h){
 	layer_show(title,Feng.ctxPath +url+"?id="+id+"&type=edit",w,h);
@@ -23,7 +40,7 @@ theme.add_theme=function (title,url,id,w,h){
 /*我是法官-删除(批量)*/
 theme.del_theme=function (){
 	var operation = function(){
-        var ajax = new $ax(Feng.ctxPath +"/sg_theme/del_theme?ids="+selIds, function (data) {
+        var ajax = new $ax(Feng.ctxPath +"/sg_theme/del?ids="+selIds, function (data) {
         	if(data.code ==2000){
         		theme.table.draw();
 				Feng.success("已删除!");

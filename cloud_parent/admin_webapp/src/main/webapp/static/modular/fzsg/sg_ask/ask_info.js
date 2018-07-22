@@ -23,12 +23,12 @@ var askInfoDlg = {
 			title:{
 				required:true,
 				minlength:1,
-				maxlength:16,
+				maxlength:50,
 			},
 			content:{
 				required:true,
 				minlength:1,
-				maxlength:500,
+				maxlength:1000,
 			},
 		},
 		

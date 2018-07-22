@@ -15,7 +15,7 @@ var bannerInfoDlg = {
 	    	title:{
 				required:true,
 				minlength:1,
-				maxlength:16,
+				maxlength:50,
 			},
 			name:{
 				required:true,

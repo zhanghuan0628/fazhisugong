@@ -15,7 +15,7 @@ var themeInfoDlg = {
 	    	title:{
 				required:true,
 				minlength:1,
-				maxlength:16,
+				maxlength:50,
 			},
 			pass:{
 				required:true,
@@ -41,7 +41,7 @@ var themeInfoDlg = {
 			content:{
 				required:true,
 				minlength:1,
-				maxlength:500,
+				maxlength:1000,
 			},
 		},
 		
