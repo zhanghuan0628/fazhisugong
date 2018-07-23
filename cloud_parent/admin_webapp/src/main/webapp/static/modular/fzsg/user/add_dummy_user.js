@@ -48,7 +48,7 @@ var ossClient = new OSS.Wrapper({
     region: "oss-cn-shanghai",
     accessKeyId: "LTAICG7rs8rsGNj4",
     accessKeySecret: "FDtacJMEQXKRwIPgK3WKYR2Cyv8xKm",
-    bucket: "ffxl"
+    bucket: "sugong"
 });
 var newUrl = "";
 $("#file").bind("change", function(e) {
@@ -74,7 +74,7 @@ $("#file").bind("change", function(e) {
        }}).then(function (result) {
           /* $("#progressWindow").window('close');*/
     	   Feng.info("上传成功!");
-           var url = "http://ffxl.oss-cn-shanghai.aliyuncs.com/" + ossFileName;
+           var url = "http://sugong.oss-cn-shanghai.aliyuncs.com/" + ossFileName;
            newUrl = url;
            console.log("3333"+newUrl);
            $("#headUrl").val(newUrl);
@@ -84,7 +84,7 @@ $("#file").bind("change", function(e) {
 });
 function genOssFileName(fileType, entityType, suffix) {
     var date = new Date().getTime(); 
-    var fileName = "fzsg/user/"+date +"." + suffix;
+    var fileName = "FaZhiSuSong/user/"+date +"." + suffix;
     return fileName;
 }
 $(function(){

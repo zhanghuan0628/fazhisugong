@@ -63,7 +63,7 @@ ask.dataTables = function (columns) {
 	    		others : {
 	    			selector : '#'+ask.id,
 	    			url : Feng.ctxPath +"/sg_ask/ask_pageList",
-	    			param : ["title"]
+	    			param : ["title1"]
 	    		}	
 	    }
 	    return options;
@@ -73,7 +73,10 @@ ask.dataTables = function (columns) {
  * 搜索
  */
 ask.search = function () {
-	ask.table.draw();
+	ask.table.destroy();
+	var defaultColunms = ask.initColumn();
+    var options = ask.dataTables(defaultColunms);    
+    ask.table = defDataTables(options);
 }
 /**
  * 保存
@@ -105,4 +108,11 @@ $(function () {
     var options = ask.dataTables(defaultColunms);    
     ask.table = defDataTables(options);
     Feng.selectSingleRow(ask.id,ask);
+    
+    $('.enter').bind('keypress',function(event){//监听sim卡回车事件
+        if(event.keyCode == "13")    
+        {  
+        	ask.search();
+        }
+    });
 });

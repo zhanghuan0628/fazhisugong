@@ -19,6 +19,9 @@
 	</div>
 	<div class="cl pd-5 bg-1 bk-gray mt-20"> 
 		<span class="l">
+			@if(shiro.hasPermission("/sg_banner/del_banner")){
+			<a href="javascript:;" onclick="banner.del_banner()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a>
+			@}
 			@if(shiro.hasPermission("/sg_banner/add_banner")){
 			<a href="javascript:;" onclick="banner.add_banner('新增','/sg_banner/add_banner')" class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i> 新增</a>
 			@}

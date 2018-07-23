@@ -22,7 +22,7 @@ import cn.com.ffxl.OSSUtil;
 public class CommonController {
 	//图片存储
 		//图片存储
-		public static final String IMG_FFYY_WECHAT_SERVICE_PATH = "ffxl/fzsg/"; 
+		public static final String IMG_FFYY_WECHAT_SERVICE_PATH = "FaZhiSuSong/fzsg/"; 
 		public static final String IMG_DEFAULT_PATH = "default"; //图片默认存储目录
 		public static final String IMG_REQUEST_PATH = "catalog"; //图片请求存储目录关键字
 	/**
@@ -35,9 +35,6 @@ public class CommonController {
     public void imgUpload(HttpServletRequest request,HttpServletResponse response) throws IOException{
         String reqMethod = request.getMethod().toLowerCase();
         
-        response.setHeader("Access-Control-Allow-Origin", "http://ffyy.oss-cn-shanghai.aliyuncs.com");
-        response.setHeader("Access-Control-Allow-Headers", "X-Requested-With");
-        response.setHeader("Access-Control-Allow-Methods", "PUT,POST,GET,DELETE,OPTIONS");
         
         response.setContentType("textml;charset=UTF-8");
         String requestPath = (String) request.getParameter(IMG_REQUEST_PATH);

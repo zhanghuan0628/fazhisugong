@@ -12,6 +12,8 @@ public class SgTheme extends BaseSgTheme {
 	private String startDate;
 	
 	private String endDate;
+	
+	private String title4;
 
 	public String getStage() {
 		return stage;
@@ -51,5 +53,13 @@ public class SgTheme extends BaseSgTheme {
 
 	public void setEndDate(String endDate) {
 		this.endDate = endDate;
+	}
+
+	public String getTitle4() {
+		return title4;
+	}
+
+	public void setTitle4(String title4) {
+		this.title4 = title4;
 	}
 }

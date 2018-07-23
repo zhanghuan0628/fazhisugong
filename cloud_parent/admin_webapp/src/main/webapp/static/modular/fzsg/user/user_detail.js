@@ -85,7 +85,7 @@ sgUserAsk.search = function () {
 	var defaultColunms = sgUserAsk.initColumn();
     var options = sgUserAsk.dataTables(defaultColunms);    
     sgUserAsk.table = defDataTables(options);
-	sgUserAsk.table.draw();
+	//sgUserAsk.table.draw();
 }
 
 $(function () {

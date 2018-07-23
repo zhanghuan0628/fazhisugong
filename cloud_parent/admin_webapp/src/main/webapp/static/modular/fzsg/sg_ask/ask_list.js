@@ -7,7 +7,24 @@ var ask = {
     table: null,        //table
     layerIndex: -1
 };
+/**
+ * 获取选中数据
+ */
+ask.getSelIds = function(){
+	var  isCheck =false;
+	ask.seItem=[];
+	$('.iCheck').each(function () {
+        if($(this).is(':checked')){
+        	isCheck = true;
+        	ask.seItem.push($(this).val());
+        }
+    });
 
+    if(!isCheck) {
+    	Feng.error("请至少选择一条数据!");
+    }
+    return isCheck;
+}
 /*查看*/
 ask.ask_detail=function (title,url,id,w,h){
 	layer_show(title,Feng.ctxPath +url+"?id="+id,w,h);
@@ -25,7 +42,7 @@ ask.back=function (title,url,id,w,h){
 /*删除(单)*/
 ask.del=function (obj,id){
 	var operation = function(){
-        var ajax = new $ax(Feng.ctxPath + "/sg_ask/del?id="+id, function (data) {
+        var ajax = new $ax(Feng.ctxPath + "/sg_ask/del?ids="+id, function (data) {
         	if(data.code ==2000){
         		ask.table.draw();
 				Feng.success("删除成功!");
@@ -38,6 +55,26 @@ ask.del=function (obj,id){
         ajax.start();
     };
 	Feng.confirm('确认要删除吗？',operation);
+}
+/*删除(批量)*/
+ask.del_ask=function (){
+	var operation = function(){
+        var ajax = new $ax(Feng.ctxPath +"/sg_ask/del?ids="+selIds, function (data) {
+        	if(data.code ==2000){
+        		ask.table.draw();
+				Feng.success("已删除!");
+			}else{
+				Feng.error(data.message);
+			}
+        }, function (data) {
+            Feng.error("操作失败!" + data.responseJSON.message + "!");
+        });
+        ajax.start();
+    };
+    if(ask.getSelIds()){
+    	var selIds = ask.seItem; 
+    	Feng.confirm('确认要删除吗？',operation);
+    }
 }
 /**
  * 初始化表格的列

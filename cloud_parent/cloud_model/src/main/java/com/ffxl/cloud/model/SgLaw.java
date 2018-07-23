@@ -22,6 +22,10 @@ public class SgLaw extends BaseSgLaw {
 	private Map<String,String> map;
 	
 	private String allChapter;
+	
+	private String title2;
+	
+	private String title3;
 
 	public int getSort() {
 		return sort;
@@ -93,5 +97,21 @@ public class SgLaw extends BaseSgLaw {
 
 	public void setAllChapter(String allChapter) {
 		this.allChapter = allChapter;
+	}
+
+	public String getTitle2() {
+		return title2;
+	}
+
+	public void setTitle2(String title2) {
+		this.title2 = title2;
+	}
+
+	public String getTitle3() {
+		return title3;
+	}
+
+	public void setTitle3(String title3) {
+		this.title3 = title3;
 	}
 }

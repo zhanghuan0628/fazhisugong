@@ -7,7 +7,24 @@ var sgMajor = {
     table: null,        //table
     layerIndex: -1
 };
+/**
+ * 获取选中数据
+ */
+sgMajor.getSelIds = function(){
+	var  isCheck =false;
+	sgMajor.seItem=[];
+	$('.iCheck').each(function () {
+        if($(this).is(':checked')){
+        	isCheck = true;
+        	sgMajor.seItem.push($(this).val());
+        }
+    });
 
+    if(!isCheck) {
+    	Feng.error("请至少选择一条数据!");
+    }
+    return isCheck;
+}
 /*专业管理-编辑*/
 sgMajor.edit_major=function (title,url,id,w,h){
 	layer_show(title,Feng.ctxPath +url+"?id="+id,w,h);

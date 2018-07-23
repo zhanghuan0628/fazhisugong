@@ -18,7 +18,7 @@ var awardInfoDlg = {
 			tips:{
 				required:true,
 				minlength:1,
-				maxlength:10,
+				maxlength:50,
 			},
 		},
 		messages : {

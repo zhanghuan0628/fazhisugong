@@ -60,7 +60,7 @@ theme.dataTables = function (columns) {
 	    		others : {
 	    			selector : '#'+theme.id,
 	    			url : Feng.ctxPath +"/sg_theme/theme_list_pageList",
-	    			param : ["title"]
+	    			param : ["title4"]
 	    		}	
 	    }
 	    return options;
@@ -70,7 +70,10 @@ theme.dataTables = function (columns) {
  * 搜索
  */
 theme.search = function () {
-	theme.table.draw();
+	theme.table.destroy();
+	var defaultColunms = theme.initColumn();
+    var options = theme.dataTables(defaultColunms);    
+    theme.table = defDataTables(options);
 }
 /**
  * 保存

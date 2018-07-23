@@ -53,7 +53,7 @@ lawInfo.dataTables = function (columns) {
 	    		others : {
 	    			selector : '#'+lawInfo.id,
 	    			url : Feng.ctxPath +"/sg_law_information/law_information_pageList?status=publish",
-	    			param : ["title"]
+	    			param : ["title3"]
 	    		}	
 	    }
 	    return options;
@@ -63,7 +63,10 @@ lawInfo.dataTables = function (columns) {
  * 搜索
  */
 lawInfo.search = function () {
-	lawInfo.table.draw();
+	lawInfo.table.destroy();
+	var defaultColunms = lawInfo.initColumn();
+    var options = lawInfo.dataTables(defaultColunms);    
+    lawInfo.table = defDataTables(options);
 }
 /**
  * 保存

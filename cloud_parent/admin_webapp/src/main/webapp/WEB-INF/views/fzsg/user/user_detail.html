@@ -1,6 +1,7 @@
 @layout("/common/_container.html"){
 <article class="cl pd-20">
 	<form action="" method="post" class="form form-horizontal" id="form-article-add">
+		<input type="hidden" id="userId" name="userId" value="${id}" class="input-text">
 		<div id="tab-system" class="HuiTab">
 			<div class="tabBar cl"><span>基本信息</span><span>发布资讯</span><span>法官动态</span></div>
 			<input type="hidden" id="id" value="${id}" class="input-text">
@@ -31,9 +32,8 @@
 			<div class="tabCon">
 				<div class="page-container">
 					<div class="text-c">
-						<input type="hidden" id="userId" name="userId" value="${id}" class="input-text">
 						咨询标题：<input type="text" class="input-text enter" style="width:250px" id="" name="title">
-						<button type="button" class="btn buttons" id="search1" onclick="sgUserAsk.search()"  ><i class="Hui-iconfont">&#xe665;</i> 查询</button>
+						<button type="button" class="btn buttons" id="search" onclick="sgUserAsk.search()"  ><i class="Hui-iconfont">&#xe665;</i> 查询</button>
 					</div>
 					<table id="sgUserAskTable" class="table table-border table-bordered table-bg">
 						<thead>

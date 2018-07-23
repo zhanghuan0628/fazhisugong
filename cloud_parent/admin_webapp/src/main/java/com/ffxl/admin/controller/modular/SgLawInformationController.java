@@ -53,6 +53,9 @@ public class SgLawInformationController extends BaseController{
     @RequestMapping("/law_information_pageList")
     @ResponseBody
     public JsonResult list(DataTablesUtil dataTables,Page page,SgLaw sgLaw) {
+    	if(!StringUtil.isEmpty(sgLaw.getTitle3())){
+    		sgLaw.setTitle(sgLaw.getTitle3());
+    	}
     	sgLaw.setCategory("law_information");
     	page = this.getPageInfo(page,dataTables);
     	List<SgLaw> dataList = sgLawService.queryPageList(sgLaw,page);
