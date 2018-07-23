@@ -7,7 +7,7 @@
 	
 	<select id="queryPageList" resultMap="SysUserMap">
 		SELECT * FROM sys_user
-		WHERE 1=1
+		WHERE 1=1 and id != '4a5bad2d5b1740d4b59bfd68ebaa0abe'
 		<if test="model.loginName != null and model.loginName != '' ">
 			and sys_user.login_name like CONCAT('%','${model.loginName}','%' )
 		</if>
