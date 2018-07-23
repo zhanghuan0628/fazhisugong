@@ -26,7 +26,7 @@
 		</div>
 
 		<div class="leavewordBottom">
-			<p><input type="text" placeholder="说说你的想法" v-model = "content"></p>
+			<p><input type="text" placeholder="说说你的想法" v-model = "content" @focus = "handleInput"></p>
 			<a @click = "insertComment">发布</a>
 		</div>
   	</div>
@@ -70,12 +70,20 @@ export default {
 	mounted () {
 		// 分享配置
 		let locationUrl = location.protocol+"//"+location.host;
-		let wxtitle = "国网苏州供电公司的法治平台";
+		let wxtitle = "法治苏供";
 		let wximgUrl = location.protocol+"//"+location.host+"/static/images/wxShare.png";
-		let wxdesc = "法治苏供，为你提供法律服务";
+		let wxdesc = "为您提供专业的法律维权服务!";
 		util.wxShare(locationUrl,wxtitle,wximgUrl,wxdesc)
 	},
 	methods: {
+		handleInput:function(){
+			// setInterval(() => {
+			// 	document.querySelector(".leavewordBottom").scrollIntoViewIfNeeded(false); 
+			// }, 100); 
+			// setTimeout(() => {
+			// 	document.body.scrollTop = document.body.scrollHeight;  
+			// }, 300); 
+		},
 		insertComment:function(){
 			if (!this.hasInsert && this.content != "") {
 				this.hasInsert = true;
@@ -137,7 +145,7 @@ export default {
 	#legalLeaveword .leavewordList .noLeaveword img {width: 6rem;}
 	#legalLeaveword .leavewordList .noLeaveword p {font-size: 1.5rem;color: #999999;margin-top: 1.1rem;}
 
-	#legalLeaveword .leavewordBottom {position: fixed;left: 0;bottom: 0;width: 100%;height: 4.9rem;box-sizing: border-box;border: 1px solid #dcdcdc;background-color: #ffffff;}
+	#legalLeaveword .leavewordBottom {position: absolute;left: 0;bottom: 0;width: 100%;height: 4.9rem;box-sizing: border-box;border: 1px solid #dcdcdc;background-color: #ffffff;}
 	#legalLeaveword .leavewordBottom p {position: absolute;left: 1.5rem;right: 6.5rem;height: 3.2rem;top: 50%;transform: translateY(-50%);}
 	#legalLeaveword .leavewordBottom p input {width: 100%;height: 100%;border-radius: 50px;background-color: #e5e5e5;border: none;position: absolute;left: 0;top: 0;box-sizing: border-box;padding-left: 1.2rem;}
 	#legalLeaveword .leavewordBottom a {position: absolute;display: block;right: 0;width: 6.5rem;line-height: 4.9rem;top: 0;text-align: center;color: #429c84;font-weight: bold;}
