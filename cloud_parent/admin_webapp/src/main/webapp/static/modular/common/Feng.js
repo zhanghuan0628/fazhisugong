@@ -160,7 +160,7 @@ var Feng = {
     						}
     					},
     					error : function(msg) {
-    							Feng.error('error!');
+    							Feng.error('系统异常，请联系管理员!');
     					},
     				};
     				$(form).ajaxSubmit(options);
@@ -214,7 +214,7 @@ var Feng = {
 	},
 	//复选框全选/取消全选
 	checkAll: function(){
-		$(".checkall").click(function () {
+		$("#checkall").click(function () {
 	           var check = $(this).prop("checked");
 	           $(".iCheck").prop("checked", check);
 	     });

@@ -39,6 +39,7 @@ lawHall.del_lawHall=function (){
 			}else{
 				Feng.error(data.message);
 			}
+        	$("#checkall").prop("checked", false);
         }, function (data) {
             Feng.error("操作失败!" + data.responseJSON.message + "!");
         });
@@ -59,6 +60,7 @@ lawHall.push_lawHall=function (state){
 			}else{
 				Feng.error(data.message);
 			}
+        	$("#checkall").prop("checked", false);
         }, function (data) {
             Feng.error("操作失败!" + data.responseJSON.message + "!");
         });
@@ -132,23 +134,23 @@ lawHall.pushDown = function(obj,id,sort){
  */
 lawHall.initColumn = function () {
     var columns = [
-        {title: '', data:"id",width:'10px',  render: function(data, type, row, meta) { return '<input type="checkbox" name="checklist" value="'+data+'" class="iCheck">';}},
+        {title: '<input type="checkbox" name="checkall" id="checkall">', data:"id",width:'10px',  render: function(data, type, row, meta) { return '<input type="checkbox" name="checklist" value="'+data+'" class="iCheck">';}},
         {title: '标题',width:'300px', data: 'title'},
-        {title: '发布时间',width:'300px', data: 'createTime'},
-        {title: '类型',width:'300px', data: 'type',render: function(data, type, row, meta){
+        {title: '发布时间',width:'200px', data: 'createTime'},
+        {title: '类型',width:'100px', data: 'type',render: function(data, type, row, meta){
         	if(data=='text'){
         		return "图文";
         	}else{
         		return "视频";
         	}
         }},
-        {title: '状态',width:'300px', data: 'status',render: function(data, type, row, meta){
+        {title: '状态',width:'100px', data: 'status',render: function(data, type, row, meta){
         	if(data=='publish')return '<span class="labels labels-success radius">上架</span>';	
         	else if(data=='no_publish')return '<span class="labels labels-default radius">下架</span>';
         	else return '<span class="labels labels-default radius">未发布</span>';
         }},
-        {title: '收藏人数',width:'300px', data: 'count'},
-        {title:'操作',width:'300px', render: function(data, type, row, meta){
+        {title: '收藏人数',width:'100px', data: 'count'},
+        {title:'操作',width:'100px', render: function(data, type, row, meta){
         	var msg = "";
         	msg+='<a title="编辑" href="javascript:;" onclick="lawHall.edit_lawHall(\'编辑法治讲堂\',\'/sg_law_hall/law_hall_edit\','
 			+ "'"
@@ -190,7 +192,7 @@ $(function () {
     var options = lawHall.dataTables(defaultColunms);    
     lawHall.table = defDataTables(options);
     Feng.selectMultiRow(lawHall.id,lawHall);
-    
+    Feng.checkAll();
     $('.enter').bind('keypress',function(event){//监听sim卡回车事件
         if(event.keyCode == "13")    
         {  

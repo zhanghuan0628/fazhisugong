@@ -39,6 +39,7 @@ lawInformation.del_lawInformation=function (){
 			}else{
 				Feng.error(data.message);
 			}
+        	$("#checkall").prop("checked", false);
         }, function (data) {
             Feng.error("操作失败!" + data.responseJSON.message + "!");
         });
@@ -59,6 +60,7 @@ lawInformation.push_lawInformation=function (state){
 			}else{
 				Feng.error(data.message);
 			}
+        	$("#checkall").prop("checked", false);
         }, function (data) {
             Feng.error("操作失败!" + data.responseJSON.message + "!");
         });
@@ -132,16 +134,16 @@ lawInformation.pushDown = function(obj,id,sort){
  */
 lawInformation.initColumn = function () {
     var columns = [
-        {title: '', data:"id",width:'10px',  render: function(data, type, row, meta) { return '<input type="checkbox" name="checklist" value="'+data+'" class="iCheck">';}},
+        {title: '<input type="checkbox" name="checkall" id="checkall">', data:"id",width:'10px',  render: function(data, type, row, meta) { return '<input type="checkbox" name="checklist" value="'+data+'" class="iCheck">';}},
         {title: '标题',width:'300px', data: 'title'},
-        {title: '发布时间',width:'300px', data: 'createTime'},
-        {title: '状态',width:'300px', data: 'status',render: function(data, type, row, meta){
+        {title: '发布时间',width:'100px', data: 'createTime'},
+        {title: '状态',width:'100px', data: 'status',render: function(data, type, row, meta){
         	if(data=='publish')return '<span class="labels labels-success radius">上架</span>';	
         	else if(data=='no_publish')return '<span class="labels labels-default radius">下架</span>';
         	else return '<span class="labels labels-default radius">未发布</span>';
         }},
-        {title: '收藏人数',width:'300px', data: 'count'},
-        {title:'操作',width:'300px', render: function(data, type, row, meta){
+        {title: '收藏人数',width:'100px', data: 'count'},
+        {title:'操作',width:'100px', render: function(data, type, row, meta){
         	var msg = "";
         	msg+='<a title="编辑" href="javascript:;" onclick="lawInformation.edit_lawInformation(\'编辑法治动态\',\'/sg_law_information/law_information_edit\','
 			+ "'"
@@ -183,7 +185,7 @@ $(function () {
     var options = lawInformation.dataTables(defaultColunms);    
     lawInformation.table = defDataTables(options);
     Feng.selectMultiRow(lawInformation.id,lawInformation);
-    
+    Feng.checkAll();
     $('.enter').bind('keypress',function(event){//监听sim卡回车事件
         if(event.keyCode == "13")    
         {  

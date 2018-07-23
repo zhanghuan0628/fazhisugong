@@ -80,7 +80,7 @@ public class SgThemeAnswerLogServiceImpl extends GenericServiceImpl<SgThemeAnswe
 			}else{
 				m.setGetAward("0");//未抽过奖
 			}
-			String num = toChinese(m.getNum());
+			String num = m.getNum();
 			m.setStage("第"+num+"期");
 			if(m.getRightNum()>=m.getFine()){
 				m.setState("1");//优秀
@@ -99,31 +99,10 @@ public class SgThemeAnswerLogServiceImpl extends GenericServiceImpl<SgThemeAnswe
 	public List<SgThemeAnswerLog> queryMyTheme(String userId,Page page) {
 		List<SgThemeAnswerLog> list = sgThemeAnswerLogMapper.queryMyTheme(userId,page);
 		for(SgThemeAnswerLog sl:list){
-			String num = toChinese(sl.getNum());
+			String num = sl.getNum();
 			sl.setStage("第"+num+"期");
 		}
 		return list;
-	}
-	/**
-     * 阿拉伯数组转中文數字【十万九千零六十  --> 109060】
-     * @author
-     * @param chineseNumber
-     * @return
-     */
-	public String toChinese(String string) {
-        String[] s1 = { "零", "一", "二", "三", "四", "五", "六", "七", "八", "九" };
-        String[] s2 = { "十", "百", "千", "万", "十", "百", "千", "亿", "十", "百", "千" };
-        String result = "";
-        int n = string.length();
-        for (int i = 0; i < n; i++) {
-            int num = string.charAt(i) - '0';
-            if (i != n - 1 && num != 0) {
-                result += s1[num] + s2[n - 2 - i];
-            } else {
-                result += s1[num];
-            }
-        }
-        return result;
 	}
 
 	@Override

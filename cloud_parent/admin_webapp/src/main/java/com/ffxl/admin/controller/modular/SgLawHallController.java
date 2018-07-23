@@ -27,6 +27,7 @@ import com.ffxl.platform.constant.Message;
 import com.ffxl.platform.core.DataTablesUtil;
 import com.ffxl.platform.core.Page;
 import com.ffxl.platform.core.exception.BusinessException;
+import com.ffxl.platform.util.DateUtil;
 import com.ffxl.platform.util.StringUtil;
 import com.ffxl.platform.util.UUIDUtil;
 
@@ -57,6 +58,9 @@ public class SgLawHallController extends BaseController{
     @RequestMapping("/law_hall_List")
     @ResponseBody
     public JsonResult list(DataTablesUtil dataTables,Page page,SgLaw sgLaw) {
+    	if(!StringUtil.isEmpty(sgLaw.getTitle2())){
+    		sgLaw.setTitle(sgLaw.getTitle2());
+    	}
     	sgLaw.setCategory("law_lecture_room");
     	page = this.getPageInfo(page,dataTables);
     	List<SgLaw> dataList = sgLawService.queryPageList(sgLaw,page);
@@ -117,7 +121,7 @@ public class SgLawHallController extends BaseController{
     @RequestMapping("/law_hall_add")
     public String lawHallAdd(Model model) {
     	Date currentTime = new Date();
-    	SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    	SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
     	String dateString = formatter.format(currentTime);
     	model.addAttribute("dateString", dateString);
     	SgLaw sgLaw = new SgLaw();
@@ -134,9 +138,12 @@ public class SgLawHallController extends BaseController{
             throw new BusinessException(Message.M6002);
         }
     	SgLaw user = sgLawService.selectByPrimaryKey(id);
-    	SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    	SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
     	String dateString = formatter.format(user.getCreateDate());
     	user.setCreateTime(dateString);
+    	Date currentTime = new Date();
+        String dateS = formatter.format(currentTime);
+        model.addAttribute("dateString", dateS);
         model.addAttribute("info", user);
         LogObjectHolder.me().set(user);
         return PREFIX + "law_hall_edit.html";
@@ -175,7 +182,8 @@ public class SgLawHallController extends BaseController{
     	sl.setId(UUIDUtil.getUUID());
     	sl.setCategory(sgLaw.getCategory());
     	sl.setModifyDate(new Date());
-    	sl.setCreateDate(new Date());
+    	Date d = DateUtil.parseDate(sgLaw.getCreateTime());
+    	sl.setCreateDate(d);
     	sl.setTitle(sgLaw.getTitle());
     	sl.setStatus("no_publish");
     	sl.setImgUrl(sgLaw.getImgUrl());
@@ -224,6 +232,8 @@ public class SgLawHallController extends BaseController{
     	ShiroUser shiroUser = ShiroKit.getUser();
     	String userId = shiroUser.getId();
     	sl.setModifyBy(userId);
+    	Date d = DateUtil.parseDate(sgLaw.getCreateTime());
+    	sl.setCreateDate(d);
     	if(sgLaw.getType().equals("text")){
     		sl.setContent(sgLaw.getContent());
     		sl.setType("text");

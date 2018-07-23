@@ -1,29 +1,42 @@
 @layout("/common/_container.html"){
 <article class="cl pd-20">
-	<form action="" method="post" class="form form-horizontal" id="form-article-add">
+	<form action="" method="post" class="form form-horizontal" id="dummyUserInfoForm">
+		<input type="hidden" id="userId" name="userId" value="${id}" class="input-text">
 		<div id="tab-system" class="HuiTab">
 			<div class="tabBar cl"><span>基本信息</span><span>发布资讯</span><span>法官动态</span></div>
-			<input type="hidden" id="id" value="${id}" class="input-text">
+			<input type="hidden" id="id" name="id" value="${id}" class="input-text">
 			
 			<div class="tabCon">
 				<div class="row cl">
 					<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>头像：</label>
 					<div class="formControls col-xs-8 col-sm-9">
-						<img src="${info.headUrl}" style="width: 120px;height: 120px;">
+						<input type="file" id="file" class="input-text">
+					</div>
+					<div class="formControls col-xs-8 col-sm-9">
+						<img src="${info.headUrl}" id="url" style="width: 120px;height: 120px;margin-left: 190px;">
+						<input type="hidden" id="headUrl" name="headUrl"  value="${info.headUrl}" class="input-text">
 					</div>
 				</div>
 				<div class="row cl">
 					<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>账户名称：</label>
 					<div class="formControls col-xs-8 col-sm-9">
-						<input type="text" id="website-Keywords" value="${info.userName}" class="input-text">
+						<input type="text" id="userName" name="userName" value="${info.userName}" class="input-text">
 					</div>
 				</div>
 				<div class="row cl">
 					<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>协同账号：</label>
 					<div class="formControls col-xs-8 col-sm-9">
-						<input type="text" id="website-description" value="${info.loginName}" class="input-text">
+						<input type="text" id="loginName" name="loginName" value="${info.loginName}" class="input-text">
 					</div>
 				</div>
+				@if(info.dummy==true||info.dummy==1){
+	        		<div class="row cl">
+						<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
+							<input class="btn btn-primary radius" type="submit" value="&nbsp;&nbsp;提交&nbsp;&nbsp;">
+						</div>
+					</div>
+	        	@}
+				
 			</div>
 			
 			
@@ -31,9 +44,8 @@
 			<div class="tabCon">
 				<div class="page-container">
 					<div class="text-c">
-						<input type="hidden" id="userId" name="userId" value="${id}" class="input-text">
 						咨询标题：<input type="text" class="input-text enter" style="width:250px" id="" name="title">
-						<button type="button" class="btn buttons" id="search1" onclick="sgUserAsk.search()"  ><i class="Hui-iconfont">&#xe665;</i> 查询</button>
+						<button type="button" class="btn buttons" id="search" onclick="sgUserAsk.search()"  ><i class="Hui-iconfont">&#xe665;</i> 查询</button>
 					</div>
 					<table id="sgUserAskTable" class="table table-border table-bordered table-bg">
 						<thead>
@@ -72,6 +84,7 @@
 		</div>
 	</form>
 </article>
+<script src="${ctxPath}/static/modular/fzsg/user/add_dummy_user.js"></script>
 <script src="${ctxPath}/static/modular/fzsg/user/user_detail.js"></script>
 <script src="${ctxPath}/static/modular/fzsg/user/user_theme.js"></script>
 @}

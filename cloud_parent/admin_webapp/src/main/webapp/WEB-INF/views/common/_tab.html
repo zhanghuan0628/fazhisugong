@@ -3,7 +3,7 @@
 	@var menuList = menukit.getUserMenus();
 	@for(menu in menuList){
       	<dl id="menu-${menu.id}">
-		<dt><i class="Hui-iconfont">${menu.icon}</i>${menu.name}<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+		<dt><i class="Hui-iconfont">${menu.icon}</i>&nbsp;&nbsp;${menu.name}<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 		@if(menu.children !=null){
       			<dd>
 			<ul>

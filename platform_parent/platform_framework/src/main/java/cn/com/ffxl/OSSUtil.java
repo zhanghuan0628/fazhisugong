@@ -41,7 +41,7 @@ public class OSSUtil {
      * bucket名称
      */
 //    private static String defaultBucket="ffyy";
-    private static String defaultBucket="ffxl";
+    private static String defaultBucket="sugong";
 
     /**
      * 允许打开的最大HTTP连接数。默认为50

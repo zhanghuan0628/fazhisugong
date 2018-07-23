@@ -25,6 +25,7 @@ import com.ffxl.platform.constant.Message;
 import com.ffxl.platform.core.DataTablesUtil;
 import com.ffxl.platform.core.Page;
 import com.ffxl.platform.core.exception.BusinessException;
+import com.ffxl.platform.util.DateUtil;
 import com.ffxl.platform.util.StringUtil;
 import com.ffxl.platform.util.UUIDUtil;
 
@@ -53,6 +54,9 @@ public class SgLawInformationController extends BaseController{
     @RequestMapping("/law_information_pageList")
     @ResponseBody
     public JsonResult list(DataTablesUtil dataTables,Page page,SgLaw sgLaw) {
+    	if(!StringUtil.isEmpty(sgLaw.getTitle3())){
+    		sgLaw.setTitle(sgLaw.getTitle3());
+    	}
     	sgLaw.setCategory("law_information");
     	page = this.getPageInfo(page,dataTables);
     	List<SgLaw> dataList = sgLawService.queryPageList(sgLaw,page);
@@ -113,7 +117,7 @@ public class SgLawInformationController extends BaseController{
     @RequestMapping("/law_information_add")
     public String lawInformationAdd(Model model) {
     	Date currentTime = new Date();
-    	SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    	SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
     	String dateString = formatter.format(currentTime);
     	model.addAttribute("dateString", dateString);
         return PREFIX + "law_information_add.html";
@@ -127,10 +131,13 @@ public class SgLawInformationController extends BaseController{
             throw new BusinessException(Message.M6002);
         }
     	SgLaw user = sgLawService.selectByPrimaryKey(id);
-    	SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    	SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
     	String dateString = formatter.format(user.getCreateDate());
     	user.setCreateTime(dateString);
         model.addAttribute("info", user);
+        Date currentTime = new Date();
+        String dateS = formatter.format(currentTime);
+        model.addAttribute("dateString", dateS);
         LogObjectHolder.me().set(user);
         return PREFIX + "law_information_edit.html";
     }
@@ -168,7 +175,8 @@ public class SgLawInformationController extends BaseController{
     	sl.setId(UUIDUtil.getUUID());
     	sl.setCategory(sgLaw.getCategory());
     	sl.setModifyDate(new Date());
-    	sl.setCreateDate(new Date());
+    	Date d = DateUtil.parseDate(sgLaw.getCreateTime());
+    	sl.setCreateDate(d);
     	sl.setTitle(sgLaw.getTitle());
     	sl.setStatus("no_publish");
     	sl.setImgUrl(sgLaw.getImgUrl());
@@ -217,6 +225,8 @@ public class SgLawInformationController extends BaseController{
     	sl.setAuthor(sgLaw.getAuthor());
     	String userId = shiroUser.getId();
     	sl.setModifyBy(userId);
+    	Date d = DateUtil.parseDate(sgLaw.getCreateTime());
+    	sl.setCreateDate(d);
     	if(sgLaw.getType().equals("text")){
     		sl.setContent(sgLaw.getContent());
     		sl.setType("text");

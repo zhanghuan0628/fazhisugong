@@ -7,7 +7,24 @@ var theme = {
     table: null,        //table
     layerIndex: -1
 };
+/**
+ * 获取选中数据
+ */
+theme.getSelIds = function(){
+	var  isCheck =false;
+	theme.seItem=[];
+	$('.iCheck').each(function () {
+        if($(this).is(':checked')){
+        	isCheck = true;
+        	theme.seItem.push($(this).val());
+        }
+    });
 
+    if(!isCheck) {
+    	Feng.error("请至少选择一条数据!");
+    }
+    return isCheck;
+}
 /*我是法官-编辑*/
 theme.edit_theme=function (title,url,id,w,h){
 	layer_show(title,Feng.ctxPath +url+"?id="+id+"&type=edit",w,h);
@@ -23,13 +40,14 @@ theme.add_theme=function (title,url,id,w,h){
 /*我是法官-删除(批量)*/
 theme.del_theme=function (){
 	var operation = function(){
-        var ajax = new $ax(Feng.ctxPath +"/sg_theme/del_theme?ids="+selIds, function (data) {
+        var ajax = new $ax(Feng.ctxPath +"/sg_theme/del?ids="+selIds, function (data) {
         	if(data.code ==2000){
         		theme.table.draw();
 				Feng.success("已删除!");
 			}else{
 				Feng.error(data.message);
 			}
+        	$("#checkall").prop("checked", false);
         }, function (data) {
             Feng.error("操作失败!" + data.responseJSON.message + "!");
         });
@@ -46,7 +64,7 @@ theme.del_theme=function (){
  */
 theme.initColumn = function () {
     var columns = [
-        {title: '', data:"id",width:'10px',  render: function(data, type, row, meta) { return '<input type="checkbox" name="checklist" value="'+data+'" class="iCheck">';}},
+        {title: '<input type="checkbox" name="checkall" id="checkall">', data:"id",width:'10px',  render: function(data, type, row, meta) { return '<input type="checkbox" name="checklist" value="'+data+'" class="iCheck">';}},
         {title: '题目',width:'300px', data: 'stage'},
         {title: '主题',width:'300px', data: 'title'},
         {title: '开始时间',width:'300px', data: 'startDate'},
@@ -104,7 +122,7 @@ theme.dataTables = function (columns) {
 	    		others : {
 	    			selector : '#'+theme.id,
 	    			url : Feng.ctxPath +"/sg_theme/theme_list_pageList",
-	    			param : ["title"]
+	    			param : ["num","title"]
 	    		}	
 	    }
 	    return options;
@@ -123,7 +141,7 @@ $(function () {
     var options = theme.dataTables(defaultColunms);    
     theme.table = defDataTables(options);
     Feng.selectMultiRow(theme.id,theme);
-    
+    Feng.checkAll();
     $('.enter').bind('keypress',function(event){//监听sim卡回车事件
         if(event.keyCode == "13")    
         {  

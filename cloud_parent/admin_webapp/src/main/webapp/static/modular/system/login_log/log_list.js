@@ -53,6 +53,7 @@ loginLog.multi_del=function (obj,id){
 			}else{
 				Feng.error(data.message);
 			}
+        	$("#checkall").prop("checked", false);
         }, function (data) {
             Feng.error("删除失败!" + data.responseJSON.message + "!");
         });
@@ -71,7 +72,7 @@ loginLog.multi_del=function (obj,id){
  */
 loginLog.initColumn = function () {
     var columns = [
-        {title: '', data:"id",  render: function(data, type, row, meta) { return '<input type="checkbox" name="checklist" value="'+data+'" class="iCheck">';}},
+        {title: '<input type="checkbox" name="checkall" id="checkall">', data:"id",  render: function(data, type, row, meta) { return '<input type="checkbox" name="checklist" value="'+data+'" class="iCheck">';}},
         {title: '日志名称', data: 'logName'},
         {title: '用户名称', data: 'name', render: function(data, type, row, meta){
         	if(data != null && data != ''){
@@ -124,7 +125,7 @@ $(function () {
     var options = loginLog.dataTables(defaultColunms);    
     loginLog.table = defDataTables(options);
     Feng.selectMultiRow(loginLog.id,loginLog);
-    
+    Feng.checkAll();
     $('.enter').bind('keypress',function(event){//监听sim卡回车事件
         if(event.keyCode == "13")    
         {  

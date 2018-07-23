@@ -267,6 +267,22 @@ public class SgUserController extends BaseController{
     	
     }
     /**
+     * 修改虚拟用户
+     * @return
+     */
+    @ResponseBody
+    @BussinessLog(value = "修改虚拟用户", key = "id", dict = SgUserDic.class)
+    @RequestMapping("/edit_dummy")
+    public JsonResult editDummy(SgUser SgUser){
+    	int i = sgUserService.updateByPrimaryKeySelective(SgUser);
+    	if(i > 0){
+    		return new JsonResult(true);
+        }else{
+        	return new JsonResult(false);
+        }
+    	
+    }
+    /**
      * 校验账号是否存在
      * @param loginName
      * @return

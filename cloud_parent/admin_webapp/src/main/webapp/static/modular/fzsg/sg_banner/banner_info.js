@@ -15,7 +15,7 @@ var bannerInfoDlg = {
 	    	title:{
 				required:true,
 				minlength:1,
-				maxlength:16,
+				maxlength:50,
 			},
 			name:{
 				required:true,
@@ -34,7 +34,7 @@ var ossClient = new OSS.Wrapper({
     region: "oss-cn-shanghai",
     accessKeyId: "LTAICG7rs8rsGNj4",
     accessKeySecret: "FDtacJMEQXKRwIPgK3WKYR2Cyv8xKm",
-    bucket: "ffxl"
+    bucket: "sugong"
 });
 var newUrl = "";
 $("#file").bind("change", function(e) {
@@ -60,7 +60,7 @@ $("#file").bind("change", function(e) {
        }}).then(function (result) {
           /* $("#progressWindow").window('close');*/
     	   Feng.info("上传成功!");
-           var url = "http://ffxl.oss-cn-shanghai.aliyuncs.com/" + ossFileName;
+           var url = "http://sugong.oss-cn-shanghai.aliyuncs.com/" + ossFileName;
            newUrl = url;
            console.log("3333"+newUrl);
            $("#bannerImg").val(newUrl);

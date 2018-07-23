@@ -54,7 +54,7 @@ var sglawRiskInfoDlg = {
 	    	title:{
 				required:true,
 				minlength:1,
-				maxlength:16,
+				maxlength:50,
 				remote : {
 					url : Feng.ctxPath +"/sg_law_risk/check", //设置后台处理程序
 					type : "post", //数据发送方式

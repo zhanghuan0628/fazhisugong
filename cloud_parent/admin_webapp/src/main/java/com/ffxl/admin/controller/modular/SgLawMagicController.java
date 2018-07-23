@@ -17,9 +17,11 @@ import com.ffxl.admin.controller.base.BaseController;
 import com.ffxl.admin.core.common.annotion.BussinessLog;
 import com.ffxl.admin.core.common.constant.dictmap.SgLawDic;
 import com.ffxl.admin.core.log.LogObjectHolder;
+import com.ffxl.cloud.model.Dictionary;
 import com.ffxl.cloud.model.SgLaw;
 import com.ffxl.cloud.model.SgLawExample;
 import com.ffxl.cloud.model.base.BaseSgLawExample.Criteria;
+import com.ffxl.cloud.service.DictionaryService;
 import com.ffxl.cloud.service.SgLawService;
 import com.ffxl.platform.constant.JsonResult;
 import com.ffxl.platform.constant.Message;
@@ -41,6 +43,9 @@ public class SgLawMagicController extends BaseController{
 	
 	@Autowired
 	private SgLawService sgLawService;
+	
+	@Autowired
+	private DictionaryService dictionaryService;
 	
 	private static String PREFIX = "/fzsg/law/";
 	/**
@@ -243,18 +248,28 @@ public class SgLawMagicController extends BaseController{
     @RequestMapping("/law_magic_detail")
     public String lawMagicDetail(String id,String title,Model model) {
     	model.addAttribute("id", id);
-    	model.addAttribute("title", title);
+    	SgLawExample example = new SgLawExample();
+        Criteria c= example.createCriteria();
+        c.andCategoryEqualTo("law_magic");
+        c.andCategoryCodeIsNull();
+    	List<SgLaw> list = sgLawService.selectByExample(example);
+    	model.addAttribute("info", list);
         return PREFIX + "law_magic_detail.html";
     }
     /**
      * 跳转到查看苏供法宝详情新增的页面
      */
     @RequestMapping("/law_magic_detail_add")
-    public String lawMagicDetailAdd(String id,String title,Model model) {
+    public String lawMagicDetailAdd(String id,Model model) {
     	String time = DateUtil.formatStandardDatetime(new Date());
     	model.addAttribute("time", time);
     	model.addAttribute("id", id);
-    	model.addAttribute("title", title);
+    	SgLawExample example = new SgLawExample();
+        Criteria c= example.createCriteria();
+        c.andCategoryEqualTo("law_magic");
+        c.andCategoryCodeIsNull();
+    	List<SgLaw> list = sgLawService.selectByExample(example);
+    	model.addAttribute("list", list);
     	model.addAttribute("info", new SgLaw());
         return PREFIX + "law_magic_detail_add.html";
     }
@@ -272,6 +287,12 @@ public class SgLawMagicController extends BaseController{
     	sgLaw.setCreateTime(time);
         model.addAttribute("info", sgLaw);
         model.addAttribute("title", s.getTitle());
+        SgLawExample example = new SgLawExample();
+        Criteria c= example.createCriteria();
+        c.andCategoryEqualTo("law_magic");
+        c.andCategoryCodeIsNull();
+    	List<SgLaw> list = sgLawService.selectByExample(example);
+    	model.addAttribute("list", list);
         LogObjectHolder.me().set(sgLaw);
         return PREFIX + "law_magic_detail_edit.html";
     }

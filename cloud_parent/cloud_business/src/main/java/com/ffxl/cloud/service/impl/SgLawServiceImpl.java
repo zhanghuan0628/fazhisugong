@@ -59,7 +59,7 @@ public class SgLawServiceImpl extends GenericServiceImpl<SgLaw, SgLawExample, St
 	        c.andSourceIdEqualTo(sl.getId());
 			int count = sgUserFavoriteService.countByExample(example);
 			sl.setCount(count);
-			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 			String dateString = formatter.format(sl.getCreateDate());
 			sl.setCreateTime(dateString);
 		}

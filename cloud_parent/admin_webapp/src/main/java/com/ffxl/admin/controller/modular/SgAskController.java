@@ -29,8 +29,11 @@ import com.ffxl.cloud.service.SgLawCommentService;
 import com.ffxl.cloud.service.SgUserService;
 import com.ffxl.cloud.service.impl.SysUserServiceImpl;
 import com.ffxl.platform.constant.JsonResult;
+import com.ffxl.platform.constant.Message;
 import com.ffxl.platform.core.DataTablesUtil;
 import com.ffxl.platform.core.Page;
+import com.ffxl.platform.util.DateUtil;
+import com.ffxl.platform.util.StringUtil;
 import com.ffxl.platform.util.UUIDUtil;
 
 /**
@@ -66,6 +69,9 @@ public class SgAskController extends BaseController{
     @RequestMapping("/ask_pageList")
     @ResponseBody
     public JsonResult userAskList(DataTablesUtil dataTables,Page page,SgAsk sgAsk) {
+    	if(!StringUtil.isEmpty(sgAsk.getTitle1())){
+    		sgAsk.setTitle(sgAsk.getTitle1());
+    	}
     	page = this.getPageInfo(page,dataTables);
     	List<SgAsk> dataList = sgAskService.queryPageList(sgAsk,page);
         dataTables = this.getDataTables(page, dataTables, dataList);
@@ -121,7 +127,8 @@ public class SgAskController extends BaseController{
     @ResponseBody
     public JsonResult add(SgAsk sgAsk) {
     	sgAsk.setId(UUIDUtil.getUUID());
-    	sgAsk.setCreateDate(new Date());
+    	Date d = DateUtil.parseDate(sgAsk.getCreateTime());
+    	sgAsk.setCreateDate(d);
     	sgAsk.setDummy(true);
     	int i = sgAskService.insertSelective(sgAsk);
     	if(i > 0){
@@ -146,5 +153,27 @@ public class SgAskController extends BaseController{
     	SgUser user = sgUserService.selectByPrimaryKey(id);
     	return new JsonResult(true,user);
        
+    }
+    /**
+     * 删除
+     */
+    @RequestMapping("/del")
+    @BussinessLog(value = "删除虚拟咨询", key = "id", dict = SgAskDic.class)
+    @ResponseBody
+    public JsonResult del(String ids){
+    	if (StringUtil.isEmpty(ids)) {
+    		return new JsonResult(Message.M4002);
+        }
+    	int ret = -1;
+    	String[] idArray = ids.split(",");
+    	for(String id:idArray ){
+    		ret = sgAskService.deleteByPrimaryKey(id);
+    	}
+    	if(ret >0){
+       	 return new JsonResult(Message.M2000);
+       }else{
+       	 return new JsonResult(Message.M5000);
+       }
+    	
     }
 }

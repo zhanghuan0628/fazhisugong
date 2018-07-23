@@ -20,7 +20,11 @@
 	<div class="row cl">
 		<label class="form-label col-xs-4 col-sm-3">咨询时间：</label>
 		<div class="formControls col-xs-8 col-sm-9 skin-minimal">
-			<input name="createTime" type="text" value="${dateString}"  class="input-text Wdate" disabled="disabled">
+			<input id="createTime" name="createTime" type="text" class="input-text Wdate" onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',maxDate:'#F{$dp.$D(\'maxTime\')||\'%y-%M-%d\'}',minTime:'00:00:00',maxTime:'24:00:00'})"/>
+			
+			<input type="hidden"
+			onfocus="WdatePicker({ maxDate:'#F{$dp.$D(\'maxTime\')||\'%y-%M-%d\'}' })"
+			id="maxTime" name="maxTime" class="input-text Wdate" value="${dateString}">
 		</div>
 	</div>
 	<div class="row cl">

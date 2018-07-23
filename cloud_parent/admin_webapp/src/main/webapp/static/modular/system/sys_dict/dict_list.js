@@ -83,6 +83,7 @@ Dict.multi_del=function (obj,id){
 			}else{
 				Feng.error(data.message);
 			}
+        	$("#checkall").prop("checked", false);
         }, function (data) {
             Feng.error("删除失败!" + data.responseJSON.message + "!");
         });
@@ -106,7 +107,7 @@ Dict.dict_edit=function (title,url,id,w,h){
  */
 Dict.initColumn = function () {
     var columns = [
-        {title: '', data:"id",width:"10px",  render: function(data, type, row, meta) { return '<input type="checkbox" name="checklist" value="'+data+'" class="iCheck">';}},
+        {title: '<input type="checkbox" name="checkall" id="checkall">', data:"id",width:"10px",  render: function(data, type, row, meta) { return '<input type="checkbox" name="checklist" value="'+data+'" class="iCheck">';}},
         {title: '名称', data: 'name'},
         {title: '详情', data: 'dictName'},
         {title: '备注', data: 'tips',render: function(data, type, row, meta){
@@ -161,7 +162,7 @@ $(function () {
     var options = Dict.dataTables(defaultColunms);    
     Dict.table = defDataTables(options);
     Feng.selectMultiRow(Dict.id,Dict);
-    
+    Feng.checkAll();
     $('.enter').bind('keypress',function(event){//监听sim卡回车事件
         if(event.keyCode == "13")    
         {  

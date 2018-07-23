@@ -19,6 +19,9 @@
 	</div>
 	<div class="cl pd-5 bg-1 bk-gray mt-20"> 
 		<span class="l">
+			@if(shiro.hasPermission("/sg_major/del_major")){
+			<a href="javascript:;" onclick="sgMajor.del_sgMajor()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a>
+			@}
 			@if(shiro.hasPermission("/sg_major/add_major")){
 			<a href="javascript:;" onclick="sgMajor.add_sgMajor('新增专业','${ctxPath}/sg_major/add_major','200','600')" class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i> 新增</a>
 			@}

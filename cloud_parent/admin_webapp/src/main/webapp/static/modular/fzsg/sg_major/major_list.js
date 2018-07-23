@@ -7,7 +7,24 @@ var sgMajor = {
     table: null,        //table
     layerIndex: -1
 };
+/**
+ * 获取选中数据
+ */
+sgMajor.getSelIds = function(){
+	var  isCheck =false;
+	sgMajor.seItem=[];
+	$('.iCheck').each(function () {
+        if($(this).is(':checked')){
+        	isCheck = true;
+        	sgMajor.seItem.push($(this).val());
+        }
+    });
 
+    if(!isCheck) {
+    	Feng.error("请至少选择一条数据!");
+    }
+    return isCheck;
+}
 /*专业管理-编辑*/
 sgMajor.edit_major=function (title,url,id,w,h){
 	layer_show(title,Feng.ctxPath +url+"?id="+id,w,h);
@@ -26,6 +43,7 @@ sgMajor.del_sgMajor=function (){
 			}else{
 				Feng.error(data.message);
 			}
+        	$("#checkall").prop("checked", false);
         }, function (data) {
             Feng.error("操作失败!" + data.responseJSON.message + "!");
         });
@@ -42,7 +60,7 @@ sgMajor.del_sgMajor=function (){
  */
 sgMajor.initColumn = function () {
     var columns = [
-        {title: '', data:"id",width:'10px',  render: function(data, type, row, meta) { return '<input type="checkbox" name="checklist" value="'+data+'" class="iCheck">';}},           
+        {title: '<input type="checkbox" name="checkall" id="checkall">', data:"id",width:'10px',  render: function(data, type, row, meta) { return '<input type="checkbox" name="checklist" value="'+data+'" class="iCheck">';}},           
         {title: '题目',width:'300px', data: 'name'},
         {title:'操作',width:'300px',render: function(data, type, row, meta){
         	var msg = "";
@@ -87,7 +105,7 @@ $(function () {
     var options = sgMajor.dataTables(defaultColunms);    
     sgMajor.table = defDataTables(options);
     Feng.selectMultiRow(sgMajor.id,sgMajor);
-    
+    Feng.checkAll();
     $('.enter').bind('keypress',function(event){//监听sim卡回车事件
         if(event.keyCode == "13")    
         {  
