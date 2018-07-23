@@ -33,6 +33,7 @@
 		<if test="model.dummy == false ">
 			and (sa.is_dummy = 0 or sa.is_dummy is null)
 		</if>
+		order by create_date desc
 	</select>
 
 	<select id="queryUserAsk" parameterType="java.lang.String" resultMap="SgAskMap">

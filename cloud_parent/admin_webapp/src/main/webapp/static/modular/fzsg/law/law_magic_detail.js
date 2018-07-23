@@ -75,7 +75,7 @@ lawMagic.push_lawMagic=function (state){
 }
 /*法宝-增加*/
 lawMagic.add_lawMagic=function (title,url,w,h){
-	layer_show(title,url,w,h);
+	layer_show(title,url+"?id="+$("#categoryCode").val(),w,h);
 }
 /*法宝-编辑*/
 lawMagic.edit_lawMagic=function (title,url,id,w,h){
@@ -197,6 +197,10 @@ lawMagic.search = function () {
 }
 
 $(function () {
+	$("#categoryCode").change(function(){
+		lawMagic.search();
+	})
+	
     var defaultColunms = lawMagic.initColumn();
     var options = lawMagic.dataTables(defaultColunms);    
     lawMagic.table = defDataTables(options);

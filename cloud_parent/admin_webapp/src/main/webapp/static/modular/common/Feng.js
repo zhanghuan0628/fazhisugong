@@ -160,7 +160,7 @@ var Feng = {
     						}
     					},
     					error : function(msg) {
-    							Feng.error('error!');
+    							Feng.error('系统异常，请联系管理员!');
     					},
     				};
     				$(form).ajaxSubmit(options);

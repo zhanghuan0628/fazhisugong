@@ -121,7 +121,7 @@ theme.dataTables = function (columns) {
 	    		others : {
 	    			selector : '#'+theme.id,
 	    			url : Feng.ctxPath +"/sg_theme/theme_list_pageList",
-	    			param : ["title"]
+	    			param : ["num","title"]
 	    		}	
 	    }
 	    return options;

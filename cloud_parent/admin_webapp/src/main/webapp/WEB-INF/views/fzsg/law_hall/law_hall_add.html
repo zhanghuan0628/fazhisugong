@@ -24,7 +24,13 @@
 	<div class="row cl">
 		<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>上传时间：</label>
 		<div class="formControls col-xs-8 col-sm-9">
-			<input type="text" class="input-text Wdate" value="${dateString}" disabled="disabled">
+			<input type="text"
+			onfocus="WdatePicker({ maxDate:'#F{$dp.$D(\'maxTime\')||\'%y-%M-%d\'}' })"
+			id="createTime" name="createTime" class="input-text Wdate" value="${dateString}">
+			
+			<input type="hidden"
+			onfocus="WdatePicker({ maxDate:'#F{$dp.$D(\'maxTime\')||\'%y-%M-%d\'}' })"
+			id="maxTime" name="maxTime" class="input-text Wdate" value="${dateString}">
 		</div>
 	</div>
 	<div class="row cl">

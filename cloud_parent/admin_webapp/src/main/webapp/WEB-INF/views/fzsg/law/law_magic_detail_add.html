@@ -2,7 +2,6 @@
 <article class="page-container">
 	<form class="form form-horizontal" id="lawMagicInfoForm" onsubmit="return getContent();">
 	<input type="hidden" value="" id="id" name="id">
-	<input type="hidden" id="categoryCode" name="categoryCode" value="${id}">
 	<input type="hidden" value="law_magic" id="category" name="category">
 	<div class="row cl">
 		<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>标题：</label>
@@ -13,7 +12,17 @@
 	<div class="row cl">
 		<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>根目录：</label>
 		<div class="formControls col-xs-8 col-sm-9">
-			<input type="text" class="input-text" value="${title}" disabled="disabled">
+			<select id="categoryCode" name="categoryCode" class="input-text">
+				@for(dic in list){
+	        	<option value="${dic.id}" 
+	        		@if(id==dic.id){
+		        		selected="selected"
+		        	@}
+	        	>
+	        	${dic.title }
+	        	</option>
+				@}
+			</select>
 		</div>
 	</div>
 	<div class="row cl">

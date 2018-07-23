@@ -32,6 +32,7 @@ import com.ffxl.platform.constant.JsonResult;
 import com.ffxl.platform.constant.Message;
 import com.ffxl.platform.core.DataTablesUtil;
 import com.ffxl.platform.core.Page;
+import com.ffxl.platform.util.DateUtil;
 import com.ffxl.platform.util.StringUtil;
 import com.ffxl.platform.util.UUIDUtil;
 
@@ -126,7 +127,8 @@ public class SgAskController extends BaseController{
     @ResponseBody
     public JsonResult add(SgAsk sgAsk) {
     	sgAsk.setId(UUIDUtil.getUUID());
-    	sgAsk.setCreateDate(new Date());
+    	Date d = DateUtil.parseDate(sgAsk.getCreateTime());
+    	sgAsk.setCreateDate(d);
     	sgAsk.setDummy(true);
     	int i = sgAskService.insertSelective(sgAsk);
     	if(i > 0){

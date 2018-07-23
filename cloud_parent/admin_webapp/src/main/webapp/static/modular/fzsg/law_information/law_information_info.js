@@ -1,48 +1,6 @@
 /**
  * 法治动态详情对话框（可用于添加和修改对话框）
  */
-var editor = new wangEditor('editor');
-// 仅仅想移除某几个菜单，例如想移除『插入代码』和『位置』菜单：
-// 其中的 wangEditor.config.menus 可获取默认情况下的菜单配置
-editor.config.menus = $.map(wangEditor.config.menus,
-        function(item, key) {
-            if (item === 'insertcode') {
-                return null;
-            }
-            if (item === 'location') {
-                return null;
-            }
-            if (item === 'fullscreen') {
-                return null;
-            }
-
-            return item;
-        });
-// 关闭菜单栏fixed
-editor.config.menuFixed = false;
-editor.config.menuFixed = 60;
-// 取消粘贴过滤,方便直接拷贝样式
-editor.config.pasteFilter = false;
-
-// 上传图片（举例）
-editor.config.uploadImgUrl = Feng.ctxPath+'/common/img_upload';
-
-// 配置自定义参数（举例）
-editor.config.uploadParams = {
-    catalog : 'article'
-};
-// 设置 headers（举例）
-editor.config.uploadHeaders = {
-    'Accept' : 'text/x-json'
-};
-
-// 隐藏掉插入网络图片功能。该配置，只有在你正确配置了图片上传功能之后才可用。
-editor.config.hideLinkImg = true;
-
-editor.create();
-
-
-
 var sgLawInformationInfoDlg = {
 	formId : "lawInformationInfoForm", //form表单id
 	table : parent.lawInformation.table,
@@ -87,6 +45,9 @@ var sgLawInformationInfoDlg = {
 				minlength:1,
 				maxlength:16,
 			},
+			createTime:{
+				required:true
+			},
 			
 		},
 		messages : {
@@ -103,9 +64,9 @@ var sgLawInformationInfoDlg = {
 
 
 function getContent(){
-	var html = editor.$txt.html();
-    console.log(html);
-    $("#content").val(html);
+	var content =current_editor.getContent();
+	content = getOssContent("Feng.ctxPath",content)
+	$("#content").val(content)
     
 }
 
@@ -185,8 +146,15 @@ $("#imgFile").bind("change", function(e) {
 	});
 
 
-
+var current_editor = UE.getEditor('editor',{
+	initialFrameHeight:900,
+	open_editor: true
+});
 $(function(){
+	current_editor.ready(function(){
+		current_editor.setContent($("#content").val())
+	})
+	
 	$('.skin-minimal input').iCheck({
 		checkboxClass: 'icheckbox-blue',
 		radioClass: 'iradio-blue',

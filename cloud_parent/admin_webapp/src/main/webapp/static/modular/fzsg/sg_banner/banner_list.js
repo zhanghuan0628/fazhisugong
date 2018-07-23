@@ -68,7 +68,7 @@ banner.pushUp=function (obj,id,sort){
 	console.log("id:"+id + "       sort:" + sort);
 		$.ajax({
 			type: 'POST',
-			url: Feng.ctxPath +"/sg_banner/push?id="+id+"&state=up&sort="+sort,
+			url: Feng.ctxPath +"/sg_banner/push?id="+id+"&state=down&sort="+sort,
 			dataType: 'json',
 			success: function(data){
 				if(data.code =='2000'){
@@ -88,7 +88,7 @@ banner.pushDown = function(obj,id,sort){
 	console.log("id:"+id + "       sort:" + sort);
 		$.ajax({
 			type: 'POST',
-			url: Feng.ctxPath +"/sg_banner/push?id="+id+"&state=down&sort="+sort,
+			url: Feng.ctxPath +"/sg_banner/push?id="+id+"&state=up&sort="+sort,
 			dataType: 'json',
 			success: function(data){
 				if(data.code =='2000'){

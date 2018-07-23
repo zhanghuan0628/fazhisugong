@@ -7,6 +7,7 @@ var dummyUserInfoDlg = {
 	table : parent.sgUser.table,
     infoData: {
     	id: $("#id").val(),
+    	loginName:$("#loginName").val()
     },
     //验证方式
     validate: {
