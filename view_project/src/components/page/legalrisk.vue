@@ -9,12 +9,16 @@
 
 		<div v-if = "!searching">
 			<div class="legalClassify">
-				<template v-for = "todo in classifyList">
-					<div :key = "todo.id" @click = "searchClassify(todo.id)">
-						<img :src = "todo.img" alt="">
-						<p v-text = "todo.name"></p>
-					</div>
-				</template>
+				<ul>
+					<template v-for = "todo in classifyList">
+						<li :key = "todo.id">
+							<div @click = "searchClassify(todo.id)">
+								<img :src = "todo.img" alt="">
+								<p v-text = "todo.name"></p>
+							</div>
+						</li>
+					</template>
+				</ul>
 			</div>
 
 			<div class="suggestedReading">
@@ -120,9 +124,9 @@ export default {
 	mounted () {
 		// 分享配置
 		let locationUrl = location.protocol+"//"+location.host+"/legalrisk";
-		let wxtitle = "国网苏州供电公司的法治平台";
+		let wxtitle = "法治苏供";
 		let wximgUrl = location.protocol+"//"+location.host+"/static/images/wxShare.png";
-		let wxdesc = "法治苏供，为你提供法律服务";
+		let wxdesc = "为您提供专业的法律维权服务!";
 		util.wxShare(locationUrl,wxtitle,wximgUrl,wxdesc)
 	},
 	watch:{
@@ -200,8 +204,17 @@ export default {
 		}
 	},
 	beforeRouteLeave (to, from, next) {
-		this.riskMescroll.destroy();
-		next()
+		if (this.riskMescroll != null) {
+			if (this.riskMescroll.downProgressDom != undefined) {
+				this.riskMescroll.destroy();
+				next();
+			} else {
+				next();
+			}
+		} else {
+			next();
+		}
+		
 	},
 	store
 }
@@ -221,10 +234,12 @@ export default {
 	#legalrisk .legalSearch .searchBar #searchForm input::-moz-placeholder {color: #ffffff;}
 	#legalrisk .legalSearch .searchBar #searchForm input:-ms-input-placeholder {color: #ffffff;}
 
-	#legalrisk .legalClassify {padding: 4.3rem 1.5rem 3rem 1.5rem;display: flex;display: -webkit-flex;background-color: #ffffff;justify-content: space-between;flex-wrap: wrap;}
-	#legalrisk .legalClassify div {width: 30.5%;height: 10.4rem;padding-top: 3.6rem; background-color: #ffffff;border-radius: 10px;text-align: center;box-shadow: 0px 0px 6px 3px #dfeeea;margin-bottom: 2rem;}
-	#legalrisk .legalClassify div img {width: 3.4rem;height: 3.4rem;margin-bottom: .8rem;}
-	#legalrisk .legalClassify div p {font-size: 1.7rem;line-height: 1.7rem;}
+	#legalrisk .legalClassify {padding: 4.3rem 0 3rem 0;background-color: #ffffff;}
+	#legalrisk .legalClassify ul {display: flex;display: -webkit-flex;flex-wrap: wrap;}
+	#legalrisk .legalClassify ul li {width: 33.3%;padding: 0 3%;margin-bottom: 2rem;box-sizing: border-box;}
+	#legalrisk .legalClassify ul li div {height: 10.4rem;padding-top: 3.6rem; background-color: #ffffff;border-radius: 10px;text-align: center;box-shadow: 0px 0px 6px 3px #dfeeea;}
+	#legalrisk .legalClassify ul li div img {width: 3.4rem;height: 3.4rem;margin-bottom: .8rem;}
+	#legalrisk .legalClassify ul li div p {font-size: 1.7rem;line-height: 1.7rem;}
 	
 	#legalrisk .legalriskList {position: absolute;top: 10rem;left: 0;right: 0;bottom: 0;}
 	

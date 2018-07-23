@@ -10,38 +10,39 @@
 		<div class="menuList">
 			<ul>
 				<li>
+					<img class="draw" src="~static/images/draw.png" alt="">
 					<router-link to = '/iJudge'>
-						<img src="~static/images/menu1.png" alt="">
+						<img class="menuImg" src="~static/images/menu1.png" alt="">
 						<p>我是法官</p>
 					</router-link>
 				</li>
 				<li>
 					<router-link to = '/consultOnline'>
-						<img src="~static/images/menu2.png" alt="">
+						<img class="menuImg" src="~static/images/menu2.png" alt="">
 						<p>在线咨询</p>
 					</router-link>
 				</li>
 				<li>
 					<router-link to = '/legalrisk'>
-						<img src="~static/images/menu3.png" alt="">
+						<img class="menuImg" src="~static/images/menu3.png" alt="">
 						<p>法律风险</p>
 					</router-link>
 				</li>
 				<li>
 					<router-link to = '/talisman'>
-						<img src="~static/images/menu4.png" alt="">
+						<img class="menuImg" src="~static/images/menu4.png" alt="">
 						<p>苏供法宝</p>
 					</router-link>
 				</li>
 				<li>
 					<router-link to = '/dynamicRuleList'>
-						<img src="~static/images/menu5.png" alt="">
+						<img class="menuImg" src="~static/images/menu5.png" alt="">
 						<p>法治动态</p>
 					</router-link>
 				</li>
 				<li>
 					<router-link to = '/legalClassList'>
-						<img src="~static/images/menu6.png" alt="">
+						<img class="menuImg" src="~static/images/menu6.png" alt="">
 						<p>法治讲堂</p>
 					</router-link>
 				</li>
@@ -150,9 +151,9 @@ export default {
 	mounted () {
 		// 分享配置
 		let locationUrl = location.protocol+"//"+location.host;
-		let wxtitle = "国网苏州供电公司的法治平台";
+		let wxtitle = "法治苏供";
 		let wximgUrl = location.protocol+"//"+location.host+"/static/images/wxShare.png";
-		let wxdesc = "法治苏供，为你提供法律服务";
+		let wxdesc = "为您提供专业的法律维权服务!";
 		util.wxShare(locationUrl,wxtitle,wximgUrl,wxdesc)
 	},
 	methods: {
@@ -185,8 +186,26 @@ export default {
 
 	#index .menuList {padding-bottom: 2.5rem;margin-bottom: .6rem;background-color: #ffffff;}
 	#index .menuList ul {display: flex;display: -webkit-flex;justify-content: space-between;flex-wrap: wrap;}
-	#index .menuList ul li {width: 33.3%;text-align: center;padding-top: 2rem;}
-	#index .menuList ul li img {width: 5.5rem;}
+	#index .menuList ul li {width: 33.3%;text-align: center;padding-top: 2rem;position: relative;}
+	#index .menuList ul li .draw {position: absolute;top: 1.7rem;width: 5rem; left: 50%;margin-left: 1.5rem;animation : draw 2s infinite;-webkit-animation : draw 2s infinite;}
+	@keyframes draw
+	{
+		0% {transform: translateY(0)}
+		25% {transform: translateY(10%)}
+		50% {transform: translateY(0)}
+		75% {transform: translateY(-10%);}
+		100% {transform: translateY(0);}
+	}
+
+	@-webkit-keyframes draw
+	{
+		0% {transform: translateY(0)}
+		25% {transform: translateY(10%)}
+		50% {transform: translateY(0)}
+		75% {transform: translateY(-10%);}
+		100% {transform: translateY(0);}
+	}
+	#index .menuList ul li .menuImg {width: 5.5rem;}
 	#index .menuList ul li p {line-height: 1.4rem;margin-top: 1rem;color: #333333;}
 
 	#index .indexList {background-color: #ffffff;margin-bottom: .6rem;}

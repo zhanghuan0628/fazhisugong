@@ -123,15 +123,15 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 	#talismanDetail {}
-	#talismanDetail .talismanTop {position: absolute;left: 0;top: 0;width: 100%; height: 5rem;line-height: 5rem;background-color: #ecf5f2;z-index: 40;}
+	#talismanDetail .talismanTop {position: relative;width: 100%; height: 5rem;line-height: 5rem;background-color: #ecf5f2;}
 	#talismanDetail .talismanTop .talismanMenuBtn {font-size: 1.8rem;padding-left: 3rem;background: url(~static/images/menu.png) no-repeat;background-size: 1.9rem 1.5rem;background-position: left center;position: absolute; left: 1.5rem;top: 0;}
 	#talismanDetail .talismanTop p {position: absolute;right: 1.5rem;font-size: 1.5rem;color: #666666;top: 0;}
 
-	#talismanDetail .talismanCont {position: absolute;top: 5rem;bottom: 5rem;left: 0;width: 100%;box-sizing: border-box;padding: 0 1.5rem;background-color: #ffffff;overflow: auto;overflow-y: scroll;-webkit-overflow-scrolling: touch;}
+	#talismanDetail .talismanCont {width: 100%;box-sizing: border-box;padding: 0 1.5rem;background-color: #ffffff;}
 	#talismanDetail .talismanCont h1 {font-size: 2rem;font-weight: bold;line-height: 3rem;text-align: center;padding: 1.5rem 0;}
 	#talismanDetail .talismanCont div {font-size: 1.5rem;line-height: 2.6rem;}
 
-	#talismanDetail .talismanBottom {position: absolute;bottom: 0;left: 0;width: 100%;height: 5rem;background-color: #ecf5f2;line-height: 5rem;}
+	#talismanDetail .talismanBottom {position: relative;width: 100%;height: 5rem;background-color: #ecf5f2;line-height: 5rem;}
 	#talismanDetail .talismanBottom .prev {position: absolute;left: 1.5rem;top: 0;font-size: 1.6rem;color: #429c84;}
 	#talismanDetail .talismanBottom .next {position: absolute;right: 1.5rem;top: 0;font-size: 1.6rem;color: #429c84;}
 

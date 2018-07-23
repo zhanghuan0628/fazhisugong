@@ -111,9 +111,9 @@ export default {
 
 		// 分享配置
 		let locationUrl = location.protocol+"//"+location.host;
-		let wxtitle = "国网苏州供电公司的法治平台";
+		let wxtitle = "法治苏供";
 		let wximgUrl = location.protocol+"//"+location.host+"/static/images/wxShare.png";
-		let wxdesc = "法治苏供，为你提供法律服务";
+		let wxdesc = "为您提供专业的法律维权服务!";
 		util.wxShare(locationUrl,wxtitle,wximgUrl,wxdesc)
 	},
 	methods: {
