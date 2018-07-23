@@ -66,6 +66,7 @@ ask.del_ask=function (){
 			}else{
 				Feng.error(data.message);
 			}
+        	$("#checkall").prop("checked", false);
         }, function (data) {
             Feng.error("操作失败!" + data.responseJSON.message + "!");
         });
@@ -82,7 +83,7 @@ ask.del_ask=function (){
  */
 ask.initColumn = function () {
     var columns = [
-        {title: '', data:"id",width:'10px',  render: function(data, type, row, meta) { return '<input type="checkbox" name="checklist" value="'+data+'" class="iCheck">';}},
+        {title: '<input type="checkbox" name="checkall" id="checkall">', data:"id",width:'10px',  render: function(data, type, row, meta) { return '<input type="checkbox" name="checklist" value="'+data+'" class="iCheck">';}},
         {title: '咨询标题', data: 'title'},
         {title: '发布时间', data: 'createTime'},
         {title: '提问者昵称', data: 'userName'},
@@ -151,6 +152,7 @@ $(function () {
     var options = ask.dataTables(defaultColunms);    
     ask.table = defDataTables(options);
     Feng.selectMultiRow(ask.id,ask);
+    Feng.checkAll();
     $('.enter').bind('keypress',function(event){//监听sim卡回车事件
         if(event.keyCode == "13")    
         {  

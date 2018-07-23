@@ -20,7 +20,7 @@ answerNum.edit_answerNum=function (title,url,id,w,h){
 answerNum.initColumn = function () {
     var columns = [
         {title: '', data:"id",width:'10px',  render: function(data, type, row, meta) { return '<input type="checkbox" name="checklist" value="'+data+'" class="iCheck">';}},
-        {title: '题目',width:'300px', data: 'stage'},
+        {title: '期数',width:'300px', data: 'stage'},
         {title: '答题人数',width:'300px', data: 'personNum'},
         {title:'操作',width:'300px', render: function(data, type, row, meta){
         	var msg = "";

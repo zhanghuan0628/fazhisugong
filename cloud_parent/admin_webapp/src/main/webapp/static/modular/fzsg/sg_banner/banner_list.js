@@ -53,6 +53,7 @@ banner.del_banner=function (){
 			}else{
 				Feng.error(data.message);
 			}
+        	$("#checkall").prop("checked", false);
         }, function (data) {
             Feng.error("操作失败!" + data.responseJSON.message + "!");
         });
@@ -113,6 +114,7 @@ banner.push_banner=function (state){
 			}else{
 				Feng.error(data.message);
 			}
+        	$("#checkall").prop("checked", false);
         }, function (data) {
             Feng.error("操作失败!" + data.responseJSON.message + "!");
         });
@@ -130,7 +132,7 @@ banner.push_banner=function (state){
  */
 banner.initColumn = function () {
     var columns = [
-        {title: '', data:"id",width:'10px',  render: function(data, type, row, meta) { return '<input type="checkbox" name="checklist" value="'+data+'" class="iCheck">';}},           
+        {title: '<input type="checkbox" name="checkall" id="checkall">', data:"id",width:'10px',  render: function(data, type, row, meta) { return '<input type="checkbox" name="checklist" value="'+data+'" class="iCheck">';}},           
         {title: '图片',width:'300px', data: 'bannerImg',render: function(data, type, row, meta){
         	var msg = "";
         	msg = "<img src='"+data+"' height='30px' onclick='clickThisImg(\""+data+"\")'>";
@@ -205,7 +207,7 @@ $(function () {
     var options = banner.dataTables(defaultColunms);    
     banner.table = defDataTables(options);
     Feng.selectMultiRow(banner.id,banner);
-    
+    Feng.checkAll();
     $('.enter').bind('keypress',function(event){//监听sim卡回车事件
         if(event.keyCode == "13")    
         {  

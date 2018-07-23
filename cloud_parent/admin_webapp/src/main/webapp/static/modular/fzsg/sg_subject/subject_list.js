@@ -37,6 +37,7 @@ subject.del_subject=function (){
 			}else{
 				Feng.error(data.message);
 			}
+        	$("#checkall").prop("checked", false);
         }, function (data) {
             Feng.error("操作失败!" + data.responseJSON.message + "!");
         });
@@ -72,7 +73,7 @@ subject.detail=function (title,url,id,name){
  */
 subject.initColumn = function () {
     var columns = [
-        {title: '', data:"id",width:'10px',  render: function(data, type, row, meta) { return '<input type="checkbox" name="checklist" value="'+data+'" class="iCheck">';}},
+        {title: '<input type="checkbox" name="checkall" id="checkall">', data:"id",width:'10px',  render: function(data, type, row, meta) { return '<input type="checkbox" name="checklist" value="'+data+'" class="iCheck">';}},
         {title: '题目',width:'300px', data: 'qstn'},
         {title: '选项数',width:'60px', data: 'num'},
         {title: '正确答案',width:'300px', data: 'result'},
@@ -118,7 +119,7 @@ $(function () {
     var options = subject.dataTables(defaultColunms);    
     subject.table = defDataTables(options);
     Feng.selectMultiRow(subject.id,subject);
-    
+    Feng.checkAll();
     $('.enter').bind('keypress',function(event){//监听sim卡回车事件
         if(event.keyCode == "13")    
         {  
