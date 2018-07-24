@@ -148,7 +148,7 @@ lawRisk.initColumn = function () {
 			+ "'"
 			+row.id
 			+ "'"
-			+',\'600\',\'200\')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i>'
+			+',\'600\',\'200\')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont" style="color:#429c84">&#xe6df;</i>'
 			+'</a> <a title="下移" href="javascript:;" onclick="lawRisk.pushUp(this,'
 			+ "'"
 			+row.id
@@ -156,14 +156,14 @@ lawRisk.initColumn = function () {
 			+ ",'"
 			+row.num
 			+ "'"
-			+')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe674;</i></a> <a title="上移" href="javascript:;" onclick="lawRisk.pushDown(this,'
+			+')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont" style="color:#429c84">&#xe674;</i></a> <a title="上移" href="javascript:;" onclick="lawRisk.pushDown(this,'
 			+ "'"
 			+row.id
 			+ "'"
 			+ ",'"
 			+row.num
 			+ "'"
-			+')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe679;</i></a>'
+			+')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont" style="color:#429c84">&#xe679;</i></a>'
 			+'</td>';
         	return msg;
         }}];

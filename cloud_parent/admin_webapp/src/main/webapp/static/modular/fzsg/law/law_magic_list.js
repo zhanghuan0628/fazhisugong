@@ -152,7 +152,7 @@ lawMagic.initColumn = function () {
 			+ "'"
 			+row.id
 			+ "'"
-			+',\'600\',\'200\')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i>'
+			+',\'600\',\'200\')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont" style="color:#429c84">&#xe6df;</i>'
 			+'</a> <a title="查看" href="javascript:;" onclick="lawMagic.detail(\'查看详情\',\'/sg_law_magic/law_magic_detail\','
 			+ "'"
 			+row.id
@@ -160,21 +160,21 @@ lawMagic.initColumn = function () {
 			+ ",'"
 			+row.title
 			+ "'"
-			+',\'10001\')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe695;</i></a> <a title="下移" href="javascript:;" onclick="lawMagic.pushUp(this,'
+			+',\'10001\')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont" style="color:#429c84">&#xe695;</i></a> <a title="下移" href="javascript:;" onclick="lawMagic.pushUp(this,'
 			+ "'"
 			+row.id
 			+ "'"
 			+ ",'"
 			+row.num
 			+ "'"
-			+')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe674;</i></a> <a title="上移" href="javascript:;" onclick="lawMagic.pushDown(this,'
+			+')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont" style="color:#429c84">&#xe674;</i></a> <a title="上移" href="javascript:;" onclick="lawMagic.pushDown(this,'
 			+ "'"
 			+row.id
 			+ "'"
 			+ ",'"
 			+row.num
 			+ "'"
-			+')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe679;</i></a>'
+			+')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont" style="color:#429c84">&#xe679;</i></a>'
 			+'</td>';
         	return msg;
         }}];

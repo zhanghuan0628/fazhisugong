@@ -216,28 +216,28 @@ SysUser.initColumn = function () {
         				+ "'"
         				+row.id
         				+ "'"
-        				+')" href="javascript:;" title="停用"><i class="Hui-iconfont">&#xe631;</i></a>';
+        				+')" href="javascript:;" title="停用"><i class="Hui-iconfont" style="color:#429c84">&#xe631;</i></a>';
         	}else if(row.status==2){
         		 msg+='<td class="td-manage"><a style="text-decoration:none" onClick="SysUser.admin_start(this,'
         				+ "'"
         				+row.id
         				+ "'"
-        				+')" href="javascript:;" title="启用"><i class="Hui-iconfont">&#xe615;</i></a>';
+        				+')" href="javascript:;" title="启用"><i class="Hui-iconfont" style="color:#429c84">&#xe615;</i></a>';
         	}	
         	msg+='<a title="编辑" href="javascript:;" onclick="SysUser.admin_edit(\'管理员编辑\',\'/sys_user/user_edit\','
 			+ "'"
 			+row.id
 			+ "'"
-			+',\'800\',\'500\')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i>'
+			+',\'800\',\'500\')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont" style="color:#429c84">&#xe6df;</i>'
 			+'</a> <a title="删除" href="javascript:;" onclick="SysUser.single_del(this,'
 			+ "'"
 			+row.id
 			+ "'"
-			+')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a> <a title="初始化密码" href="javascript:;" onclick="SysUser.update_pwd(this,'
+			+')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont" style="color:#429c84">&#xe6e2;</i></a> <a title="初始化密码" href="javascript:;" onclick="SysUser.update_pwd(this,'
 			+ "'"
 			+row.id
 			+ "'"
-			+')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe605;</i></a>'
+			+')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont" style="color:#429c84">&#xe605;</i></a>'
 			+'</td>';
         	return msg;
         }}];

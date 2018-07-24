@@ -7,7 +7,7 @@
 		${menuWarpper.pname} <span class="c-gray en">&gt;</span> 
 		${menuWarpper.name}
 	@}
-<a class="btn buttons radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" >
+<a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" >
 	<i class="Hui-iconfont">&#xe68f;</i>
 </a>
 </nav>
@@ -15,7 +15,7 @@
 	<div class="text-c">
 		题目：<input type="text" class="input-text enter" style="width:250px" id="" name="qstn">
 		<input type="hidden" class="input-text" style="width:250px" name="categoryCode">
-		<button type="button" class="btn buttons" id="search" onclick="subject.search()"  ><i class="Hui-iconfont">&#xe665;</i> 查询</button>
+		<button type="button" class="btn btn-success" id="search" onclick="subject.search()"  ><i class="Hui-iconfont">&#xe665;</i> 查询</button>
 	</div>
 	<div class="cl pd-5 bg-1 bk-gray mt-20"> 
 		<span class="l">
@@ -23,7 +23,7 @@
 			<a href="javascript:;" onclick="subject.del_subject()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a>
 			@}
 			@if(shiro.hasPermission("/sg_subject/add_subject")){
-			<a href="javascript:;" onclick="subject.add_subject('新增法官题目','${ctxPath}/sg_subject/subject_add','1000','500')" class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i> 新增</a>
+			<a href="javascript:;" onclick="subject.add_subject('新增法官题目','${ctxPath}/sg_subject/subject_add','1000','500')" class="btn btn-success radius"><i class="Hui-iconfont">&#xe600;</i> 新增</a>
 			@}
 		</span> 
 	</div>

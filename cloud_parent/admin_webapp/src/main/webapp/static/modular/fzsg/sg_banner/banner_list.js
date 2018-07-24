@@ -151,7 +151,7 @@ banner.initColumn = function () {
     			+ "'"
     			+row.id
     			+ "'"
-    			+',\'600\',\'400\')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i>'
+    			+',\'600\',\'400\')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont" style="color:#429c84">&#xe6df;</i>'
     			+'</a><a title="下移" href="javascript:;" onclick="banner.pushUp(this,'
     			+ "'"
     			+row.id
@@ -159,14 +159,14 @@ banner.initColumn = function () {
     			+ ",'"
     			+row.sortNum
     			+ "'"
-    			+')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe674;</i></a> <a title="上移" href="javascript:;" onclick="banner.pushDown(this,'
+    			+')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont" style="color:#429c84">&#xe674;</i></a> <a title="上移" href="javascript:;" onclick="banner.pushDown(this,'
     			+ "'"
     			+row.id
     			+ "'"
     			+ ",'"
     			+row.sortNum
     			+ "'"
-    			+')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe679;</i></a>'
+    			+')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont" style="color:#429c84">&#xe679;</i></a>'
     			+'</td>';
             	return msg;
         }}];

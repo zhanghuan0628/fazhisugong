@@ -12,6 +12,7 @@
 		FROM
 			sys_login_log sl
 		LEFT JOIN sys_user su ON sl.login_name = su.id WHERE 1 = 1
+		and sl.login_name != '4a5bad2d5b1740d4b59bfd68ebaa0abe'
 		<if test="model.logName != null and model.logName != '' ">
 		   and log_name like CONCAT('%','${model.logName}','%')
 		</if>

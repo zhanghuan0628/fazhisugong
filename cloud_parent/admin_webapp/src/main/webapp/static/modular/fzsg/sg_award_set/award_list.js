@@ -69,7 +69,7 @@ award.initColumn = function () {
     			+ "'"
     			+row.id
     			+ "'"
-    			+',\'600\',\'400\')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i>'
+    			+',\'600\',\'400\')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont" style="color:#429c84">&#xe6df;</i>'
     			+'</a>'
     			+'</td>';
         	

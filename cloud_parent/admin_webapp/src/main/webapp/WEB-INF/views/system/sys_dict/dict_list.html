@@ -7,14 +7,14 @@
 		${menuWarpper.pname} <span class="c-gray en">&gt;</span> 
 		${menuWarpper.name}
 	@}
-<a class="btn buttons radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" >
+<a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" >
 	<i class="Hui-iconfont">&#xe68f;</i>
 </a>
 </nav>
 <div class="page-container">
 	<div class="text-c">
 		字典项名称：<input type="text" class="input-text enter" style="width: 250px" id="name" name="name">
-		<button type="button" class="btn buttons" id="search"
+		<button type="button" class="btn btn-success" id="search"
 			onclick="Dict.search()">
 			<i class="Hui-iconfont">&#xe665;</i> 查询
 		</button>
@@ -27,7 +27,7 @@
 			@}
 			@if(shiro.hasPermission("/sys_dict/dict_add")){
 			<a href="javascript:;" onclick="Dict.openAddDict()"
-			    class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i>
+			    class="btn btn-success radius"><i class="Hui-iconfont">&#xe600;</i>
 				新增</a>
 			@}
 		</span>

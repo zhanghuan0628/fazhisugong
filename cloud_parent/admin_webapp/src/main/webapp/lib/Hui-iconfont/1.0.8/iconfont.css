@@ -16,13 +16,13 @@
   url('iconfont.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
   url('iconfont.svg#Hui-iconfont') format('svg'); /* iOS 4.1- */
 }
-
 .Hui-iconfont {
   font-family:"Hui-iconfont" !important;
   font-style:normal;
   -webkit-font-smoothing: antialiased;
   -webkit-text-stroke-width: 0.2px;
   -moz-osx-font-smoothing: grayscale;
+  font-size:17px;
 }
 .Hui-iconfont-gotop:before { content: "\e684"; }
 .Hui-iconfont-music:before { content: "\e60f"; }
@@ -189,7 +189,7 @@
 .Hui-iconfont-phone:before { content: "\e696"; }
 .Hui-iconfont-bold:before { content: "\e6e7"; }
 .Hui-iconfont-manage2:before { content: "\e63c"; }
-.Hui-iconfont-edit:before { content: "\e6df"; }
+.Hui-iconfont-edit:before { content: "\e6df";}
 .Hui-iconfont-del2:before { content: "\e609"; }
 .Hui-iconfont-duigou:before { content: "\e6e8"; }
 .Hui-iconfont-chongqi:before { content: "\e6f7"; }

@@ -134,9 +134,9 @@ lawMagic.initColumn = function () {
         {title: '', data:"id",width:'10px',  render: function(data, type, row, meta) { return '<input type="checkbox" name="checklist" value="'+data+'" class="iCheck">';}},
         {title: '标题',width:'300px', data: 'title'},
         {title: '状态',width:'300px', data: 'status',render: function(data, type, row, meta){
-        	if(data=='publish')return '<span class="label label-success radius">上架</span>';	
-        	else if(data=='no_publish')return '<span class="label label-default radius">下架</span>';
-        	else return '<span class="label label-default radius">未发布</span>';
+        	if(data=='publish')return '<span class="labels labels-success radius">上架</span>';	
+        	else if(data=='no_publish')return '<span class="labels labels-default radius">下架</span>';
+        	else return '<span class="labels labels-default radius">未发布</span>';
         }},
         {title: '排序',width:'50px', data: 'num'},
         {title:'操作',width:'300px', render: function(data, type, row, meta){
@@ -145,7 +145,7 @@ lawMagic.initColumn = function () {
 			+ "'"
 			+row.id
 			+ "'"
-			+',\'1000\',\'500\')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i>'
+			+',\'1000\',\'500\')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont" style="color:#429c84">&#xe6df;</i>'
 			+'</a> <a title="上移" href="javascript:;" onclick="lawMagic.pushUp(this,'
 			+ "'"
 			+row.id
@@ -156,7 +156,7 @@ lawMagic.initColumn = function () {
 			+ ",'"
 			+row.categoryCode
 			+ "'"
-			+')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe679;</i></a> <a title="下移" href="javascript:;" onclick="lawMagic.pushDown(this,'
+			+')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont" style="color:#429c84">&#xe679;</i></a> <a title="下移" href="javascript:;" onclick="lawMagic.pushDown(this,'
 			+ "'"
 			+row.id
 			+ "'"
@@ -166,7 +166,7 @@ lawMagic.initColumn = function () {
 			+ ",'"
 			+row.categoryCode
 			+ "'"
-			+')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe674;</i></a>'
+			+')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont" style="color:#429c84">&#xe674;</i></a>'
 			+'</td>';
         	return msg;
         }}];

@@ -7,7 +7,7 @@
 		${menuWarpper.pname} <span class="c-gray en">&gt;</span> 
 		${menuWarpper.name}
 	@}
-<a class="btn buttons radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" >
+<a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" >
 	<i class="Hui-iconfont">&#xe68f;</i>
 </a>
 </nav>
@@ -22,7 +22,7 @@
         	</option>
 			@}
 		</select>
-		<button type="button" class="btn buttons" id="search" onclick="lawRisk.search()"  ><i class="Hui-iconfont">&#xe665;</i> 查询</button>
+		<button type="button" class="btn btn-success" id="search" onclick="lawRisk.search()"  ><i class="Hui-iconfont">&#xe665;</i> 查询</button>
 	</div>
 	<div class="cl pd-5 bg-1 bk-gray mt-20"> 
 		<span class="l">
@@ -30,10 +30,10 @@
 			<a href="javascript:;" onclick="lawRisk.del_lawRisk()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a>
 			@}
 			@if(shiro.hasPermission("/sg_law_risk/add_risk")){
-			<a href="javascript:;" onclick="lawRisk.add_lawRisk('新增法律风险','${ctxPath}/sg_law_risk/law_risk_add','1000','500')" class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i> 新增</a>
+			<a href="javascript:;" onclick="lawRisk.add_lawRisk('新增法律风险','${ctxPath}/sg_law_risk/law_risk_add','1000','500')" class="btn btn-success radius"><i class="Hui-iconfont">&#xe600;</i> 新增</a>
 			@}
 			@if(shiro.hasPermission("/sg_law_risk/top_risk")){
-			<a href="javascript:;" onclick="lawRisk.push_lawRisk('publish')" class="btn btn-primary radius"><i class="Hui-iconfont">&#xe6e1;</i> 上架</a>
+			<a href="javascript:;" onclick="lawRisk.push_lawRisk('publish')" class="btn btn-success radius"><i class="Hui-iconfont">&#xe6e1;</i> 上架</a>
 			@}
 			@if(shiro.hasPermission("/sg_law_risk/down_risk")){
 			<a href="javascript:;" onclick="lawRisk.push_lawRisk('no_publish')" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe706;</i> 下架</a>

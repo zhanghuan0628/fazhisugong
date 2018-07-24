@@ -156,7 +156,7 @@ lawHall.initColumn = function () {
 			+ "'"
 			+row.id
 			+ "'"
-			+',\'1000\',\'500\')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i>'
+			+',\'1000\',\'500\')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont" style="color:#429c84">&#xe6df;</i>'
 			+'</a>'
 			+'</td>';
         	return msg;

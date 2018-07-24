@@ -7,7 +7,7 @@
 		${menuWarpper.pname} <span class="c-gray en">&gt;</span> 
 		${menuWarpper.name}
 	@}
-<a class="btn buttons radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" >
+<a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" >
 	<i class="Hui-iconfont">&#xe68f;</i>
 </a>
 </nav>
@@ -15,7 +15,7 @@
 	<div class="text-c">
 		菜单名称：<input type="text" class="input-text enter" style="width: 250px" id="name" name="name">
 		层级：<input type="text" class="input-text enter" style="width: 250px" id="levels" name="levels">
-		<button type="button" class="btn buttons" id="search"
+		<button type="button" class="btn btn-success" id="search"
 			onclick="sysMenu.search()">
 			<i class="Hui-iconfont">&#xe665;</i> 查询
 		</button>
@@ -28,12 +28,12 @@
 			@}
 			@if(shiro.hasPermission("/sys_menu/add_menu")){
 			<a href="javascript:;" onclick="sysMenu.openAddMenu()"
-			    class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i>
+			    class="btn btn-success radius"><i class="Hui-iconfont">&#xe600;</i>
 				新增</a>
 			@}
 			@if(shiro.hasPermission("/sys_menu/edit_menu")){
 			<a href="javascript:;" onclick="sysMenu.openChangeMenu()"
-			    class="btn btn-primary radius"><i class="Hui-iconfont">&#xe6df;</i>
+			    class="btn btn-success radius"><i class="Hui-iconfont">&#xe6df;</i>
 				编辑</a>
 			@}
 		</span>

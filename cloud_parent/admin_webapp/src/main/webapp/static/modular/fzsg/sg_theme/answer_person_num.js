@@ -28,7 +28,7 @@ answerNum.initColumn = function () {
 			+ "'"
 			+row.id
 			+ "'"
-			+',\'1000\',\'500\')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe695;</i>'
+			+',\'1000\',\'500\')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont" style="color:#429c84">&#xe695;</i>'
 			+'</a>'
 			+'</td>';
         	return msg;

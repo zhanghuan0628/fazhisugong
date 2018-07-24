@@ -7,14 +7,14 @@
 		${menuWarpper.pname} <span class="c-gray en">&gt;</span> 
 		${menuWarpper.name}
 	@}
-<a class="btn buttons radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" >
+<a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" >
 	<i class="Hui-iconfont">&#xe68f;</i>
 </a>
 </nav>
 <div class="page-container">
 	<div class="text-c">
 		角色名称：<input type="text" class="input-text enter" style="width: 250px" id="" name="name">
-		<button type="button" class="btn buttons" id="search"
+		<button type="button" class="btn btn-success" id="search"
 			onclick="sysRole.search()">
 			<i class="Hui-iconfont">&#xe665;</i> 查询
 		</button>
@@ -27,17 +27,17 @@
 			@} 
 			@if(shiro.hasPermission("/sys_role/role_add")){
 			<a href="javascript:;" onclick="sysRole.role_add('添加角色','${ctxPath}/sys_role/role_add','800','500')"
-			    class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i>
+			    class="btn btn-success radius"><i class="Hui-iconfont">&#xe600;</i>
 				新增</a>
 			@}
 			@if(shiro.hasPermission("/sys_role/edit_role")){
 			<a href="javascript:;" onclick="sysRole.role_edit('编辑角色','/sys_role/role_edit','800','500')"
-			    class="btn btn-primary radius"><i class="Hui-iconfont">&#xe6df;</i>
+			    class="btn btn-success radius"><i class="Hui-iconfont">&#xe6df;</i>
 				编辑</a>
 			@}
 			@if(shiro.hasPermission("/sys_role/set_role")){
 			<a href="javascript:;" onclick="sysRole.power_add('添加权限','/sys_role/power_add','300','500')"
-			    class="btn btn-primary radius"><i class="Hui-iconfont">&#xe60d;</i>
+			    class="btn btn-success radius"><i class="Hui-iconfont">&#xe60d;</i>
 				授权</a>
 			@}
 		</span>

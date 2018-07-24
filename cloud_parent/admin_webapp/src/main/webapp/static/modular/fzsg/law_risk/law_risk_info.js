@@ -229,11 +229,11 @@ sgRisk.initColumn = function () {
 			+ "'"
 			+row.id
 			+ "'"
-			+',\'800\',\'500\')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe692;</i></a> <a title="删除" href="javascript:;" onclick="sgRisk.del(this,'
+			+',\'800\',\'500\')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont" style="color:#429c84">&#xe692;</i></a> <a title="删除" href="javascript:;" onclick="sgRisk.del(this,'
 			+ "'"
 			+row.id
 			+ "'"
-			+')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe609;</i></a>'
+			+')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont" style="color:#429c84">&#xe609;</i></a>'
 			+'</td>';
         	return msg;
         }}];

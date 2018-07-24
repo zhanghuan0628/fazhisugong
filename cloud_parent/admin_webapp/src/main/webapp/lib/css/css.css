@@ -66,3 +66,6 @@ table tbody tr:nth-child(odd){
 table tbody tr:HOVER {
 	background: #f5f5f5;
 }
+hh:{
+	color: #429c84;
+}

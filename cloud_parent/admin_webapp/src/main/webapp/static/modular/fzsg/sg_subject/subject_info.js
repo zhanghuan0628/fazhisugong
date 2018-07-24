@@ -78,7 +78,7 @@ $(function(){
         +"<label class=\"form-label col-xs-4 col-sm-3\"><span class=\"num\">"+n+".</span></label>"
         +"<div class=\"formControls col-xs-4 col-sm-4\">"
             +"<input type=\"text\" class=\"input-text\" name=\"title\"></div>"
-        +"<input class=\"rad\" class=\"form-label col-xs-4 col-sm-3\" type=\"radio\"  style=\"width: 15px;height: 15px;\" name=\"result\" >"  
+        +"<input class=\"rad\" class=\"form-label col-xs-4 col-sm-3\" type=\"radio\"  style=\"width: 18px;height: 18px;\" name=\"result\" >"  
         +"<label class=\"del\" class=\"form-label col-xs-4 col-sm-3\" style=\"margin-left: 90px;\"> <i class=\"Hui-iconfont\">&#xe60b;</i> </label></div>";
   	  tab.append(div);
   	  $(".del").click(function(){
