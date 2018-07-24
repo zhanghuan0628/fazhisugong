@@ -63,12 +63,7 @@ var sgLawInformationInfoDlg = {
 };
 
 
-function getContent(){
-	var content =current_editor.getContent();
-	content = getOssContent("Feng.ctxPath",content)
-	$("#content").val(content)
-    
-}
+
 
 var ossClient = new OSS.Wrapper({
     region: "oss-cn-shanghai",
@@ -145,7 +140,12 @@ $("#imgFile").bind("change", function(e) {
 	   }
 	});
 
-
+function getContent(){
+	var content =current_editor.getContent();
+	content = getOssContent("Feng.ctxPath",content)
+	$("#content").val(content)
+    
+}
 var current_editor = UE.getEditor('editor',{
 	initialFrameHeight:900,
 	open_editor: true
