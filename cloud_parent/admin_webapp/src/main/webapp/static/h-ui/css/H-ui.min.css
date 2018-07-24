@@ -2874,7 +2874,7 @@ table th {
 }
 
 .table tbody tr.selected td {
-	background-color: #ffc68c
+	background-color: #c0ded6
 }
 
 .table tbody tr.active, .table tbody tr.active>td, .table tbody tr.active>th,
@@ -3308,7 +3308,7 @@ input[type="radio"], input[type="checkbox"] {
 	padding: 0;
 	width: 18px;
 	height: 18px;
-	background: url(../images/iCheck/blue.png) no-repeat;
+	background: url(../images/iCheck/green.png) no-repeat;
 	border: 0;
 	cursor: pointer
 }

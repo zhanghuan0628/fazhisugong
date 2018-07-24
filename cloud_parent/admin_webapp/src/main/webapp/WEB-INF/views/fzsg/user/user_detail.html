@@ -13,7 +13,7 @@
 						<input type="file" id="file" class="input-text">
 					</div>
 					<div class="formControls col-xs-8 col-sm-9">
-						<img src="${info.headUrl}" id="url" style="width: 120px;height: 120px;margin-left: 190px;">
+						<img src="${info.headUrl}" id="url" style="width: 120px;height: 120px;margin-left: 200px;">
 						<input type="hidden" id="headUrl" name="headUrl"  value="${info.headUrl}" class="input-text">
 					</div>
 				</div>
@@ -47,6 +47,10 @@
 						咨询标题：<input type="text" class="input-text enter" style="width:250px" id="" name="title">
 						<button type="button" class="btn btn-success" id="search" onclick="sgUserAsk.search()"  ><i class="Hui-iconfont">&#xe665;</i> 查询</button>
 					</div>
+					<div class="cl pd-5 bg-1 bk-gray mt-20"> 
+						<span class="l">
+						</span> 
+					</div>
 					<table id="sgUserAskTable" class="table table-border table-bordered table-bg">
 						<thead>
 							<tr>
@@ -66,6 +70,11 @@
 						及格次数：<span>${model.num}</span>
 						平均分：<span>${model.avgScore}</span>
 						最高分：<span>${model.maxScore}</span>
+					</div>
+					
+					<div class="cl pd-5 bg-1 bk-gray mt-20"> 
+						<span class="l">
+						</span> 
 					</div>
 					<table id="userThemeTable" class="table table-border table-bordered table-bg">
 						<thead>
