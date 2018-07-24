@@ -24,7 +24,7 @@ function getOssContent(base,content){
 		$.ajax({
 			dataType : 'json',
 			type : 'POST',
-			url : base+"/f_infos/uploadToOss",
+			url :Feng.ctxPath+"/common/uploadToOss",
 			async:false,
 			data : {urls:results.replace(",","")},
 			success : function(result) {

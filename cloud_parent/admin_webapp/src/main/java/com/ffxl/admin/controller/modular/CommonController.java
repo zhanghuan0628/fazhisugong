@@ -1,6 +1,8 @@
 package com.ffxl.admin.controller.modular;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -12,6 +14,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.support.AbstractMultipartHttpServletRequest;
 
+import com.ffxl.admin.core.util.UploadImgUtil;
+import com.ffxl.platform.constant.JsonResult;
+import com.ffxl.platform.constant.Message;
 import com.ffxl.platform.util.StringUtil;
 import com.ffxl.platform.util.UUIDUtil;
 
@@ -68,5 +73,17 @@ public class CommonController {
             response.getWriter().write("error|服务器异常");
             return;
         }
+    }
+    
+    @RequestMapping(value = "/uploadToOss")
+    @ResponseBody
+    public JsonResult uploadToOss(String urls) {
+      String[] urlss = urls.split(",");
+      List<String> list = new ArrayList<String>();
+      for (String url : urlss) {
+        String res = UploadImgUtil.getInputStreamByGetForInfos(url);
+        list.add(res);
+      }
+      return new JsonResult(Message.M2000,list);
     }
 }
