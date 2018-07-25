@@ -36,14 +36,21 @@
 	
 	<select id="queryThemeList" resultMap="SgThemeAnswerLogMap">
 		SELECT
-			sg.*, su.user_name as userName
+			sg.*, su.user_name as userName,sl.`code`,sl.award_code 
 		FROM
 			sg_theme_answer_log sg
 		LEFT JOIN sg_user su ON sg.user_id = su.id
+		LEFT JOIN sg_theme_award_log sl on sg.id = sl.answer_id
 		WHERE
-			theme_id = #{model.themeId}
+			sg.theme_id = #{model.themeId}
 		<if test="model.userName != null and model.userName != '' ">
-		   and user_name like CONCAT('%','${model.userName}','%')
+		   and su.user_name like CONCAT('%','${model.userName}','%')
+		</if>
+		<if test="model.code != null and model.code != '' and model.code != '1'.toString() ">
+		   and sl.award_code  = #{model.code}
+		</if>
+		<if test="model.code == '1'.toString() ">
+		   and (sl.award_code  is null or sl.award_code = '')
 		</if>
 	</select>
 	

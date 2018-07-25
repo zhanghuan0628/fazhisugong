@@ -187,7 +187,7 @@ export default {
 	#index .menuList {padding-bottom: 2.5rem;margin-bottom: .6rem;background-color: #ffffff;}
 	#index .menuList ul {display: flex;display: -webkit-flex;justify-content: space-between;flex-wrap: wrap;}
 	#index .menuList ul li {width: 33.3%;text-align: center;padding-top: 2rem;position: relative;}
-	#index .menuList ul li .draw {position: absolute;top: 1.7rem;width: 5rem; left: 50%;margin-left: 1.5rem;animation : draw 2s infinite;-webkit-animation : draw 2s infinite;}
+	#index .menuList ul li .draw {position: absolute;top: 1.7rem;width: 5rem; left: 50%;margin-left: 1.5rem;animation : draw 1s linear infinite;-webkit-animation : draw 1s linear infinite;}
 	@keyframes draw
 	{
 		0% {transform: translateY(0)}
