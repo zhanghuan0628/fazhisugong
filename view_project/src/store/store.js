@@ -6,8 +6,8 @@ Vue.use(Vuex);
 
 const state = {
     // apiUrl:location.protocol+"//"+location.host+"/apis", // 本机调试
-    apiUrl:location.protocol+"//pre-sg.feifanxinli.com/api", //测试环境
-    // apiUrl:location.protocol+"//sgapi.feifanxinli.com/api", //正式环境
+    // apiUrl:location.protocol+"//pre-sg.feifanxinli.com/api", //测试环境
+    apiUrl:location.protocol+"//sgapi.feifanxinli.com/api", //正式环境
     userId:"",
     userName:"",
     headUrl:"",
