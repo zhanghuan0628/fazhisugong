@@ -14,7 +14,11 @@ import com.ffxl.admin.core.common.annotion.BussinessLog;
 import com.ffxl.admin.core.common.constant.dictmap.DictionaryDic;
 import com.ffxl.admin.core.log.LogObjectHolder;
 import com.ffxl.cloud.model.Dictionary;
+import com.ffxl.cloud.model.DictionaryExample;
+import com.ffxl.cloud.model.SgLawExample;
+import com.ffxl.cloud.model.base.BaseDictionaryExample.Criteria;
 import com.ffxl.cloud.service.DictionaryService;
+import com.ffxl.cloud.service.SgLawService;
 import com.ffxl.cloud.service.impl.SysUserServiceImpl;
 import com.ffxl.platform.constant.JsonResult;
 import com.ffxl.platform.constant.Message;
@@ -38,6 +42,9 @@ private static final Logger LOGGER = LoggerFactory.getLogger(SgMajorController.c
 	
 	@Autowired
 	private DictionaryService dictionaryService;
+	
+	@Autowired
+	private SgLawService sgLawService;
 	/**
      * 跳转到专业列表的页面
      */
@@ -130,6 +137,11 @@ private static final Logger LOGGER = LoggerFactory.getLogger(SgMajorController.c
    	int ret = -1;
    	String[] idArray = ids.split(",");
    	for(String id:idArray ){
+   		SgLawExample example = new SgLawExample();
+        com.ffxl.cloud.model.base.BaseSgLawExample.Criteria c= example.createCriteria();
+        c.andCategoryCodeEqualTo(id);
+        c.andCategoryEqualTo("law_risk");
+   		sgLawService.deleteByExample(example);
    		ret = dictionaryService.deleteByPrimaryKey(id);
    	}
    	if(ret >0){

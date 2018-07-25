@@ -31,7 +31,7 @@ answerNum.dataTables = function (columns) {
 	    		others : {
 	    			selector : '#'+answerNum.id,
 	    			url : Feng.ctxPath +"/sg_theme/answerPerson_awardList",
-	    			param : ["userName","themeId"]
+	    			param : ["userName","themeId","code"]
 	    		}	
 	    }
 	    return options;

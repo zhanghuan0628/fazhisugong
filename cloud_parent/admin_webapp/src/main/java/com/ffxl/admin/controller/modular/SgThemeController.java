@@ -21,6 +21,8 @@ import com.ffxl.admin.core.common.annotion.BussinessLog;
 import com.ffxl.admin.core.common.constant.dictmap.DictionaryDic;
 import com.ffxl.admin.core.common.constant.dictmap.SgLawDic;
 import com.ffxl.admin.core.common.constant.dictmap.SgThemeDic;
+import com.ffxl.cloud.model.Dictionary;
+import com.ffxl.cloud.model.DictionaryExample;
 import com.ffxl.cloud.model.SgLaw;
 import com.ffxl.cloud.model.SgTheme;
 import com.ffxl.cloud.model.SgThemeAnswerLog;
@@ -29,6 +31,7 @@ import com.ffxl.cloud.model.SgThemeAwardLog;
 import com.ffxl.cloud.model.SgThemeAwardLogExample;
 import com.ffxl.cloud.model.SgThemeExample;
 import com.ffxl.cloud.model.base.BaseSgThemeExample.Criteria;
+import com.ffxl.cloud.service.DictionaryService;
 import com.ffxl.cloud.service.SgThemeAnswerLogService;
 import com.ffxl.cloud.service.SgThemeAwardLogService;
 import com.ffxl.cloud.service.SgThemeService;
@@ -56,6 +59,9 @@ public class SgThemeController extends BaseController{
 	
 	@Autowired
 	private SgThemeAwardLogService sgThemeAwardLogService;
+	
+	@Autowired
+	private DictionaryService dictionaryService;
 	
 	private static String PREFIX = "/fzsg/sg_theme/";
 	/**
@@ -224,6 +230,12 @@ public class SgThemeController extends BaseController{
     @RequestMapping("/answer_num_edit")
     public String answerNumEdit(String themeId ,Model m) {
     	m.addAttribute("themeId", themeId);
+    	DictionaryExample example = new DictionaryExample();
+        com.ffxl.cloud.model.base.BaseDictionaryExample.Criteria c= example.createCriteria();
+        c.andPidEqualTo("6");
+        example.setOrderByClause(" chance asc ");
+    	List<Dictionary> list = dictionaryService.selectByExample(example);
+    	m.addAttribute("list", list);
         return PREFIX + "answer_num_edit.html";
     } 
     /**

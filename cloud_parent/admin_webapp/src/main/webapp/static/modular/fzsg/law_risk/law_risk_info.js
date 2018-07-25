@@ -211,7 +211,10 @@ sgRisk.push_lawRisk=function (state){
  */
 sgRisk.initColumn = function () {
     var columns = [
-        {title: '', data:"id",width:'10px',  render: function(data, type, row, meta) { return '<input type="checkbox" name="checklist" value="'+data+'" class="iCheck">';}},         
+        {title: '<input type="checkbox" name="checkall" id="checkall">', data:"id",width:'10px',  render: function(data, type, row, meta) { 
+        	return '<input type="checkbox" id = "'+data+'" onclick="Feng.ck(\''+data+'\')" name="checklist" value="'+data+'" class="iCheck">';
+        	}
+        },
         {title: '风险文章', data: 'title'},
         {title: '评论者昵称', data: 'userName'},
         {title: '评论内容', data: 'content'},
@@ -229,7 +232,7 @@ sgRisk.initColumn = function () {
 			+ "'"
 			+row.id
 			+ "'"
-			+',\'800\',\'500\')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont" style="color:#429c84">&#xe692;</i></a> <a title="删除" href="javascript:;" onclick="sgRisk.del(this,'
+			+',\'800\',\'400\')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont" style="color:#429c84">&#xe692;</i></a> <a title="删除" href="javascript:;" onclick="sgRisk.del(this,'
 			+ "'"
 			+row.id
 			+ "'"
@@ -269,4 +272,5 @@ $(function () {
     var options = sgRisk.dataTables(defaultColunms);    
     sgRisk.table = defDataTables(options);
     Feng.selectMultiRow(sgRisk.id,sgRisk);
+    Feng.checkAll();
 });

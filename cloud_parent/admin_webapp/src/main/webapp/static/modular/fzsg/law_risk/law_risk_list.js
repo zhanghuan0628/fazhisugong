@@ -51,7 +51,7 @@ lawRisk.del_lawRisk=function (){
     };
     if(lawRisk.getSelIds()){
     	var selIds = lawRisk.seItem; 
-    	Feng.confirm('确认要删除吗？',operation);
+    	Feng.confirm('确认要删除专业吗？此专业下的风险文章也会被删除',operation);
     }
 }
 /*法律风险-上下架(批量)*/

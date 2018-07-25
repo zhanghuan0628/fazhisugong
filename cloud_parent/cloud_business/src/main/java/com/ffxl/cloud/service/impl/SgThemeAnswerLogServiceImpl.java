@@ -16,6 +16,7 @@ import com.ffxl.cloud.service.SgThemeService;
 import com.ffxl.platform.core.GenericMapper;
 import com.ffxl.platform.core.GenericServiceImpl;
 import com.ffxl.platform.core.Page;
+import com.ffxl.platform.util.StringUtil;
 
 import net.sf.json.JSONArray;
 
