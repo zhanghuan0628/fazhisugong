@@ -191,10 +191,14 @@ var Feng = {
 		    	 $(".iCheck").prop("checked", false);
 	             $(this).find('.iCheck').prop("checked",true);
 	        }
-	        if ($(this).hasClass('selected') ) {
+	        if ($(this).hasClass('selected')&&check ) {
 	           $(this).removeClass('selected');
 	        } else {
-	        	tab.table.$('tr.selected').removeClass('selected');
+	        	if(id!="menuTable"){
+	        		tab.table.$('tr.selected').removeClass('selected');
+	        	}else{
+	        		$('tr.selected').removeClass('selected');
+	        	}
 	            $(this).addClass('selected'); 
 	        }
 	    })
@@ -206,12 +210,21 @@ var Feng = {
 	        if(check && check==true){
 	             $(this).find('.iCheck').prop("checked",false);
 	             $(this).removeClass('selected');
+	             $("#checkall").prop("checked", false);
 	        }else{
 	             $(this).find('.iCheck').prop("checked",true);
 	             $(this).addClass('selected'); 
 	        }
 	    })
 	    
+	},
+	ck : function(id){
+		var check = $("#"+id).prop("checked");
+	    if(check && check==true){
+	    	$("#"+id).prop("checked",false);
+	    }else{
+	    	$("#"+id).prop("checked",true);
+	    }
 	},
 	//复选框全选/取消全选
 	checkAll: function(){

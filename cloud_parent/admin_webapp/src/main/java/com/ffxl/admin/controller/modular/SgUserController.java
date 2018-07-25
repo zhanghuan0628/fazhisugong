@@ -15,16 +15,21 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.ffxl.admin.controller.base.BaseController;
 import com.ffxl.admin.core.common.annotion.BussinessLog;
 import com.ffxl.admin.core.common.constant.dictmap.SgLawCommentDic;
+import com.ffxl.admin.core.common.constant.dictmap.SgThemeDic;
 import com.ffxl.admin.core.common.constant.dictmap.SgUserDic;
 import com.ffxl.admin.core.shiro.ShiroKit;
 import com.ffxl.admin.core.shiro.ShiroUser;
 import com.ffxl.cloud.model.SgAsk;
+import com.ffxl.cloud.model.SgAskExample;
 import com.ffxl.cloud.model.SgLawComment;
 import com.ffxl.cloud.model.SgLawCommentExample;
+import com.ffxl.cloud.model.SgThemeAnswerLogExample;
 import com.ffxl.cloud.model.SgThemeAwardLog;
+import com.ffxl.cloud.model.SgThemeAwardLogExample;
 import com.ffxl.cloud.model.SgThmemeAnswerLog;
 import com.ffxl.cloud.model.SgUser;
 import com.ffxl.cloud.model.SysUser;
+import com.ffxl.cloud.model.base.BaseSgLawCommentExample.Criteria;
 import com.ffxl.cloud.service.SgAskService;
 import com.ffxl.cloud.service.SgLawCommentService;
 import com.ffxl.cloud.service.SgThemeAwardLogService;
@@ -312,4 +317,32 @@ public class SgUserController extends BaseController{
         return new JsonResult("2000", dataTables);
         
     }
+    /**
+     * 删除
+     * @param ids
+     * @return
+     */
+   @RequestMapping("/del_dummy")
+   @BussinessLog(value = "删除虚拟用户", key = "id", dict = SgUserDic.class)
+   @ResponseBody
+   public JsonResult delDummy(String ids){
+   	if (StringUtil.isEmpty(ids)) {
+   		return new JsonResult(Message.M4002);
+       }
+   	int ret = -1;
+   	String[] idArray = ids.split(",");
+   	for(String id:idArray ){
+   		SgAskExample example = new SgAskExample();
+   	 	com.ffxl.cloud.model.base.BaseSgAskExample.Criteria c= example.createCriteria();
+   	 	c.andUserIdEqualTo(id);
+   	 	sgAskService.deleteByExample(example);
+   		ret = sgUserService.deleteByPrimaryKey(id);
+   	}
+   	if(ret >0){
+      	 return new JsonResult(Message.M2000);
+      }else{
+      	 return new JsonResult(Message.M5000);
+      }
+   	
+   }
 }

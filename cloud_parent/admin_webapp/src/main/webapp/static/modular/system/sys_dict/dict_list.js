@@ -107,7 +107,7 @@ Dict.dict_edit=function (title,url,id,w,h){
  */
 Dict.initColumn = function () {
     var columns = [
-        {title: '<input type="checkbox" name="checkall" id="checkall">', data:"id",width:"10px",  render: function(data, type, row, meta) { return '<input type="checkbox" name="checklist" value="'+data+'" class="iCheck">';}},
+        {title: '<input type="checkbox" name="checkall" id="checkall">', data:"id",width:"10px",  render: function(data, type, row, meta) { return '<input type="checkbox" id = "'+data+'" onclick="Feng.ck(\''+data+'\')" name="checklist" value="'+data+'" class="iCheck">';}},
         {title: '名称', data: 'name'},
         {title: '详情', data: 'dictName'},
         {title: '备注', data: 'tips',render: function(data, type, row, meta){

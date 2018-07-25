@@ -33,7 +33,7 @@ lawInfo.getSelIds = function(){
  */
 lawInfo.initColumn = function () {
 	var columns = [
-	               {title: '', data:"id",width:'10px',  render: function(data, type, row, meta) { return '<input type="radio" name="checklist" value="'+data+'" class="iCheck">';}},
+	               {title: '', data:"id",width:'10px',  render: function(data, type, row, meta) { return '<input type="radio" name="checklist" id = "'+data+'" onclick="Feng.ck(\''+data+'\')" value="'+data+'" class="iCheck">';}},
 	               {title: '标题',width:'300px', data: 'title'},
 	               {title: '发布时间',width:'300px', data: 'createTime'},
 	               {title: '状态',width:'300px', data: 'status',render: function(data, type, row, meta){

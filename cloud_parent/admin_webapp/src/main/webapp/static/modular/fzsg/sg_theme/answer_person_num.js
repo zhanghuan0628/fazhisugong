@@ -19,7 +19,7 @@ answerNum.edit_answerNum=function (title,url,id,w,h){
  */
 answerNum.initColumn = function () {
     var columns = [
-        {title: '', data:"id",width:'10px',  render: function(data, type, row, meta) { return '<input type="checkbox" name="checklist" value="'+data+'" class="iCheck">';}},
+        {title: '', data:"id",width:'10px',  render: function(data, type, row, meta) { return '<input type="checkbox" name="checklist" id = "'+data+'" onclick="Feng.ck(\''+data+'\')" value="'+data+'" class="iCheck">';}},
         {title: '期数',width:'300px', data: 'stage'},
         {title: '答题人数',width:'300px', data: 'personNum'},
         {title:'操作',width:'300px', render: function(data, type, row, meta){

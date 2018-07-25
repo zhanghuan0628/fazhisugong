@@ -134,7 +134,7 @@ lawHall.pushDown = function(obj,id,sort){
  */
 lawHall.initColumn = function () {
     var columns = [
-        {title: '<input type="checkbox" name="checkall" id="checkall">', data:"id",width:'10px',  render: function(data, type, row, meta) { return '<input type="checkbox" name="checklist" value="'+data+'" class="iCheck">';}},
+        {title: '<input type="checkbox" name="checkall" id="checkall">', data:"id",width:'10px',  render: function(data, type, row, meta) { return '<input type="checkbox" id = "'+data+'" onclick="Feng.ck(\''+data+'\')" name="checklist" value="'+data+'" class="iCheck">';}},
         {title: '标题',width:'300px', data: 'title'},
         {title: '发布时间',width:'200px', data: 'createTime'},
         {title: '类型',width:'100px', data: 'type',render: function(data, type, row, meta){

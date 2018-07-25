@@ -149,7 +149,7 @@ sysRole.role_start = function(obj,id){
  */
 sysRole.initColumn = function () {
     var columns = [
-        {title: '', data:"id",width:"10px",render: function(data, type, row, meta) { return '<input type="radio" name="checklist" value="'+data+'" class="iCheck">';}},
+        {title: '', data:"id",width:"10px",render: function(data, type, row, meta) { return '<input type="radio" id = "'+data+'" onclick="Feng.ck(\''+data+'\')" name="checklist" value="'+data+'" class="iCheck">';}},
         {title: '角色名称', data: 'name'},
         {title: '上级角色', data: 'fatherName'},
         {title: '备注', data: 'tips'}];

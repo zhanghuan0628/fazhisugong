@@ -20,6 +20,9 @@
 	</div>
 	<div class="cl pd-5 bg-1 bk-gray mt-20"> 
 		<span class="l">
+			@if(shiro.hasPermission("/sg_user/del_dummy")){
+			<a href="javascript:;" onclick="sgUser.del_dummy()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a>
+			@}
 			@if(shiro.hasPermission("/sg_user/add_dummy")){
 			<a href="javascript:;" onclick="sgUser.add_dummy_user('新增虚拟用户','${ctxPath}/sg_user/add_dummy_user','700','800')" class="btn btn-success radius"><i class="Hui-iconfont">&#xe600;</i> 新增虚拟用户</a>
 			@}

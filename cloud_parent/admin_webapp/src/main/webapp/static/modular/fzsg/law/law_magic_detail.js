@@ -43,6 +43,7 @@ lawMagic.del_lawMagic=function (){
 			}else{
 				Feng.error(data.message);
 			}
+        	$("#checkall").prop("checked", false);
         }, function (data) {
             Feng.error("操作失败!" + data.responseJSON.message + "!");
         });
@@ -63,6 +64,7 @@ lawMagic.push_lawMagic=function (state){
 			}else{
 				Feng.error(data.message);
 			}
+        	$("#checkall").prop("checked", false);
         }, function (data) {
             Feng.error("操作失败!" + data.responseJSON.message + "!");
         });
@@ -131,7 +133,7 @@ lawMagic.pushDown = function(obj,id,sort,code){
  */
 lawMagic.initColumn = function () {
     var columns = [
-        {title: '', data:"id",width:'10px',  render: function(data, type, row, meta) { return '<input type="checkbox" name="checklist" value="'+data+'" class="iCheck">';}},
+        {title: '<input type="checkbox" name="checkall" id="checkall">', data:"id",width:'10px',  render: function(data, type, row, meta) { return '<input type="checkbox" name="checklist" id = "'+data+'" onclick="Feng.ck(\''+data+'\')" value="'+data+'" class="iCheck">';}},
         {title: '标题',width:'300px', data: 'title'},
         {title: '状态',width:'300px', data: 'status',render: function(data, type, row, meta){
         	if(data=='publish')return '<span class="labels labels-success radius">上架</span>';	
@@ -205,7 +207,7 @@ $(function () {
     var options = lawMagic.dataTables(defaultColunms);    
     lawMagic.table = defDataTables(options);
     Feng.selectMultiRow(lawMagic.id,lawMagic);
-    
+    Feng.checkAll();
     $('.enter').bind('keypress',function(event){//监听sim卡回车事件
         if(event.keyCode == "13")    
         {  

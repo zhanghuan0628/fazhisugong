@@ -190,7 +190,7 @@ SysUser.update_pwd=function (obj,id){
  */
 SysUser.initColumn = function () {
     var columns = [
-        {title: '', data:"id",  render: function(data, type, row, meta) { return '<input type="radio" name="checklist" value="'+data+'" class="iCheck">';}},
+        {title: '', data:"id",  render: function(data, type, row, meta) { return '<input type="radio" id = "'+data+'" onclick="Feng.ck(\''+data+'\')" name="checklist" value="'+data+'" class="iCheck">';}},
         {title: '账号', data: 'loginName'},
         {title: '姓名', data: 'userName'},
         {title: '性别', data: 'sex',render: function(data, type, row, meta){

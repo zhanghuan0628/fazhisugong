@@ -60,7 +60,7 @@ sgMajor.del_sgMajor=function (){
  */
 sgMajor.initColumn = function () {
     var columns = [
-        {title: '<input type="checkbox" name="checkall" id="checkall">', data:"id",width:'10px',  render: function(data, type, row, meta) { return '<input type="checkbox" name="checklist" value="'+data+'" class="iCheck">';}},           
+        {title: '<input type="checkbox" name="checkall" id="checkall">', data:"id",width:'10px',  render: function(data, type, row, meta) { return '<input id = "'+data+'" onclick="Feng.ck(\''+data+'\')" type="checkbox" name="checklist" value="'+data+'" class="iCheck">';}},           
         {title: '题目',width:'300px', data: 'name'},
         {title:'操作',width:'300px',render: function(data, type, row, meta){
         	var msg = "";

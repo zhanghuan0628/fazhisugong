@@ -34,7 +34,12 @@ var CONSTANT = {
 			serverSide : true, // 启用服务器端分页
 			searching : false, // 禁用原生搜索
 			lengthChange : false, // 改变每页显示数据数量
-			displayLength : 20
+			displayLength : 20,
+			"fnDrawCallback": function() {
+				  
+				   $(this).find('thead input[type=checkbox]').removeAttr('checked');
+				   
+			},
 		},
 		COLUMN : {
 			CHECKBOX : { // 复选框单元格

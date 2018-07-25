@@ -132,7 +132,7 @@ banner.push_banner=function (state){
  */
 banner.initColumn = function () {
     var columns = [
-        {title: '<input type="checkbox" name="checkall" id="checkall">', data:"id",width:'10px',  render: function(data, type, row, meta) { return '<input type="checkbox" name="checklist" value="'+data+'" class="iCheck">';}},           
+        {title: '<input type="checkbox" name="checkall" id="checkall">', data:"id",width:'10px',  render: function(data, type, row, meta) { return '<input type="checkbox" id = "'+data+'" onclick="Feng.ck(\''+data+'\')" name="checklist" value="'+data+'" class="iCheck">';}},           
         {title: '图片',width:'300px', data: 'bannerImg',render: function(data, type, row, meta){
         	var msg = "";
         	msg = "<img src='"+data+"' height='30px' onclick='clickThisImg(\""+data+"\")'>";

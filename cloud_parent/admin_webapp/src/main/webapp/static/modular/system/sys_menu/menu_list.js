@@ -116,7 +116,7 @@ $(function () {
     table.setExpandAll(true);
     table.init();
     sysMenu.table = table;
-    
+    Feng.selectSingleRow(sysMenu.id,sysMenu);
     $('.enter').bind('keypress',function(event){//监听sim卡回车事件
         if(event.keyCode == "13")    
         {  

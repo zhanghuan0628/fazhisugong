@@ -84,13 +84,34 @@ sgUser.check=function(){
         
     }
 }
+/*删除(批量)*/
+sgUser.del_dummy=function (){
+	var operation = function(){
+        var ajax = new $ax(Feng.ctxPath +"/sg_user/del_dummy?ids="+selIds, function (data) {
+        	if(data.code ==2000){
+        		sgUser.table.draw();
+				Feng.success("已删除!");
+			}else{
+				Feng.error(data.message);
+			}
+        	$("#checkall").prop("checked", false);
+        }, function (data) {
+            Feng.error("操作失败!" + data.responseJSON.message + "!");
+        });
+        ajax.start();
+    };
+    if(sgUser.getSelIds()){
+    	var selIds = sgUser.seItem; 
+    	Feng.confirm('确认要删除吗？',operation);
+    }
+}
 /**
  * 初始化表格的列
  * 
  */
 sgUser.initColumn = function () {
     var columns = [
-        {title: '', data:"id",width:'10px',  render: function(data, type, row, meta) { return '<input type="radio" name="checklists" value="'+data+'" class="iCheck" onclick="sgUser.check()">';}},
+        {title: '<input type="checkbox" name="checkall" id="checkall">', data:"id",width:'10px',  render: function(data, type, row, meta) { return '<input type="checkbox" id = "'+data+'" onclick="Feng.ck(\''+data+'\')" name="checklist" value="'+data+'" class="iCheck">';}},
         {title: '协同账号', data: 'loginName'},
         {title: '账户名称', data: 'userName'},
         {title:'操作',data:'loginName', render: function(data, type, row, meta){
@@ -164,7 +185,8 @@ $(function () {
     var defaultColunms = sgUser.initColumn();
     var options = sgUser.dataTables(defaultColunms);    
     sgUser.table = defDataTables(options);
-    Feng.selectSingleRow(sgUser.id,sgUser);
+    Feng.selectMultiRow(sgUser.id,sgUser);
+    Feng.checkAll();
     $('.enter').bind('keypress',function(event){//监听sim卡回车事件
         if(event.keyCode == "13")    
         {  

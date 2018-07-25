@@ -14,7 +14,7 @@ var answerNum = {
  */
 answerNum.initColumn = function () {
     var columns = [
-        {title: '', data:"id",width:'10px',  render: function(data, type, row, meta) { return '<input type="checkbox" name="checklist" value="'+data+'" class="iCheck">';}},
+        {title: '', data:"id",width:'10px',  render: function(data, type, row, meta) { return '<input type="checkbox" id = "'+data+'" onclick="Feng.ck(\''+data+'\')" name="checklist" value="'+data+'" class="iCheck">';}},
         {title: '姓名',width:'300px', data: 'userName'},
         {title: '正确率',width:'300px', data: 'num'},
         {title: '获奖情况',width:'300px', data: 'code'}

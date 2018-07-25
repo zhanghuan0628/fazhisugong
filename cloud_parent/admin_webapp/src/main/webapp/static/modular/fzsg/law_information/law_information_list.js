@@ -134,7 +134,10 @@ lawInformation.pushDown = function(obj,id,sort){
  */
 lawInformation.initColumn = function () {
     var columns = [
-        {title: '<input type="checkbox" name="checkall" id="checkall">', data:"id",width:'10px',  render: function(data, type, row, meta) { return '<input type="checkbox" name="checklist" value="'+data+'" class="iCheck">';}},
+        {title: '<input type="checkbox" name="checkall" id="checkall">', data:"id",width:'10px',  render: function(data, type, row, meta) { 
+        	return '<input type="checkbox" id = "'+data+'" onclick="Feng.ck(\''+data+'\')" name="checklist" value="'+data+'" class="iCheck">';
+        	}
+        },
         {title: '标题',width:'300px', data: 'title'},
         {title: '发布时间',width:'100px', data: 'createTime'},
         {title: '状态',width:'100px', data: 'status',render: function(data, type, row, meta){

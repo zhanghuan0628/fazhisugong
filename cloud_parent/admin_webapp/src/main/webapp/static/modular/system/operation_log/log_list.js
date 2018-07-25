@@ -72,7 +72,7 @@ operationLog.multi_del=function (obj,id){
  */
 operationLog.initColumn = function () {
     var columns = [
-        {title: '<input type="checkbox" name="checkall" id="checkall">', data:"id", width:"10px", render: function(data, type, row, meta) { return '<input type="checkbox" name="checklist" value="'+data+'" class="iCheck">';}},
+        {title: '<input type="checkbox" name="checkall" id="checkall">', data:"id", width:"10px", render: function(data, type, row, meta) { return '<input type="checkbox" name="checklist" id = "'+data+'" onclick="Feng.ck(\''+data+'\')" value="'+data+'" class="iCheck">';}},
         {title: '日志名称',width:"100px", data: 'logName'},
         {title: '用户名称',width:"100px", data: 'loginName', render: function(data, type, row, meta){
         	if(data != null && data != ''){

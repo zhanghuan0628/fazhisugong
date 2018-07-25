@@ -133,7 +133,7 @@ lawRisk.pushDown = function(obj,id,sort){
  */
 lawRisk.initColumn = function () {
     var columns = [
-        {title: '<input type="checkbox" name="checkall" id="checkall">', data:"id",width:'10px',  render: function(data, type, row, meta) { return '<input type="checkbox" name="checklist" value="'+data+'" class="iCheck">';}},
+        {title: '<input type="checkbox" name="checkall" id="checkall">', data:"id",width:'10px',  render: function(data, type, row, meta) { return '<input type="checkbox" id = "'+data+'" onclick="Feng.ck(\''+data+'\')" name="checklist" value="'+data+'" class="iCheck">';}},
         {title: '标题',width:'300px', data: 'title'},
         {title: '专业',width:'300px', data: 'name'},
         {title: '状态',width:'300px', data: 'status',render: function(data, type, row, meta){

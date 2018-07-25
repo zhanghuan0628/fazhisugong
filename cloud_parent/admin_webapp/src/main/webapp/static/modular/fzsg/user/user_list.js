@@ -64,7 +64,7 @@ sgUser.updatePassword=function (obj,id){
  */
 sgUser.initColumn = function () {
     var columns = [
-        {title: '', data:"id",width:'10px',  render: function(data, type, row, meta) { return '<input type="checkbox" name="checklist" value="'+data+'" class="iCheck">';}},
+        {title: '', data:"id",width:'10px',  render: function(data, type, row, meta) { return '<input type="checkbox" id = "'+data+'" onclick="Feng.ck(\''+data+'\')" name="checklist" value="'+data+'" class="iCheck">';}},
         {title: '协同账号', data: 'loginName'},
         {title: '账户名称', data: 'userName'},
         {title:'操作',data:'loginName', render: function(data, type, row, meta){
