@@ -12,13 +12,13 @@
 	<div class="row cl">
 		<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>图片：</label>
 		<div class="formControls col-xs-8 col-sm-9">
-			<input type="file" class="input-text" id="imgFile" name="imgFile">
+			<input type="file" class="input-text" id="imgUrlBtnId" name="imgFile">
 			<input type="hidden" class="input-text" value="${info.imgUrl}" id="imgUrl" name="imgUrl">
 		</div>
 	</div>
 	<div class="row cl">
 		<div class="formControls col-xs-8 col-sm-9">
-			<img src="${info.imgUrl}" style="height: 120px;width: 120px;margin-left: 250px;" id="img">
+			<img src="${info.imgUrl}" style="height: 120px;width: 120px;margin-left: 250px;" id="imgUrlPreId">
 		</div>
 	</div>
 	<div class="row cl">
@@ -65,6 +65,7 @@
 		</div>
 	</div>
 	</form>
+	<div id="progress"></div>
 </article>
 <script src="${ctxPath}/static/modular/fzsg/law_information/law_information_info.js"></script>
 @}
