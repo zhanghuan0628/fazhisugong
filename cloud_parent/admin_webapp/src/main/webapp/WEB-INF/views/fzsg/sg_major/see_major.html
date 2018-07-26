@@ -1,0 +1,22 @@
+@layout("/common/_container.html"){
+<div class="page-container">
+	<div class="text-c">
+		文章标题：<input type="text" class="input-text enter" style="width:250px" id="title" name="title">
+		<input type="hidden" class="input-text" value="${id}" id="categoryCode" name="categoryCode">
+		<button type="button" class="btn btn-success" id="search" onclick="sgMajor.search()"  ><i class="Hui-iconfont">&#xe665;</i> 查询</button>
+	</div>
+	<div class="cl pd-5 bg-1 bk-gray mt-20"> 
+		<span class="l">
+		
+		</span> 
+	</div>
+	<table id="sgMajorTable" class="table table-border table-bordered table-bg">
+		<thead>
+			<tr>
+			
+			</tr>
+		</thead>
+	</table>
+</div>
+<script src="${ctxPath}/static/modular/fzsg/sg_major/see_major.js"></script>
+@}

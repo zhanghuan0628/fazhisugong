@@ -3,6 +3,8 @@ package com.ffxl.admin.controller.modular;
 import java.util.Date;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -41,6 +43,7 @@ import com.ffxl.platform.util.UUIDUtil;
 @Controller
 @RequestMapping("/sg_banner")
 public class SgBannerController extends BaseController{
+	private static final Logger LOGGER = LoggerFactory.getLogger(SgBannerController.class);
 	@Autowired
 	private SgBannerService sgBannerService;
 	

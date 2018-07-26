@@ -44,7 +44,7 @@ import com.ffxl.platform.util.UUIDUtil;
 @Controller
 @RequestMapping("/sg_ask")
 public class SgAskController extends BaseController{
-	private static final Logger LOGGER = LoggerFactory.getLogger(SysUserServiceImpl.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(SgAskController.class);
 	
 	private static String PREFIX = "/fzsg/sg_ask/";
 	@Autowired

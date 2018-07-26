@@ -19,9 +19,16 @@
 		<if test="model.topicId != null and model.topicId != '' ">
 			and topic_id = #{model.topicId}
 		</if>
+		<if test="model.id != null and model.id != '' ">
+			and sc.id = #{model.id}
+		</if>
 		<if test="model.userName != null and model.userName != '' ">
 		   and su.user_name like CONCAT('%','${model.userName}','%')
 		</if>
+		<if test="model.title != null and model.title != '' ">
+		   and sl.title like CONCAT('%','${model.title}','%')
+		</if>
+		ORDER BY sc.create_date DESC
 	</select>
 	
 	<select id="queryLawCommentDetail" parameterType="java.lang.String" resultMap="SgLawCommentMap">

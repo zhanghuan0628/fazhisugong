@@ -1,117 +1,4 @@
 /**
- * 法律风险详情对话框（可用于添加和修改对话框）
- */
-var editor = new wangEditor('editor');
- // 仅仅想移除某几个菜单，例如想移除『插入代码』和『位置』菜单：
- // 其中的 wangEditor.config.menus 可获取默认情况下的菜单配置
- editor.config.menus = $.map(wangEditor.config.menus,
-         function(item, key) {
-             if (item === 'insertcode') {
-                 return null;
-             }
-             if (item === 'location') {
-                 return null;
-             }
-             if (item === 'fullscreen') {
-                 return null;
-             }
-
-             return item;
-         });
- // 关闭菜单栏fixed
- editor.config.menuFixed = false;
- editor.config.menuFixed = 60;
- // 取消粘贴过滤,方便直接拷贝样式
- editor.config.pasteFilter = false;
-
-//上传图片（举例）
- editor.config.uploadImgUrl = Feng.ctxPath+'/common/img_upload';
-
- // 配置自定义参数（举例）
- editor.config.uploadParams = {
-     catalog : 'article'
- };
- // 设置 headers（举例）
- editor.config.uploadHeaders = {
-     'Accept' : 'text/x-json'
- };
-
- // 隐藏掉插入网络图片功能。该配置，只有在你正确配置了图片上传功能之后才可用。
- editor.config.hideLinkImg = true;
-
- editor.create();
-
-var sglawRiskInfoDlg = {
-	formId : "lawRiskInfoForm", //form表单id
-	table : parent.lawRisk.table,
-    infoData: {
-    	id: $("#id").val(),
-    	title:$("#title").val(),
-    },
-    //验证方式
-    validate: {
-	    rules: {
-	    	title:{
-				required:true,
-				minlength:1,
-				maxlength:50,
-				remote : {
-					url : Feng.ctxPath +"/sg_law_risk/check", //设置后台处理程序
-					type : "post", //数据发送方式
-					dataType : "json", //接受数据格式   
-					data : { //要传递的数据
-						"title" : function() {
-							if (sglawRiskInfoDlg.infoData.title != $("#title").val())
-								return $("#title").val();
-						},
-    					"category":"law_risk"
-					}
-				},
-			},
-			content:{
-				required:true,
-				minlength:1,
-				maxlength:10000,
-			},
-			num:{
-				required:true,
-				minlength:1,
-				maxlength:10,
-			},
-			
-		},
-		messages : {
-			"title" : {
-				remote : "此标题已经存在"
-			}
-		}
-		
-    }
-    
-	 
-	
-};
-function getContent(){
-	var html = editor.$txt.html();
-    console.log(html);
-    $("#content").val(html);
-}
-$(function(){
-	$("#tab-system").Huitab("#tab-system .tabBar span","#tab-system .tabCon","current","click","0");
-	$('.skin-minimal input').iCheck({
-		checkboxClass: 'icheckbox-blue',
-		radioClass: 'iradio-blue',
-		increaseArea: '20%'
-	});
-	if(sglawRiskInfoDlg.infoData.id ==null ||sglawRiskInfoDlg.infoData.id =="" ){
-		Feng.initValidator(sglawRiskInfoDlg.formId, sglawRiskInfoDlg.validate,sglawRiskInfoDlg.table,"/sg_law_risk/add"); //新增
-	}else{
-		Feng.initValidator(sglawRiskInfoDlg.formId, sglawRiskInfoDlg.validate,sglawRiskInfoDlg.table,"/sg_law_risk/edit"); //编辑
-	}
-	
-});
-
-/**
  * 评论
  */
 var sgRisk = {
@@ -215,6 +102,7 @@ sgRisk.initColumn = function () {
         	return '<input type="checkbox" id = "'+data+'" onclick="Feng.ck(\''+data+'\')" name="checklist" value="'+data+'" class="iCheck">';
         	}
         },
+        {title: '风险文章', data: 'title'},
         {title: '评论者昵称', data: 'userName'},
         {title: '评论内容', data: 'content'},
         {title: '评论时间', data: 'createTime'},
@@ -250,8 +138,8 @@ sgRisk.dataTables = function (columns) {
 	    		columns : columns,
 	    		others : {
 	    			selector : '#'+sgRisk.id,
-	    			url : Feng.ctxPath +"/sg_law_risk/law_risk_comment?topicId="+$("#topicId").val(),
-	    			param : ["userName"]
+	    			url : Feng.ctxPath +"/risk_talk/law_risk_comment",
+	    			param : ["userName","title"]
 	    		}	
 	    }
 	    return options;
@@ -272,6 +160,7 @@ $(function () {
     sgRisk.table = defDataTables(options);
     Feng.selectMultiRow(sgRisk.id,sgRisk);
     Feng.checkAll();
+    
     $('.enter').bind('keypress',function(event){//监听sim卡回车事件
         if(event.keyCode == "13")    
         {  
