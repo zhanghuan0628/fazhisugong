@@ -68,13 +68,13 @@ var OssInfo = {
 				       }
 				       if(OssInfo.updateType == 'audio'){
 				    	   if (geshiStr.indexOf(".mp3") < 0  && geshiStr.indexOf(".MP3") < 0) {
-				    		   Feng.error("图片格式仅支持.mp3,请确认后重新上传");
+				    		   Feng.error("音频格式仅支持.mp3,请确认后重新上传");
 					           return false;
 					       } 
 				       }
 				       if(OssInfo.updateType == 'video'){
-				    	   if (geshiStr.indexOf(".mp4") < 0  && geshiStr.indexOf(".MP$") < 0) {
-				    		   Feng.error("图片格式仅支持.mp4,请确认后重新上传");
+				    	   if (geshiStr.indexOf(".mp4") < 0  && geshiStr.indexOf(".MP4") < 0) {
+				    		   Feng.error("视频格式仅支持.mp4,请确认后重新上传");
 					           return false;
 					       } 
 				       }

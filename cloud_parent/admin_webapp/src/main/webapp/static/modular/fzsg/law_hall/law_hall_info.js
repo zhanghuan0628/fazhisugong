@@ -109,17 +109,17 @@ function getContent(){
 
 $(function(){
 	
-		//文件上传
-		var oss = new $OssUpload("imgUrl","img","FaZhiSuSong/lawHall/",true);
-		
-		oss.ossUpdate(oss);
-	
-	
-	
-		//文件上传
-		var oss1 = new $OssUpload("videoUrl","video","FaZhiSuSong/lawHall/",true);
-		
-		oss1.ossUpdate();
+		$("#imgUrlBtnId").click(function(){
+			//文件上传
+			var oss = new $OssUpload("imgUrl","img","FaZhiSuSong/lawHall/",true);
+			oss.ossUpdate(oss);
+		})
+		$("#videoUrlBtnId").click(function(){
+			//文件上传
+			var oss1 = new $OssUpload("videoUrl","video","FaZhiSuSong/lawHall/",true);
+			oss1.ossUpdate();
+		})
+
 	
 	$('.skin-minimal input').iCheck({
 		checkboxClass: 'icheckbox-blue',
