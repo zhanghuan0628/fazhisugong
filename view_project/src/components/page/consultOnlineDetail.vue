@@ -1,5 +1,5 @@
 <template>
-  	<div id="consultOnlineDetail">
+  	<div id="consultOnlineDetail" v-if = "consultOnlineDetail != undefined">
 		<div class="consultQuestion">
 			<div class="cq-top">
 				<img :src = "consultOnlineDetail.see ? '/static/images/anonymous.png' : consultOnlineDetail.headUrl" alt="">
@@ -57,6 +57,9 @@ export default {
 			let data = res.data;
 			if (data.code == "2000") {
 				this.consultOnlineDetail = data.data;
+				if (data.data == undefined) {
+					this.$toast.center("该条问答数据已被删除");
+				}
 			} else if (data.code == "3007") {
 				this.$store.commit('logout');
 				this.$router.push({name:'login'})
