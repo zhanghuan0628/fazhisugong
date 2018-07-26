@@ -8291,7 +8291,8 @@ _e(function (E, $) {
                 // 吸顶
                 $menuContainer.css({
                     position: 'fixed',
-                    top: menuFixed
+                    top: 0
+//                    top: menuFixed
                 });
 
                 // 固定宽度
