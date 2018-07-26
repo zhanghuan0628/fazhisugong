@@ -29571,7 +29571,7 @@ UE.plugin.register('activity', function(){
         commands:{
             'activity':{
                 execCommand:function(){
-                	do_activity();
+//                	do_activity();
 
 
                 }

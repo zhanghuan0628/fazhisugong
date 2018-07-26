@@ -69,13 +69,38 @@ var current_editor = UE.getEditor('editor',{
 	initialFrameHeight:900,
 	open_editor: true
 });
+
+/**
+ * 启用本地上传转oss
+ * @param action
+ * @returns
+ */
+UE.Editor.prototype._bkGetActionUrl=UE.Editor.prototype.getActionUrl;
+UE.Editor.prototype.getActionUrl=function(action){
+	if (action == 'uploadimage' ||action== 'uploadscrawl' || action == 'uploadimage') {
+		//上传图片，涂鸦，截图工具
+		return Feng.ctxPath +'/common/ueditor_upload';
+	} else if(action =='uploadvideo') {
+		return Feng.ctxPath +'/common/ueditor_upload';
+	}else if(action =='uploadfile') {
+		return Feng.ctxPath +'/common/ueditor_upload';
+	}  else if(action =='listfile') {
+		// 列出指定目录下的文件
+		return this._bkGetActionUrl.call(this, action);
+	}  else if(action == 'listimage'){
+		//列出指定目录下的图片
+		return this._bkGetActionUrl.call(this, action);
+	} else{
+		return this._bkGetActionUrl.call(this, action);
+	}
+}
+
 $(function(){
-	  //文件上传
-	  var oss = new $OssUpload("imgUrl","img","FaZhiSuSong/lawInformation/",true);
-	  oss.ossUpdate();
-	
-	
-	current_editor.ready(function(){
+	  
+	 //文件上传
+	 var oss = new $OssUpload("imgUrl","img","FaZhiSuSong/lawInformation/",true);
+	 oss.ossUpdate();
+	 current_editor.ready(function(){
 		current_editor.setContent($("#content").val())
 	})
 	
