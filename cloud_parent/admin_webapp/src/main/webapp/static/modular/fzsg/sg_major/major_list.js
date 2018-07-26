@@ -29,6 +29,10 @@ sgMajor.getSelIds = function(){
 sgMajor.edit_major=function (title,url,id,w,h){
 	layer_show(title,Feng.ctxPath +url+"?id="+id,w,h);
 }
+/*专业管理-查看*/
+sgMajor.see_major=function (title,url,id,w,h){
+	layer_show(title,Feng.ctxPath +url+"?id="+id,w,h);
+}
 /*专业管理-新增*/
 sgMajor.add_sgMajor=function (title,url,id,w,h){
 	layer_show(title,url,w,h);
@@ -69,9 +73,13 @@ sgMajor.initColumn = function () {
     			+row.id
     			+ "'"
     			+',\'600\',\'400\')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont" style="color:#429c84">&#xe6df;</i>'
+    			+'</a> <a title="查看" href="javascript:;" onclick="sgMajor.see_major(\'查看详情\',\'/sg_major/see_major\','
+    			+ "'"
+    			+row.id
+    			+ "'"
+    			+',\'800\',\'500\')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont" style="color:#429c84">&#xe695;</i>'
     			+'</a>'
     			+'</td>';
-        	
         	return msg;
         }}];
     return columns;

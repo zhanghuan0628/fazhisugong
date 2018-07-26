@@ -51,7 +51,7 @@ import com.ffxl.platform.util.UUIDUtil;
 @Controller
 @RequestMapping("/sg_user")
 public class SgUserController extends BaseController{
-	private static final Logger LOGGER = LoggerFactory.getLogger(SysUserServiceImpl.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(SgUserController.class);
 	
 	private static String PREFIX = "/fzsg/user/";
 	

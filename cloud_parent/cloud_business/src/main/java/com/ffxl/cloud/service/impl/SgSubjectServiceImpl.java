@@ -105,8 +105,14 @@ public class SgSubjectServiceImpl extends GenericServiceImpl<SgSubject, SgSubjec
 		        	for(SgThemeAnswerLog mod:l){
 		        		if(mod.getThemeId().equals(st.getId())){
 		        			String id = st.getId();
+		        			int num  = st.getSubjectCounts();
+							int score = st.getSore();
 		        			map.put("act", 4);//已完成答题
 		        			map.put("themeId", id);
+		        			map.put("num", num);
+							map.put("score", score);
+							String s = st.getStage();
+							map.put("stage", s);
 		        			return map;
 		        		}else{
 		        			String id = st.getId();
@@ -116,7 +122,6 @@ public class SgSubjectServiceImpl extends GenericServiceImpl<SgSubject, SgSubjec
 							map.put("themeId", id);
 							map.put("num", num);
 							map.put("score", score);
-							int n = st.getNum();
 							String s = st.getStage();
 							map.put("stage", s);
 							b = true;
@@ -130,7 +135,6 @@ public class SgSubjectServiceImpl extends GenericServiceImpl<SgSubject, SgSubjec
 					map.put("themeId", id);
 					map.put("num", num);
 					map.put("score", score);
-					int n = st.getNum();
 					String s = st.getStage();
 					map.put("stage", s);
 					return map;
@@ -146,10 +150,22 @@ public class SgSubjectServiceImpl extends GenericServiceImpl<SgSubject, SgSubjec
 				        c.andCreateDateEqualTo(endTime);
 				        c.andUserIdEqualTo(userId);
 						List<SgThemeAnswerLog> l = sgThemeAnswerLogService.selectByExample(example);
+	        			int num  = st.getSubjectCounts();
+						int score = st.getSore();
+	        			map.put("num", num);
+						map.put("score", score);
+						String s = st.getStage();
+						map.put("stage", s);
 						map.put("act", 3);//活动已结束
 						map.put("themeId", l.get(0).getThemeId());
 						return map;
 					}else{
+	        			int num  = st.getSubjectCounts();
+						int score = st.getSore();
+	        			map.put("num", num);
+						map.put("score", score);
+						String s = st.getStage();
+						map.put("stage", s);
 						map.put("act", 2);//此人没参加过活动
 						return map;
 					}

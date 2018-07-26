@@ -170,4 +170,12 @@ private static final Logger LOGGER = LoggerFactory.getLogger(SgMajorController.c
            return true;
        }
    }
+   /**
+    * 跳转到查看专业的页面
+    */
+   @RequestMapping("/see_major")
+   public String seeMajor(Model model,String id) {
+	   model.addAttribute("id", id);
+       return PREFIX + "see_major.html";
+   }
 }

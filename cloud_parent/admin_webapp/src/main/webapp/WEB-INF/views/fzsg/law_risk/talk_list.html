@@ -1,0 +1,47 @@
+<!-- 法律风险评论列表 -->
+@layout("/common/_container.html"){
+<nav class="breadcrumb">
+<i class="Hui-iconfont">&#xe67f;</i> 
+	首页 <span class="c-gray en">&gt;</span>
+	@var menuWarpper = menukit.getMenuByCode("law_risk");
+	@if(menuWarpper !=null){
+		${menuWarpper.pname} <span class="c-gray en">&gt;</span> 
+		${menuWarpper.name}
+	@}
+<a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" >
+	<i class="Hui-iconfont">&#xe68f;</i>
+</a>
+</nav>
+<div class="page-container">
+	<div class="text-c">
+		昵称：<input type="text" class="input-text enter" style="width:250px" id="" name="userName">
+		文章：<input type="text" class="input-text enter" style="width:250px" id="" name="title">
+		<button type="button" class="btn btn-success" id="search" onclick="sgRisk.search()"  ><i class="Hui-iconfont">&#xe665;</i> 查询</button>
+	</div>
+	<div class="cl pd-5 bg-1 bk-gray mt-20"> 
+		<span class="l">
+			@if(shiro.hasPermission("/risk_talk/del_talk")){
+			<a href="javascript:;" onclick="sgRisk.del_sgRisk()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a>
+			@}
+			@if(shiro.hasPermission("/risk_talk/pass_talk")){
+			<a href="javascript:;" onclick="sgRisk.push_lawRisk('pass')" class="btn btn-success radius"><i class="Hui-iconfont">&#xe6e1;</i> 审核通过</a>
+			@}
+			@if(shiro.hasPermission("/risk_talk/noPass_talk")){
+			<a href="javascript:;" onclick="sgRisk.push_lawRisk('no_pass')" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6dd;</i> 审核不通过</a>
+			@}
+		</span> 
+	</div>
+	<table id="sgRiskTable" class="table table-border table-bordered table-bg">
+		<thead>
+			<tr>
+			
+			</tr>
+		</thead>
+	</table>
+	
+</div>
+<!--底侧部分开始-->
+		@include("/common/_footer.html"){}	
+<!--底侧部分结束-->
+<script src="${ctxPath}/static/modular/fzsg/law_risk/talk_list.js"></script>
+@}

@@ -41,51 +41,13 @@ var majorInfoDlg = {
     }
 };
 
-var ossClient = new OSS.Wrapper({
-    region: "oss-cn-shanghai",
-    accessKeyId: "LTAICG7rs8rsGNj4",
-    accessKeySecret: "FDtacJMEQXKRwIPgK3WKYR2Cyv8xKm",
-    bucket: "ffxl"
-});
-var newUrl = "";
-$("#file").bind("change", function(e) {
-   for (var i = 0; i < e.target.files.length; i++) {
-       var file = e.target.files[i];
-       
-       var geshiStr = $("#file").val();
-       if (geshiStr.indexOf(".png") < 0 && geshiStr.indexOf(".PNG") < 0 ) {
-           alert("格式不正确！请上传png格式！");
-           return false;
-       }
-       var fileSplits = file.name.split(".");
-      /* $("#progressWindow").window('center');
-       $("#progressWindow").window({
-           "modal" : true
-       });*/
-       /*$("#progressWindow").window('open');*/
-       var ossFileName = genOssFileName("image", "storelayout", fileSplits[fileSplits.length - 1]);
-       console.log("22222"+ossFileName);
-       ossClient.multipartUpload(ossFileName, file,{progress: function* (p) {
-           /*$('#progress').progressbar('setValue', p.toFixed(2)*100);*/
-           
-       }}).then(function (result) {
-          /* $("#progressWindow").window('close');*/
-    	   Feng.info("上传成功!");
-           var url = "http://ffxl.oss-cn-shanghai.aliyuncs.com/" + ossFileName;
-           newUrl = url;
-           console.log("3333"+newUrl);
-           $("#img").val(newUrl);
-           $("#url").attr("src",newUrl);
-         })
-   }
-});
-function genOssFileName(fileType, entityType, suffix) {
-    var date = new Date().getTime(); 
-    var fileName = "fzsg/major/"+date +"." + suffix;
-    return fileName;
-}
 
 $(function(){
+	//文件上传
+	var oss = new $OssUpload("img","img","FaZhiSuSong/major/",true);
+	
+	oss.ossUpdate();
+	
 	$('.skin-minimal input').iCheck({
 		checkboxClass: 'icheckbox-blue',
 		radioClass: 'iradio-blue',

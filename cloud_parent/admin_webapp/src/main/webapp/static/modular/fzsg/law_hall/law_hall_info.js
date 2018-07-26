@@ -107,80 +107,20 @@ function getContent(){
     
 }
 
-var ossClient = new OSS.Wrapper({
-    region: "oss-cn-shanghai",
-    accessKeyId: "LTAICG7rs8rsGNj4",
-    accessKeySecret: "FDtacJMEQXKRwIPgK3WKYR2Cyv8xKm",
-    bucket: "sugong"
-});
-var newUrl = "";
-$("#file").bind("change", function(e) {
-   for (var i = 0; i < e.target.files.length; i++) {
-       var file = e.target.files[i];
-       
-       var geshiStr = $("#file").val();
-       if (geshiStr.indexOf(".mp4") < 0  && geshiStr.indexOf(".MP4") < 0 ) {
-           alert("格式不正确！请上传mp4,mp4格式！");
-           return false;
-       }
-       var fileSplits = file.name.split(".");
-      /* $("#progressWindow").window('center');
-       $("#progressWindow").window({
-           "modal" : true
-       });*/
-       /*$("#progressWindow").window('open');*/
-       var ossFileName = genOssFileName("image", "storelayout", fileSplits[fileSplits.length - 1]);
-       console.log("22222"+ossFileName);
-       ossClient.multipartUpload(ossFileName, file,{progress: function* (p) {
-           /*$('#progress').progressbar('setValue', p.toFixed(2)*100);*/
-           
-       }}).then(function (result) {
-          /* $("#progressWindow").window('close');*/
-    	   Feng.info("上传成功!");
-           var url = "http://sugong.oss-cn-shanghai.aliyuncs.com/" + ossFileName;
-           newUrl = url;
-           console.log("3333"+newUrl);
-           $("#videoUrl").val(newUrl);
-         })
-   }
-});
-function genOssFileName(fileType, entityType, suffix) {
-    var date = new Date().getTime(); 
-    var fileName = "FaZhiSuSong/lawHall/"+date +"." + suffix;
-    return fileName;
-}
-$("#imgFile").bind("change", function(e) {
-	   for (var i = 0; i < e.target.files.length; i++) {
-	       var file = e.target.files[i];
-	       
-	       var geshiStr = $("#imgFile").val();
-	       if (geshiStr.indexOf(".jpg") < 0  && geshiStr.indexOf(".png") < 0 && geshiStr.indexOf(".JPG") < 0  && geshiStr.indexOf(".PNG") < 0 ) {
-	           alert("格式不正确！请上传mp4,mp4格式！");
-	           return false;
-	       }
-	       var fileSplits = file.name.split(".");
-	      /* $("#progressWindow").window('center');
-	       $("#progressWindow").window({
-	           "modal" : true
-	       });*/
-	       /*$("#progressWindow").window('open');*/
-	       var ossFileName = genOssFileName("image", "storelayout", fileSplits[fileSplits.length - 1]);
-	       console.log("22222"+ossFileName);
-	       ossClient.multipartUpload(ossFileName, file,{progress: function* (p) {
-	           /*$('#progress').progressbar('setValue', p.toFixed(2)*100);*/
-	           
-	       }}).then(function (result) {
-	          /* $("#progressWindow").window('close');*/
-	    	   Feng.info("上传成功!");
-	           var url = "http://sugong.oss-cn-shanghai.aliyuncs.com/" + ossFileName;
-	           newUrl = url;
-	           console.log("3333"+newUrl);
-	           $("#imgUrl").val(newUrl);
-	           $("#img").attr("src",newUrl);
-	         })
-	   }
-	});
 $(function(){
+	
+		//文件上传
+		var oss = new $OssUpload("imgUrl","img","FaZhiSuSong/lawHall/",true);
+		
+		oss.ossUpdate(oss);
+	
+	
+	
+		//文件上传
+		var oss1 = new $OssUpload("videoUrl","video","FaZhiSuSong/lawHall/",true);
+		
+		oss1.ossUpdate();
+	
 	$('.skin-minimal input').iCheck({
 		checkboxClass: 'icheckbox-blue',
 		radioClass: 'iradio-blue',
