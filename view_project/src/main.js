@@ -13,7 +13,7 @@ import Toast from '@/assets/js/toast';
 import 'swiper/dist/css/swiper.css';
 import VueAwesomeSwiper from 'vue-awesome-swiper';
 import '@/assets/css/mescroll.min.css';
-import VueVideoPlayer from 'vue-video-player'
+import VueVideoPlayer from 'vue-video-player';
 import 'video.js/dist/video-js.css';
 
 Vue.use(Toast);
@@ -26,6 +26,7 @@ Vue.prototype.$qs = qs;
 
 
 router.beforeEach((to, from, next) => {
+  document.title = "法治苏供";
 	if (localStorage.getItem("userId") != null && localStorage.getItem("userId") != "") {
     let authObj = {};
     authObj.token = localStorage.getItem("Authorization");

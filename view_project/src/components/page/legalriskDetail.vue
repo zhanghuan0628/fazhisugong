@@ -58,6 +58,7 @@ export default {
 			let data = res.data;
 			if (data.code == "2000") {
 				this.legalriskDetail = data.data;
+				document.title = data.data.title;
 			} else if (data.code == "3007") {
 				this.$store.commit('logout');
 				this.$router.push({name:'login'})
