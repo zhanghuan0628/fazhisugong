@@ -80,8 +80,6 @@ public class LoginController extends BaseController {
      */
     @RequestMapping(value = "/login_view", method = RequestMethod.GET)
     public String index(Model model) {
-        super.getSession().setAttribute("a", "金花或");
-        System.out.println("测试增加缓存"+super.getSession().getAttribute("a"));
         if (ShiroKit.isAuthenticated() || ShiroKit.getUser() != null) {
             System.out.println("跳转");
             return REDIRECT + "/";
@@ -99,7 +97,6 @@ public class LoginController extends BaseController {
         String username = super.getPara("username").trim();
         String password = super.getPara("password").trim();
         String remember = super.getPara("remember");
-        System.out.println("测试获取缓存"+super.getSession().getAttribute("a"));
         //验证验证码是否正确
         if (KaptchaUtil.getKaptchaOnOff()) {
             String kaptcha = super.getPara("kaptcha").trim();
