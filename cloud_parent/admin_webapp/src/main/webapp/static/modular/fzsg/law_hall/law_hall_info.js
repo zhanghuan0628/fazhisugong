@@ -108,16 +108,26 @@ function getContent(){
 }
 
 $(function(){
-	
+		var m =false;
 		$("#imgUrlBtnId").click(function(){
+			if(m){
+				return;
+			}
 			//文件上传
 			var oss = new $OssUpload("imgUrl","img","FaZhiSuSong/lawHall/",true);
-			oss.ossUpdate(oss);
+			oss.ossUpdate();
+			m=true;
+			
 		})
+		var n =false;
 		$("#videoUrlBtnId").click(function(){
+			if(n){
+				return;
+			}
 			//文件上传
 			var oss1 = new $OssUpload("videoUrl","video","FaZhiSuSong/lawHall/",true);
 			oss1.ossUpdate();
+			n = true;
 		})
 
 	
