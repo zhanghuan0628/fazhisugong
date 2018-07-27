@@ -345,4 +345,30 @@ public class SgUserController extends BaseController{
       }
    	
    }
+   /**
+    * 跳转到新增用户详情的页面
+    */
+   @RequestMapping("/add_user")
+   public String addUser(String id,Model model) {
+       return PREFIX + "add_user.html";
+   }
+   /**
+    * 新增用户
+    * @return
+    */
+   @ResponseBody
+   @BussinessLog(value = "新增用户", key = "id", dict = SgUserDic.class)
+   @RequestMapping("/insert_user")
+   public JsonResult insertUser(SgUser SgUser){
+   	SgUser.setId(UUIDUtil.getUUID());
+   	String md5Code = MD5Util.encrypt("123456");
+   	SgUser.setPassword(md5Code);
+   	int i = sgUserService.insertSelective(SgUser);
+   	if(i > 0){
+   		return new JsonResult(true);
+       }else{
+       	return new JsonResult(false);
+       }
+   	
+   }
 }
