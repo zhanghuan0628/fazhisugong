@@ -41,6 +41,7 @@ export default {
 			let data = res.data;
 			if (data.code == "2000") {
 				this.testInfo = data.data;
+				console.log(data.data)
 				if (data.data.act != 1) {
 					this.$toast.center("本期活动已结束，敬请期待下次活动！");
 				} else {

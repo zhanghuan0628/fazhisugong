@@ -127,6 +127,14 @@ export default {
 			}
 		},
 		submitAnswer:function(){
+			var obj = {
+				themeId:this.themeId,
+				answerJson:JSON.stringify(this.testData),
+				score:parseInt(this.singleScore) * this.rightNum,
+				rightNum:this.rightNum,
+				'Authorization':'Bearer ' + this.$store.state.Authorization
+			}
+			console.log(obj)
 			if (!this.hasSubmit) {
 				this.hasSubmit = true;
 				let score = parseInt(this.singleScore) * this.rightNum;

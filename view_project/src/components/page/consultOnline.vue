@@ -25,7 +25,7 @@
 				<span><i v-text = "descCount"></i>/2000</span>
 			</div>
 
-			<a class="consultSubmit" @click = "consultSubmit" :style = "{'backgroundColor': contFinished ? '#429c84' : '#cfcfcf'}">提交</a>
+			<button :disabled="buttonDisabled" class="consultSubmit" @click = "consultSubmit" :style = "{'backgroundColor': contFinished ? '#429c84' : '#cfcfcf'}">提交</button>
 		</div>
 
 		<div class="consultAnswer">
@@ -59,7 +59,8 @@ export default {
 			content:"",
 			descCount:0,
 			contFinished:false,
-			consultAnswer:{}
+			consultAnswer:{},
+			buttonDisabled:false,
     	}
 	},
 	created () {
@@ -112,6 +113,7 @@ export default {
 					this.$toast.center("标题不少于4个字");
 					return false;
 				}
+				this.buttonDisabled = true; // 将按钮置灰
 				this.$http.post(this.$store.state.apiUrl+'/SgAskController/insertUserAsk',this.$qs.stringify({
 					title:this.title,
 					content:this.content,
@@ -170,7 +172,7 @@ export default {
 	#consultOnline .consultCont input::-moz-placeholder,#consultOnline .consultCont textarea::-moz-placeholder {color: #bbbbbb;}
 	#consultOnline .consultCont input:-ms-input-placeholder,#consultOnline .consultCont textarea:-ms-input-placeholder {color: #bbbbbb;}
 	#consultOnline .consultCont .consultDescription span {position: absolute;bottom: 1.4rem;right: 0;color: #bbbbbb;font-size: 1.3rem;display: block;line-height: 1.4rem;}
-	#consultOnline .consultCont .consultSubmit {display: block;width: 100%;height: 4.9rem;line-height: 4.9rem;text-align: center;color: #ffffff;font-size: 1.8rem;background-color: #cfcfcf;border-radius: 50px;margin-top: 1.5rem;}
+	#consultOnline .consultCont .consultSubmit {outline: none;border: none;-webkit-appearance: none;-webkit-tap-highlight-color: rgba(0, 0, 0, 0); display: block;width: 100%;height: 4.9rem;line-height: 4.9rem;text-align: center;color: #ffffff;font-size: 1.8rem;background-color: #cfcfcf;border-radius: 50px;margin-top: 1.5rem;}
 
 	#consultOnline .consultAnswer {padding: 0 1.5rem 1rem 1.5rem;}
 	#consultOnline .consultAnswer .ca-top {height: 7rem;position: relative;}

@@ -194,8 +194,6 @@ export default {
 					console.log(err);
 				});
 			}
-
-			
 		},
 		toBlob:function(urlData,fileType){
 			let bytes=window.atob(urlData),

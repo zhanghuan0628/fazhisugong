@@ -163,5 +163,18 @@ export default new Router({
 			path:'*',
 			redirect:{name:'index'}
 		}
-  	]
+		],
+		scrollBehavior(to, from, savedPosition) {
+			if (savedPosition) {
+				setTimeout(() => {
+						window.scrollTo(savedPosition.x, savedPosition.y)
+				}, 200)
+			};
+			// 异步滚动操作
+			return new Promise((resolve) => {
+				setTimeout(() => {
+				resolve({ x: 0, y: 1 });
+				}, 0);
+			});
+		},
 })

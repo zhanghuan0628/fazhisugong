@@ -36,13 +36,13 @@ export default {
 	name: 'legalClassDetail',
   	data () {
     	return {
-			id:this.$route.params.id,
-			sortnum:this.$route.params.sortnum,
-			legalClassDetail:{
-				map:{}
-			},
-			isCollect:false,
-			playerOptions:{}
+				id:this.$route.params.id,
+				sortnum:this.$route.params.sortnum,
+				legalClassDetail:{
+					map:{}
+				},
+				isCollect:false,
+				playerOptions:{}
     	}
 	},
 	created () {
