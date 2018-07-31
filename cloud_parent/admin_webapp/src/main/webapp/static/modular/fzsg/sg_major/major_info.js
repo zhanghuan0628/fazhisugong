@@ -13,8 +13,8 @@ var majorInfoDlg = {
 	    rules: {
 	    	name:{
 				required:true,
-				minlength:1,
-				maxlength:50,
+				minlength:4,
+				maxlength:4,
 				remote : {
 					url : Feng.ctxPath +"/sg_major/check", //设置后台处理程序
 					type : "post", //数据发送方式

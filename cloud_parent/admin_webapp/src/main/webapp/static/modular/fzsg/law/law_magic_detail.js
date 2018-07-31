@@ -57,7 +57,7 @@ lawMagic.del_lawMagic=function (){
 /*法宝-上下架(批量)*/
 lawMagic.push_lawMagic=function (state){
 	var operation = function(){
-        var ajax = new $ax(Feng.ctxPath +"/sg_law_magic/updateStatus?ids="+selIds+"&state="+state, function (data) {
+        var ajax = new $ax(Feng.ctxPath +"/sg_law_magic/updateStatus?ids="+selIds+"&state="+state+"&s=2", function (data) {
         	if(data.code ==2000){
         		lawMagic.table.draw();
 				Feng.success("操作成功");

@@ -95,6 +95,12 @@ public class SgSubjectServiceImpl extends GenericServiceImpl<SgSubject, SgSubjec
 		SgTheme model = new SgTheme();
 		List<SgTheme> list = sgThemeService.queryPageList(model,null);
 		Map map = new HashMap();
+		Date sTime = null;
+		for(SgTheme st:list){
+			if(st.getState().equals("2")){
+				sTime = st.getStartTime();
+			}
+		}
 		for(SgTheme st:list){
 			if(st.getState().equals("3")){
 				SgThemeAnswerLogExample example = new SgThemeAnswerLogExample();
@@ -113,6 +119,7 @@ public class SgSubjectServiceImpl extends GenericServiceImpl<SgSubject, SgSubjec
 							map.put("score", score);
 							String s = st.getStage();
 							map.put("stage", s);
+							map.put("sTime", sTime);
 		        			return map;
 		        		}else{
 		        			String id = st.getId();
@@ -123,6 +130,7 @@ public class SgSubjectServiceImpl extends GenericServiceImpl<SgSubject, SgSubjec
 							map.put("num", num);
 							map.put("score", score);
 							String s = st.getStage();
+							map.put("sTime", sTime);
 							map.put("stage", s);
 							b = true;
 		        		}
@@ -136,11 +144,12 @@ public class SgSubjectServiceImpl extends GenericServiceImpl<SgSubject, SgSubjec
 					map.put("num", num);
 					map.put("score", score);
 					String s = st.getStage();
+					map.put("sTime", sTime);
 					map.put("stage", s);
 					return map;
 		        }
 				
-			}else{
+			}else if(st.getState().equals("1")){
 				if(b == false){
 					SgThemeAnswerLog sl = sgThemeAnswerLogService.queryMaxDateById(userId);
 					if(sl != null){
@@ -158,6 +167,7 @@ public class SgSubjectServiceImpl extends GenericServiceImpl<SgSubject, SgSubjec
 						map.put("stage", s);
 						map.put("act", 3);//活动已结束
 						map.put("themeId", l.get(0).getThemeId());
+						map.put("sTime", sTime);
 						return map;
 					}else{
 	        			int num  = st.getSubjectCounts();
@@ -166,6 +176,7 @@ public class SgSubjectServiceImpl extends GenericServiceImpl<SgSubject, SgSubjec
 						map.put("score", score);
 						String s = st.getStage();
 						map.put("stage", s);
+						map.put("sTime", sTime);
 						map.put("act", 2);//此人没参加过活动
 						return map;
 					}
@@ -173,6 +184,18 @@ public class SgSubjectServiceImpl extends GenericServiceImpl<SgSubject, SgSubjec
 					return map;
 				}
 				
+			}else if(st.getState().equals("2")){
+				String id = st.getId();
+    			int num  = st.getSubjectCounts();
+				int score = st.getSore();
+    			map.put("act", 5);//活动还没开始
+    			map.put("themeId", id);
+    			map.put("num", num);
+				map.put("score", score);
+				String s = st.getStage();
+				map.put("stage", s);
+				map.put("sTime", sTime);
+    			
 			}
 		}
 		return map;

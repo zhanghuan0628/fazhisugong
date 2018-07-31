@@ -168,6 +168,10 @@ public class SgAskController extends BaseController{
     	String[] idArray = ids.split(",");
     	for(String id:idArray ){
     		ret = sgAskService.deleteByPrimaryKey(id);
+    		SgLawCommentExample example = new SgLawCommentExample();
+            com.ffxl.cloud.model.base.BaseSgLawCommentExample.Criteria c= example.createCriteria();
+            c.andTopicIdEqualTo(id);
+    		sgLawCommentService.deleteByExample(example);
     	}
     	if(ret >0){
        	 return new JsonResult(Message.M2000);

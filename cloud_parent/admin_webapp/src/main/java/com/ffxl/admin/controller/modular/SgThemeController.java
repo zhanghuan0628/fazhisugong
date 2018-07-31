@@ -34,6 +34,7 @@ import com.ffxl.cloud.model.SgThemeAwardLogExample;
 import com.ffxl.cloud.model.SgThemeExample;
 import com.ffxl.cloud.model.base.BaseSgThemeExample.Criteria;
 import com.ffxl.cloud.service.DictionaryService;
+import com.ffxl.cloud.service.SgSubjectService;
 import com.ffxl.cloud.service.SgThemeAnswerLogService;
 import com.ffxl.cloud.service.SgThemeAwardLogService;
 import com.ffxl.cloud.service.SgThemeService;
@@ -65,6 +66,9 @@ public class SgThemeController extends BaseController{
 	
 	@Autowired
 	private DictionaryService dictionaryService;
+	
+	@Autowired
+	private SgSubjectService sgSubjectService;
 	
 	private static String PREFIX = "/fzsg/sg_theme/";
 	/**
@@ -137,6 +141,8 @@ public class SgThemeController extends BaseController{
     	}else{
     		enddate = format.format(new Date());
     	}
+    	int count = sgSubjectService.countByExample(null);
+    	modle.addAttribute("count", count);
     	modle.addAttribute("endDate", enddate);
         return PREFIX + "add_theme.html";
     }
@@ -157,22 +163,26 @@ public class SgThemeController extends BaseController{
     	modle.addAttribute("type", type);
     	String enddate = "";
     	DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-    	if(type.equals("edit")){
-    		String endDate = sg.getEndDate();
-    		Date  currdate = format.parse(endDate);
-    		Date dt1 = df.parse(endDate);
-            Date dt2 = df.parse(format.format(new Date()));
-    		if(dt1.getTime()<dt2.getTime()){
-    			enddate = format.format(new Date());
-    		}else{
-    			Calendar  calendar = new GregorianCalendar();
-    			calendar.setTime(dt1); 
-    			calendar.add(calendar.DATE,1);
-            	currdate = calendar.getTime();
-            	enddate = format.format(currdate);
-    		}
-        	
+    	if(sg != null){
+    		if(type.equals("edit")){
+        		String endDate = sg.getEndDate();
+        		Date  currdate = format.parse(endDate);
+        		Date dt1 = df.parse(endDate);
+                Date dt2 = df.parse(format.format(new Date()));
+        		if(dt1.getTime()<dt2.getTime()){
+        			enddate = format.format(new Date());
+        		}else{
+        			Calendar  calendar = new GregorianCalendar();
+        			calendar.setTime(dt1); 
+        			calendar.add(calendar.DATE,1);
+                	currdate = calendar.getTime();
+                	enddate = format.format(currdate);
+        		}
+            	
+        	}
     	}
+    	int count = sgSubjectService.countByExample(null);
+    	modle.addAttribute("count", count);
     	modle.addAttribute("endDate", enddate);
         return PREFIX + "edit_theme.html";
     }

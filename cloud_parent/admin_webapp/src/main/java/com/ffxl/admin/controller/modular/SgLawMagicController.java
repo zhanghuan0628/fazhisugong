@@ -74,17 +74,33 @@ public class SgLawMagicController extends BaseController{
     @RequestMapping("/updateStatus")
     @BussinessLog(value = "上下架法律法宝", key = "id", dict = SgLawDic.class)
     @ResponseBody
-    public JsonResult updateStatus(String ids,String state){
+    public JsonResult updateStatus(String ids,String state,String s){
     	if (StringUtil.isEmpty(ids)) {
     		return new JsonResult(Message.M4002);
         }
     	int ret = -1;
     	String[] idArray = ids.split(",");
     	for(String id:idArray ){
+    		if(!StringUtil.isEmpty(s)){
+    			SgLaw sl = sgLawService.selectByPrimaryKey(id);
+    			SgLaw s2 = sgLawService.selectByPrimaryKey(sl.getCategoryCode());
+    			if(s2.getStatus().equals("no_publish")){
+    				JsonResult js = new JsonResult();
+    				js.setCode("1000");
+    				js.setMessage("请先将父级《"+s2.getTitle()+"》上架");
+    				return js;
+    			}
+    		}
     		SgLaw record = new SgLaw();
     		record.setId(id);
     		record.setStatus(state);
     		ret = sgLawService.updateByPrimaryKeySelective(record);
+    		SgLawExample example = new SgLawExample();
+            Criteria c= example.createCriteria();
+    		SgLaw r = new SgLaw();
+    		c.andCategoryCodeEqualTo(id);
+    		r.setStatus(state);
+    		sgLawService.updateByExampleSelective(r, example);
     	}
     	if(ret >0){
        	 return new JsonResult(Message.M2000);
