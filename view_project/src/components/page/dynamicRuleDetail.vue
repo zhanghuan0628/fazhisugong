@@ -4,7 +4,7 @@
 			<h1 v-text = "dynamicRuleDetail.title"></h1>
 			<div class="dynamicRuleInfo">
 				<p class="author">文/{{ dynamicRuleDetail.author }}</p>
-				<p class="date" v-text = "dynamicRuleDetail.createDate"></p>
+				<p class="date">{{dynamicRuleDetail.createDate | changeDate}}</p>
 			</div>
 			<img class="dynamicRuleImg" v-if = "dynamicRuleDetail.imgUrl != null && dynamicRuleDetail.imgUrl != ''" :src = "dynamicRuleDetail.imgUrl" alt="">
 			<div class="dynamicRuleCont" v-html = "dynamicRuleDetail.content"></div>
@@ -31,6 +31,14 @@ export default {
 			isCollect:false
     	}
 	},
+	filters: {
+		changeDate: function(value) {
+			if(value) {
+				value = value.toString()
+				return value = value.substring(0, 10)
+			}
+		}
+	},
 	created () {
 		this.$http.post(this.$store.state.apiUrl+'/SgHomePageController/querySgLawDetail',this.$qs.stringify({
 			id:this.id,
@@ -56,7 +64,9 @@ export default {
 		});
 	},
 	mounted () {
-		
+		this.$nextTick( function () {
+			
+    })
 	},
 	watch:{
 		dynamicRuleDetail:function(){
@@ -70,6 +80,7 @@ export default {
 			})
 		}
 	},
+	
 	methods: {
 		collect:function(){
 			if (this.$store.state.userId == "") {
@@ -112,7 +123,9 @@ export default {
 	#dynamicRuleDetail .dynamicRuleDetail .dynamicRuleInfo .date {position: absolute;right: 0;}
 	#dynamicRuleDetail .dynamicRuleDetail .dynamicRuleImg {width: 100%;}
 	#dynamicRuleDetail .dynamicRuleDetail .dynamicRuleCont {font-size: 1.5rem;color: #666666;line-height: 2.8rem;}
-	#dynamicRuleDetail .dynamicRuleDetail .dynamicRuleCont img {max-width: 100%;}
+	#dynamicRuleDetail .dynamicRuleDetail .dynamicRuleCont >>>  img{max-width: 100% !important;}
+	#dynamicRuleDetail .dynamicRuleDetail .dynamicRuleCont >>>  section{max-width: 100% !important;}
+	#dynamicRuleDetail .dynamicRuleDetail .dynamicRuleCont >>>  section{max-width: 100% !important;}
 
 	#dynamicRuleDetail .collectBottom {height: 11rem; padding-top: 1rem;}
 	#dynamicRuleDetail .collectBottom .collectBtn {width: 7rem;text-align: center;margin: 0 auto;}

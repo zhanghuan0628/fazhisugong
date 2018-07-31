@@ -169,7 +169,7 @@ export default {
 			} else if (type == "ask") {
 				this.$router.push({name:'consultOnlineDetail',params:{topicId:id}})
 			} else if (type == "theme") {
-				this.$router.push({name:'iJudeg'})
+				this.$router.push({name:'iJudge'})
 			}
 		}
 	},

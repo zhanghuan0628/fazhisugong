@@ -4,7 +4,8 @@
 			<template v-for = "(todo,index) in talisman">
 				<li :key = "todo.id">
 					<router-link :to = "{name:'talismanList',params:{categoryCode:todo.id}}">
-						<p>{{ todo.title }}
+
+						<p>{{ todo.title | splitTitle }}
 							<img :src = "index % 2 == 1 ? 'static/images/grounding2.png' : 'static/images/grounding1.png'" alt="">
 						</p>
 					</router-link>
@@ -28,8 +29,19 @@ export default {
 	name: 'talisman',
   	data () {
     	return {
-			talisman:[]
+			talisman:[],
     	}
+	},
+	filters: {
+		splitTitle: function (value) {
+			if (!value) return ''
+			value = value.toString()
+			if (value.length <= 18) {
+				return value
+			} else {
+				return value = value.substring(0,15)+"...";
+			}
+		}
 	},
 	created () {
 		this.$http.post(this.$store.state.apiUrl+'/SgHomePageController/querySgMagic',this.$qs.stringify({
