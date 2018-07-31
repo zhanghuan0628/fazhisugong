@@ -22,6 +22,23 @@
 		</div>
 	</div>
 	<div class="row cl">
+		<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>状态：</label>
+		<div class="formControls col-xs-8 col-sm-9">
+			<select id="status" name="status" class="input-text">
+				<option value="no_publish"
+					@if(info.status=="no_publish"){
+		        		selected="selected"
+		        	@}
+				>下架</option>
+				<option value="publish"
+					@if(info.status=="publish"){
+		        		selected="selected"
+		        	@}
+				>上架</option>
+			</select>
+		</div>
+	</div>
+	<div class="row cl">
 		<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>类型：</label>
 		<div class="formControls col-xs-8 col-sm-9">
 			<select id="type" name="type" class="input-text">

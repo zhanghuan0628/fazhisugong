@@ -135,7 +135,15 @@ public class SgUserController extends BaseController{
     public String userDetail(String id,Model model) {
     	SgUser user = sgUserService.selectByPrimaryKey(id);
     	SgThmemeAnswerLog sl = sgThmemeAnswerLogService.queryThemeAnswerUser(id);
-    	model.addAttribute("model", sl);
+    	if(sl == null){
+    		SgThmemeAnswerLog s = new SgThmemeAnswerLog();
+        		s.setNum("0");
+        		s.setAvgScore("0");
+        		s.setMaxScore("0");
+        		model.addAttribute("model", s);
+    	}else{
+    		model.addAttribute("model", sl);
+    	}
     	model.addAttribute("id", id);
     	model.addAttribute("info", user);
         return PREFIX + "user_detail.html";

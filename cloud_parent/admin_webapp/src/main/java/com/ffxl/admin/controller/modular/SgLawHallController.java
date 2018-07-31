@@ -185,7 +185,7 @@ public class SgLawHallController extends BaseController{
     	Date d = DateUtil.parseDate(sgLaw.getCreateTime());
     	sl.setCreateDate(d);
     	sl.setTitle(sgLaw.getTitle());
-    	sl.setStatus("no_publish");
+    	sl.setStatus(sgLaw.getStatus());
     	sl.setImgUrl(sgLaw.getImgUrl());
     	ShiroUser shiroUser = ShiroKit.getUser();
     	String userId = shiroUser.getId();
@@ -229,6 +229,7 @@ public class SgLawHallController extends BaseController{
     	sl.setModifyDate(new Date());
     	sl.setTitle(sgLaw.getTitle());
     	sl.setImgUrl(sgLaw.getImgUrl());
+    	sl.setStatus(sgLaw.getStatus());
     	ShiroUser shiroUser = ShiroKit.getUser();
     	String userId = shiroUser.getId();
     	sl.setModifyBy(userId);

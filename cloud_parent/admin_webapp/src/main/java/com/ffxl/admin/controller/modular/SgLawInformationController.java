@@ -183,6 +183,7 @@ public class SgLawInformationController extends BaseController{
     	sl.setTitle(sgLaw.getTitle());
     	sl.setStatus("no_publish");
     	sl.setImgUrl(sgLaw.getImgUrl());
+    	sl.setStatus(sgLaw.getStatus());
     	ShiroUser shiroUser = ShiroKit.getUser();
     	String userId = shiroUser.getId();
     	sl.setCreateBy(userId);
@@ -224,6 +225,7 @@ public class SgLawInformationController extends BaseController{
     	sl.setModifyDate(new Date());
     	sl.setTitle(sgLaw.getTitle());
     	sl.setImgUrl(sgLaw.getImgUrl());
+    	sl.setStatus(sgLaw.getStatus());
     	ShiroUser shiroUser = ShiroKit.getUser();
     	sl.setAuthor(sgLaw.getAuthor());
     	String userId = shiroUser.getId();
