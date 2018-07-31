@@ -180,6 +180,8 @@ public class SgThemeController extends BaseController{
         		}
             	
         	}
+    	}else{
+    		enddate = format.format(new Date());
     	}
     	int count = sgSubjectService.countByExample(null);
     	modle.addAttribute("count", count);
