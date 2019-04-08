@@ -117,8 +117,8 @@
                 <!--  外网   
                 <jdbc.url>jdbc:mysql://rm-uf6kw0870fy2h0fhdko.mysql.rds.aliyuncs.com/ffxl_cloud?allowMultiQueries=true</jdbc.url>
                 -->
-                <jdbc.username>root</jdbc.username>
-                <jdbc.password>2ac177d2!@#q</jdbc.password>
+                <jdbc.username>sgadmin</jdbc.username>
+                <jdbc.password>123456</jdbc.password>
                 
             </properties>
         </profile>

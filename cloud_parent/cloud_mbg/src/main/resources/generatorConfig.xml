@@ -77,13 +77,7 @@
 			<property 	name="enableSubPackages" value="true" />
 		</sqlMapGenerator> 
 		
-		<table tableName="sys_user" domainObjectName="SysUser"></table>
-		<table tableName="sys_login_log" domainObjectName="SysLoginLog"></table>
-		<table tableName="sys_operation_log" domainObjectName="SysOperationLog"></table>
-		<table tableName="sys_menu" domainObjectName="Menu"></table>
-		<table tableName="sys_role" domainObjectName="Role"></table>
-		<table tableName="sys_role_menu_rel" domainObjectName="RoleMenuRel"></table>
-		<table tableName="sys_dictionary" domainObjectName="Dictionary"></table>
+		<table tableName="sys_menu" domainObjectName="SysMenu"></table>
 		
 	</context>
 </generatorConfiguration> 
