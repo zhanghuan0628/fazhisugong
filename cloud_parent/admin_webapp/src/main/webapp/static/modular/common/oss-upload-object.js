@@ -111,10 +111,10 @@ function progressfn(cent) { // 改变进度条的函数
 
 (function () {
 	var ossClient = new OSS.Wrapper({
-		region: "oss-cn-shanghai",
-		accessKeyId: "LTAICG7rs8rsGNj4",
-		accessKeySecret: "FDtacJMEQXKRwIPgK3WKYR2Cyv8xKm",
-		bucket: "sugong"
+		region: "*****",
+		accessKeyId: "******",
+		accessKeySecret: "*******",
+		bucket: "******"
 	});
 
 	var $OssUpload = function (pictureId, type, ossPath, uploadBar) {
