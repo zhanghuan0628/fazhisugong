@@ -27,15 +27,15 @@ public class OSSUtil {
     /**
      * 阿里云oss使用的accessId
      */
-//    private static String ossAccessId="LTAIgrOfu9fWCy9T";  //
-    private static String ossAccessId="LTAICG7rs8rsGNj4";  //公司账号
+//    private static String ossAccessId="**********";  //
+    private static String ossAccessId="******";  //公司账号
     
 
     /**
      * 阿里云oss使用的ossAccessKey
      */
-//    private static String ossAccessKey="Yq08FhNRQNQk5lThu6wNSAMP8QwhLW";
-    private static String ossAccessKey="FDtacJMEQXKRwIPgK3WKYR2Cyv8xKm";
+//    private static String ossAccessKey="********";
+    private static String ossAccessKey="*********";
 
     /**
      * bucket名称
