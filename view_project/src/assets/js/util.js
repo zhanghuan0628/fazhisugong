@@ -3,7 +3,7 @@ import qs from 'qs';
 
 export default {
     wxShare: function(locationUrl,wxtitle,wximgUrl,wxdesc){
-        axios.post(location.protocol+'//pre-third.feifanxinli.com/third/auth/jssdkconfig/wx52c241bcd09bc71c',qs.stringify({
+        axios.post(location.protocol+'//pre-third.feifanxinli.com/third/auth/jssdkconfig/wx***************',qs.stringify({
             requestUrl:location.href.split('#')[0]
         }))
         .then(res=>{
