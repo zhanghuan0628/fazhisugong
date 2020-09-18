@@ -103,10 +103,10 @@ export default {
 	},
 	mounted () {
 		this.ossClient = new OSS.Wrapper({
-			region: "oss-cn-shanghai",
-			accessKeyId: "LTAICG7rs8rsGNj4",
-			accessKeySecret: "FDtacJMEQXKRwIPgK3WKYR2Cyv8xKm",
-			bucket: "ffxl"
+			region: "******************",
+			accessKeyId: "****************",
+			accessKeySecret: "*********************",
+			bucket: "**************"
 		});
 
 		// 分享配置
